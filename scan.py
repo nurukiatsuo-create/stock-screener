@@ -9,6 +9,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import japanize_matplotlib  # ★日本語フォントを有効化
 
 # 厳選26銘柄 ＆ 日本語社名辞書
 STOCKS = {
@@ -88,7 +89,6 @@ for ticker, name in STOCKS.items():
 
         if near_high and trend_ok and liquidity_ok:
             if range_10d <= 15.0:
-                # チャート画像生成
                 plot_df = df.tail(100).copy()
                 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True, gridspec_kw={'height_ratios': [3, 1]})
                 plt.subplots_adjust(hspace=0.08)
@@ -100,20 +100,20 @@ for ticker, name in STOCKS.items():
                     ax1.plot(plot_df.index, plot_df['SMA200'], label='200日線', color='#af52de', lw=1.4)
 
                 ax1.axhline(high_52w, color='#ff3b30', ls=':', lw=1.5, label=f'52週高値 ({high_52w:,.0f}円)')
-                ax1.axhline(pivot, color='#ff9500', lw=1.8, label=f'ピボット ({pivot:,.0f}円)')
+                ax1.axhline(pivot, color='#ff9500', lw=1.8, label=f'ピボット突破点 ({pivot:,.0f}円)')
                 ax1.axhspan(pivot, max_buy, color='#ffcc00', alpha=0.25, label=f'適正買付ゾーン (+5%: 〜{max_buy:,.0f}円)')
 
                 box_dates = plot_df.tail(10).index
-                ax1.axvspan(box_dates[0], box_dates[-1], color='#5ac8fa', alpha=0.15, label=f'10日収縮 ({range_10d:.1f}%)')
+                ax1.axvspan(box_dates[0], box_dates[-1], color='#5ac8fa', alpha=0.15, label=f'10日値幅収縮 ({range_10d:.1f}%)')
 
-                ax1.set_title(f"【新高値・VCP】 {clean_code} {name} (終値: {close:,.0f}円)", fontsize=13, fontweight='bold')
+                ax1.set_title(f"【新高値・VCP検証】 {clean_code} {name} (終値: {close:,.0f}円)", fontsize=13, fontweight='bold')
                 ax1.grid(True, linestyle='--', alpha=0.4)
                 ax1.legend(loc='upper left', fontsize=8, framealpha=0.9)
 
                 colors = ['#ff3b30' if c >= o else '#007aff' for c, o in zip(plot_df['Close'], plot_df['Open'])]
                 ax2.bar(plot_df.index, plot_df['Volume'], color=colors, alpha=0.6, width=0.8)
                 ax2.plot(plot_df.index, plot_df['Vol20'], color='#ff9500', lw=1.2, label='20日平均出来高')
-                ax2.plot(plot_df.index, plot_df['Vol20'] * 1.5, color='#ff3b30', lw=1.2, ls='--', label=f'出来高1.5倍 ({vol_target:,}株)')
+                ax2.plot(plot_df.index, plot_df['Vol20'] * 1.5, color='#ff3b30', lw=1.2, ls='--', label=f'機関投資家急増ライン (1.5倍: {vol_target:,}株)')
                 ax2.grid(True, linestyle='--', alpha=0.4)
                 ax2.legend(loc='upper left', fontsize=8, framealpha=0.9)
                 ax1.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
