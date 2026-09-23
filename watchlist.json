@@ -1,8 +1,6 @@
 {
-  "updated_at": "09/24 06:37",
+  "updated_at": "09/24 06:50",
   "market_ok": false,
-  "n225_close": 65018,
-  "n225_sma25": 65466,
   "ready": [
     {
       "ticker": "3763",
@@ -10,7 +8,8 @@
       "pivot": 2171,
       "max_buy": 2279,
       "vol_target": 87375,
-      "range": "12.4%"
+      "range": "12.4%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/3763.png"
     },
     {
       "ticker": "4776",
@@ -18,7 +17,8 @@
       "pivot": 3150,
       "max_buy": 3307,
       "vol_target": 393150,
-      "range": "10.2%"
+      "range": "10.2%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/4776.png"
     },
     {
       "ticker": "6071",
@@ -26,7 +26,8 @@
       "pivot": 936,
       "max_buy": 982,
       "vol_target": 392362,
-      "range": "11.8%"
+      "range": "11.8%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6071.png"
     },
     {
       "ticker": "6194",
@@ -34,7 +35,8 @@
       "pivot": 891,
       "max_buy": 935,
       "vol_target": 234652,
-      "range": "7.6%"
+      "range": "7.6%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6194.png"
     },
     {
       "ticker": "6652",
@@ -42,7 +44,8 @@
       "pivot": 3810,
       "max_buy": 4000,
       "vol_target": 144412,
-      "range": "10.0%"
+      "range": "10.0%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6652.png"
     },
     {
       "ticker": "7172",
@@ -50,7 +53,8 @@
       "pivot": 2147,
       "max_buy": 2254,
       "vol_target": 208327,
-      "range": "4.1%"
+      "range": "4.1%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7172.png"
     },
     {
       "ticker": "7806",
@@ -58,7 +62,8 @@
       "pivot": 8490,
       "max_buy": 8914,
       "vol_target": 251452,
-      "range": "14.7%"
+      "range": "14.7%",
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7806.png"
     }
   ],
   "forming_count": 4
