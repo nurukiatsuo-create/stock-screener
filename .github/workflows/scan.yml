@@ -20,7 +20,7 @@ jobs:
           python-version: '3.10'
 
       - name: ライブラリインストール
-        run: pip install pandas numpy yfinance pytz matplotlib
+        run: pip install pandas numpy yfinance pytz matplotlib japanize-matplotlib
 
       - name: スキャン実行 & チャート生成
         run: python scan.py
