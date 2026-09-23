@@ -1,0 +1,65 @@
+{
+  "updated_at": "09/24 06:37",
+  "market_ok": false,
+  "n225_close": 65018,
+  "n225_sma25": 65466,
+  "ready": [
+    {
+      "ticker": "3763",
+      "close": 2159,
+      "pivot": 2171,
+      "max_buy": 2279,
+      "vol_target": 87375,
+      "range": "12.4%"
+    },
+    {
+      "ticker": "4776",
+      "close": 3085,
+      "pivot": 3150,
+      "max_buy": 3307,
+      "vol_target": 393150,
+      "range": "10.2%"
+    },
+    {
+      "ticker": "6071",
+      "close": 912,
+      "pivot": 936,
+      "max_buy": 982,
+      "vol_target": 392362,
+      "range": "11.8%"
+    },
+    {
+      "ticker": "6194",
+      "close": 887,
+      "pivot": 891,
+      "max_buy": 935,
+      "vol_target": 234652,
+      "range": "7.6%"
+    },
+    {
+      "ticker": "6652",
+      "close": 3810,
+      "pivot": 3810,
+      "max_buy": 4000,
+      "vol_target": 144412,
+      "range": "10.0%"
+    },
+    {
+      "ticker": "7172",
+      "close": 2138,
+      "pivot": 2147,
+      "max_buy": 2254,
+      "vol_target": 208327,
+      "range": "4.1%"
+    },
+    {
+      "ticker": "7806",
+      "close": 8030,
+      "pivot": 8490,
+      "max_buy": 8914,
+      "vol_target": 251452,
+      "range": "14.7%"
+    }
+  ],
+  "forming_count": 4
+}
