@@ -1,33 +1,36 @@
-name: Daily Stock Scan
+name: Daily Stock Screener
 
 on:
   schedule:
-    - cron: '0 22 * * 0-4'
+    # 平日（月〜金）の日本時間 15:50（UTC 06:50）に自動実行
+    - cron: '50 6 * * 1-5'
+  
+  # 手動でも即座に実行できるようにしておく
   workflow_dispatch:
 
 jobs:
-  scan:
+  screen:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: リポジトリのチェックアウト
         uses: actions/checkout@v4
 
-      - name: Python環境セットアップ
+      - name: Python環境のセットアップ
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: ライブラリインストール
-        run: pip install pandas numpy yfinance pytz matplotlib japanize-matplotlib
-
-      - name: スキャン実行 & チャート生成
-        run: python scan.py
-
-      - name: 結果をリポジトリへ反映
+      - name: 依存ライブラリのインストール
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add watchlist.json charts/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update: watchlist & charts [skip ci]" && git push)
+          python -m pip install --upgrade pip
+          pip install yfinance pandas numpy
+
+      - name: 112銘柄スクリーニング実行
+        run: python screener.py  # ※実行ファイル名に合わせて変更してください
+
+      - name: watchlist.json の自動コミット＆プッシュ
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add watchlist.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update watchlist: $(date '+%Y-%m-%d %H:%M:%S')" && git push)
