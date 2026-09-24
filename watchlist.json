@@ -1,79 +1,276 @@
 {
-  "updated_at": "09/24 15:56",
-  "market_ok": true,
+  "updated_at": "2026-09-24 08:19:11",
+  "count": 30,
   "ready": [
     {
-      "ticker": "3763",
-      "name": "プロシップ",
-      "close": 2144,
-      "pivot": 2199,
-      "max_buy": 2309,
-      "vol_target": 86572,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/3763.png"
+      "ticker": "6904.T",
+      "name": "原田工業",
+      "price": 749,
+      "breakout_score": 100,
+      "off_high_pct": -2.0,
+      "vol_ratio": 3.26,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6904"
     },
     {
-      "ticker": "4776",
-      "name": "サイボウズ",
-      "close": 3100,
-      "pivot": 3150,
-      "max_buy": 3307,
-      "vol_target": 393817,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/4776.png"
+      "ticker": "7256.T",
+      "name": "銘柄7256",
+      "price": 515,
+      "breakout_score": 100,
+      "off_high_pct": -2.8,
+      "vol_ratio": 4.03,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A7256"
     },
     {
-      "ticker": "6071",
-      "name": "IBJ",
-      "close": 914,
-      "pivot": 929,
-      "max_buy": 975,
-      "vol_target": 395017,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6071.png"
+      "ticker": "3040.T",
+      "name": "ソリトン",
+      "price": 2670,
+      "breakout_score": 100,
+      "off_high_pct": -0.3,
+      "vol_ratio": 1.85,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A3040"
     },
     {
-      "ticker": "6194",
-      "name": "アトラエ",
-      "close": 890,
-      "pivot": 898,
-      "max_buy": 942,
-      "vol_target": 243712,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6194.png"
+      "ticker": "6998.T",
+      "name": "日本タングステン",
+      "price": 4250,
+      "breakout_score": 100,
+      "off_high_pct": -0.8,
+      "vol_ratio": 1.81,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6998"
     },
     {
-      "ticker": "6652",
+      "ticker": "6912.T",
+      "name": "菊水HD",
+      "price": 2671,
+      "breakout_score": 100,
+      "off_high_pct": -0.8,
+      "vol_ratio": 1.56,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6912"
+    },
+    {
+      "ticker": "5136.T",
+      "name": "tripla",
+      "price": 2325,
+      "breakout_score": 100,
+      "off_high_pct": -2.3,
+      "vol_ratio": 1.54,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A5136"
+    },
+    {
+      "ticker": "6862.T",
+      "name": "ミナトHD",
+      "price": 5590,
+      "breakout_score": 90,
+      "off_high_pct": -4.1,
+      "vol_ratio": 2.17,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6862"
+    },
+    {
+      "ticker": "4012.T",
+      "name": "アクシス",
+      "price": 1744,
+      "breakout_score": 90,
+      "off_high_pct": -2.6,
+      "vol_ratio": 1.46,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A4012"
+    },
+    {
+      "ticker": "135A.T",
+      "name": "銘柄135A",
+      "price": 4915,
+      "breakout_score": 90,
+      "off_high_pct": -1.9,
+      "vol_ratio": 1.3,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A135A"
+    },
+    {
+      "ticker": "5957.T",
+      "name": "日東精工",
+      "price": 781,
+      "breakout_score": 90,
+      "off_high_pct": -4.3,
+      "vol_ratio": 2.06,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A5957"
+    },
+    {
+      "ticker": "7781.T",
+      "name": "銘柄7781",
+      "price": 889,
+      "breakout_score": 90,
+      "off_high_pct": -2.8,
+      "vol_ratio": 1.34,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A7781"
+    },
+    {
+      "ticker": "3560.T",
+      "name": "ほぼ日",
+      "price": 5190,
+      "breakout_score": 90,
+      "off_high_pct": -0.2,
+      "vol_ratio": 1.45,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A3560"
+    },
+    {
+      "ticker": "9249.T",
+      "name": "日本エコシス",
+      "price": 1658,
+      "breakout_score": 90,
+      "off_high_pct": -1.6,
+      "vol_ratio": 1.35,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A9249"
+    },
+    {
+      "ticker": "7175.T",
+      "name": "今村証券",
+      "price": 2112,
+      "breakout_score": 90,
+      "off_high_pct": -4.9,
+      "vol_ratio": 1.84,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A7175"
+    },
+    {
+      "ticker": "6652.T",
       "name": "IDEC",
-      "close": 3835,
-      "pivot": 3855,
-      "max_buy": 4047,
-      "vol_target": 146745,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6652.png"
+      "price": 3835,
+      "breakout_score": 80,
+      "off_high_pct": -3.5,
+      "vol_ratio": 1.28,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6652"
     },
     {
-      "ticker": "7172",
-      "name": "JIA",
-      "close": 2134,
-      "pivot": 2149,
-      "max_buy": 2256,
-      "vol_target": 210817,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7172.png"
+      "ticker": "4258.T",
+      "name": "網屋",
+      "price": 5800,
+      "breakout_score": 80,
+      "off_high_pct": -1.2,
+      "vol_ratio": 1.05,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A4258"
     },
     {
-      "ticker": "7744",
-      "name": "ノーリツ鋼機",
-      "close": 2013,
-      "pivot": 2034,
-      "max_buy": 2135,
-      "vol_target": 453600,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7744.png"
+      "ticker": "2180.T",
+      "name": "サニーサイド",
+      "price": 1886167168,
+      "breakout_score": 80,
+      "off_high_pct": -0.7,
+      "vol_ratio": 1.0,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A2180"
     },
     {
-      "ticker": "7806",
-      "name": "MTG",
-      "close": 8170,
-      "pivot": 8490,
-      "max_buy": 8914,
-      "vol_target": 252150,
-      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7806.png"
+      "ticker": "6189.T",
+      "name": "グローバルキッズ",
+      "price": 1013,
+      "breakout_score": 75,
+      "off_high_pct": -9.8,
+      "vol_ratio": 4.72,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6189"
+    },
+    {
+      "ticker": "6258.T",
+      "name": "平田機工",
+      "price": 3795,
+      "breakout_score": 70,
+      "off_high_pct": -5.6,
+      "vol_ratio": 1.13,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6258"
+    },
+    {
+      "ticker": "6345.T",
+      "name": "銘柄6345",
+      "price": 1467,
+      "breakout_score": 70,
+      "off_high_pct": -1.4,
+      "vol_ratio": 0.95,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6345"
+    },
+    {
+      "ticker": "5033.T",
+      "name": "ヌーラボ",
+      "price": 1218,
+      "breakout_score": 70,
+      "off_high_pct": -2.9,
+      "vol_ratio": 0.32,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A5033"
+    },
+    {
+      "ticker": "5018.T",
+      "name": "MORESCO",
+      "price": 2374,
+      "breakout_score": 70,
+      "off_high_pct": -2.7,
+      "vol_ratio": 0.7,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A5018"
+    },
+    {
+      "ticker": "7371.T",
+      "name": "Zenken",
+      "price": 803,
+      "breakout_score": 70,
+      "off_high_pct": -2.5,
+      "vol_ratio": 0.69,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A7371"
+    },
+    {
+      "ticker": "5589.T",
+      "name": "オートサーバー",
+      "price": 2918,
+      "breakout_score": 70,
+      "off_high_pct": -2.7,
+      "vol_ratio": 0.52,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A5589"
+    },
+    {
+      "ticker": "6364.T",
+      "name": "北越工業",
+      "price": 2544,
+      "breakout_score": 65,
+      "off_high_pct": -8.8,
+      "vol_ratio": 1.46,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A6364"
+    },
+    {
+      "ticker": "9343.T",
+      "name": "アイビス",
+      "price": 800,
+      "breakout_score": 60,
+      "off_high_pct": -6.0,
+      "vol_ratio": 0.34,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A9343"
+    },
+    {
+      "ticker": "5983.T",
+      "name": "銘柄5983",
+      "price": 14020,
+      "breakout_score": 60,
+      "off_high_pct": -13.2,
+      "vol_ratio": 3.44,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A5983"
+    },
+    {
+      "ticker": "1438.T",
+      "name": "銘柄1438",
+      "price": 2305,
+      "breakout_score": 60,
+      "off_high_pct": -3.8,
+      "vol_ratio": 0.35,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A1438"
+    },
+    {
+      "ticker": "7192.T",
+      "name": "日本モーゲージ",
+      "price": 703,
+      "breakout_score": 60,
+      "off_high_pct": -4.7,
+      "vol_ratio": 0.72,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A7192"
+    },
+    {
+      "ticker": "4765.T",
+      "name": "SBIグローバル",
+      "price": 628,
+      "breakout_score": 60,
+      "off_high_pct": -4.4,
+      "vol_ratio": 0.63,
+      "chart_url": "https://jp.tradingview.com/chart/?symbol=TSE%3A4765"
     }
-  ],
-  "forming_count": 5
+  ]
 }
