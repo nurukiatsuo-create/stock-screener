@@ -248,7 +248,7 @@ NAME_MAP = {
 
 def run_screening():
   print(
-      f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 112銘柄の一括データ取得＆相場流・新高値計算中..."
+      f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 112銘柄の一括データ取得＆トータルW判定中..."
   )
 
   data = yf.download(
@@ -276,7 +276,6 @@ def run_screening():
       curr_low = float(df["Low"].iloc[-1])
       curr_vol = float(df["Volume"].iloc[-1])
 
-      # 異常値ガード（分割・結合データ不整合の排除）
       if curr_close > 1000000 or curr_close <= 0:
         continue
 
@@ -294,7 +293,7 @@ def run_screening():
           float(sma20.iloc[-4]) if len(df) >= 4 else float(sma20.iloc[0])
       )
 
-      # --- 1. オニール新高値スコア計算 ---
+      # 1. オニール新高値スコア
       high_250 = float(df["High"].tail(250).max())
       off_high_pct = ((curr_close - high_250) / high_250) * 100
       vol_sma20 = float(df["Volume"].tail(20).mean())
@@ -328,7 +327,7 @@ def run_screening():
       if curr_close > sma200_val:
         breakout_score += 10
 
-      # --- 2. 相場流スコア ＆ 技名判定 ---
+      # 2. 相場流スコア ＆ 技判定
       is_yang = curr_close >= curr_open
       is_yin = curr_close < curr_open
       body_mid = (curr_open + curr_close) / 2
@@ -395,6 +394,7 @@ def run_screening():
             "price": int(curr_close),
             "breakout_score": breakout_score,
             "soba_score": 60,
+            "total_score": 140,
             "cost_label": f"買{buy_price}",
             "status": status,
             "signal": signal,
@@ -403,7 +403,7 @@ def run_screening():
         })
         continue
 
-      # 未保有株のスコアリング
+      # 相場流ベーススコア計算
       soba_score = 0
       if ma20_slope >= 0:
         soba_score += 20
@@ -420,20 +420,38 @@ def run_screening():
       if is_kahanshin:
         soba_score += 30
 
-      # 過熱乖離はブレーキ（45点固定）
+      soba_score = min(100, max(0, soba_score))
+
+      # ==========================================
+      # ★ トータル総合判定（オニール × 相場流の融合）
+      # ==========================================
+      is_strong_total = (breakout_score >= 40) and (soba_score >= 85)
+
       if bias_20 > 8.0:
         status = "過熱乖離"
         signal = "NONE"
         soba_score = 45
-      elif is_kahanshin and soba_score >= 85:
-        status = "★即買(下半身)"
+      elif is_strong_total:
+        # 新高値40点以上 かつ 相場流85点以上の本命銘柄だけに★を点灯！
+        if is_kahanshin:
+          status = "★即買(下半身)"
+        else:
+          status = "★即買(くちばし)"
         signal = "STRONG_BUY"
-      elif is_kahanshin and soba_score >= 60:
-        status = "下半身(買)"
-        signal = "BUY"
+      elif is_kahanshin:
+        if breakout_score < 40:
+          status = "底値反発"  # マクアケ等、新高値条件を満たさないものは星なし
+          signal = "WATCH"
+        else:
+          status = "下半身(買)"
+          signal = "BUY"
       elif is_kuchibashi:
-        status = "くちばし"
-        signal = "BUY"
+        if breakout_score < 40:
+          status = "底値くちばし"
+          signal = "WATCH"
+        else:
+          status = "くちばし"
+          signal = "BUY"
       elif is_dense and is_yang:
         status = "線密集/初動"
         signal = "WATCH"
@@ -452,13 +470,17 @@ def run_screening():
         status = "様子見"
         signal = "NONE"
 
+      # トータルスコア（合算値）
+      total_score = breakout_score + soba_score
       cost_man = round((curr_close * 100) / 10000, 1)
+
       stock_results.append({
           "ticker": code,
           "name": name,
           "price": int(curr_close),
           "breakout_score": breakout_score,
-          "soba_score": min(100, max(0, soba_score)),
+          "soba_score": soba_score,
+          "total_score": total_score,
           "cost_label": f"{cost_man}万",
           "status": status,
           "signal": signal,
@@ -468,17 +490,20 @@ def run_screening():
     except Exception:
       continue
 
-  # 並び替え：保有株最優先 ＞ 相場流スコア降順 ＞ 新高値スコア降順
+  # 並び替え順：
+  # 1. 保有株最優先
+  # 2. ★即買フラグ（STRONG_BUY）最優先
+  # 3. トータルスコア（新高値＋相場流）の合計点降順
   stock_results.sort(
       key=lambda x: (
           1 if x["is_holding"] else 0,
+          1 if x["signal"] == "STRONG_BUY" else 0,
+          x["total_score"],
           x["soba_score"],
-          x["breakout_score"],
       ),
       reverse=True,
   )
 
-  # 上位12銘柄を抽出
   top12 = stock_results[:12]
 
   output_data = {
@@ -491,7 +516,8 @@ def run_screening():
     json.dump(output_data, f, ensure_ascii=False, indent=2)
 
   print(
-      f"スクリーニング完了: 全112銘柄から最適12銘柄を watchlist.json に出力しました。"
+      f"スクリーニング完了: 全112銘柄からトータル判定トップ12銘柄を watchlist.json"
+      " に出力しました。"
   )
 
 
