@@ -5,10 +5,10 @@ import pandas as pd
 import yfinance as yf
 
 # ==========================================
-# 四季報厳選ユニバース（全112銘柄）
+# 1. 四季報厳選ユニバース（全112銘柄）
 # ==========================================
 TICKERS = [
-    # カテゴリ1: フィジカルAI・ロボティクス・自動化・電子部品 (28銘柄)
+    # カテゴリ1: 自動化・ロボティクス・電子部品
     "6652.T",
     "6862.T",
     "6855.T",
@@ -37,7 +37,7 @@ TICKERS = [
     "6286.T",
     "6364.T",
     "7256.T",
-    # カテゴリ2: DX・クラウド・ソフトウェア・情報通信 (28銘柄)
+    # カテゴリ2: DX・クラウド・ソフトウェア
     "4776.T",
     "3923.T",
     "6027.T",
@@ -66,7 +66,7 @@ TICKERS = [
     "4261.T",
     "5591.T",
     "135A.T",
-    # カテゴリ3: 半導体・先端製造装置・高収益ニッチトップ (28銘柄)
+    # カテゴリ3: 半導体・先端装置・ニッチトップ
     "6998.T",
     "6871.T",
     "7826.T",
@@ -95,7 +95,7 @@ TICKERS = [
     "6336.T",
     "4100.T",
     "4366.T",
-    # カテゴリ4: 独自ビジネスモデル・高収益内需・インフラ・金融 (28銘柄)
+    # カテゴリ4: 独自モデル・高収益内需・金融
     "7172.T",
     "3482.T",
     "2986.T",
@@ -126,41 +126,45 @@ TICKERS = [
     "7175.T",
 ]
 
-# 主要銘柄の日本語名マッピング
+# 保有ポジション設定
+MY_POSITIONS = {"6652.T": {"buy_price": 3850, "shares": 100}}
+
+# 全112銘柄 正式名称マッピング
 NAME_MAP = {
     "6652.T": "IDEC",
-    "4776.T": "サイボウズ",
-    "7172.T": "JIA",
-    "3763.T": "プロシップ",
-    "3923.T": "ラクス",
-    "6027.T": "弁護士コム",
-    "6407.T": "CKD",
-    "6134.T": "FUJI",
-    "6941.T": "山一電機",
-    "6871.T": "マイクロニクス",
-    "4368.T": "扶桑化学",
-    "3482.T": "ロードスター",
-    "3498.T": "霞ヶ関キャピ",
-    "7148.T": "FPG",
-    "6998.T": "日本タングステン",
     "6862.T": "ミナトHD",
     "6855.T": "日本電子材料",
-    "6368.T": "オルガノ",
+    "6407.T": "CKD",
+    "6134.T": "FUJI",
+    "6629.T": "テクノホライゾン",
     "6226.T": "守谷輸送機",
     "6904.T": "原田工業",
+    "6368.T": "オルガノ",
     "6727.T": "ワコム",
+    "6941.T": "山一電機",
     "6946.T": "日本アビオ",
     "6866.T": "HIOKI",
+    "7254.T": "ユニバンス",
     "6258.T": "平田機工",
+    "6518.T": "三相電機",
+    "6345.T": "アイチコーポ",
     "6616.T": "トレックスセミ",
+    "218A.T": "Liberaware",
     "6677.T": "エスケーエレク",
     "6474.T": "不二越",
     "6327.T": "北川精機",
     "7715.T": "長野計器",
     "6508.T": "明電舎",
+    "7218.T": "田中精密",
+    "6286.T": "静甲",
     "6364.T": "北越工業",
+    "7256.T": "河西工業",
+    "4776.T": "サイボウズ",
+    "3923.T": "ラクス",
+    "6027.T": "弁護士コム",
     "3663.T": "セルシス",
     "3968.T": "セグエグループ",
+    "155A.T": "情報戦略テク",
     "5033.T": "ヌーラボ",
     "4055.T": "ティアンドエス",
     "5254.T": "Arent",
@@ -171,15 +175,23 @@ NAME_MAP = {
     "3692.T": "FFRI",
     "3795.T": "トヨクモ",
     "4012.T": "アクシス",
+    "3763.T": "プロシップ",
     "7094.T": "NexTone",
     "3696.T": "セレス",
     "3040.T": "ソリトン",
+    "3695.T": "GMOプロダクト",
+    "4440.T": "ヴィッツ",
     "4371.T": "コアコンセプト",
     "4414.T": "フレクト",
     "4396.T": "システムサポート",
+    "4261.T": "アジアクエスト",
     "5591.T": "AVILEN",
+    "135A.T": "VRAIN",
+    "6998.T": "日本タングステン",
+    "6871.T": "マイクロニクス",
     "7826.T": "フルヤ金属",
     "6787.T": "メイコー",
+    "4368.T": "扶桑化学",
     "4369.T": "トリケミカル",
     "4975.T": "JCU",
     "4626.T": "太陽HD",
@@ -188,21 +200,31 @@ NAME_MAP = {
     "5367.T": "ニッカトー",
     "3441.T": "山王",
     "5957.T": "日東精工",
+    "1401.T": "エムビーエス",
     "3449.T": "テクノフレックス",
+    "4360.T": "マナックケミカル",
     "6469.T": "放電精密",
     "4970.T": "東洋合成",
     "6912.T": "菊水HD",
     "5805.T": "SWCC",
     "7609.T": "ダイトロン",
     "4461.T": "第一工業製薬",
+    "7781.T": "平山HD",
+    "5983.T": "イワブチ",
     "5018.T": "MORESCO",
     "6336.T": "石井表記",
     "4100.T": "戸田工業",
+    "4366.T": "ダイトーケミ",
+    "7172.T": "JIA",
+    "3482.T": "ロードスター",
     "2986.T": "LAホールディングス",
+    "3498.T": "霞ヶ関キャピ",
     "9337.T": "トリドリ",
     "4743.T": "アイティフォー",
+    "7148.T": "FPG",
     "2180.T": "サニーサイド",
     "2884.T": "ヨシムラフード",
+    "1438.T": "岐阜造園",
     "9245.T": "リベロ",
     "5136.T": "tripla",
     "6189.T": "グローバルキッズ",
@@ -212,9 +234,11 @@ NAME_MAP = {
     "7371.T": "Zenken",
     "5589.T": "オートサーバー",
     "4479.T": "マクアケ",
+    "156A.T": "マテリアルG",
     "7030.T": "スプリックス",
     "3560.T": "ほぼ日",
     "9249.T": "日本エコシス",
+    "7354.T": "DmMiX",
     "7192.T": "日本モーゲージ",
     "7059.T": "コプロHD",
     "4765.T": "SBIグローバル",
@@ -224,8 +248,7 @@ NAME_MAP = {
 
 def run_screening():
   print(
-      f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 四季報厳選"
-      f" {len(TICKERS)} 銘柄を取得中..."
+      f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 112銘柄の一括データ取得＆相場流・新高値計算中..."
   )
 
   data = yf.download(
@@ -238,82 +261,237 @@ def run_screening():
       progress=False,
   )
 
-  candidates = []
+  stock_results = []
 
   for code in TICKERS:
     try:
       df = data[code].dropna()
-      if len(df) < 50:
+      if len(df) < 25:
         continue
 
       curr_close = float(df["Close"].iloc[-1])
+      prev_close = float(df["Close"].iloc[-2])
+      curr_open = float(df["Open"].iloc[-1])
+      curr_high = float(df["High"].iloc[-1])
+      curr_low = float(df["Low"].iloc[-1])
       curr_vol = float(df["Volume"].iloc[-1])
 
+      # 異常値ガード（分割・結合データ不整合の排除）
+      if curr_close > 1000000 or curr_close <= 0:
+        continue
+
+      # 移動平均線
+      sma5 = df["Close"].rolling(5).mean()
+      sma20 = df["Close"].rolling(20).mean()
+      sma50 = df["Close"].rolling(50).mean()
+      sma200 = df["Close"].rolling(200).mean()
+
+      m5_val = float(sma5.iloc[-1])
+      p_m5 = float(sma5.iloc[-2])
+      m20_val = float(sma20.iloc[-1])
+      p_m20 = float(sma20.iloc[-2])
+      m20_3days = (
+          float(sma20.iloc[-4]) if len(df) >= 4 else float(sma20.iloc[0])
+      )
+
+      # --- 1. オニール新高値スコア計算 ---
       high_250 = float(df["High"].tail(250).max())
       off_high_pct = ((curr_close - high_250) / high_250) * 100
-
       vol_sma20 = float(df["Volume"].tail(20).mean())
       vol_ratio = (curr_vol / vol_sma20) if vol_sma20 > 0 else 1.0
 
-      sma50 = float(df["Close"].tail(50).mean())
-      sma200 = (
-          float(df["Close"].tail(200).mean()) if len(df) >= 200 else sma50
-      )
-
-      # オニール新高値スコアリング
-      score = 0
+      breakout_score = 0
       if off_high_pct >= -3.0:
-        score += 50
+        breakout_score += 50
       elif off_high_pct >= -6.0:
-        score += 40
+        breakout_score += 40
       elif off_high_pct >= -10.0:
-        score += 25
+        breakout_score += 25
       elif off_high_pct >= -15.0:
-        score += 10
+        breakout_score += 10
 
       if vol_ratio >= 1.5:
-        score += 30
+        breakout_score += 30
       elif vol_ratio >= 1.2:
-        score += 20
+        breakout_score += 20
       elif vol_ratio >= 1.0:
-        score += 10
+        breakout_score += 10
 
-      if curr_close > sma50:
-        score += 10
-      if curr_close > sma200:
-        score += 10
+      sma50_val = float(sma50.iloc[-1]) if not np.isnan(sma50.iloc[-1]) else 0
+      sma200_val = (
+          float(sma200.iloc[-1])
+          if not np.isnan(sma200.iloc[-1])
+          else sma50_val
+      )
+      if curr_close > sma50_val:
+        breakout_score += 10
+      if curr_close > sma200_val:
+        breakout_score += 10
 
-      if off_high_pct >= -20.0 and curr_close > sma50:
-        clean_code = code.replace(".T", "")
-        name = NAME_MAP.get(code, f"銘柄{clean_code}")
-        candidates.append({
+      # --- 2. 相場流スコア ＆ 技名判定 ---
+      is_yang = curr_close >= curr_open
+      is_yin = curr_close < curr_open
+      body_mid = (curr_open + curr_close) / 2
+      ma20_slope = m20_val - m20_3days
+      bias_20 = ((curr_close - m20_val) / m20_val) * 100
+
+      hl = curr_high - curr_low
+      body_size = abs(curr_close - curr_open)
+      body_ratio = (body_size / hl) if hl > 0 else 0
+
+      prev_diff = abs(p_m5 - p_m20)
+      curr_diff = abs(m5_val - m20_val)
+      is_kuchibashi = (p_m5 <= p_m20) and (m5_val > m20_val)
+      is_mono = (
+          (m5_val > m20_val)
+          and (curr_diff > prev_diff)
+          and (p_m5 - p_m20 < curr_close * 0.015)
+      )
+      is_dense = (abs(m5_val - m20_val) / curr_close) < 0.012
+
+      is_kahanshin = (
+          (prev_close <= p_m5)
+          and (body_mid > m5_val)
+          and (curr_close > m5_val)
+          and is_yang
+      )
+      is_gyaku_kahanshin = (
+          (curr_close < m5_val) and (body_mid < m5_val) and is_yin
+      )
+      is_ppp = (curr_close > m5_val) and (m5_val > m20_val)
+
+      is_holding = code in MY_POSITIONS
+      name = NAME_MAP.get(code, code.replace(".T", ""))
+      clean_code = code.replace(".T", "")
+      chart_url = f"https://jp.tradingview.com/chart/?symbol=TSE%3A{clean_code}"
+
+      # 保有株（IDEC等）のエグジット判定
+      if is_holding:
+        buy_price = MY_POSITIONS[code]["buy_price"]
+        stop_price = buy_price * 0.93
+
+        if curr_close <= stop_price:
+          status = "損切(-7%)"
+          signal = "STOP"
+        elif is_gyaku_kahanshin:
+          status = "即手仕舞"
+          signal = "EXIT"
+        elif curr_close < m20_val:
+          status = "20線割手仕舞"
+          signal = "EXIT"
+        elif curr_close < m5_val:
+          status = "5線割警戒"
+          signal = "CAUTION"
+        elif is_ppp:
+          status = "PPP継続"
+          signal = "HOLD"
+        else:
+          status = "5線巡航中"
+          signal = "HOLD"
+
+        stock_results.append({
             "ticker": code,
             "name": name,
             "price": int(curr_close),
-            "breakout_score": score,
-            "off_high_pct": round(off_high_pct, 1),
-            "vol_ratio": round(vol_ratio, 2),
-            "chart_url": (
-                f"https://jp.tradingview.com/chart/?symbol=TSE%3A{clean_code}"
-            ),
+            "breakout_score": breakout_score,
+            "soba_score": 60,
+            "cost_label": f"買{buy_price}",
+            "status": status,
+            "signal": signal,
+            "is_holding": True,
+            "chart_url": chart_url,
         })
+        continue
+
+      # 未保有株のスコアリング
+      soba_score = 0
+      if ma20_slope >= 0:
+        soba_score += 20
+      if is_ppp:
+        soba_score += 25
+      if is_mono:
+        soba_score += 15
+      if is_kuchibashi:
+        soba_score += 15
+      if is_dense and is_yang:
+        soba_score += 20
+      if body_ratio > 0.55 and is_yang:
+        soba_score += 10
+      if is_kahanshin:
+        soba_score += 30
+
+      # 過熱乖離はブレーキ（45点固定）
+      if bias_20 > 8.0:
+        status = "過熱乖離"
+        signal = "NONE"
+        soba_score = 45
+      elif is_kahanshin and soba_score >= 85:
+        status = "★即買(下半身)"
+        signal = "STRONG_BUY"
+      elif is_kahanshin and soba_score >= 60:
+        status = "下半身(買)"
+        signal = "BUY"
+      elif is_kuchibashi:
+        status = "くちばし"
+        signal = "BUY"
+      elif is_dense and is_yang:
+        status = "線密集/初動"
+        signal = "WATCH"
+        soba_score = max(soba_score, 65)
+      elif is_ppp and ma20_slope > 0:
+        status = "PPP継続"
+        signal = "WATCH"
+      elif curr_close > m5_val:
+        status = "5線上維持"
+        signal = "NONE"
+      elif curr_close < m20_val:
+        status = "20線下"
+        signal = "NONE"
+        soba_score = 0
+      else:
+        status = "様子見"
+        signal = "NONE"
+
+      cost_man = round((curr_close * 100) / 10000, 1)
+      stock_results.append({
+          "ticker": code,
+          "name": name,
+          "price": int(curr_close),
+          "breakout_score": breakout_score,
+          "soba_score": min(100, max(0, soba_score)),
+          "cost_label": f"{cost_man}万",
+          "status": status,
+          "signal": signal,
+          "is_holding": False,
+          "chart_url": chart_url,
+      })
     except Exception:
       continue
 
-  candidates.sort(key=lambda x: x["breakout_score"], reverse=True)
-  top30 = candidates[:30]
+  # 並び替え：保有株最優先 ＞ 相場流スコア降順 ＞ 新高値スコア降順
+  stock_results.sort(
+      key=lambda x: (
+          1 if x["is_holding"] else 0,
+          x["soba_score"],
+          x["breakout_score"],
+      ),
+      reverse=True,
+  )
+
+  # 上位12銘柄を抽出
+  top12 = stock_results[:12]
 
   output_data = {
       "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-      "count": len(top30),
-      "ready": top30,
+      "count": len(top12),
+      "stocks": top12,
   }
 
   with open("watchlist.json", "w", encoding="utf-8") as f:
     json.dump(output_data, f, ensure_ascii=False, indent=2)
 
   print(
-      f"スクリーニング完了: {len(top30)} 銘柄を watchlist.json に出力しました。"
+      f"スクリーニング完了: 全112銘柄から最適12銘柄を watchlist.json に出力しました。"
   )
 
 
