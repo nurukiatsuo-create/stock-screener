@@ -1,70 +1,79 @@
 {
-  "updated_at": "09/24 07:15",
-  "market_ok": false,
+  "updated_at": "09/24 15:56",
+  "market_ok": true,
   "ready": [
     {
       "ticker": "3763",
       "name": "プロシップ",
-      "close": 2159,
-      "pivot": 2171,
-      "max_buy": 2279,
-      "vol_target": 87375,
+      "close": 2144,
+      "pivot": 2199,
+      "max_buy": 2309,
+      "vol_target": 86572,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/3763.png"
     },
     {
       "ticker": "4776",
       "name": "サイボウズ",
-      "close": 3085,
+      "close": 3100,
       "pivot": 3150,
       "max_buy": 3307,
-      "vol_target": 393150,
+      "vol_target": 393817,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/4776.png"
     },
     {
       "ticker": "6071",
       "name": "IBJ",
-      "close": 912,
-      "pivot": 936,
-      "max_buy": 982,
-      "vol_target": 392362,
+      "close": 914,
+      "pivot": 929,
+      "max_buy": 975,
+      "vol_target": 395017,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6071.png"
     },
     {
       "ticker": "6194",
       "name": "アトラエ",
-      "close": 887,
-      "pivot": 891,
-      "max_buy": 935,
-      "vol_target": 234652,
+      "close": 890,
+      "pivot": 898,
+      "max_buy": 942,
+      "vol_target": 243712,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6194.png"
     },
     {
       "ticker": "6652",
       "name": "IDEC",
-      "close": 3810,
-      "pivot": 3810,
-      "max_buy": 4000,
-      "vol_target": 144412,
+      "close": 3835,
+      "pivot": 3855,
+      "max_buy": 4047,
+      "vol_target": 146745,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/6652.png"
     },
     {
       "ticker": "7172",
       "name": "JIA",
-      "close": 2138,
-      "pivot": 2147,
-      "max_buy": 2254,
-      "vol_target": 208327,
+      "close": 2134,
+      "pivot": 2149,
+      "max_buy": 2256,
+      "vol_target": 210817,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7172.png"
+    },
+    {
+      "ticker": "7744",
+      "name": "ノーリツ鋼機",
+      "close": 2013,
+      "pivot": 2034,
+      "max_buy": 2135,
+      "vol_target": 453600,
+      "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7744.png"
     },
     {
       "ticker": "7806",
       "name": "MTG",
-      "close": 8030,
+      "close": 8170,
       "pivot": 8490,
       "max_buy": 8914,
-      "vol_target": 251452,
+      "vol_target": 252150,
       "chart_url": "https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/charts/7806.png"
     }
   ],
-  "forming_count": 4
+  "forming_count": 5
 }
