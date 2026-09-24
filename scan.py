@@ -5,7 +5,7 @@ import pandas as pd
 import yfinance as yf
 
 # ==========================================
-# ステップ1：四季報厳選ユニバース（112銘柄）
+# 四季報厳選ユニバース（全112銘柄）
 # ==========================================
 TICKERS = [
     # カテゴリ1: フィジカルAI・ロボティクス・自動化・電子部品 (28銘柄)
@@ -126,7 +126,7 @@ TICKERS = [
     "7175.T",
 ]
 
-# 銘柄名辞書（表示用）
+# 主要銘柄の日本語名マッピング
 NAME_MAP = {
     "6652.T": "IDEC",
     "4776.T": "サイボウズ",
@@ -146,16 +146,88 @@ NAME_MAP = {
     "6862.T": "ミナトHD",
     "6855.T": "日本電子材料",
     "6368.T": "オルガノ",
+    "6226.T": "守谷輸送機",
+    "6904.T": "原田工業",
+    "6727.T": "ワコム",
+    "6946.T": "日本アビオ",
+    "6866.T": "HIOKI",
+    "6258.T": "平田機工",
+    "6616.T": "トレックスセミ",
+    "6677.T": "エスケーエレク",
+    "6474.T": "不二越",
+    "6327.T": "北川精機",
+    "7715.T": "長野計器",
+    "6508.T": "明電舎",
+    "6364.T": "北越工業",
+    "3663.T": "セルシス",
+    "3968.T": "セグエグループ",
+    "5033.T": "ヌーラボ",
+    "4055.T": "ティアンドエス",
+    "5254.T": "Arent",
+    "9343.T": "アイビス",
+    "4828.T": "ビジネスエンジ",
+    "4825.T": "ウェザーニューズ",
+    "4258.T": "網屋",
+    "3692.T": "FFRI",
+    "3795.T": "トヨクモ",
+    "4012.T": "アクシス",
+    "7094.T": "NexTone",
+    "3696.T": "セレス",
+    "3040.T": "ソリトン",
+    "4371.T": "コアコンセプト",
+    "4414.T": "フレクト",
+    "4396.T": "システムサポート",
+    "5591.T": "AVILEN",
+    "7826.T": "フルヤ金属",
+    "6787.T": "メイコー",
+    "4369.T": "トリケミカル",
+    "4975.T": "JCU",
+    "4626.T": "太陽HD",
+    "4971.T": "メック",
+    "4046.T": "大阪ソーダ",
+    "5367.T": "ニッカトー",
+    "3441.T": "山王",
+    "5957.T": "日東精工",
+    "3449.T": "テクノフレックス",
+    "6469.T": "放電精密",
+    "4970.T": "東洋合成",
+    "6912.T": "菊水HD",
+    "5805.T": "SWCC",
+    "7609.T": "ダイトロン",
+    "4461.T": "第一工業製薬",
+    "5018.T": "MORESCO",
+    "6336.T": "石井表記",
+    "4100.T": "戸田工業",
+    "2986.T": "LAホールディングス",
+    "9337.T": "トリドリ",
+    "4743.T": "アイティフォー",
+    "2180.T": "サニーサイド",
+    "2884.T": "ヨシムラフード",
+    "9245.T": "リベロ",
+    "5136.T": "tripla",
+    "6189.T": "グローバルキッズ",
+    "7065.T": "ユーピーアール",
+    "3359.T": "cotta",
+    "7372.T": "デコルテHD",
+    "7371.T": "Zenken",
+    "5589.T": "オートサーバー",
+    "4479.T": "マクアケ",
+    "7030.T": "スプリックス",
+    "3560.T": "ほぼ日",
+    "9249.T": "日本エコシス",
+    "7192.T": "日本モーゲージ",
+    "7059.T": "コプロHD",
+    "4765.T": "SBIグローバル",
+    "7175.T": "今村証券",
 }
 
 
 def run_screening():
   print(
       f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 四季報厳選"
-      f" {len(TICKERS)} 銘柄を一括ダウンロード中..."
+      f" {len(TICKERS)} 銘柄を取得中..."
   )
 
-  # 過去1年分の日足データを一括取得
   data = yf.download(
       TICKERS,
       period="1y",
@@ -177,24 +249,19 @@ def run_screening():
       curr_close = float(df["Close"].iloc[-1])
       curr_vol = float(df["Volume"].iloc[-1])
 
-      # 1. 52週（約250日）最高値からの位置
       high_250 = float(df["High"].tail(250).max())
       off_high_pct = ((curr_close - high_250) / high_250) * 100
 
-      # 2. 出来高倍率（20日平均比）
       vol_sma20 = float(df["Volume"].tail(20).mean())
       vol_ratio = (curr_vol / vol_sma20) if vol_sma20 > 0 else 1.0
 
-      # 3. 中期移動平均線（50日線・200日線）
       sma50 = float(df["Close"].tail(50).mean())
       sma200 = (
           float(df["Close"].tail(200).mean()) if len(df) >= 200 else sma50
       )
 
-      # --- オニール新高値スコアリング（100点満点） ---
+      # オニール新高値スコアリング
       score = 0
-
-      # ① 新高値近接度（最大50点）
       if off_high_pct >= -3.0:
         score += 50
       elif off_high_pct >= -6.0:
@@ -204,7 +271,6 @@ def run_screening():
       elif off_high_pct >= -15.0:
         score += 10
 
-      # ② 出来高増加（最大30点）
       if vol_ratio >= 1.5:
         score += 30
       elif vol_ratio >= 1.2:
@@ -212,14 +278,12 @@ def run_screening():
       elif vol_ratio >= 1.0:
         score += 10
 
-      # ③ トレンド（最大20点）
       if curr_close > sma50:
         score += 10
       if curr_close > sma200:
         score += 10
 
-      # 最低フィルター（52週高値から-18%以内かつ50日線上）
-      if off_high_pct >= -18.0 and curr_close > sma50:
+      if off_high_pct >= -20.0 and curr_close > sma50:
         clean_code = code.replace(".T", "")
         name = NAME_MAP.get(code, f"銘柄{clean_code}")
         candidates.append({
@@ -233,15 +297,12 @@ def run_screening():
                 f"https://jp.tradingview.com/chart/?symbol=TSE%3A{clean_code}"
             ),
         })
-
     except Exception:
       continue
 
-  # スコア降順でソートし、上位30銘柄に絞り込み
   candidates.sort(key=lambda x: x["breakout_score"], reverse=True)
   top30 = candidates[:30]
 
-  # JSON出力
   output_data = {
       "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
       "count": len(top30),
@@ -252,16 +313,8 @@ def run_screening():
     json.dump(output_data, f, ensure_ascii=False, indent=2)
 
   print(
-      f"スクリーニング完了: {len(candidates)} 銘柄中、上位 {len(top30)}"
-      " 銘柄を watchlist.json に出力しました。"
+      f"スクリーニング完了: {len(top30)} 銘柄を watchlist.json に出力しました。"
   )
-
-  # コンソールプレビュー（上位10銘柄）
-  df_preview = pd.DataFrame(top30)[
-      ["ticker", "name", "price", "breakout_score", "off_high_pct", "vol_ratio"]
-  ].head(10)
-  print("\n▼ 新高値モメンタム トップ10銘柄")
-  print(df_preview.to_string(index=False))
 
 
 if __name__ == "__main__":
