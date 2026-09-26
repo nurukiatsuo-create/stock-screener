@@ -51,11 +51,11 @@ def analyze_market():
             if pbr is not None and pbr < 1.2:
                 continue
 
-            # 【別採点：業績スコア（50〜100点）】
+            # 【業績スコア（50〜100点）】
             funda_score = 50
-            if rev_growth is not None and rev_growth > 0.10:   # 売上二桁増（勝率No.1指標）
+            if rev_growth is not None and rev_growth > 0.10:   # 売上二桁増（勝率41%指標）
                 funda_score += 20
-            if roe is not None and roe > 0.12:                 # 高ROE（PF No.1指標）
+            if roe is not None and roe > 0.12:                 # 高ROE（PF 4.18指標）
                 funda_score += 15
             if earn_growth is not None and earn_growth > 0.30: # 利益急増（モメンタム加速）
                 funda_score += 15
@@ -89,9 +89,9 @@ def analyze_market():
             nh_score = 50
             if close > sma50:
                 nh_score += 15
-            if -3.0 <= off_high <= 2.5:   # 最強発射台
+            if -3.0 <= off_high <= 2.5:   # 発射台ゾーン
                 nh_score += 20
-            elif -7.5 <= off_high < -3.0: # 助走
+            elif -7.5 <= off_high < -3.0: # 助走ゾーン
                 nh_score += 10
             elif off_high > 5.0:          # 飛びつき過熱
                 nh_score -= 20
@@ -145,12 +145,14 @@ def analyze_market():
             continue
 
     # --------------------------------------------------------
-    # 5. 並び替え（発射台最優先 ＆ 業績上位順）
+    # 5. 並び替え（★バックテスト検証結果 PF 4.11 を最優先反映）
     # --------------------------------------------------------
     nh_candidates.sort(key=lambda x: (
-        1 if (75 <= x['nh_score'] <= 90) else 0,
-        x['funda_score'],
-        x['nh_score']
+        1 if (75 <= x['nh_score'] <= 90) else 0,   # ① 発射台スコア
+        x['funda_score'],                           # ② 業績スコア（100点、85点...）
+        1 if (-3.0 <= x['off_high'] < 0.0) else 0,  # ③ ★PF 4.11の「新高値直前」を最優先！
+        x['nh_score'],                              # ④ チャート点
+        -abs(x['off_high'])                         # ⑤ 高値の壁に近い順
     ), reverse=True)
 
     soba_candidates.sort(key=lambda x: x['soba_score'], reverse=True)
