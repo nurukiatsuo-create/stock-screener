@@ -29,6 +29,8 @@ def analyze_market():
     now_jst = datetime.now(jst)
     updated_str = now_jst.strftime('%m/%d %H:%M')
 
+    print(f">>> スクリーニング開始: {updated_str}")
+
     for ticker in TICKERS:
         try:
             t = yf.Ticker(ticker)
@@ -37,7 +39,7 @@ def analyze_market():
                 continue
 
             # ----------------------------------------------------
-            # 1. 財務データの取得（ファンダメンタルズ）
+            # 1. 財務データの取得（低PBR足切り ＆ 3大業績指標の採点）
             # ----------------------------------------------------
             info = t.info
             pbr = info.get("priceToBook", None)
@@ -45,23 +47,29 @@ def analyze_market():
             rev_growth = info.get("revenueGrowth", None)
             earn_growth = info.get("earningsQuarterlyGrowth", None)
 
-            # 【足切り条件①：低PBR地雷の排除】
-            # バックテストで勝率20%・PF1.61に崩壊した「万年割安株（PBR < 1.2）」は即排除
+            # 【足切り①】低PBR（1.2倍未満）の放置株は排除
             if pbr is not None and pbr < 1.2:
                 continue
 
+            # 【別採点：業績スコア（50〜100点）】
+            funda_score = 50
+            if rev_growth is not None and rev_growth > 0.10:   # 売上二桁増（勝率No.1指標）
+                funda_score += 20
+            if roe is not None and roe > 0.12:                 # 高ROE（PF No.1指標）
+                funda_score += 15
+            if earn_growth is not None and earn_growth > 0.30: # 利益急増（モメンタム加速）
+                funda_score += 15
+            funda_score = min(funda_score, 100)
+
             # ----------------------------------------------------
-            # 2. テクニカル指標の計算
+            # 2. テクニカル指標の計算（売買代金足切り）
             # ----------------------------------------------------
             close = df['Close'].iloc[-1]
             open_p = df['Open'].iloc[-1]
             vol = df['Volume'].iloc[-1]
             
-            # 直近5日平均の売買代金（円）
+            # 【足切り②】板薄排除（直近5日平均売買代金 4,000万円以上）
             avg_turnover = (df['Close'].tail(5) * df['Volume'].tail(5)).mean()
-            
-            # 【足切り条件②：板薄の排除】
-            # 信用100万円を成行で投げてもスリッページが起きない「売買代金 4,000万円以上」
             if avg_turnover < 40000000:
                 continue
 
@@ -76,34 +84,20 @@ def analyze_market():
             off_high = round(((close - high250) / high250) * 100, 1)
 
             # ----------------------------------------------------
-            # 3. 新高値スコアリング（発射台 + ファンダ加点）
+            # 3. 新高値チャート採点（位置と出来高）
             # ----------------------------------------------------
             nh_score = 50
-            
-            # テクニカル加点（位置関係と出来高）
             if close > sma50:
                 nh_score += 15
-            if -3.0 <= off_high <= 2.5:   # 最強発射台ゾーン
+            if -3.0 <= off_high <= 2.5:   # 最強発射台
                 nh_score += 20
-            elif -7.5 <= off_high < -3.0: # 助走ゾーン
+            elif -7.5 <= off_high < -3.0: # 助走
                 nh_score += 10
             elif off_high > 5.0:          # 飛びつき過熱
                 nh_score -= 20
 
             if vol20 > 0 and vol >= vol20 * 1.3:
-                nh_score += 10
-
-            # 【ファンダメンタルズ加点（バックテストでPF跳ね上がり確認済）】
-            funda_badge = []
-            if rev_growth is not None and rev_growth > 0.10:  # 売上二桁増（勝率41%）
-                nh_score += 10
-                funda_badge.append("売上10%↑")
-            if roe is not None and roe > 0.12:                # 高ROE（PF 4.18）
-                nh_score += 10
-                funda_badge.append("高ROE")
-            if earn_growth is not None and earn_growth > 0.30:# 利益加速（PF 3.85）
-                nh_score += 10
-                funda_badge.append("増益30%↑")
+                nh_score += 15
 
             nh_score = min(max(nh_score, 0), 100)
 
@@ -112,38 +106,31 @@ def analyze_market():
             # ----------------------------------------------------
             soba_score = 50
             soba_pattern = "通常"
-            
-            # PPP判定 (5MA > 20MA > 60MA)
-            is_ppp = (sma5 > sma20 > sma60)
-            if is_ppp:
+            if (sma5 > sma20 > sma60):
                 soba_score += 20
                 soba_pattern = "PPP"
 
-            # 下半身 (陽線で実体が5日線の上に乗る)
             if close > sma5 and open_p < sma5 and close > open_p:
                 soba_score += 25
                 soba_pattern = "★下半身(即買)"
-            # くちばし (5日線が20日線を鋭角に上抜く)
             elif sma5 > sma20 and df['Close'].rolling(5).mean().iloc[-2] <= df['Close'].rolling(20).mean().iloc[-2]:
                 soba_score += 25
                 soba_pattern = "★くちばし(即買)"
 
             soba_score = min(max(soba_score, 0), 100)
-
             code_clean = ticker.replace(".T", "")
             
-            # 新高値候補リストへの追加（発射台条件を満たすもの）
+            # リスト格納（発射台圏内）
             if close > sma50 and -7.5 <= off_high <= 3.0:
                 nh_candidates.append({
                     "code": code_clean,
                     "name": code_clean,
                     "price": int(close),
-                    "nh_score": nh_score,
-                    "off_high": off_high,
-                    "funda": " ".join(funda_badge) if funda_badge else "良好"
+                    "nh_score": nh_score,        # チャート点
+                    "funda_score": funda_score,  # 業績点
+                    "off_high": off_high
                 })
 
-            # 相場流候補リストへの追加
             if soba_score >= 70:
                 soba_candidates.append({
                     "code": code_clean,
@@ -154,19 +141,18 @@ def analyze_market():
                     "soba_pattern": soba_pattern
                 })
 
-        except Exception as e:
+        except Exception:
             continue
 
     # --------------------------------------------------------
-    # 5. 並び替え（発射台最優先ソート）
+    # 5. 並び替え（発射台最優先 ＆ 業績上位順）
     # --------------------------------------------------------
-    # 新高値：発射台スコア（75〜95点）を最優先にし、その中で得点順
     nh_candidates.sort(key=lambda x: (
-        1 if (75 <= x['nh_score'] <= 95) else 0,
+        1 if (75 <= x['nh_score'] <= 90) else 0,
+        x['funda_score'],
         x['nh_score']
     ), reverse=True)
 
-    # 相場流：スコア順
     soba_candidates.sort(key=lambda x: x['soba_score'], reverse=True)
 
     output_data = {
@@ -177,7 +163,7 @@ def analyze_market():
 
     with open("stocks_data.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
-    print(">>> スクリーニング完了: stocks_data.json を生成しました。")
+    print(">>> 完了: stocks_data.json を生成しました。")
 
 if __name__ == "__main__":
     analyze_market()
