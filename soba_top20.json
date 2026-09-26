@@ -1,0 +1,166 @@
+{
+  "updated_at": "09/26 08:55",
+  "title": "相場流 四季報20",
+  "stocks": [
+    {
+      "code": "5033",
+      "name": "ヌーラボ",
+      "price": 1213,
+      "score": 20,
+      "status": "逆下半身",
+      "detail": "12.1万"
+    },
+    {
+      "code": "5018",
+      "name": "MORESCO",
+      "price": 2361,
+      "score": 20,
+      "status": "逆下半身",
+      "detail": "23.6万"
+    },
+    {
+      "code": "4371",
+      "name": "コアコンセプト",
+      "price": 1457,
+      "score": 20,
+      "status": "逆下半身",
+      "detail": "14.6万"
+    },
+    {
+      "code": "2986",
+      "name": "LAホールディングス",
+      "price": 2937,
+      "score": 20,
+      "status": "逆下半身",
+      "detail": "29.4万"
+    },
+    {
+      "code": "6345",
+      "name": "アイチコーポ",
+      "price": 1487,
+      "score": 90,
+      "status": "ものわかれ",
+      "detail": "14.9万"
+    },
+    {
+      "code": "7172",
+      "name": "JIA",
+      "price": 2161,
+      "score": 90,
+      "status": "ものわかれ",
+      "detail": "21.6万"
+    },
+    {
+      "code": "7254",
+      "name": "ユニバンス",
+      "price": 840,
+      "score": 90,
+      "status": "ものわかれ",
+      "detail": "8.4万"
+    },
+    {
+      "code": "6677",
+      "name": "エスケーエレク",
+      "price": 3280,
+      "score": 90,
+      "status": "ものわかれ",
+      "detail": "32.8万"
+    },
+    {
+      "code": "6364",
+      "name": "北越工業",
+      "price": 2585,
+      "score": 80,
+      "status": "ものわかれ",
+      "detail": "25.9万"
+    },
+    {
+      "code": "4461",
+      "name": "第一工業製薬",
+      "price": 13950,
+      "score": 80,
+      "status": "くちばし",
+      "detail": "139.5万"
+    },
+    {
+      "code": "5957",
+      "name": "日東精工",
+      "price": 781,
+      "score": 75,
+      "status": "くちばし",
+      "detail": "7.8万"
+    },
+    {
+      "code": "7372",
+      "name": "デコルテHD",
+      "price": 416,
+      "score": 70,
+      "status": "ものわかれ",
+      "detail": "4.2万"
+    },
+    {
+      "code": "4626",
+      "name": "太陽HD",
+      "price": 4780,
+      "score": 70,
+      "status": "ものわかれ",
+      "detail": "47.8万"
+    },
+    {
+      "code": "3482",
+      "name": "ロードスター",
+      "price": 2603,
+      "score": 70,
+      "status": "ものわかれ",
+      "detail": "26.0万"
+    },
+    {
+      "code": "6226",
+      "name": "守谷輸送機",
+      "price": 2229,
+      "score": 70,
+      "status": "ものわかれ",
+      "detail": "22.3万"
+    },
+    {
+      "code": "5589",
+      "name": "オートサーバー",
+      "price": 2929,
+      "score": 65,
+      "status": "線密集/初動",
+      "detail": "29.3万"
+    },
+    {
+      "code": "1438",
+      "name": "岐阜造園",
+      "price": 2298,
+      "score": 65,
+      "status": "ものわかれ",
+      "detail": "23.0万"
+    },
+    {
+      "code": "4765",
+      "name": "SBIグローバル",
+      "price": 627,
+      "score": 65,
+      "status": "線密集/初動",
+      "detail": "6.3万"
+    },
+    {
+      "code": "6616",
+      "name": "トレックスセミ",
+      "price": 1948,
+      "score": 65,
+      "status": "線密集/初動",
+      "detail": "19.5万"
+    },
+    {
+      "code": "6508",
+      "name": "明電舎",
+      "price": 11460,
+      "score": 65,
+      "status": "線密集/初動",
+      "detail": "114.6万"
+    }
+  ]
+}
