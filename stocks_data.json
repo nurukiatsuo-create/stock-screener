@@ -1,0 +1,277 @@
+{
+  "updated_at": "09/26 17:55",
+  "portfolio": [
+    {
+      "code": "6652.T",
+      "name": "IDEC",
+      "price": 3825.0,
+      "nh_score": 70,
+      "off_high": -3.8,
+      "vol_ratio": 1.21,
+      "nh_action": "助走圏内",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続",
+      "buy_price": 3850,
+      "pnl_pct": -0.65,
+      "note": "買3850 損切-7%: 3580円"
+    },
+    {
+      "code": "6345.T",
+      "name": "アイチコーポ",
+      "price": 1487.0,
+      "nh_score": 70,
+      "off_high": -0.1,
+      "vol_ratio": 0.83,
+      "nh_action": "助走圏内",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続",
+      "buy_price": 1474,
+      "pnl_pct": 0.88,
+      "note": "買1474 損切-7%: 1370円"
+    },
+    {
+      "code": "1401.T",
+      "name": "エムビーエス",
+      "price": 1449.0,
+      "nh_score": 60,
+      "off_high": -26.7,
+      "vol_ratio": 6.78,
+      "nh_action": "押し目形成",
+      "soba_score": 95,
+      "soba_pattern": "★くちばし(即買)",
+      "buy_price": 1420,
+      "pnl_pct": 2.04,
+      "note": "買1420 建値逆指値でガチホ"
+    }
+  ],
+  "new_high_ranks": [
+    {
+      "code": "7826.T",
+      "name": "7826",
+      "price": 11700.0,
+      "nh_score": 85,
+      "off_high": 2.5,
+      "vol_ratio": 1.3,
+      "nh_action": "★最優先発射台",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "6912.T",
+      "name": "6912",
+      "price": 2718.0,
+      "nh_score": 85,
+      "off_high": 1.0,
+      "vol_ratio": 1.33,
+      "nh_action": "★最優先発射台",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "9249.T",
+      "name": "9249",
+      "price": 1651.0,
+      "nh_score": 85,
+      "off_high": -2.0,
+      "vol_ratio": 1.69,
+      "nh_action": "★最優先発射台",
+      "soba_score": 50,
+      "soba_pattern": "調整中"
+    },
+    {
+      "code": "7192.T",
+      "name": "7192",
+      "price": 722.0,
+      "nh_score": 80,
+      "off_high": -2.2,
+      "vol_ratio": 1.48,
+      "nh_action": "★最優先発射台",
+      "soba_score": 100,
+      "soba_pattern": "★下半身(即買)"
+    },
+    {
+      "code": "6727.T",
+      "name": "6727",
+      "price": 880.0,
+      "nh_score": 75,
+      "off_high": -7.3,
+      "vol_ratio": 2.29,
+      "nh_action": "★最優先発射台",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "6364.T",
+      "name": "北越工業",
+      "price": 2585.0,
+      "nh_score": 75,
+      "off_high": -7.3,
+      "vol_ratio": 2.15,
+      "nh_action": "★最優先発射台",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "3560.T",
+      "name": "3560",
+      "price": 5200.0,
+      "nh_score": 75,
+      "off_high": 0.0,
+      "vol_ratio": 0.86,
+      "nh_action": "★最優先発射台",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "6904.T",
+      "name": "6904",
+      "price": 885.0,
+      "nh_score": 100,
+      "off_high": 15.8,
+      "vol_ratio": 9.51,
+      "nh_action": "飛びつき見送り",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "7256.T",
+      "name": "7256",
+      "price": 565.0,
+      "nh_score": 100,
+      "off_high": 6.6,
+      "vol_ratio": 3.94,
+      "nh_action": "飛びつき見送り",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    },
+    {
+      "code": "3040.T",
+      "name": "3040",
+      "price": 2719.0,
+      "nh_score": 95,
+      "off_high": 1.6,
+      "vol_ratio": 1.84,
+      "nh_action": "飛びつき見送り",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続"
+    }
+  ],
+  "soba_ranks": [
+    {
+      "code": "7192.T",
+      "name": "7192",
+      "price": 722.0,
+      "nh_score": 80,
+      "off_high": -2.2,
+      "vol_ratio": 1.48,
+      "nh_action": "★最優先発射台",
+      "soba_score": 100,
+      "soba_pattern": "★下半身(即買)"
+    },
+    {
+      "code": "6286.T",
+      "name": "6286",
+      "price": 1505.0,
+      "nh_score": 35,
+      "off_high": -20.7,
+      "vol_ratio": 0.4,
+      "nh_action": "押し目形成",
+      "soba_score": 95,
+      "soba_pattern": "★くちばし(即買)"
+    },
+    {
+      "code": "3763.T",
+      "name": "3763",
+      "price": 2090.0,
+      "nh_score": 35,
+      "off_high": -17.1,
+      "vol_ratio": 0.77,
+      "nh_action": "押し目形成",
+      "soba_score": 95,
+      "soba_pattern": "★くちばし(即買)"
+    },
+    {
+      "code": "3696.T",
+      "name": "3696",
+      "price": 2217.0,
+      "nh_score": 40,
+      "off_high": -18.2,
+      "vol_ratio": 1.07,
+      "nh_action": "押し目形成",
+      "soba_score": 95,
+      "soba_pattern": "★くちばし(即買)"
+    },
+    {
+      "code": "1401.T",
+      "name": "エムビーエス",
+      "price": 1449.0,
+      "nh_score": 60,
+      "off_high": -26.7,
+      "vol_ratio": 6.78,
+      "nh_action": "押し目形成",
+      "soba_score": 95,
+      "soba_pattern": "★くちばし(即買)",
+      "buy_price": 1420,
+      "pnl_pct": 2.04,
+      "note": "買1420 建値逆指値でガチホ"
+    },
+    {
+      "code": "4461.T",
+      "name": "4461",
+      "price": 13950.0,
+      "nh_score": 35,
+      "off_high": -12.3,
+      "vol_ratio": 0.76,
+      "nh_action": "押し目形成",
+      "soba_score": 95,
+      "soba_pattern": "★くちばし(即買)"
+    },
+    {
+      "code": "6226.T",
+      "name": "6226",
+      "price": 2229.0,
+      "nh_score": 15,
+      "off_high": -31.0,
+      "vol_ratio": 0.91,
+      "nh_action": "押し目形成",
+      "soba_score": 80,
+      "soba_pattern": "★下半身(即買)"
+    },
+    {
+      "code": "4971.T",
+      "name": "4971",
+      "price": 6730.0,
+      "nh_score": 20,
+      "off_high": -45.0,
+      "vol_ratio": 1.17,
+      "nh_action": "押し目形成",
+      "soba_score": 75,
+      "soba_pattern": "★くちばし(即買)"
+    },
+    {
+      "code": "5957.T",
+      "name": "日東精工",
+      "price": 781.0,
+      "nh_score": 70,
+      "off_high": -4.3,
+      "vol_ratio": 1.27,
+      "nh_action": "助走圏内",
+      "soba_score": 75,
+      "soba_pattern": "★くちばし(即買)"
+    },
+    {
+      "code": "6652.T",
+      "name": "IDEC",
+      "price": 3825.0,
+      "nh_score": 70,
+      "off_high": -3.8,
+      "vol_ratio": 1.21,
+      "nh_action": "助走圏内",
+      "soba_score": 70,
+      "soba_pattern": "PPP継続",
+      "buy_price": 3850,
+      "pnl_pct": -0.65,
+      "note": "買3850 損切-7%: 3580円"
+    }
+  ]
+}
