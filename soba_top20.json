@@ -1,39 +1,7 @@
 {
-  "updated_at": "09/26 08:55",
+  "updated_at": "09/26 09:16",
   "title": "相場流 四季報20",
   "stocks": [
-    {
-      "code": "5033",
-      "name": "ヌーラボ",
-      "price": 1213,
-      "score": 20,
-      "status": "逆下半身",
-      "detail": "12.1万"
-    },
-    {
-      "code": "5018",
-      "name": "MORESCO",
-      "price": 2361,
-      "score": 20,
-      "status": "逆下半身",
-      "detail": "23.6万"
-    },
-    {
-      "code": "4371",
-      "name": "コアコンセプト",
-      "price": 1457,
-      "score": 20,
-      "status": "逆下半身",
-      "detail": "14.6万"
-    },
-    {
-      "code": "2986",
-      "name": "LAホールディングス",
-      "price": 2937,
-      "score": 20,
-      "status": "逆下半身",
-      "detail": "29.4万"
-    },
     {
       "code": "6345",
       "name": "アイチコーポ",
@@ -161,6 +129,38 @@
       "score": 65,
       "status": "線密集/初動",
       "detail": "114.6万"
+    },
+    {
+      "code": "7218",
+      "name": "田中精密",
+      "price": 1160,
+      "score": 65,
+      "status": "線密集/初動",
+      "detail": "11.6万"
+    },
+    {
+      "code": "4743",
+      "name": "アイティフォー",
+      "price": 1669,
+      "score": 65,
+      "status": "ものわかれ",
+      "detail": "16.7万"
+    },
+    {
+      "code": "6866",
+      "name": "HIOKI",
+      "price": 10440,
+      "score": 65,
+      "status": "線密集/初動",
+      "detail": "104.4万"
+    },
+    {
+      "code": "6286",
+      "name": "静甲",
+      "price": 1505,
+      "score": 65,
+      "status": "くちばし",
+      "detail": "15.1万"
     }
   ]
 }
