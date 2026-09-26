@@ -1,14 +1,6 @@
 {
-  "updated_at": "09/27 04:36",
+  "updated_at": "09/27 04:50",
   "new_high_ranks": [
-    {
-      "code": "7826",
-      "name": "7826",
-      "price": 11700,
-      "nh_score": 85,
-      "funda_score": 100,
-      "off_high": 2.5
-    },
     {
       "code": "6862",
       "name": "6862",
@@ -18,12 +10,12 @@
       "off_high": -2.4
     },
     {
-      "code": "4258",
-      "name": "4258",
-      "price": 5580,
-      "nh_score": 75,
+      "code": "7826",
+      "name": "7826",
+      "price": 11700,
+      "nh_score": 85,
       "funda_score": 100,
-      "off_high": -4.9
+      "off_high": 2.5
     },
     {
       "code": "4765",
@@ -32,6 +24,14 @@
       "nh_score": 75,
       "funda_score": 100,
       "off_high": -4.0
+    },
+    {
+      "code": "4258",
+      "name": "4258",
+      "price": 5580,
+      "nh_score": 75,
+      "funda_score": 100,
+      "off_high": -4.9
     },
     {
       "code": "6998",
@@ -66,20 +66,20 @@
       "off_high": -7.3
     },
     {
+      "code": "6345",
+      "name": "6345",
+      "price": 1487,
+      "nh_score": 85,
+      "funda_score": 65,
+      "off_high": -0.1
+    },
+    {
       "code": "6727",
       "name": "6727",
       "price": 880,
       "nh_score": 90,
       "funda_score": 65,
       "off_high": -7.3
-    },
-    {
-      "code": "3560",
-      "name": "3560",
-      "price": 5200,
-      "nh_score": 85,
-      "funda_score": 65,
-      "off_high": 0.0
     }
   ],
   "soba_ranks": [
