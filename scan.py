@@ -1,5 +1,5 @@
-import json
 from datetime import datetime
+import json
 import numpy as np
 import pandas as pd
 import yfinance as yf
@@ -247,9 +247,9 @@ NAME_MAP = {
 
 
 def run_screening():
-  print(
-      f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 112銘柄の一括データ取得＆トータルW判定中..."
-  )
+  now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+  display_time_str = datetime.now().strftime("%m/%d %H:%M")
+  print(f"[{now_str}] 112銘柄の一括データ取得＆全判定実行中...")
 
   data = yf.download(
       TICKERS,
@@ -293,7 +293,9 @@ def run_screening():
           float(sma20.iloc[-4]) if len(df) >= 4 else float(sma20.iloc[0])
       )
 
-      # 1. オニール新高値スコア
+      # ----------------------------------------------------
+      # 1. オニール新高値スコア & 新高値単体ステータス
+      # ----------------------------------------------------
       high_250 = float(df["High"].tail(250).max())
       off_high_pct = ((curr_close - high_250) / high_250) * 100
       vol_sma20 = float(df["Volume"].tail(20).mean())
@@ -327,7 +329,23 @@ def run_screening():
       if curr_close > sma200_val:
         breakout_score += 10
 
-      # 2. 相場流スコア ＆ 技判定
+      # 新高値単体ステータス
+      if off_high_pct >= 0:
+        breakout_status = "★新高値更新"
+      elif off_high_pct >= -3.0 and vol_ratio >= 1.5:
+        breakout_status = "★出来高急増"
+      elif off_high_pct >= -3.0:
+        breakout_status = "高値ブレイク直前"
+      elif off_high_pct >= -6.0:
+        breakout_status = "ブレイク前夜"
+      elif off_high_pct >= -10.0:
+        breakout_status = "押し目調整"
+      else:
+        breakout_status = "基盤形成中"
+
+      # ----------------------------------------------------
+      # 2. 相場流スコア & 技判定
+      # ----------------------------------------------------
       is_yang = curr_close >= curr_open
       is_yin = curr_close < curr_open
       body_mid = (curr_open + curr_close) / 2
@@ -364,7 +382,52 @@ def run_screening():
       clean_code = code.replace(".T", "")
       chart_url = f"https://jp.tradingview.com/chart/?symbol=TSE%3A{clean_code}"
 
-      # 保有株（IDEC等）のエグジット判定
+      # 相場流ベーススコア計算
+      soba_score = 0
+      if ma20_slope >= 0:
+        soba_score += 20
+      if is_ppp:
+        soba_score += 25
+      if is_mono:
+        soba_score += 15
+      if is_kuchibashi:
+        soba_score += 15
+      if is_dense and is_yang:
+        soba_score += 20
+      if body_ratio > 0.55 and is_yang:
+        soba_score += 10
+      if is_kahanshin:
+        soba_score += 30
+
+      soba_score = min(100, max(0, soba_score))
+
+      # 相場流単体ステータス
+      if bias_20 > 8.0:
+        soba_status = "過熱乖離"
+        soba_score = 45
+      elif is_kahanshin:
+        soba_status = "下半身(買)"
+      elif is_kuchibashi:
+        soba_status = "くちばし"
+      elif is_mono:
+        soba_status = "ものわかれ"
+      elif is_dense and is_yang:
+        soba_status = "線密集/初動"
+      elif is_ppp:
+        soba_status = "PPP継続"
+      elif curr_close < m20_val:
+        soba_status = "20線下"
+        soba_score = 0
+      elif is_gyaku_kahanshin:
+        soba_status = "逆下半身"
+      elif curr_close > m5_val:
+        soba_status = "5線上維持"
+      else:
+        soba_status = "様子見"
+
+      # ----------------------------------------------------
+      # 3. 既存のW判定ロジック（そのまま維持）
+      # ----------------------------------------------------
       if is_holding:
         buy_price = MY_POSITIONS[code]["buy_price"]
         stop_price = buy_price * 0.93
@@ -400,58 +463,27 @@ def run_screening():
             "signal": signal,
             "is_holding": True,
             "chart_url": chart_url,
+            "off_high_pct": round(off_high_pct, 1),
+            "vol_ratio": round(vol_ratio, 2),
+            "breakout_status": breakout_status,
+            "soba_status": soba_status,
         })
         continue
 
-      # 相場流ベーススコア計算
-      soba_score = 0
-      if ma20_slope >= 0:
-        soba_score += 20
-      if is_ppp:
-        soba_score += 25
-      if is_mono:
-        soba_score += 15
-      if is_kuchibashi:
-        soba_score += 15
-      if is_dense and is_yang:
-        soba_score += 20
-      if body_ratio > 0.55 and is_yang:
-        soba_score += 10
-      if is_kahanshin:
-        soba_score += 30
-
-      soba_score = min(100, max(0, soba_score))
-
-      # ==========================================
-      # ★ トータル総合判定（オニール × 相場流の融合）
-      # ==========================================
       is_strong_total = (breakout_score >= 40) and (soba_score >= 85)
 
       if bias_20 > 8.0:
         status = "過熱乖離"
         signal = "NONE"
-        soba_score = 45
       elif is_strong_total:
-        # 新高値40点以上 かつ 相場流85点以上の本命銘柄だけに★を点灯！
-        if is_kahanshin:
-          status = "★即買(下半身)"
-        else:
-          status = "★即買(くちばし)"
+        status = "★即買(下半身)" if is_kahanshin else "★即買(くちばし)"
         signal = "STRONG_BUY"
       elif is_kahanshin:
-        if breakout_score < 40:
-          status = "底値反発"  # マクアケ等、新高値条件を満たさないものは星なし
-          signal = "WATCH"
-        else:
-          status = "下半身(買)"
-          signal = "BUY"
+        status = "底値反発" if breakout_score < 40 else "下半身(買)"
+        signal = "WATCH" if breakout_score < 40 else "BUY"
       elif is_kuchibashi:
-        if breakout_score < 40:
-          status = "底値くちばし"
-          signal = "WATCH"
-        else:
-          status = "くちばし"
-          signal = "BUY"
+        status = "底値くちばし" if breakout_score < 40 else "くちばし"
+        signal = "WATCH" if breakout_score < 40 else "BUY"
       elif is_dense and is_yang:
         status = "線密集/初動"
         signal = "WATCH"
@@ -465,12 +497,10 @@ def run_screening():
       elif curr_close < m20_val:
         status = "20線下"
         signal = "NONE"
-        soba_score = 0
       else:
         status = "様子見"
         signal = "NONE"
 
-      # トータルスコア（合算値）
       total_score = breakout_score + soba_score
       cost_man = round((curr_close * 100) / 10000, 1)
 
@@ -486,15 +516,19 @@ def run_screening():
           "signal": signal,
           "is_holding": False,
           "chart_url": chart_url,
+          "off_high_pct": round(off_high_pct, 1),
+          "vol_ratio": round(vol_ratio, 2),
+          "breakout_status": breakout_status,
+          "soba_status": soba_status,
       })
     except Exception:
       continue
 
-  # 並び替え順：
-  # 1. 保有株最優先
-  # 2. ★即買フラグ（STRONG_BUY）最優先
-  # 3. トータルスコア（新高値＋相場流）の合計点降順
-  stock_results.sort(
+  # ==========================================
+  # 出力1: 既存の【新高値×相場流】トップ12 (watchlist.json)
+  # ==========================================
+  w_sorted = sorted(
+      stock_results,
       key=lambda x: (
           1 if x["is_holding"] else 0,
           1 if x["signal"] == "STRONG_BUY" else 0,
@@ -503,21 +537,83 @@ def run_screening():
       ),
       reverse=True,
   )
-
-  top12 = stock_results[:12]
-
-  output_data = {
-      "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-      "count": len(top12),
-      "stocks": top12,
-  }
-
   with open("watchlist.json", "w", encoding="utf-8") as f:
-    json.dump(output_data, f, ensure_ascii=False, indent=2)
+    json.dump(
+        {"updated_at": now_str, "count": 12, "stocks": w_sorted[:12]},
+        f,
+        ensure_ascii=False,
+        indent=2,
+    )
+
+  # ==========================================
+  # 出力2: 【新高値投資術 単体】上位20銘柄 (breakout_top20.json)
+  # ==========================================
+  b_sorted = sorted(
+      stock_results,
+      key=lambda x: (x["breakout_score"], x["off_high_pct"], x["vol_ratio"]),
+      reverse=True,
+  )
+  b_top20 = [
+      {
+          "code": x["ticker"].replace(".T", ""),
+          "name": x["name"],
+          "price": x["price"],
+          "score": x["breakout_score"],
+          "status": x["breakout_status"],
+          "detail": f"{x['off_high_pct']}% / {x['vol_ratio']}倍",
+      }
+      for x in b_sorted[:20]
+  ]
+  with open("breakout_top20.json", "w", encoding="utf-8") as f:
+    json.dump(
+        {
+            "updated_at": display_time_str,
+            "title": "新高値投資術 四季報20",
+            "stocks": b_top20,
+        },
+        f,
+        ensure_ascii=False,
+        indent=2,
+    )
+
+  # ==========================================
+  # 出力3: 【相場流 単体】上位20銘柄 (soba_top20.json)
+  # ==========================================
+  s_sorted = sorted(
+      stock_results,
+      key=lambda x: (
+          1 if "下半身" in x["soba_status"] else 0,
+          x["soba_score"],
+          x["breakout_score"],
+      ),
+      reverse=True,
+  )
+  s_top20 = [
+      {
+          "code": x["ticker"].replace(".T", ""),
+          "name": x["name"],
+          "price": x["price"],
+          "score": x["soba_score"],
+          "status": x["soba_status"],
+          "detail": x["cost_label"],
+      }
+      for x in s_sorted[:20]
+  ]
+  with open("soba_top20.json", "w", encoding="utf-8") as f:
+    json.dump(
+        {
+            "updated_at": display_time_str,
+            "title": "相場流 四季報20",
+            "stocks": s_top20,
+        },
+        f,
+        ensure_ascii=False,
+        indent=2,
+    )
 
   print(
-      f"スクリーニング完了: 全112銘柄からトータル判定トップ12銘柄を watchlist.json"
-      " に出力しました。"
+      f"[{now_str}] 完了: watchlist.json, breakout_top20.json,"
+      " soba_top20.json を出力しました。"
   )
 
 
