@@ -94,3 +94,147 @@ def analyze_market():
             # 当時のPF4.11バックテストにPBR・売買代金足切りはなかったため、
             # この候補リストにはその2条件を適用しません。
             # ----------------------------------------------------
+            if matches_pf411_prebreakout(
+                off_high, close, sma50, vol, vol20, len(df)
+            ):
+                pf411_candidates.append({
+                    "code": ticker.replace(".T", ""),
+                    "name": ticker.replace(".T", ""),
+                    "price": int(round(close)),
+                    "off_high": round(off_high, 1),
+                    "vol_ratio": round(vol_ratio, 2),
+                    "sma50": round(sma50, 2),
+                    "signal_date": df.index[-1].strftime("%Y-%m-%d"),
+                    "signal_conditions": "-3.0%<=off_high<0%, close>SMA50, volume>=VolSMA20*1.2"
+                })
+
+            # ----------------------------------------------------
+            # 現行scan.pyの通常ボード用ファンダメンタルズ
+            # ----------------------------------------------------
+            info = t.info
+            pbr = info.get("priceToBook")
+            roe = info.get("returnOnEquity")
+            rev_growth = info.get("revenueGrowth")
+            earn_growth = info.get("earningsQuarterlyGrowth")
+
+            # 既存条件：低PBR（1.2倍未満）を除外。欠損値は通過。
+            if pbr is not None and pd.notna(pbr) and pbr < 1.2:
+                continue
+
+            funda_score = 50
+            if rev_growth is not None and pd.notna(rev_growth) and rev_growth > 0.10:
+                funda_score += 20
+            if roe is not None and pd.notna(roe) and roe > 0.12:
+                funda_score += 15
+            if earn_growth is not None and pd.notna(earn_growth) and earn_growth > 0.30:
+                funda_score += 15
+            funda_score = min(funda_score, 100)
+
+            avg_turnover = float((df["Close"].tail(5) * df["Volume"].tail(5)).mean())
+            if avg_turnover < MIN_AVG_TURNOVER:
+                continue
+
+            # ----------------------------------------------------
+            # 現行scan.pyの新高値スコア
+            # ----------------------------------------------------
+            nh_score = 50
+            if close > sma50:
+                nh_score += 15
+            if off_high is not None:
+                if -3.0 <= off_high <= 2.5:
+                    nh_score += 20
+                elif -7.5 <= off_high < -3.0:
+                    nh_score += 10
+                elif off_high > 5.0:
+                    nh_score -= 20
+            if vol20 > 0 and vol >= vol20 * 1.3:
+                nh_score += 15
+            nh_score = min(max(nh_score, 0), 100)
+
+            # ----------------------------------------------------
+            # 現行scan.pyの相場流パターン判定
+            # ----------------------------------------------------
+            soba_score = 50
+            soba_pattern = "通常"
+            if sma5 > sma20 > sma60:
+                soba_score += 20
+                soba_pattern = "PPP"
+
+            prev_sma5 = float(sma5_series.iloc[-2])
+            prev_sma20 = float(sma20_series.iloc[-2])
+            if close > sma5 and open_p < sma5 and close > open_p:
+                soba_score += 25
+                soba_pattern = "★下半身(即買)"
+            elif sma5 > sma20 and prev_sma5 <= prev_sma20:
+                soba_score += 25
+                soba_pattern = "★くちばし(即買)"
+            soba_score = min(max(soba_score, 0), 100)
+
+            code_clean = ticker.replace(".T", "")
+            if off_high is None:
+                continue
+
+            if close > sma50 and -7.5 <= off_high <= 3.0:
+                nh_candidates.append({
+                    "code": code_clean,
+                    "name": code_clean,
+                    "price": int(round(close)),
+                    "nh_score": nh_score,
+                    "funda_score": funda_score,
+                    "off_high": round(off_high, 1)
+                })
+
+            if soba_score >= 70:
+                soba_candidates.append({
+                    "code": code_clean,
+                    "name": code_clean,
+                    "price": int(round(close)),
+                    "soba_score": soba_score,
+                    "nh_score": nh_score,
+                    "soba_pattern": soba_pattern
+                })
+
+        except Exception as e:
+            print(f"エラー発生 ({ticker}): {e}")
+
+    # 通常ランキングの既存順序を維持
+    nh_candidates.sort(
+        key=lambda x: (x["nh_score"], -abs(x["off_high"])),
+        reverse=True
+    )
+    soba_candidates.sort(key=lambda x: x["soba_score"], reverse=True)
+
+    # PF4.11の比較対象は「高値直前」群。高値差が0%に近い候補を先に表示。
+    pf411_candidates.sort(
+        key=lambda x: (x["off_high"], x["vol_ratio"]),
+        reverse=True
+    )
+
+    output_data = {
+        "updated_at": updated_str,
+        "new_high_ranks": nh_candidates[:10],
+        "soba_ranks": soba_candidates[:10],
+        "pf411_ranks": pf411_candidates,
+        "pf411_reference": {
+            "label": "探索検証条件に基づく当日候補。PF4.11は過去の別バックテスト値で、将来成績を示しません。",
+            "conditions": [
+                "-3.0% <= off_high < 0.0%",
+                "終値 > SMA50",
+                "当日出来高 >= 20日平均出来高 * 1.2",
+                "過去データ260行以上"
+            ],
+            "execution_note": "バックテストは翌営業日始値エントリー。ウィジェットは当日終値時点の候補表示。",
+            "limitations": "過去のPF4.11は約2年・旧ユニバースの探索値。手数料/スリッページ未控除、未決済取引処理要確認。"
+        }
+    }
+
+    with open("stocks_data.json", "w", encoding="utf-8") as f:
+        json.dump(output_data, f, ensure_ascii=False, indent=2)
+    print(
+        ">>> 完了: stocks_data.json を生成しました。"
+        f" PF4.11条件候補={len(pf411_candidates)}銘柄"
+    )
+
+
+if __name__ == "__main__":
+    analyze_market()
