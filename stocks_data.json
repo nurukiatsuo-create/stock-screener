@@ -1,164 +1,164 @@
 {
-  "updated_at": "09/30 16:14",
+  "updated_at": "10/01 16:20",
   "new_high_ranks": [
+    {
+      "code": "6912",
+      "name": "6912",
+      "price": 2839,
+      "nh_score": 85,
+      "funda_score": 100,
+      "off_high": -0.3
+    },
+    {
+      "code": "7826",
+      "name": "7826",
+      "price": 11820,
+      "nh_score": 85,
+      "funda_score": 100,
+      "off_high": -0.5
+    },
+    {
+      "code": "5136",
+      "name": "5136",
+      "price": 2514,
+      "nh_score": 85,
+      "funda_score": 100,
+      "off_high": -1.3
+    },
+    {
+      "code": "6345",
+      "name": "6345",
+      "price": 1438,
+      "nh_score": 85,
+      "funda_score": 65,
+      "off_high": -1.6
+    },
     {
       "code": "6652",
       "name": "6652",
-      "price": 3825,
-      "nh_score": 100,
+      "price": 3810,
+      "nh_score": 85,
       "funda_score": 85,
-      "off_high": -2.1
+      "off_high": -2.5
+    },
+    {
+      "code": "5033",
+      "name": "5033",
+      "price": 1234,
+      "nh_score": 75,
+      "funda_score": 50,
+      "off_high": -3.4
     },
     {
       "code": "4765",
       "name": "4765",
       "price": 620,
-      "nh_score": 90,
+      "nh_score": 75,
       "funda_score": 100,
       "off_high": -3.6
     },
     {
-      "code": "6345",
-      "name": "6345",
-      "price": 1443,
-      "nh_score": 85,
-      "funda_score": 65,
-      "off_high": -1.2
-    },
-    {
-      "code": "5136",
-      "name": "5136",
-      "price": 2510,
-      "nh_score": 85,
-      "funda_score": 100,
-      "off_high": 1.3
-    },
-    {
-      "code": "5033",
-      "name": "5033",
-      "price": 1250,
-      "nh_score": 85,
-      "funda_score": 50,
-      "off_high": -2.1
-    },
-    {
-      "code": "7826",
-      "name": "7826",
-      "price": 11520,
+      "code": "6998",
+      "name": "6998",
+      "price": 4075,
       "nh_score": 75,
-      "funda_score": 100,
-      "off_high": -3.0
+      "funda_score": 85,
+      "off_high": -4.1
     },
     {
       "code": "3040",
       "name": "3040",
-      "price": 2634,
+      "price": 2622,
       "nh_score": 75,
       "funda_score": 100,
-      "off_high": -3.9
-    },
-    {
-      "code": "6912",
-      "name": "6912",
-      "price": 2727,
-      "nh_score": 75,
-      "funda_score": 100,
-      "off_high": -4.2
+      "off_high": -4.3
     },
     {
       "code": "6258",
       "name": "6258",
-      "price": 3835,
+      "price": 3840,
       "nh_score": 75,
       "funda_score": 85,
-      "off_high": -4.6
-    },
-    {
-      "code": "6998",
-      "name": "6998",
-      "price": 3975,
-      "nh_score": 75,
-      "funda_score": 85,
-      "off_high": -6.5
+      "off_high": -4.5
     }
   ],
   "soba_ranks": [
     {
-      "code": "6652",
-      "name": "6652",
-      "price": 3825,
-      "soba_score": 95,
-      "nh_score": 100,
-      "soba_pattern": "★下半身(即買)"
-    },
-    {
-      "code": "6345",
-      "name": "6345",
-      "price": 1443,
+      "code": "6912",
+      "name": "6912",
+      "price": 2839,
       "soba_score": 95,
       "nh_score": 85,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "3968",
-      "name": "3968",
-      "price": 667,
+      "code": "6727",
+      "name": "6727",
+      "price": 875,
+      "soba_score": 95,
+      "nh_score": 75,
+      "soba_pattern": "★下半身(即買)"
+    },
+    {
+      "code": "6364",
+      "name": "6364",
+      "price": 2520,
       "soba_score": 95,
       "nh_score": 65,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "3498",
-      "name": "3498",
-      "price": 7760,
+      "code": "6946",
+      "name": "6946",
+      "price": 7160,
       "soba_score": 95,
       "nh_score": 65,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "5136",
-      "name": "5136",
-      "price": 2510,
+      "code": "6508",
+      "name": "6508",
+      "price": 11830,
       "soba_score": 95,
-      "nh_score": 85,
+      "nh_score": 75,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "6226",
-      "name": "6226",
-      "price": 2238,
-      "soba_score": 75,
-      "nh_score": 50,
+      "code": "3692",
+      "name": "3692",
+      "price": 7590,
+      "soba_score": 95,
+      "nh_score": 80,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "6027",
-      "name": "6027",
-      "price": 5210,
-      "soba_score": 75,
+      "code": "6998",
+      "name": "6998",
+      "price": 4075,
+      "soba_score": 95,
+      "nh_score": 75,
+      "soba_pattern": "★下半身(即買)"
+    },
+    {
+      "code": "7609",
+      "name": "7609",
+      "price": 4370,
+      "soba_score": 95,
       "nh_score": 65,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "4369",
-      "name": "4369",
-      "price": 3125,
+      "code": "6866",
+      "name": "6866",
+      "price": 11140,
       "soba_score": 75,
-      "nh_score": 50,
-      "soba_pattern": "★くちばし(即買)"
-    },
-    {
-      "code": "4046",
-      "name": "4046",
-      "price": 1985,
-      "soba_score": 75,
-      "nh_score": 65,
+      "nh_score": 80,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "3449",
-      "name": "3449",
-      "price": 4380,
+      "code": "6327",
+      "name": "6327",
+      "price": 3280,
       "soba_score": 75,
       "nh_score": 65,
       "soba_pattern": "★下半身(即買)"
@@ -166,23 +166,13 @@
   ],
   "pf411_ranks": [
     {
-      "code": "4371",
-      "name": "4371",
-      "price": 1557,
-      "off_high": -0.8,
-      "vol_ratio": 1.38,
-      "sma50": 1428.4,
-      "signal_date": "2026-09-30",
-      "signal_conditions": "-3.0%<=off_high<0%, close>SMA50, volume>=VolSMA20*1.2"
-    },
-    {
-      "code": "6652",
-      "name": "6652",
-      "price": 3825,
-      "off_high": -2.1,
-      "vol_ratio": 1.86,
-      "sma50": 3532.43,
-      "signal_date": "2026-09-30",
+      "code": "6912",
+      "name": "6912",
+      "price": 2839,
+      "off_high": -0.3,
+      "vol_ratio": 1.25,
+      "sma50": 2375.2,
+      "signal_date": "2026-10-01",
       "signal_conditions": "-3.0%<=off_high<0%, close>SMA50, volume>=VolSMA20*1.2"
     }
   ],
