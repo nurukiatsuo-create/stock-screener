@@ -1,26 +1,18 @@
 {
-  "updated_at": "10/01 16:20",
+  "updated_at": "10/02 16:14",
   "new_high_ranks": [
     {
       "code": "6912",
       "name": "6912",
-      "price": 2839,
+      "price": 2824,
       "nh_score": 85,
       "funda_score": 100,
-      "off_high": -0.3
+      "off_high": -0.9
     },
     {
       "code": "7826",
       "name": "7826",
-      "price": 11820,
-      "nh_score": 85,
-      "funda_score": 100,
-      "off_high": -0.5
-    },
-    {
-      "code": "5136",
-      "name": "5136",
-      "price": 2514,
+      "price": 11840,
       "nh_score": 85,
       "funda_score": 100,
       "off_high": -1.3
@@ -28,154 +20,151 @@
     {
       "code": "6345",
       "name": "6345",
-      "price": 1438,
+      "price": 1430,
       "nh_score": 85,
       "funda_score": 65,
-      "off_high": -1.6
+      "off_high": -2.1
     },
     {
       "code": "6652",
       "name": "6652",
-      "price": 3810,
+      "price": 3820,
       "nh_score": 85,
       "funda_score": 85,
-      "off_high": -2.5
+      "off_high": -2.2
     },
     {
       "code": "5033",
       "name": "5033",
-      "price": 1234,
+      "price": 1238,
       "nh_score": 75,
       "funda_score": 50,
-      "off_high": -3.4
-    },
-    {
-      "code": "4765",
-      "name": "4765",
-      "price": 620,
-      "nh_score": 75,
-      "funda_score": 100,
-      "off_high": -3.6
+      "off_high": -3.1
     },
     {
       "code": "6998",
       "name": "6998",
-      "price": 4075,
+      "price": 4120,
       "nh_score": 75,
       "funda_score": 85,
-      "off_high": -4.1
+      "off_high": -3.1
     },
     {
       "code": "3040",
       "name": "3040",
-      "price": 2622,
+      "price": 2648,
       "nh_score": 75,
       "funda_score": 100,
-      "off_high": -4.3
+      "off_high": -3.4
     },
     {
       "code": "6258",
       "name": "6258",
-      "price": 3840,
+      "price": 3880,
       "nh_score": 75,
       "funda_score": 85,
-      "off_high": -4.5
+      "off_high": -3.5
+    },
+    {
+      "code": "4258",
+      "name": "4258",
+      "price": 5640,
+      "nh_score": 75,
+      "funda_score": 100,
+      "off_high": -3.9
+    },
+    {
+      "code": "4765",
+      "name": "4765",
+      "price": 609,
+      "nh_score": 75,
+      "funda_score": 100,
+      "off_high": -5.3
     }
   ],
   "soba_ranks": [
     {
-      "code": "6912",
-      "name": "6912",
-      "price": 2839,
+      "code": "6652",
+      "name": "6652",
+      "price": 3820,
       "soba_score": 95,
       "nh_score": 85,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "6727",
-      "name": "6727",
-      "price": 875,
+      "code": "6258",
+      "name": "6258",
+      "price": 3880,
       "soba_score": 95,
       "nh_score": 75,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "6364",
-      "name": "6364",
-      "price": 2520,
-      "soba_score": 95,
-      "nh_score": 65,
-      "soba_pattern": "★下半身(即買)"
-    },
-    {
-      "code": "6946",
-      "name": "6946",
-      "price": 7160,
-      "soba_score": 95,
-      "nh_score": 65,
-      "soba_pattern": "★下半身(即買)"
-    },
-    {
-      "code": "6508",
-      "name": "6508",
-      "price": 11830,
+      "code": "4258",
+      "name": "4258",
+      "price": 5640,
       "soba_score": 95,
       "nh_score": 75,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "3692",
-      "name": "3692",
-      "price": 7590,
+      "code": "3696",
+      "name": "3696",
+      "price": 2284,
       "soba_score": 95,
       "nh_score": 80,
-      "soba_pattern": "★下半身(即買)"
+      "soba_pattern": "★くちばし(即買)"
     },
     {
-      "code": "6998",
-      "name": "6998",
-      "price": 4075,
+      "code": "3040",
+      "name": "3040",
+      "price": 2648,
       "soba_score": 95,
       "nh_score": 75,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "7609",
-      "name": "7609",
-      "price": 4370,
+      "code": "4440",
+      "name": "4440",
+      "price": 2446,
       "soba_score": 95,
       "nh_score": 65,
       "soba_pattern": "★下半身(即買)"
     },
     {
-      "code": "6866",
-      "name": "6866",
-      "price": 11140,
-      "soba_score": 75,
-      "nh_score": 80,
-      "soba_pattern": "★下半身(即買)"
+      "code": "4046",
+      "name": "4046",
+      "price": 2036,
+      "soba_score": 95,
+      "nh_score": 65,
+      "soba_pattern": "★くちばし(即買)"
     },
     {
-      "code": "6327",
-      "name": "6327",
-      "price": 3280,
-      "soba_score": 75,
-      "nh_score": 65,
-      "soba_pattern": "★下半身(即買)"
-    }
-  ],
-  "pf411_ranks": [
+      "code": "7826",
+      "name": "7826",
+      "price": 11840,
+      "soba_score": 70,
+      "nh_score": 85,
+      "soba_pattern": "PPP"
+    },
     {
       "code": "6912",
       "name": "6912",
-      "price": 2839,
-      "off_high": -0.3,
-      "vol_ratio": 1.25,
-      "sma50": 2375.2,
-      "signal_date": "2026-10-01",
-      "signal_conditions": "-3.0%<=off_high<0%, close>SMA50, volume>=VolSMA20*1.2"
+      "price": 2824,
+      "soba_score": 70,
+      "nh_score": 85,
+      "soba_pattern": "PPP"
+    },
+    {
+      "code": "6727",
+      "name": "6727",
+      "price": 863,
+      "soba_score": 70,
+      "nh_score": 65,
+      "soba_pattern": "PPP"
     }
   ],
+  "pf411_ranks": [],
   "pf411_reference": {
     "label": "探索検証条件に基づく当日候補。PF4.11は過去の別バックテスト値で、将来成績を示しません。",
     "conditions": [
