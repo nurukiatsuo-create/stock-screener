@@ -184,6 +184,94 @@ PF411_VOLUME_RATIO = 1.2
 # 95点見送りには適用しない
 APPLY_TURNOVER_FILTER_TO_ACTIVE_CANDIDATES = True
 
+# 観察用の暫定定義。売買・採点には使用しない。
+# これは値幅制約による持ち合いの近似であり、Darvas boxの認定ではない。
+BOX_MIN_BARS = 10
+BOX_MAX_BARS = 60
+BOX_MAX_WIDTH_PCT = 15.0
+BOX_RECENT_BARS = 5
+
+
+def calculate_box_metrics(df):
+    """最新の判定足を除く過去足だけで、持ち合いの観察値を計算する。
+
+    duration_bars: 末尾から遡り、幅15%以内に収まる最長10〜60本。
+    width_pct: (期間高値 - 期間安値) / 期間高値 * 100。
+    contraction_ratio: 直近5本のwidth_pct / その前5本のwidth_pct。
+    1未満なら縮小。ゼロ幅の比較元・履歴不足・異常値はnull。
+    本数は有効な日足観測数。取引所カレンダーによる欠落日は補完しない。
+    """
+    result = {
+        "status": "insufficient_history",
+        "as_of": None,
+        "available_prior_bars": max(len(df) - 1, 0),
+        "duration_bars": None,
+        "duration_capped": False,
+        "start_date": None,
+        "upper": None,
+        "lower": None,
+        "width_pct": None,
+        "width_20d_pct": None,
+        "recent_5d_width_pct": None,
+        "previous_5d_width_pct": None,
+        "contraction_ratio": None,
+        "is_contracting": None,
+    }
+    if not {"High", "Low"}.issubset(df.columns):
+        result["status"] = "invalid_data"
+        return result
+    if len(df) < BOX_MIN_BARS + 1:
+        return result
+    if not df.index.is_monotonic_increasing or df.index.has_duplicates:
+        result["status"] = "invalid_data"
+        return result
+
+    prior = df.iloc[:-1].tail(BOX_MAX_BARS)
+    try:
+        highs = prior["High"].to_numpy(dtype=float)
+        lows = prior["Low"].to_numpy(dtype=float)
+        valid = (np.isfinite(highs).all() and np.isfinite(lows).all()
+                 and (lows > 0).all() and (highs >= lows).all())
+        result["as_of"] = pd.Timestamp(prior.index[-1]).strftime("%Y-%m-%d")
+    except (TypeError, ValueError):
+        valid = False
+    if not valid:
+        result["status"] = "invalid_data"
+        return result
+
+    def width(high, low):
+        return float((high.max() - low.min()) / high.max() * 100.0)
+
+    recent = width(highs[-BOX_RECENT_BARS:], lows[-BOX_RECENT_BARS:])
+    previous = width(highs[-2 * BOX_RECENT_BARS:-BOX_RECENT_BARS],
+                     lows[-2 * BOX_RECENT_BARS:-BOX_RECENT_BARS])
+    result["recent_5d_width_pct"] = round(recent, 4)
+    result["previous_5d_width_pct"] = round(previous, 4)
+    if previous > 0:
+        ratio = recent / previous
+        result["contraction_ratio"] = round(ratio, 4)
+        result["is_contracting"] = bool(ratio < 1.0)
+    if len(prior) >= 20:
+        result["width_20d_pct"] = round(width(highs[-20:], lows[-20:]), 4)
+
+    result["status"] = "no_range_within_limit"
+    for bars in range(len(prior), BOX_MIN_BARS - 1, -1):
+        upper = float(highs[-bars:].max())
+        lower = float(lows[-bars:].min())
+        depth = (upper - lower) / upper * 100.0
+        if depth <= BOX_MAX_WIDTH_PCT:
+            result.update({
+                "status": "flat_range" if depth == 0 else "range_candidate",
+                "duration_bars": bars,
+                "duration_capped": bars == BOX_MAX_BARS,
+                "start_date": pd.Timestamp(prior.index[-bars]).strftime("%Y-%m-%d"),
+                "upper": upper,
+                "lower": lower,
+                "width_pct": round(depth, 4),
+            })
+            break
+    return result
+
 
 # ============================================================
 # 共通ユーティリティ
@@ -864,6 +952,8 @@ def analyze_market():
 
     latest_signal_dates = []
 
+    box_observations = {}
+
 
     # ========================================================
     # 80銘柄すべて処理
@@ -903,6 +993,9 @@ def analyze_market():
                 df,
                 now_jst
             )
+
+            # 欠損行を落とす前に観察値を計算し、欠損を隠さない。
+            box_observations[clean_code(ticker)] = calculate_box_metrics(df)
 
 
             # ------------------------------------------------
@@ -1651,7 +1744,32 @@ def analyze_market():
     # 全件保存
     # ========================================================
 
+    # 既存の判定・ソート完了後に付加するため、順位は変わらない。
+    for candidates in (new_high_candidates, soba_candidates, pf411_candidates):
+        for candidate in candidates:
+            candidate["box"] = box_observations.get(candidate["code"])
+
     output_data = {
+
+        "box_observations": box_observations,
+        "box_reference": {
+            "version": 1,
+            "observation_only": True,
+            "min_bars": BOX_MIN_BARS,
+            "max_bars": BOX_MAX_BARS,
+            "max_width_pct": BOX_MAX_WIDTH_PCT,
+            "recent_bars": BOX_RECENT_BARS,
+            "basis": "最新判定足を除く過去の確定日足。高値・安値を使用。",
+            "duration_definition": "末尾から遡り幅15%以内に収まる最長10〜60本。暫定的な近似。",
+            "width_definition": "(期間高値-期間安値)/期間高値*100",
+            "contraction_definition": "直近5本の幅%/その前5本の幅%。1未満は縮小。",
+            "limitations": (
+                "ダーバス型の認定や上昇予測ではない。緩やかなトレンドも含み得る。"
+                "60本の場合は上限打切り。比較元ゼロ幅は比率null。"
+                "取引所カレンダーによる欠落日・データ鮮度は検証しない。"
+                "ランキング、売買条件、PF4.11入口条件には使用しない。"
+            ),
+        },
 
         "updated_at":
             updated_str,
