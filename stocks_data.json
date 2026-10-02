@@ -1,5 +1,5 @@
 {
-  "updated_at": "10/02 17:47",
+  "updated_at": "10/02 17:55",
   "data_policy": {
     "daily_bar": "JST16:00より前は当日足を除外",
     "price_adjustment": "yfinance auto_adjust=True",
