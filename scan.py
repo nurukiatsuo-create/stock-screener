@@ -8,8 +8,9 @@ import yfinance as yf
 
 
 # ============================================================
-# 監視ユニバース（現行80銘柄）
+# 監視ユニバース：現行80銘柄
 # ============================================================
+
 TICKERS = [
     "7826.T", "6912.T", "9249.T", "7192.T", "6727.T", "6364.T", "3560.T", "5957.T",
     "7172.T", "1401.T", "6652.T", "6345.T", "6862.T", "6855.T", "6407.T", "6134.T",
@@ -26,8 +27,8 @@ TICKERS = [
 
 # ============================================================
 # 銘柄名
-# Scriptable側の既存辞書と整合
 # ============================================================
+
 STOCK_NAMES = {
     "7826.T": "フルヤ金属",
     "6912.T": "菊水HD",
@@ -37,6 +38,7 @@ STOCK_NAMES = {
     "6364.T": "北越工業",
     "3560.T": "ほぼ日",
     "5957.T": "日東精工",
+
     "7172.T": "JIA",
     "1401.T": "エムビーエス",
     "6652.T": "IDEC",
@@ -45,6 +47,7 @@ STOCK_NAMES = {
     "6855.T": "日電子材料",
     "6407.T": "CKD",
     "6134.T": "FUJI",
+
     "6629.T": "テクノホライ",
     "6226.T": "守谷輸送機",
     "6904.T": "原田工業",
@@ -53,6 +56,7 @@ STOCK_NAMES = {
     "6946.T": "日アビオ",
     "6866.T": "日置電機",
     "7254.T": "ユニバンス",
+
     "6258.T": "平田機工",
     "6518.T": "三相電機",
     "6616.T": "トレックス",
@@ -61,6 +65,7 @@ STOCK_NAMES = {
     "6327.T": "北川精機",
     "7715.T": "長野計器",
     "6508.T": "明電舎",
+
     "4776.T": "サイボウズ",
     "3923.T": "ラクス",
     "6027.T": "弁護士ドット",
@@ -69,6 +74,7 @@ STOCK_NAMES = {
     "5033.T": "ヌーラボ",
     "4055.T": "T&S",
     "5254.T": "Arent",
+
     "4828.T": "Bエンジニア",
     "4825.T": "ウェザーニュー",
     "4258.T": "網屋",
@@ -77,6 +83,7 @@ STOCK_NAMES = {
     "3763.T": "プロシップ",
     "7094.T": "NexTone",
     "3696.T": "セレス",
+
     "3040.T": "ソリトン",
     "4440.T": "ヴィッツ",
     "4371.T": "C＆C",
@@ -85,6 +92,7 @@ STOCK_NAMES = {
     "5591.T": "AVILEN",
     "6998.T": "日タングステン",
     "6871.T": "日マイクロ",
+
     "6787.T": "メイコー",
     "4368.T": "扶桑化学",
     "4369.T": "トリケミカル",
@@ -93,6 +101,7 @@ STOCK_NAMES = {
     "4971.T": "メック",
     "4046.T": "大阪ソーダ",
     "3441.T": "サンコーテクノ",
+
     "3449.T": "テクノフレ",
     "4970.T": "東洋合成",
     "5805.T": "SWCC",
@@ -101,6 +110,7 @@ STOCK_NAMES = {
     "7781.T": "平山HD",
     "5018.T": "MORESCO",
     "4100.T": "戸田工業",
+
     "3482.T": "ロードスター",
     "3498.T": "霞ヶ関キャピ",
     "7148.T": "FPG",
@@ -114,18 +124,14 @@ STOCK_NAMES = {
 
 # ============================================================
 # 四季報 fund_score
-# ------------------------------------------------------------
-# 現在アップロード済み資料で数値として確認できるものだけ登録。
 #
-# 未登録銘柄を自動的に85点などとは扱わない。
+# 現時点で数値として確認済みのものだけ登録。
 #
-# 通常の新高値発射台：
-#     fund_score >= 85 が確認できた銘柄のみ
-#
-# PF4.11探索：
-#     当時の入口条件にfund_scoreがなかったため、
-#     全80銘柄を対象としてよい
+# ★重要
+# fund_score未登録だからといって銘柄を除外しない。
+# 80銘柄すべてを発射台判定対象とする。
 # ============================================================
+
 FUND_SCORES = {
     "7826.T": 100,  # フルヤ金属
     "6862.T": 100,  # ミナトHD
@@ -141,48 +147,46 @@ FUND_SCORES = {
     "5957.T": 80,   # 日東精工
     "6364.T": 80,   # 北越工業
 
-    "7192.T": 90,   # 日本モーゲージサービス
+    "7192.T": 90,   # 日本モーゲージ
 }
 
 
 # ============================================================
-# 設定値
+# 設定
 # ============================================================
+
 HISTORY_PERIOD = "2y"
 INTERVAL = "1d"
 
-# 大引け15:30後、データ安定待ちを含めて16時から当日足を利用
+# 東証大引け15:30後、データ安定待ちを含め16:00以降に当日足利用
 DAILY_BAR_CONFIRM_HOUR_JST = 16
 
-# 当日足 + 前日までの250営業日
+# 当日足 + 前日まで250営業日
 MIN_HISTORY_ROWS = 251
 
-# PF4.11探索群の既存条件
+# PF4.11探索条件用
 PF411_MIN_HISTORY_ROWS = 260
 
-# 流動性フィルター
-# これはPF4.11条件には適用しない
+# 5日平均売買代金
 MIN_AVG_TURNOVER = 40_000_000
-
-# 四季報
-FUND_SCORE_MIN = 85
 
 # 通常発射台
 LAUNCHPAD_MIN_OFF_HIGH = -6.0
 LAUNCHPAD_MAX_OFF_HIGH = 3.0
 
-# PF4.11探索
+# PF4.11探索群
 PF411_MIN_OFF_HIGH = -3.0
 PF411_MAX_OFF_HIGH = 0.0
 PF411_VOLUME_RATIO = 1.2
 
-# 通常ボードでは運用リスク対策として流動性をチェック
+# 通常ボードだけ流動性フィルター適用
 APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS = True
 
 
 # ============================================================
-# 共通ユーティリティ
+# 共通
 # ============================================================
+
 def clean_code(ticker):
     return ticker.replace(".T", "")
 
@@ -193,13 +197,14 @@ def get_name(ticker):
 
 def extract_ticker_frame(downloaded, ticker):
     """
-    yf.download(group_by="ticker") の結果から
-    1銘柄分のOHLCVを安全に取り出す。
+    yf.download(group_by="ticker")から1銘柄分を抽出。
     """
+
     if downloaded is None or downloaded.empty:
         return pd.DataFrame()
 
     if isinstance(downloaded.columns, pd.MultiIndex):
+
         level0 = downloaded.columns.get_level_values(0)
 
         if ticker not in level0:
@@ -208,7 +213,6 @@ def extract_ticker_frame(downloaded, ticker):
         df = downloaded[ticker].copy()
 
     else:
-        # 単一銘柄取得時への保険
         df = downloaded.copy()
 
     required = [
@@ -216,7 +220,7 @@ def extract_ticker_frame(downloaded, ticker):
         "High",
         "Low",
         "Close",
-        "Volume"
+        "Volume",
     ]
 
     if not all(col in df.columns for col in required):
@@ -227,14 +231,9 @@ def extract_ticker_frame(downloaded, ticker):
 
 def keep_confirmed_daily_bars(df, now_jst):
     """
-    日足未確定時間帯には当日足を使用しない。
-
-    JST 16:00より前：
-        当日足を除外
-
-    JST 16:00以降：
-        当日足を使用可能
+    16:00より前に実行した場合は当日足を除外。
     """
+
     if df.empty:
         return df
 
@@ -243,15 +242,15 @@ def keep_confirmed_daily_bars(df, now_jst):
     dates = pd.DatetimeIndex(df.index)
 
     if dates.tz is not None:
-        dates_for_compare = dates.tz_convert("Asia/Tokyo")
+        compare_dates = dates.tz_convert("Asia/Tokyo")
     else:
-        dates_for_compare = dates
+        compare_dates = dates
 
     if now_jst.hour < DAILY_BAR_CONFIRM_HOUR_JST:
 
         mask = np.array([
             d.date() < now_jst.date()
-            for d in dates_for_compare
+            for d in compare_dates
         ])
 
         df = df.loc[mask]
@@ -261,11 +260,11 @@ def keep_confirmed_daily_bars(df, now_jst):
 
 def calculate_prior_250_high(df):
     """
-    最新足を除外し、
-    直前250営業日のHighの最大値を返す。
+    最新足を除外した直前250営業日のHigh最大値。
 
-    当日のHighは絶対に基準高値へ含めない。
+    当日のHighを基準高値に混ぜない。
     """
+
     if len(df) < MIN_HISTORY_ROWS:
         return None
 
@@ -289,10 +288,10 @@ def calc_off_high(close, prior_high):
     """
     前日までの250営業日高値からの乖離率。
 
-    例：
-      -2% → 高値まであと2%
-      +1% → 高値を1%上抜け
+    -2% = 高値まであと2%
+    +1% = 高値を1%上抜け
     """
+
     if (
         prior_high is None
         or prior_high <= 0
@@ -310,36 +309,24 @@ def calc_off_high(close, prior_high):
 # ============================================================
 # PF4.11探索条件
 # ============================================================
+
 def matches_pf411_prebreakout(
     off_high,
     close,
     sma50,
     volume,
     vol20,
-    history_rows
+    history_rows,
 ):
     """
-    PF4.11バックテストで使用した
-    「新高値直前群」の入口条件。
+    PF4.11バックテストの入口条件に対応する候補抽出。
 
-    条件
-    ----
     -3.0% <= off_high < 0%
     Close > SMA50
     Volume >= VolSMA20 * 1.2
     履歴260行以上
 
-    注意
-    ----
-    これは「候補抽出条件」。
-
-    PF4.11そのものを再現するには、
-    翌営業日始値エントリー、
-    利確、
-    損切り、
-    最大保有日数、
-    同時シグナル時の優先順位、
-    資金配分などが別途必要。
+    ※PF4.11そのものではない。
     """
 
     return (
@@ -364,27 +351,29 @@ def matches_pf411_prebreakout(
 
 # ============================================================
 # 通常の新高値発射台
+#
+# ★今回の重要修正
+#
+# fund_scoreを足切り条件にしない。
+# 80銘柄すべてを判定する。
+#
+# fund_scoreは参考表示だけ。
 # ============================================================
+
 def evaluate_launchpad(
     off_high,
     volume,
     vol20,
-    fund_score
 ):
     """
-    本番の通常新高値ボード。
+    通常発射台。
 
-    条件
-    ----
-    四季報 fund_score >= 85
+    -6% ～ 0%   ：発射台
+     0% ～ +3% ：ブレイク確認
+    +3%超       ：見送り
+    -6%未満     ：助走
 
-    高値差
-    -6% ～ 0% ：発射台
-     0% ～ +3%：ブレイク確認
-     +3%超     ：見送り
-
-    fund_score未確認銘柄は
-    勝手に85点扱いしない。
+    fund_scoreはこの判定には使用しない。
     """
 
     if (
@@ -393,23 +382,12 @@ def evaluate_launchpad(
     ):
         return 0, "判定不能"
 
-    # +3%超
     if off_high > LAUNCHPAD_MAX_OFF_HIGH:
         return 0, "見送り"
 
-    # -6%より下
     if off_high < LAUNCHPAD_MIN_OFF_HIGH:
         return 0, "助走"
 
-    # 四季報スコア未確認
-    if fund_score is None:
-        return 0, "業績未確認"
-
-    # 85点未満
-    if fund_score < FUND_SCORE_MIN:
-        return 0, "業績足切り"
-
-    # 出来高加点
     if (
         np.isfinite(vol20)
         and vol20 > 0
@@ -418,12 +396,13 @@ def evaluate_launchpad(
     else:
         vol_ratio = 0.0
 
+    # 基本85点
     nh_score = 85
 
+    # 出来高が20日平均の1.2倍超なら+5
     if vol_ratio > 1.2:
         nh_score += 5
 
-    # 0%同値は未突破
     if off_high > 0:
         status = "★ブレイク確認"
     else:
@@ -433,32 +412,20 @@ def evaluate_launchpad(
 
 
 # ============================================================
-# 相場流ランキング用
-# 純テクニカル新高値スコア
+# 相場流ランキング用 新高値テクニカル点
 # ============================================================
+
 def evaluate_technical_new_high(
     close,
     sma50,
     off_high,
     volume,
-    vol20
+    vol20,
 ):
-    """
-    相場流×新高値ランキング用。
-
-    四季報fund_scoreとは分離して、
-    テクニカルだけを評価する。
-
-    相場流60%
-    ＋
-    新高値テクニカル40%
-
-    の互換用。
-    """
 
     score = 50
 
-    # 上昇トレンド
+    # SMA50上
     if (
         np.isfinite(sma50)
         and close > sma50
@@ -480,7 +447,7 @@ def evaluate_technical_new_high(
         elif off_high > 3.0:
             score -= 20
 
-    # 出来高増加
+    # 出来高
     if (
         np.isfinite(vol20)
         and vol20 > 0
@@ -490,14 +457,14 @@ def evaluate_technical_new_high(
 
     return min(
         max(score, 0),
-        100
+        100,
     )
 
 
 # ============================================================
-# 相場流パターン判定
-# 旧簡略版ではなく厳格版へ復元
+# 相場流パターン
 # ============================================================
+
 def evaluate_soba_pattern(df):
 
     if len(df) < 100:
@@ -523,7 +490,7 @@ def evaluate_soba_pattern(df):
     p5 = float(sma5.iloc[-2])
     p20 = float(sma20.iloc[-2])
 
-    vals = [
+    values = [
         c_open,
         c_close,
         s5,
@@ -531,77 +498,49 @@ def evaluate_soba_pattern(df):
         s60,
         s100,
         p5,
-        p20
+        p20,
     ]
 
-    if not all(
-        np.isfinite(v)
-        for v in vals
-    ):
+    if not all(np.isfinite(v) for v in values):
         return 50, "データ不足"
 
     sma5_slope = s5 - p5
     sma20_slope = s20 - p20
 
     # --------------------------------------------------------
-    # ① 下半身
-    #
-    # ・陽線
-    # ・始値が5日線下
-    # ・終値が5日線上
-    # ・実体の半分以上が5日線上
-    # ・5日線が横ばい～上向き
+    # 下半身
     # --------------------------------------------------------
+
     is_lower_half = (
         c_close > c_open
-
         and c_open < s5 < c_close
-
-        and (
-            (c_close - s5)
-            >
-            (s5 - c_open)
-        )
-
+        and (c_close - s5) > (s5 - c_open)
         and sma5_slope >= 0
     )
 
     # --------------------------------------------------------
-    # ② くちばし
+    # くちばし
     # --------------------------------------------------------
-    is_beak = (
 
+    is_beak = (
         (
             p5 <= p20
             and s5 > s20
             and sma5_slope > 0
         )
-
         or
-
         (
             s5 > s20
-
-            and (
-                (s5 - s20)
-                >
-                (p5 - p20)
-            )
-
+            and (s5 - s20) > (p5 - p20)
             and sma20_slope > 0
-
-            and (
-                abs(s5 - s20)
-                / c_close
-                < 0.03
-            )
+            and abs(s5 - s20) / c_close < 0.03
         )
     )
 
     # --------------------------------------------------------
-    # ③ 線密集
-    # 5日・20日・60日線が3.5%以内
+    # 線密集
     # --------------------------------------------------------
+
     ma_range = (
         max(s5, s20, s60)
         -
@@ -609,13 +548,14 @@ def evaluate_soba_pattern(df):
     )
 
     is_dense = (
-        (ma_range / c_close) < 0.035
+        ma_range / c_close < 0.035
         and c_close > s5
     )
 
     # --------------------------------------------------------
-    # ④ PPP
+    # PPP
     # --------------------------------------------------------
+
     is_ppp = (
         s5
         >
@@ -626,9 +566,6 @@ def evaluate_soba_pattern(df):
         s100
     )
 
-    # --------------------------------------------------------
-    # スコア
-    # --------------------------------------------------------
     if is_lower_half:
         return 100, "★即買(下半身)"
 
@@ -650,6 +587,7 @@ def evaluate_soba_pattern(df):
 # ============================================================
 # メイン
 # ============================================================
+
 def analyze_market():
 
     jst = pytz.timezone("Asia/Tokyo")
@@ -661,146 +599,115 @@ def analyze_market():
     )
 
     print(
-        f">>> スクリーニング開始: "
-        f"{updated_str}"
+        f">>> スクリーニング開始: {updated_str}"
     )
 
     print(
-        f">>> 監視銘柄数: "
-        f"{len(TICKERS)}"
+        f">>> 監視ユニバース: {len(TICKERS)}銘柄"
     )
 
 
     # ========================================================
-    # 株価データ一括取得
-    #
-    # 旧コードの
-    # Ticker().history()
-    # Ticker().info
-    # の80回逐次通信を廃止
+    # 一括取得
     # ========================================================
+
     downloaded = yf.download(
         TICKERS,
-
         period=HISTORY_PERIOD,
-
         interval=INTERVAL,
-
         group_by="ticker",
-
         auto_adjust=True,
-
         actions=False,
-
         threads=True,
-
         progress=False,
     )
 
 
     new_high_candidates = []
-
     soba_candidates = []
-
     pf411_candidates = []
-
     skipped = []
 
 
     # ========================================================
-    # 各銘柄
+    # 80銘柄すべて処理
     # ========================================================
+
     for ticker in TICKERS:
 
         try:
 
-            # ------------------------------------------------
-            # 1. データ抽出
-            # ------------------------------------------------
             df = extract_ticker_frame(
                 downloaded,
-                ticker
+                ticker,
             )
 
             if df.empty:
 
                 skipped.append({
                     "ticker": ticker,
-                    "reason": "データ取得失敗"
+                    "reason": "データ取得失敗",
                 })
 
                 continue
 
 
             # ------------------------------------------------
-            # 2. 未確定当日足を除外
+            # 未確定当日足を除外
             # ------------------------------------------------
+
             df = keep_confirmed_daily_bars(
                 df,
-                now_jst
+                now_jst,
             )
 
 
             # ------------------------------------------------
-            # 3. 欠損除去
+            # 欠損処理
             # ------------------------------------------------
+
             df = df.dropna(
                 subset=[
                     "Open",
                     "High",
                     "Low",
                     "Close",
-                    "Volume"
+                    "Volume",
                 ]
             ).copy()
 
             df = df.sort_index()
 
 
-            # 相場流最低限
             if len(df) < 60:
 
                 skipped.append({
                     "ticker": ticker,
-                    "reason":
-                        f"履歴不足({len(df)}行)"
+                    "reason": f"履歴不足({len(df)}行)",
                 })
 
                 continue
 
 
             # ------------------------------------------------
-            # 4. 最新足
+            # 最新足
             # ------------------------------------------------
+
             latest = df.iloc[-1]
 
-            close = float(
-                latest["Close"]
-            )
-
-            open_p = float(
-                latest["Open"]
-            )
-
-            volume = float(
-                latest["Volume"]
-            )
+            close = float(latest["Close"])
+            open_p = float(latest["Open"])
+            volume = float(latest["Volume"])
 
 
-            # ------------------------------------------------
-            # 価格異常チェック
-            # ------------------------------------------------
             if not all(
                 np.isfinite(v) and v > 0
-                for v in [
-                    close,
-                    open_p
-                ]
+                for v in [close, open_p]
             ):
 
                 skipped.append({
                     "ticker": ticker,
-                    "reason": "価格データ異常"
+                    "reason": "価格データ異常",
                 })
 
                 continue
@@ -813,20 +720,20 @@ def analyze_market():
 
                 skipped.append({
                     "ticker": ticker,
-                    "reason": "出来高データ異常"
+                    "reason": "出来高異常",
                 })
 
                 continue
 
 
             closes = df["Close"]
-
             volumes = df["Volume"]
 
 
             # ------------------------------------------------
-            # 5. SMA50
+            # SMA50
             # ------------------------------------------------
+
             if len(df) >= 50:
 
                 sma50 = float(
@@ -837,16 +744,13 @@ def analyze_market():
                 )
 
             else:
-
                 sma50 = np.nan
 
 
             # ------------------------------------------------
-            # 6. 20日出来高平均
-            #
-            # 現行PF4.11条件との互換性のため
-            # 当日を含むrolling(20)を維持
+            # 20日出来高平均
             # ------------------------------------------------
+
             if len(df) >= 20:
 
                 vol20 = float(
@@ -857,7 +761,6 @@ def analyze_market():
                 )
 
             else:
-
                 vol20 = np.nan
 
 
@@ -867,135 +770,98 @@ def analyze_market():
             ):
 
                 vol_ratio = (
-                    volume
-                    /
-                    vol20
+                    volume / vol20
                 )
 
             else:
-
                 vol_ratio = 0.0
 
 
             # ------------------------------------------------
-            # 7. 前日までの250営業日高値
+            # 250日高値
             # ------------------------------------------------
+
             prior_high250 = (
                 calculate_prior_250_high(df)
             )
 
 
-            # ------------------------------------------------
-            # 8. 高値乖離率
-            # ------------------------------------------------
             off_high = calc_off_high(
                 close,
-                prior_high250
+                prior_high250,
             )
 
 
             # ------------------------------------------------
-            # 9. 5日平均売買代金
+            # 5日平均売買代金
             # ------------------------------------------------
-            avg_turnover_5d = float(
 
+            avg_turnover_5d = float(
                 (
                     df["Close"].tail(5)
                     *
                     df["Volume"].tail(5)
                 ).mean()
-
             )
 
 
             liquidity_ok = (
-
-                np.isfinite(
-                    avg_turnover_5d
-                )
-
+                np.isfinite(avg_turnover_5d)
                 and
-
                 avg_turnover_5d
                 >=
                 MIN_AVG_TURNOVER
-
             )
 
 
             # ------------------------------------------------
-            # 10. 基本情報
+            # 基本情報
             # ------------------------------------------------
+
+            code = clean_code(ticker)
+
+            name = get_name(ticker)
+
+            fund_score = FUND_SCORES.get(
+                ticker
+            )
+
             signal_date = (
-                pd.Timestamp(
-                    df.index[-1]
-                )
+                pd.Timestamp(df.index[-1])
                 .strftime("%Y-%m-%d")
             )
 
-            code = clean_code(
-                ticker
-            )
-
-            name = get_name(
-                ticker
-            )
-
-            fund_score = (
-                FUND_SCORES
-                .get(ticker)
-            )
-
 
             # =================================================
-            # A. PF4.11探索群
-            #
-            # ここは通常発射台とは完全分離
+            # A. PF4.11入口条件
             # =================================================
+
             if matches_pf411_prebreakout(
-
                 off_high=off_high,
-
                 close=close,
-
                 sma50=sma50,
-
                 volume=volume,
-
                 vol20=vol20,
-
-                history_rows=len(df)
-
+                history_rows=len(df),
             ):
 
                 pf411_candidates.append({
 
-                    "code":
-                        code,
+                    "code": code,
 
-                    "name":
-                        name,
+                    "name": name,
 
                     "price":
                         int(round(close)),
 
                     "off_high":
-                        round(
-                            off_high,
-                            2
-                        ),
+                        round(off_high, 2),
 
                     "vol_ratio":
-                        round(
-                            vol_ratio,
-                            2
-                        ),
+                        round(vol_ratio, 2),
 
                     "sma50":
-                        round(
-                            sma50,
-                            2
-                        ),
+                        round(sma50, 2),
 
                     "avg_turnover_5d":
                         int(
@@ -1005,7 +871,6 @@ def analyze_market():
                         ),
 
                     # 参考表示のみ
-                    # PF4.11判定には使わない
                     "fund_score":
                         fund_score,
 
@@ -1017,28 +882,29 @@ def analyze_market():
                             "-3.0%<=off_high<0%, "
                             "close>SMA50, "
                             "volume>=VolSMA20*1.2"
-                        )
+                        ),
                 })
 
 
             # =================================================
-            # 250日高値が計算できない場合
-            # 新高値関連ランキングから除外
+            # 新高値高値基準が計算不能ならここで終了
             # =================================================
+
             if off_high is None:
 
                 skipped.append({
                     "ticker": ticker,
                     "reason":
-                        "前日までの250営業日高値を計算不能"
+                        "前日までの250営業日高値を計算不能",
                 })
 
                 continue
 
 
             # =================================================
-            # B. 相場流 × 新高値テクニカル
+            # B. 相場流
             # =================================================
+
             soba_score, soba_pattern = (
                 evaluate_soba_pattern(df)
             )
@@ -1046,21 +912,16 @@ def analyze_market():
 
             tech_nh_score = (
                 evaluate_technical_new_high(
-
                     close=close,
-
                     sma50=sma50,
-
                     off_high=off_high,
-
                     volume=volume,
-
-                    vol20=vol20
+                    vol20=vol20,
                 )
             )
 
 
-            # +3%以上に過熱した銘柄は除外
+            # +3%超過熱は除外
             if (
                 off_high
                 <=
@@ -1068,12 +929,8 @@ def analyze_market():
             ):
 
                 if (
-                    not
-                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
-
-                    or
-
-                    liquidity_ok
+                    not APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
+                    or liquidity_ok
                 ):
 
                     if soba_score >= 70:
@@ -1083,7 +940,6 @@ def analyze_market():
                             +
                             tech_nh_score * 0.4
                         )
-
 
                         soba_candidates.append({
 
@@ -1105,7 +961,7 @@ def analyze_market():
                             "total_score":
                                 round(
                                     total_score,
-                                    1
+                                    1,
                                 ),
 
                             "soba_pattern":
@@ -1114,7 +970,7 @@ def analyze_market():
                             "off_high":
                                 round(
                                     off_high,
-                                    2
+                                    2,
                                 ),
 
                             "fund_score":
@@ -1126,34 +982,28 @@ def analyze_market():
 
 
             # =================================================
-            # C. 通常の新高値発射台
+            # C. 通常発射台
+            #
+            # ★80銘柄すべてが対象
             # =================================================
+
             launch_score, launch_status = (
                 evaluate_launchpad(
-
                     off_high=off_high,
-
                     volume=volume,
-
                     vol20=vol20,
-
-                    fund_score=fund_score
                 )
             )
 
 
             if launch_status in (
                 "★発射台",
-                "★ブレイク確認"
+                "★ブレイク確認",
             ):
 
                 if (
-                    not
-                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
-
-                    or
-
-                    liquidity_ok
+                    not APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
+                    or liquidity_ok
                 ):
 
                     new_high_candidates.append({
@@ -1170,19 +1020,21 @@ def analyze_market():
                         "nh_score":
                             launch_score,
 
+                        # 未登録ならnull
+                        # 除外には使用しない
                         "fund_score":
                             fund_score,
 
                         "off_high":
                             round(
                                 off_high,
-                                2
+                                2,
                             ),
 
                         "vol_ratio":
                             round(
                                 vol_ratio,
-                                2
+                                2,
                             ),
 
                         "status":
@@ -1203,13 +1055,11 @@ def analyze_market():
         except Exception as e:
 
             skipped.append({
-
                 "ticker":
                     ticker,
 
                 "reason":
-                    f"例外: {e}"
-
+                    f"例外: {e}",
             })
 
             print(
@@ -1223,14 +1073,13 @@ def analyze_market():
     # ========================================================
 
     # --------------------------------------------------------
-    # 1. 通常発射台
+    # 通常発射台
     #
-    # nh_score優先
-    # ↓
-    # 高値差0%に近い順
-    # ↓
-    # 出来高倍率
+    # 1. nh_score
+    # 2. 高値差0%に近い
+    # 3. 出来高倍率
     # --------------------------------------------------------
+
     new_high_candidates.sort(
 
         key=lambda x: (
@@ -1245,16 +1094,14 @@ def analyze_market():
 
         ),
 
-        reverse=True
+        reverse=True,
     )
 
 
     # --------------------------------------------------------
-    # 2. 相場流
-    #
-    # 相場流60%
-    # 新高値テクニカル40%
+    # 相場流
     # --------------------------------------------------------
+
     soba_candidates.sort(
 
         key=lambda x: (
@@ -1263,154 +1110,112 @@ def analyze_market():
 
             x["soba_score"],
 
-            x["nh_score"]
+            x["nh_score"],
 
         ),
 
-        reverse=True
+        reverse=True,
     )
 
 
     # --------------------------------------------------------
-    # 3. PF4.11探索群
-    #
-    # まず0%に近い順
-    # 次に出来高倍率
+    # PF4.11
     # --------------------------------------------------------
+
     pf411_candidates.sort(
 
         key=lambda x: (
 
             x["off_high"],
 
-            x["vol_ratio"]
+            x["vol_ratio"],
 
         ),
 
-        reverse=True
+        reverse=True,
     )
 
 
     # ========================================================
-    # fund_score確認状況
+    # fund_score登録状況
     # ========================================================
+
     confirmed_fund_count = sum(
-
         1
-
         for ticker in TICKERS
-
-        if FUND_SCORES.get(
-            ticker
-        ) is not None
-    )
-
-
-    fund85_count = sum(
-
-        1
-
-        for ticker in TICKERS
-
-        if (
-            FUND_SCORES.get(
-                ticker
-            )
-            or 0
-        )
-        >=
-        FUND_SCORE_MIN
+        if FUND_SCORES.get(ticker) is not None
     )
 
 
     # ========================================================
     # JSON
     # ========================================================
+
     output_data = {
 
         "updated_at":
             updated_str,
 
 
-        # ----------------------------------------------------
-        # データポリシー
-        # ----------------------------------------------------
         "data_policy": {
 
             "daily_bar":
-                (
-                    "JST16:00より前は"
-                    "当日足を除外"
-                ),
+                "JST16:00より前は当日足を除外",
 
             "price_adjustment":
-                (
-                    "yfinance "
-                    "auto_adjust=True"
-                ),
+                "yfinance auto_adjust=True",
 
             "high_reference":
                 (
                     "最新足を除く"
-                    "直前250営業日の"
-                    "High最大値"
-                )
+                    "直前250営業日のHigh最大値"
+                ),
         },
 
 
-        # ----------------------------------------------------
-        # ユニバース状況
-        # ----------------------------------------------------
         "universe": {
 
             "ticker_count":
                 len(TICKERS),
 
+            "launchpad_screened_count":
+                len(TICKERS),
+
             "confirmed_fund_score_count":
                 confirmed_fund_count,
 
-            "fund_score_85plus_count":
-                fund85_count
+            "fund_score_policy":
+                (
+                    "fund_scoreは参考表示。"
+                    "未登録銘柄も発射台判定対象。"
+                ),
         },
 
 
-        # ----------------------------------------------------
         # 通常新高値
-        # ----------------------------------------------------
         "new_high_ranks":
             new_high_candidates[:10],
 
 
-        # ----------------------------------------------------
         # 相場流
-        # ----------------------------------------------------
         "soba_ranks":
             soba_candidates[:10],
 
 
-        # ----------------------------------------------------
-        # PF4.11探索
-        # ----------------------------------------------------
+        # PF4.11入口条件
         "pf411_ranks":
             pf411_candidates,
 
 
-        # ----------------------------------------------------
-        # 通常新高値の説明
-        # ----------------------------------------------------
         "new_high_reference": {
 
             "label":
-                (
-                    "通常の新高値"
-                    "発射台/ブレイク確認"
-                ),
+                "通常の新高値発射台/ブレイク確認",
 
             "conditions": [
 
                 (
-                    "確認済み四季報 "
-                    "fund_score >= 85"
+                    "監視80銘柄すべてを判定"
                 ),
 
                 (
@@ -1423,40 +1228,33 @@ def analyze_market():
                     "0%超はブレイク確認"
                 ),
 
-                (
-                    "+3.0%超は見送り"
-                ),
+                "+3.0%超は見送り",
 
                 (
                     f"5日平均売買代金 >= "
                     f"{MIN_AVG_TURNOVER:,}円"
-                    "（運用流動性フィルター）"
                     if
                     APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
                     else
                     "売買代金フィルターなし"
-                )
+                ),
             ],
 
             "fund_score_note":
                 (
-                    "FUND_SCORESに数値がない銘柄は"
-                    "通常発射台へ入れない。"
-                    "推測値やyfinanceの動的"
-                    "ファンダメンタルズで代替しない。"
-                )
+                    "fund_scoreは現時点では"
+                    "参考表示のみ。"
+                    "未登録銘柄を除外しない。"
+                ),
         },
 
 
-        # ----------------------------------------------------
-        # PF4.11の説明
-        # ----------------------------------------------------
         "pf411_reference": {
 
             "label":
                 (
                     "PF4.11過去バックテストの"
-                    "入口条件に対応する当日候補。"
+                    "入口条件に対応する候補。"
                     "PF4.11自体を再計算したものではない。"
                 ),
 
@@ -1471,76 +1269,67 @@ def analyze_market():
                     "20日平均出来高 * 1.2"
                 ),
 
-                "過去データ260行以上"
+                "過去データ260行以上",
             ],
 
             "execution_note":
                 (
-                    "過去バックテストの売買再現には、"
-                    "翌営業日始値エントリー、出口、"
-                    "保有期間、同時シグナル時の"
-                    "資金配分等を別途一致させる必要がある。"
+                    "過去PF4.11の完全再現には、"
+                    "翌営業日始値エントリー、"
+                    "出口、保有期間、"
+                    "同時シグナル時の優先順位、"
+                    "資金配分などの一致が必要。"
                 ),
 
             "limitations":
                 (
-                    "このリストにはfund_score・PBR・"
-                    "売買代金の足切りを後付けしない。"
-                    "PF4.11は過去の探索値であり"
-                    "将来成績を示さない。"
-                )
+                    "fund_score・PBR・売買代金条件は"
+                    "PF4.11入口条件へ後付けしない。"
+                ),
         },
 
 
-        # ----------------------------------------------------
-        # スキップ情報
-        # ----------------------------------------------------
         "skipped":
-            skipped
+            skipped,
     }
 
 
     # ========================================================
     # 保存
     # ========================================================
+
     with open(
         "stocks_data.json",
         "w",
-        encoding="utf-8"
+        encoding="utf-8",
     ) as f:
 
         json.dump(
             output_data,
             f,
             ensure_ascii=False,
-            indent=2
+            indent=2,
         )
 
 
     # ========================================================
-    # コンソール
+    # ログ
     # ========================================================
+
     print(
-
-        ">>> 完了: "
-        "stocks_data.json を生成しました。"
-
-        f" 発射台="
-        f"{len(new_high_candidates)}銘柄 /"
-
-        f" 相場流="
-        f"{len(soba_candidates)}銘柄 /"
-
-        f" PF4.11入口条件="
-        f"{len(pf411_candidates)}銘柄 /"
-
-        f" スキップ="
-        f"{len(skipped)}件"
+        ">>> 完了: stocks_data.json生成 "
+        f"| 母集団={len(TICKERS)} "
+        f"| 発射台={len(new_high_candidates)} "
+        f"| 相場流={len(soba_candidates)} "
+        f"| PF4.11入口={len(pf411_candidates)} "
+        f"| fund_score登録={confirmed_fund_count} "
+        f"| スキップ={len(skipped)}"
     )
 
 
 # ============================================================
 # 実行
 # ============================================================
+
 if __name__ == "__main__":
     analyze_market()
