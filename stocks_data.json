@@ -1,5 +1,5 @@
 {
-  "updated_at": "10/02 17:55",
+  "updated_at": "10/02 18:05",
   "data_policy": {
     "daily_bar": "JST16:00より前は当日足を除外",
     "price_adjustment": "yfinance auto_adjust=True",
@@ -7,10 +7,23 @@
   },
   "universe": {
     "ticker_count": 80,
+    "launchpad_screened_count": 80,
     "confirmed_fund_score_count": 12,
-    "fund_score_85plus_count": 10
+    "fund_score_policy": "fund_scoreは参考表示。未登録銘柄も発射台判定対象。"
   },
   "new_high_ranks": [
+    {
+      "code": "6912",
+      "name": "菊水HD",
+      "price": 2824,
+      "nh_score": 85,
+      "fund_score": null,
+      "off_high": -0.91,
+      "vol_ratio": 1.17,
+      "status": "★発射台",
+      "avg_turnover_5d": 46860860,
+      "signal_date": "2026-10-02"
+    },
     {
       "code": "7826",
       "name": "フルヤ金属",
@@ -48,6 +61,18 @@
       "signal_date": "2026-10-02"
     },
     {
+      "code": "5033",
+      "name": "ヌーラボ",
+      "price": 1238,
+      "nh_score": 85,
+      "fund_score": null,
+      "off_high": -3.05,
+      "vol_ratio": 0.25,
+      "status": "★発射台",
+      "avg_turnover_5d": 50626360,
+      "signal_date": "2026-10-02"
+    },
+    {
       "code": "6998",
       "name": "日タングステン",
       "price": 4120,
@@ -57,6 +82,18 @@
       "vol_ratio": 0.7,
       "status": "★発射台",
       "avg_turnover_5d": 322950100,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "3040",
+      "name": "ソリトン",
+      "price": 2648,
+      "nh_score": 85,
+      "fund_score": null,
+      "off_high": -3.39,
+      "vol_ratio": 0.9,
+      "status": "★発射台",
+      "avg_turnover_5d": 299033640,
       "signal_date": "2026-10-02"
     },
     {
@@ -222,24 +259,24 @@
   "new_high_reference": {
     "label": "通常の新高値発射台/ブレイク確認",
     "conditions": [
-      "確認済み四季報 fund_score >= 85",
+      "監視80銘柄すべてを判定",
       "-6.0% <= off_high <= +3.0%",
       "off_high <= 0% は発射台、0%超はブレイク確認",
       "+3.0%超は見送り",
-      "5日平均売買代金 >= 40,000,000円（運用流動性フィルター）"
+      "5日平均売買代金 >= 40,000,000円"
     ],
-    "fund_score_note": "FUND_SCORESに数値がない銘柄は通常発射台へ入れない。推測値やyfinanceの動的ファンダメンタルズで代替しない。"
+    "fund_score_note": "fund_scoreは現時点では参考表示のみ。未登録銘柄を除外しない。"
   },
   "pf411_reference": {
-    "label": "PF4.11過去バックテストの入口条件に対応する当日候補。PF4.11自体を再計算したものではない。",
+    "label": "PF4.11過去バックテストの入口条件に対応する候補。PF4.11自体を再計算したものではない。",
     "conditions": [
       "-3.0% <= off_high < 0.0%",
       "終値 > SMA50",
       "当日出来高 >= 20日平均出来高 * 1.2",
       "過去データ260行以上"
     ],
-    "execution_note": "過去バックテストの売買再現には、翌営業日始値エントリー、出口、保有期間、同時シグナル時の資金配分等を別途一致させる必要がある。",
-    "limitations": "このリストにはfund_score・PBR・売買代金の足切りを後付けしない。PF4.11は過去の探索値であり将来成績を示さない。"
+    "execution_note": "過去PF4.11の完全再現には、翌営業日始値エントリー、出口、保有期間、同時シグナル時の優先順位、資金配分などの一致が必要。",
+    "limitations": "fund_score・PBR・売買代金条件はPF4.11入口条件へ後付けしない。"
   },
   "skipped": []
 }
