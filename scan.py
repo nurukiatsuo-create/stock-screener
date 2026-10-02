@@ -10,6 +10,7 @@ import yfinance as yf
 # ============================================================
 # 監視ユニバース：現行80銘柄
 # ============================================================
+
 TICKERS = [
     "7826.T", "6912.T", "9249.T", "7192.T", "6727.T", "6364.T", "3560.T", "5957.T",
     "7172.T", "1401.T", "6652.T", "6345.T", "6862.T", "6855.T", "6407.T", "6134.T",
@@ -27,66 +28,150 @@ TICKERS = [
 # ============================================================
 # 銘柄名
 # ============================================================
+
 STOCK_NAMES = {
-    "7826.T": "フルヤ金属", "6912.T": "菊水HD", "9249.T": "日本エコ", "7192.T": "日モーゲージ",
-    "6727.T": "ワコム", "6364.T": "北越工業", "3560.T": "ほぼ日", "5957.T": "日東精工",
-    "7172.T": "JIA", "1401.T": "エムビーエス", "6652.T": "IDEC", "6345.T": "アイチコーポ",
-    "6862.T": "ミナトHD", "6855.T": "日電子材料", "6407.T": "CKD", "6134.T": "FUJI",
-    "6629.T": "テクノホライ", "6226.T": "守谷輸送機", "6904.T": "原田工業", "6368.T": "オルガノ",
-    "6941.T": "山一電機", "6946.T": "日アビオ", "6866.T": "日置電機", "7254.T": "ユニバンス",
-    "6258.T": "平田機工", "6518.T": "三相電機", "6616.T": "トレックス", "6677.T": "SKエレク",
-    "6474.T": "不二越", "6327.T": "北川精機", "7715.T": "長野計器", "6508.T": "明電舎",
-    "4776.T": "サイボウズ", "3923.T": "ラクス", "6027.T": "弁護士ドット", "3663.T": "セルシス",
-    "3968.T": "セグエ", "5033.T": "ヌーラボ", "4055.T": "T&S", "5254.T": "Arent",
-    "4828.T": "Bエンジニア", "4825.T": "ウェザーニュー", "4258.T": "網屋", "3692.T": "FFRI",
-    "4012.T": "アクシス", "3763.T": "プロシップ", "7094.T": "NexTone", "3696.T": "セレス",
-    "3040.T": "ソリトン", "4440.T": "ヴィッツ", "4371.T": "C＆C", "4414.T": "フレクト",
-    "4396.T": "システムサポ", "5591.T": "AVILEN", "6998.T": "日タングステン", "6871.T": "日マイクロ",
-    "6787.T": "メイコー", "4368.T": "扶桑化学", "4369.T": "トリケミカル", "4975.T": "JCU",
-    "4626.T": "太陽HD", "4971.T": "メック", "4046.T": "大阪ソーダ", "3441.T": "サンコーテクノ",
-    "3449.T": "テクノフレ", "4970.T": "東洋合成", "5805.T": "SWCC", "7609.T": "ダイトロン",
-    "4461.T": "第一工薬", "7781.T": "平山HD", "5018.T": "MORESCO", "4100.T": "戸田工業",
-    "3482.T": "ロードスター", "3498.T": "霞ヶ関キャピ", "7148.T": "FPG", "2884.T": "ヨシムラFD",
-    "5136.T": "tripla", "7372.T": "デコルテHD", "5589.T": "オートサーバ", "4765.T": "SBIGアセット",
+    "7826.T": "フルヤ金属",
+    "6912.T": "菊水HD",
+    "9249.T": "日本エコ",
+    "7192.T": "日モーゲージ",
+    "6727.T": "ワコム",
+    "6364.T": "北越工業",
+    "3560.T": "ほぼ日",
+    "5957.T": "日東精工",
+
+    "7172.T": "JIA",
+    "1401.T": "エムビーエス",
+    "6652.T": "IDEC",
+    "6345.T": "アイチコーポ",
+    "6862.T": "ミナトHD",
+    "6855.T": "日電子材料",
+    "6407.T": "CKD",
+    "6134.T": "FUJI",
+
+    "6629.T": "テクノホライ",
+    "6226.T": "守谷輸送機",
+    "6904.T": "原田工業",
+    "6368.T": "オルガノ",
+    "6941.T": "山一電機",
+    "6946.T": "日アビオ",
+    "6866.T": "日置電機",
+    "7254.T": "ユニバンス",
+
+    "6258.T": "平田機工",
+    "6518.T": "三相電機",
+    "6616.T": "トレックス",
+    "6677.T": "SKエレク",
+    "6474.T": "不二越",
+    "6327.T": "北川精機",
+    "7715.T": "長野計器",
+    "6508.T": "明電舎",
+
+    "4776.T": "サイボウズ",
+    "3923.T": "ラクス",
+    "6027.T": "弁護士ドット",
+    "3663.T": "セルシス",
+    "3968.T": "セグエ",
+    "5033.T": "ヌーラボ",
+    "4055.T": "T&S",
+    "5254.T": "Arent",
+
+    "4828.T": "Bエンジニア",
+    "4825.T": "ウェザーニュー",
+    "4258.T": "網屋",
+    "3692.T": "FFRI",
+    "4012.T": "アクシス",
+    "3763.T": "プロシップ",
+    "7094.T": "NexTone",
+    "3696.T": "セレス",
+
+    "3040.T": "ソリトン",
+    "4440.T": "ヴィッツ",
+    "4371.T": "C＆C",
+    "4414.T": "フレクト",
+    "4396.T": "システムサポ",
+    "5591.T": "AVILEN",
+    "6998.T": "日タングステン",
+    "6871.T": "日マイクロ",
+
+    "6787.T": "メイコー",
+    "4368.T": "扶桑化学",
+    "4369.T": "トリケミカル",
+    "4975.T": "JCU",
+    "4626.T": "太陽HD",
+    "4971.T": "メック",
+    "4046.T": "大阪ソーダ",
+    "3441.T": "サンコーテクノ",
+
+    "3449.T": "テクノフレ",
+    "4970.T": "東洋合成",
+    "5805.T": "SWCC",
+    "7609.T": "ダイトロン",
+    "4461.T": "第一工薬",
+    "7781.T": "平山HD",
+    "5018.T": "MORESCO",
+    "4100.T": "戸田工業",
+
+    "3482.T": "ロードスター",
+    "3498.T": "霞ヶ関キャピ",
+    "7148.T": "FPG",
+    "2884.T": "ヨシムラFD",
+    "5136.T": "tripla",
+    "7372.T": "デコルテHD",
+    "5589.T": "オートサーバ",
+    "4765.T": "SBIGアセット",
 }
 
 
 # ============================================================
 # 四季報 fund_score
-# 現時点で確認済みのもののみ登録。
-# 未登録銘柄も通常発射台判定から除外しない。
+#
+# 現時点で数値確認済みのものだけ登録。
+#
+# 重要：
+# ・未登録銘柄も発射台判定対象
+# ・fund_scoreは現時点では参考表示のみ
 # ============================================================
+
 FUND_SCORES = {
-    "7826.T": 100,
-    "6862.T": 100,
-    "4765.T": 100,
-    "4258.T": 100,
-    "6998.T": 85,
-    "6652.T": 85,
-    "6258.T": 85,
-    "1401.T": 85,
-    "6345.T": 85,
-    "5957.T": 80,
-    "6364.T": 80,
-    "7192.T": 90,
+    "7826.T": 100,  # フルヤ金属
+    "6862.T": 100,  # ミナトHD
+    "4765.T": 100,  # SBIGアセット
+    "4258.T": 100,  # 網屋
+
+    "6998.T": 85,   # 日本タングステン
+    "6652.T": 85,   # IDEC
+    "6258.T": 85,   # 平田機工
+    "1401.T": 85,   # エムビーエス
+    "6345.T": 85,   # アイチコーポ
+
+    "5957.T": 80,   # 日東精工
+    "6364.T": 80,   # 北越工業
+
+    "7192.T": 90,   # 日本モーゲージ
 }
 
 
 # ============================================================
 # 設定
 # ============================================================
+
 HISTORY_PERIOD = "2y"
 INTERVAL = "1d"
 
-# 15:30大引け後、データ安定待ちを含め16:00から当日足使用
+# 東証大引け15:30後、
+# データ安定待ちを含めて16:00以降に当日足を利用
 DAILY_BAR_CONFIRM_HOUR_JST = 16
 
+# 最新足 + 前日まで250営業日
 MIN_HISTORY_ROWS = 251
+
+# PF4.11探索用
 PF411_MIN_HISTORY_ROWS = 260
 
+# 通常の発射台・ブレイク候補に使用する最低5日平均売買代金
 MIN_AVG_TURNOVER = 40_000_000
 
-# 発射台
+# 通常発射台
 LAUNCHPAD_MIN_OFF_HIGH = -6.0
 LAUNCHPAD_MAX_OFF_HIGH = 3.0
 
@@ -95,65 +180,114 @@ PF411_MIN_OFF_HIGH = -3.0
 PF411_MAX_OFF_HIGH = 0.0
 PF411_VOLUME_RATIO = 1.2
 
-# 通常発射台・相場流には流動性条件を適用
-# PF4.11条件には後付けしない
-APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS = True
+# 発射台・ブレイク確認には流動性フィルターを適用
+# 95点見送りには適用しない
+APPLY_TURNOVER_FILTER_TO_ACTIVE_CANDIDATES = True
 
 
 # ============================================================
 # 共通ユーティリティ
 # ============================================================
+
 def clean_code(ticker):
     return ticker.replace(".T", "")
 
 
 def get_name(ticker):
-    return STOCK_NAMES.get(ticker, clean_code(ticker))
+    return STOCK_NAMES.get(
+        ticker,
+        clean_code(ticker)
+    )
 
 
 def extract_ticker_frame(downloaded, ticker):
+    """
+    yf.download(group_by="ticker")から
+    1銘柄分のOHLCVを取り出す。
+    """
+
     if downloaded is None or downloaded.empty:
         return pd.DataFrame()
 
-    if isinstance(downloaded.columns, pd.MultiIndex):
-        level0 = downloaded.columns.get_level_values(0)
+    if isinstance(
+        downloaded.columns,
+        pd.MultiIndex
+    ):
+
+        level0 = (
+            downloaded
+            .columns
+            .get_level_values(0)
+        )
 
         if ticker not in level0:
             return pd.DataFrame()
 
         df = downloaded[ticker].copy()
+
     else:
         df = downloaded.copy()
 
-    required = ["Open", "High", "Low", "Close", "Volume"]
+    required = [
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+    ]
 
-    if not all(col in df.columns for col in required):
+    if not all(
+        col in df.columns
+        for col in required
+    ):
         return pd.DataFrame()
 
     return df[required].copy()
 
 
-def keep_confirmed_daily_bars(df, now_jst):
+def keep_confirmed_daily_bars(
+    df,
+    now_jst
+):
     """
-    16:00より前なら当日足を除外。
+    JST 16:00より前なら当日足を除外。
     """
+
     if df.empty:
         return df
 
-    df = df.sort_index().copy()
+    df = (
+        df
+        .sort_index()
+        .copy()
+    )
 
-    dates = pd.DatetimeIndex(df.index)
+    dates = pd.DatetimeIndex(
+        df.index
+    )
 
     if dates.tz is not None:
-        compare_dates = dates.tz_convert("Asia/Tokyo")
+        compare_dates = (
+            dates
+            .tz_convert("Asia/Tokyo")
+        )
     else:
         compare_dates = dates
 
-    if now_jst.hour < DAILY_BAR_CONFIRM_HOUR_JST:
+    if (
+        now_jst.hour
+        <
+        DAILY_BAR_CONFIRM_HOUR_JST
+    ):
+
         mask = np.array([
-            d.date() < now_jst.date()
+            d.date()
+            <
+            now_jst.date()
+
             for d in compare_dates
         ])
+
         df = df.loc[mask]
 
     return df
@@ -161,13 +295,24 @@ def keep_confirmed_daily_bars(df, now_jst):
 
 def calculate_prior_250_high(df):
     """
-    最新足を除外した直前250営業日のHigh最大値。
+    最新足を除外した直前250営業日の
+    High最大値。
+
+    当日のHighは基準高値に含めない。
     """
+
     if len(df) < MIN_HISTORY_ROWS:
         return None
 
-    prior_highs = df["High"].iloc[-251:-1]
-    values = prior_highs.to_numpy(dtype=float)
+    prior_highs = (
+        df["High"]
+        .iloc[-251:-1]
+    )
+
+    values = (
+        prior_highs
+        .to_numpy(dtype=float)
+    )
 
     if len(values) != 250:
         return None
@@ -178,10 +323,22 @@ def calculate_prior_250_high(df):
     if (values <= 0).any():
         return None
 
-    return float(np.max(values))
+    return float(
+        np.max(values)
+    )
 
 
-def calc_off_high(close, prior_high):
+def calc_off_high(
+    close,
+    prior_high
+):
+    """
+    前日までの250営業日高値からの乖離率。
+
+    -2% = 高値まであと2%
+    +1% = 高値を1%上抜け
+    """
+
     if (
         prior_high is None
         or prior_high <= 0
@@ -191,15 +348,19 @@ def calc_off_high(close, prior_high):
 
     return (
         (close - prior_high)
-        / prior_high
-        * 100.0
+        /
+        prior_high
+        *
+        100.0
     )
 
 
 def calc_vol20(df):
     """
-    PF4.11互換のため最新足を含むrolling(20)。
+    PF4.11既存条件との整合のため、
+    最新足を含むrolling(20)。
     """
+
     if len(df) < 20:
         return np.nan
 
@@ -212,6 +373,10 @@ def calc_vol20(df):
 
 
 def calc_avg_turnover_5d(df):
+    """
+    直近5営業日の平均売買代金。
+    """
+
     if len(df) < 5:
         return np.nan
 
@@ -227,6 +392,7 @@ def calc_avg_turnover_5d(df):
 # ============================================================
 # PF4.11入口条件
 # ============================================================
+
 def matches_pf411_prebreakout(
     off_high,
     close,
@@ -235,13 +401,27 @@ def matches_pf411_prebreakout(
     vol20,
     history_rows,
 ):
+    """
+    PF4.11過去バックテストの
+    入口条件に対応する候補抽出。
+
+    -3.0% <= off_high < 0%
+    Close > SMA50
+    Volume >= VolSMA20 × 1.2
+    履歴260行以上
+    """
+
     return (
-        history_rows >= PF411_MIN_HISTORY_ROWS
+
+        history_rows
+        >=
+        PF411_MIN_HISTORY_ROWS
 
         and off_high is not None
         and np.isfinite(off_high)
 
-        and PF411_MIN_OFF_HIGH
+        and
+        PF411_MIN_OFF_HIGH
         <= off_high
         < PF411_MAX_OFF_HIGH
 
@@ -251,7 +431,8 @@ def matches_pf411_prebreakout(
         and np.isfinite(vol20)
         and vol20 > 0
 
-        and volume
+        and
+        volume
         >=
         vol20 * PF411_VOLUME_RATIO
     )
@@ -260,13 +441,20 @@ def matches_pf411_prebreakout(
 # ============================================================
 # 通常新高値判定
 #
-# 85 : 通常
-# 90 : 出来高1.2倍超
-# 95 : +3%超の過熱見送り
+# 85点：
+#   発射台 / ブレイク基本条件
 #
-# 注意：
-# 95は「最上位」という意味ではなく「見送りコード」。
+# 90点：
+#   上記 + 出来高1.2倍超
+#
+# 95点：
+#   +3%超で過熱
+#   新規買いは見送り
+#   観察用として表示
+#
+# ※95は90より「良い」という意味ではない
 # ============================================================
+
 def evaluate_launchpad(
     close,
     sma50,
@@ -274,41 +462,75 @@ def evaluate_launchpad(
     volume,
     vol20,
 ):
+
     if (
         off_high is None
         or not np.isfinite(off_high)
     ):
         return 0, "判定不能"
 
-    # 50MAより下は新高値ボード対象外
+    # --------------------------------------------------------
+    # 50MAより下
+    # --------------------------------------------------------
+
     if (
         not np.isfinite(sma50)
         or close <= sma50
     ):
         return 0, "50MA下"
 
+    # --------------------------------------------------------
     # +3%超
-    # 過熱のため新規エントリーは見送り。
-    # ただし観察用として表示。
-    if off_high > LAUNCHPAD_MAX_OFF_HIGH:
+    #
+    # 過熱・見送り。
+    # 流動性に関係なく観察用表示。
+    # --------------------------------------------------------
+
+    if (
+        off_high
+        >
+        LAUNCHPAD_MAX_OFF_HIGH
+    ):
         return 95, "見送り"
 
+    # --------------------------------------------------------
     # -6%より遠い
-    if off_high < LAUNCHPAD_MIN_OFF_HIGH:
+    # --------------------------------------------------------
+
+    if (
+        off_high
+        <
+        LAUNCHPAD_MIN_OFF_HIGH
+    ):
         return 0, "助走"
+
+    # --------------------------------------------------------
+    # 出来高倍率
+    # --------------------------------------------------------
 
     if (
         np.isfinite(vol20)
         and vol20 > 0
     ):
-        vol_ratio = volume / vol20
+        vol_ratio = (
+            volume / vol20
+        )
     else:
         vol_ratio = 0.0
 
+    # --------------------------------------------------------
+    # 基本85点
+    # --------------------------------------------------------
+
     nh_score = 85
 
+    # 出来高1.2倍超 → 90
     if vol_ratio > 1.2:
         nh_score += 5
+
+    # --------------------------------------------------------
+    # 発射台 / ブレイク
+    # --------------------------------------------------------
 
     if off_high > 0:
         status = "★ブレイク確認"
@@ -319,8 +541,10 @@ def evaluate_launchpad(
 
 
 # ============================================================
-# 相場流ランキング用 新高値テクニカル点
+# 相場流ランキング用
+# 新高値テクニカル点
 # ============================================================
+
 def evaluate_technical_new_high(
     close,
     sma50,
@@ -328,66 +552,124 @@ def evaluate_technical_new_high(
     volume,
     vol20,
 ):
+
     score = 50
 
+    # 50MA上
     if (
         np.isfinite(sma50)
         and close > sma50
     ):
         score += 15
 
+    # 高値差
     if (
         off_high is not None
         and np.isfinite(off_high)
     ):
-        if -3.0 <= off_high <= 2.5:
+
+        if (
+            -3.0
+            <= off_high
+            <= 2.5
+        ):
             score += 20
 
-        elif -6.0 <= off_high < -3.0:
+        elif (
+            -6.0
+            <= off_high
+            < -3.0
+        ):
             score += 10
 
         elif off_high > 3.0:
             score -= 20
 
+    # 出来高
     if (
         np.isfinite(vol20)
         and vol20 > 0
-        and volume >= vol20 * 1.3
+        and
+        volume
+        >=
+        vol20 * 1.3
     ):
         score += 15
 
     return min(
         max(score, 0),
-        100,
+        100
     )
 
 
 # ============================================================
-# 相場流パターン
+# 相場流パターン判定
 # ============================================================
+
 def evaluate_soba_pattern(df):
+
     if len(df) < 100:
         return 50, "データ不足"
 
     closes = df["Close"]
 
-    sma5 = closes.rolling(5).mean()
-    sma20 = closes.rolling(20).mean()
-    sma60 = closes.rolling(60).mean()
-    sma100 = closes.rolling(100).mean()
+    sma5 = (
+        closes
+        .rolling(5)
+        .mean()
+    )
+
+    sma20 = (
+        closes
+        .rolling(20)
+        .mean()
+    )
+
+    sma60 = (
+        closes
+        .rolling(60)
+        .mean()
+    )
+
+    sma100 = (
+        closes
+        .rolling(100)
+        .mean()
+    )
 
     latest = df.iloc[-1]
 
-    c_open = float(latest["Open"])
-    c_close = float(latest["Close"])
+    c_open = float(
+        latest["Open"]
+    )
 
-    s5 = float(sma5.iloc[-1])
-    s20 = float(sma20.iloc[-1])
-    s60 = float(sma60.iloc[-1])
-    s100 = float(sma100.iloc[-1])
+    c_close = float(
+        latest["Close"]
+    )
 
-    p5 = float(sma5.iloc[-2])
-    p20 = float(sma20.iloc[-2])
+    s5 = float(
+        sma5.iloc[-1]
+    )
+
+    s20 = float(
+        sma20.iloc[-1]
+    )
+
+    s60 = float(
+        sma60.iloc[-1]
+    )
+
+    s100 = float(
+        sma100.iloc[-1]
+    )
+
+    p5 = float(
+        sma5.iloc[-2]
+    )
+
+    p20 = float(
+        sma20.iloc[-2]
+    )
 
     values = [
         c_open,
@@ -409,31 +691,67 @@ def evaluate_soba_pattern(df):
     sma5_slope = s5 - p5
     sma20_slope = s20 - p20
 
-    # 下半身
+
+    # ========================================================
+    # ① 下半身
+    # ========================================================
+
     is_lower_half = (
+
         c_close > c_open
-        and c_open < s5 < c_close
-        and (c_close - s5) > (s5 - c_open)
-        and sma5_slope >= 0
+
+        and
+        c_open < s5 < c_close
+
+        and
+        (c_close - s5)
+        >
+        (s5 - c_open)
+
+        and
+        sma5_slope >= 0
     )
 
-    # くちばし
+
+    # ========================================================
+    # ② くちばし
+    # ========================================================
+
     is_beak = (
+
         (
             p5 <= p20
             and s5 > s20
             and sma5_slope > 0
         )
+
         or
+
         (
             s5 > s20
-            and (s5 - s20) > (p5 - p20)
-            and sma20_slope > 0
-            and abs(s5 - s20) / c_close < 0.03
+
+            and
+            (s5 - s20)
+            >
+            (p5 - p20)
+
+            and
+            sma20_slope > 0
+
+            and
+            abs(s5 - s20)
+            /
+            c_close
+            <
+            0.03
         )
     )
 
-    # 線密集
+
+    # ========================================================
+    # ③ 線密集
+    # ========================================================
+
     ma_range = (
         max(s5, s20, s60)
         -
@@ -441,11 +759,24 @@ def evaluate_soba_pattern(df):
     )
 
     is_dense = (
-        (ma_range / c_close) < 0.035
-        and c_close > s5
+
+        (
+            ma_range
+            /
+            c_close
+        )
+        <
+        0.035
+
+        and
+        c_close > s5
     )
 
-    # PPP
+
+    # ========================================================
+    # ④ PPP
+    # ========================================================
+
     is_ppp = (
         s5
         >
@@ -455,6 +786,11 @@ def evaluate_soba_pattern(df):
         >
         s100
     )
+
+
+    # ========================================================
+    # スコア
+    # ========================================================
 
     if is_lower_half:
         return 100, "★即買(下半身)"
@@ -477,26 +813,37 @@ def evaluate_soba_pattern(df):
 # ============================================================
 # メイン
 # ============================================================
+
 def analyze_market():
 
-    jst = pytz.timezone("Asia/Tokyo")
-    now_jst = datetime.now(jst)
+    jst = pytz.timezone(
+        "Asia/Tokyo"
+    )
 
-    updated_str = now_jst.strftime(
-        "%m/%d %H:%M"
+    now_jst = datetime.now(
+        jst
+    )
+
+    updated_str = (
+        now_jst
+        .strftime("%m/%d %H:%M")
     )
 
     print(
-        f">>> スクリーニング開始: {updated_str}"
+        f">>> スクリーニング開始: "
+        f"{updated_str}"
     )
 
     print(
-        f">>> 監視ユニバース: {len(TICKERS)}銘柄"
+        f">>> 監視ユニバース: "
+        f"{len(TICKERS)}銘柄"
     )
+
 
     # ========================================================
     # 株価一括取得
     # ========================================================
+
     downloaded = yf.download(
         TICKERS,
         period=HISTORY_PERIOD,
@@ -508,37 +855,59 @@ def analyze_market():
         progress=False,
     )
 
+
     new_high_candidates = []
     soba_candidates = []
     pf411_candidates = []
+
     skipped = []
 
     latest_signal_dates = []
 
+
     # ========================================================
-    # 全80銘柄
+    # 80銘柄すべて処理
     # ========================================================
+
     for ticker in TICKERS:
 
         try:
 
+            # ------------------------------------------------
+            # データ抽出
+            # ------------------------------------------------
+
             df = extract_ticker_frame(
                 downloaded,
-                ticker,
+                ticker
             )
 
             if df.empty:
+
                 skipped.append({
-                    "ticker": ticker,
-                    "reason": "データ取得失敗",
+                    "ticker":
+                        ticker,
+
+                    "reason":
+                        "データ取得失敗",
                 })
+
                 continue
 
-            # 未確定日足除外
+
+            # ------------------------------------------------
+            # 未確定当日足除外
+            # ------------------------------------------------
+
             df = keep_confirmed_daily_bars(
                 df,
-                now_jst,
+                now_jst
             )
+
+
+            # ------------------------------------------------
+            # 欠損除去
+            # ------------------------------------------------
 
             df = df.dropna(
                 subset=[
@@ -552,13 +921,23 @@ def analyze_market():
 
             df = df.sort_index()
 
+
             if len(df) < 60:
+
                 skipped.append({
-                    "ticker": ticker,
+                    "ticker":
+                        ticker,
+
                     "reason":
                         f"履歴不足({len(df)}行)",
                 })
+
                 continue
+
+
+            # ------------------------------------------------
+            # 最新足
+            # ------------------------------------------------
 
             latest = df.iloc[-1]
 
@@ -574,80 +953,141 @@ def analyze_market():
                 latest["Volume"]
             )
 
+
+            # ------------------------------------------------
+            # 異常値チェック
+            # ------------------------------------------------
+
             if not all(
                 np.isfinite(v)
                 and v > 0
+
                 for v in [
                     close,
                     open_p,
                 ]
             ):
+
                 skipped.append({
-                    "ticker": ticker,
-                    "reason": "価格データ異常",
+                    "ticker":
+                        ticker,
+
+                    "reason":
+                        "価格データ異常",
                 })
+
                 continue
+
 
             if (
                 not np.isfinite(volume)
                 or volume < 0
             ):
+
                 skipped.append({
-                    "ticker": ticker,
-                    "reason": "出来高データ異常",
+                    "ticker":
+                        ticker,
+
+                    "reason":
+                        "出来高データ異常",
                 })
+
                 continue
+
 
             closes = df["Close"]
 
+
+            # ------------------------------------------------
             # SMA50
+            # ------------------------------------------------
+
             if len(df) >= 50:
+
                 sma50 = float(
                     closes
                     .rolling(50)
                     .mean()
                     .iloc[-1]
                 )
+
             else:
+
                 sma50 = np.nan
 
-            # 出来高20日平均
+
+            # ------------------------------------------------
+            # 20日平均出来高
+            # ------------------------------------------------
+
             vol20 = calc_vol20(df)
+
 
             if (
                 np.isfinite(vol20)
                 and vol20 > 0
             ):
+
                 vol_ratio = (
-                    volume / vol20
+                    volume
+                    /
+                    vol20
                 )
+
             else:
+
                 vol_ratio = 0.0
 
-            # 前日までの250営業日高値
+
+            # ------------------------------------------------
+            # 前日まで250営業日高値
+            # ------------------------------------------------
+
             prior_high250 = (
-                calculate_prior_250_high(df)
+                calculate_prior_250_high(
+                    df
+                )
             )
+
+
+            # ------------------------------------------------
+            # 高値乖離
+            # ------------------------------------------------
 
             off_high = calc_off_high(
                 close,
-                prior_high250,
+                prior_high250
             )
 
+
+            # ------------------------------------------------
             # 5日平均売買代金
+            # ------------------------------------------------
+
             avg_turnover_5d = (
-                calc_avg_turnover_5d(df)
+                calc_avg_turnover_5d(
+                    df
+                )
             )
+
 
             liquidity_ok = (
+
                 np.isfinite(
                     avg_turnover_5d
                 )
+
                 and
+
                 avg_turnover_5d
                 >=
                 MIN_AVG_TURNOVER
             )
+
+
+            # ------------------------------------------------
+            # 基本情報
+            # ------------------------------------------------
 
             code = clean_code(
                 ticker
@@ -674,16 +1114,27 @@ def analyze_market():
                 signal_date
             )
 
+
             # =================================================
-            # A. PF4.11
+            # A. PF4.11入口条件
+            #
+            # 流動性条件は後付けしない
             # =================================================
+
             if matches_pf411_prebreakout(
+
                 off_high=off_high,
+
                 close=close,
+
                 sma50=sma50,
+
                 volume=volume,
+
                 vol20=vol20,
+
                 history_rows=len(df),
+
             ):
 
                 pf411_candidates.append({
@@ -695,24 +1146,26 @@ def analyze_market():
                         name,
 
                     "price":
-                        int(round(close)),
+                        int(
+                            round(close)
+                        ),
 
                     "off_high":
                         round(
                             off_high,
-                            2,
+                            2
                         ),
 
                     "vol_ratio":
                         round(
                             vol_ratio,
-                            2,
+                            2
                         ),
 
                     "sma50":
                         round(
                             sma50,
-                            2,
+                            2
                         ),
 
                     "avg_turnover_5d":
@@ -722,10 +1175,12 @@ def analyze_market():
                                     avg_turnover_5d
                                 )
                             )
-                            if np.isfinite(
+                            if
+                            np.isfinite(
                                 avg_turnover_5d
                             )
-                            else None
+                            else
+                            None
                         ),
 
                     "fund_score":
@@ -742,8 +1197,13 @@ def analyze_market():
                         ),
                 })
 
-            # 250日高値が取れないなら新高値系は判定不能
+
+            # =================================================
+            # 250日高値取得不能
+            # =================================================
+
             if off_high is None:
+
                 skipped.append({
                     "ticker":
                         ticker,
@@ -754,26 +1214,39 @@ def analyze_market():
                             "を計算不能"
                         ),
                 })
+
                 continue
+
 
             # =================================================
             # B. 相場流
             # =================================================
+
             soba_score, soba_pattern = (
-                evaluate_soba_pattern(df)
+                evaluate_soba_pattern(
+                    df
+                )
             )
+
 
             tech_nh_score = (
                 evaluate_technical_new_high(
+
                     close=close,
+
                     sma50=sma50,
+
                     off_high=off_high,
+
                     volume=volume,
+
                     vol20=vol20,
                 )
             )
 
-            # 相場流側は従来どおり+3%超を除外
+
+            # 相場流は従来通り
+            # +3%超は過熱として除外
             if (
                 off_high
                 <=
@@ -782,17 +1255,24 @@ def analyze_market():
 
                 if (
                     not
-                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
-                    or liquidity_ok
+                    APPLY_TURNOVER_FILTER_TO_ACTIVE_CANDIDATES
+
+                    or
+
+                    liquidity_ok
                 ):
 
                     if soba_score >= 70:
 
                         total_score = (
+
                             soba_score * 0.6
+
                             +
+
                             tech_nh_score * 0.4
                         )
+
 
                         soba_candidates.append({
 
@@ -803,7 +1283,9 @@ def analyze_market():
                                 name,
 
                             "price":
-                                int(round(close)),
+                                int(
+                                    round(close)
+                                ),
 
                             "soba_score":
                                 soba_score,
@@ -814,7 +1296,7 @@ def analyze_market():
                             "total_score":
                                 round(
                                     total_score,
-                                    1,
+                                    1
                                 ),
 
                             "soba_pattern":
@@ -823,7 +1305,7 @@ def analyze_market():
                             "off_high":
                                 round(
                                     off_high,
-                                    2,
+                                    2
                                 ),
 
                             "fund_score":
@@ -833,35 +1315,52 @@ def analyze_market():
                                 signal_date,
                         })
 
+
             # =================================================
             # C. 新高値ボード
             #
-            # 発射台
-            # ブレイク確認
-            # 見送り
+            # 発射台・ブレイク：
+            #   流動性条件あり
             #
-            # を全部JSONへ
+            # 95点見送り：
+            #   流動性条件なし
+            #   50MA上なら全件観察
             # =================================================
+
             launch_score, launch_status = (
                 evaluate_launchpad(
+
                     close=close,
+
                     sma50=sma50,
+
                     off_high=off_high,
+
                     volume=volume,
+
                     vol20=vol20,
                 )
             )
 
+
+            # -------------------------------------------------
+            # C-1 発射台 / ブレイク確認
+            #
+            # 実売買候補なので流動性確認
+            # -------------------------------------------------
+
             if launch_status in (
                 "★発射台",
                 "★ブレイク確認",
-                "見送り",
             ):
 
                 if (
                     not
-                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
-                    or liquidity_ok
+                    APPLY_TURNOVER_FILTER_TO_ACTIVE_CANDIDATES
+
+                    or
+
+                    liquidity_ok
                 ):
 
                     new_high_candidates.append({
@@ -873,7 +1372,9 @@ def analyze_market():
                             name,
 
                         "price":
-                            int(round(close)),
+                            int(
+                                round(close)
+                            ),
 
                         "nh_score":
                             launch_score,
@@ -884,13 +1385,13 @@ def analyze_market():
                         "off_high":
                             round(
                                 off_high,
-                                2,
+                                2
                             ),
 
                         "vol_ratio":
                             round(
                                 vol_ratio,
-                                2,
+                                2
                             ),
 
                         "status":
@@ -903,25 +1404,101 @@ def analyze_market():
                                         avg_turnover_5d
                                     )
                                 )
-                                if np.isfinite(
+                                if
+                                np.isfinite(
                                     avg_turnover_5d
                                 )
-                                else None
+                                else
+                                None
                             ),
 
                         "sma50":
                             round(
                                 sma50,
-                                2,
+                                2
                             ),
 
                         "signal_date":
                             signal_date,
                     })
 
+
+            # -------------------------------------------------
+            # C-2 +3%超 見送り
+            #
+            # 観察用。
+            # 流動性フィルターをかけない。
+            #
+            # evaluate_launchpad()内で
+            # close > SMA50 は確認済み。
+            # -------------------------------------------------
+
+            elif launch_status == "見送り":
+
+                new_high_candidates.append({
+
+                    "code":
+                        code,
+
+                    "name":
+                        name,
+
+                    "price":
+                        int(
+                            round(close)
+                        ),
+
+                    "nh_score":
+                        95,
+
+                    "fund_score":
+                        fund_score,
+
+                    "off_high":
+                        round(
+                            off_high,
+                            2
+                        ),
+
+                    "vol_ratio":
+                        round(
+                            vol_ratio,
+                            2
+                        ),
+
+                    "status":
+                        "見送り",
+
+                    "avg_turnover_5d":
+                        (
+                            int(
+                                round(
+                                    avg_turnover_5d
+                                )
+                            )
+                            if
+                            np.isfinite(
+                                avg_turnover_5d
+                            )
+                            else
+                            None
+                        ),
+
+                    "sma50":
+                        round(
+                            sma50,
+                            2
+                        ),
+
+                    "signal_date":
+                        signal_date,
+                })
+
+
         except Exception as e:
 
             skipped.append({
+
                 "ticker":
                     ticker,
 
@@ -934,17 +1511,25 @@ def analyze_market():
                 f"({ticker}): {e}"
             )
 
+
     # ========================================================
     # ランキング
     #
-    # 発射台・ブレイク確認は上
-    # 見送りは95点でも下へ
+    # 85/90点売買候補を上
+    # 95点見送りはその下
+    #
+    # ※95という数字だけで上位にしない
     # ========================================================
+
     STATUS_PRIORITY = {
-        "★発射台": 2,
+
         "★ブレイク確認": 2,
+
+        "★発射台": 2,
+
         "見送り": 1,
     }
+
 
     new_high_candidates.sort(
 
@@ -952,7 +1537,7 @@ def analyze_market():
 
             STATUS_PRIORITY.get(
                 x["status"],
-                0,
+                0
             ),
 
             x["nh_score"],
@@ -967,77 +1552,118 @@ def analyze_market():
         reverse=True,
     )
 
-    # 相場流
+
+    # ========================================================
+    # 相場流ランキング
+    # ========================================================
+
     soba_candidates.sort(
 
         key=lambda x: (
 
             x["total_score"],
-            x["soba_score"],
-            x["nh_score"],
 
+            x["soba_score"],
+
+            x["nh_score"],
         ),
 
         reverse=True,
     )
 
-    # PF4.11
+
+    # ========================================================
+    # PF4.11ランキング
+    # ========================================================
+
     pf411_candidates.sort(
 
         key=lambda x: (
 
             x["off_high"],
-            x["vol_ratio"],
 
+            x["vol_ratio"],
         ),
 
         reverse=True,
     )
 
+
     # ========================================================
     # 集計
     # ========================================================
+
     confirmed_fund_count = sum(
+
         1
+
         for ticker in TICKERS
-        if FUND_SCORES.get(
+
+        if
+        FUND_SCORES.get(
             ticker
-        ) is not None
+        )
+        is not None
     )
 
+
     data_date = (
-        max(latest_signal_dates)
+
+        max(
+            latest_signal_dates
+        )
+
         if latest_signal_dates
+
         else None
     )
 
+
     active_count = sum(
+
         1
+
         for x in new_high_candidates
+
         if x["status"] in (
             "★発射台",
             "★ブレイク確認",
         )
     )
 
+
     watch_count = sum(
+
         1
+
         for x in new_high_candidates
-        if x["status"] == "見送り"
+
+        if
+        x["status"]
+        ==
+        "見送り"
     )
+
 
     # ========================================================
     # JSON
     #
-    # ★全件保存
+    # 全件保存
     # ========================================================
+
     output_data = {
 
         "updated_at":
             updated_str,
 
+
         "data_date":
             data_date,
+
+
+        # ----------------------------------------------------
+        # データ仕様
+        # ----------------------------------------------------
 
         "data_policy": {
 
@@ -1056,7 +1682,8 @@ def analyze_market():
             "high_reference":
                 (
                     "最新足を除く"
-                    "直前250営業日のHigh最大値"
+                    "直前250営業日の"
+                    "High最大値"
                 ),
 
             "volume_reference":
@@ -1066,6 +1693,11 @@ def analyze_market():
                     "最新足を含むrolling(20)"
                 ),
         },
+
+
+        # ----------------------------------------------------
+        # ユニバース
+        # ----------------------------------------------------
 
         "universe": {
 
@@ -1085,6 +1717,11 @@ def analyze_market():
                 ),
         },
 
+
+        # ----------------------------------------------------
+        # 件数
+        # ----------------------------------------------------
+
         "counts": {
 
             "active_new_high_count":
@@ -1093,25 +1730,56 @@ def analyze_market():
             "watch_overheated_count":
                 watch_count,
 
+            "total_new_high_display_count":
+                len(
+                    new_high_candidates
+                ),
+
             "soba_count":
-                len(soba_candidates),
+                len(
+                    soba_candidates
+                ),
 
             "pf411_count":
-                len(pf411_candidates),
+                len(
+                    pf411_candidates
+                ),
         },
 
-        # 発射台・ブレイク・見送り
-        # すべて保存
+
+        # ----------------------------------------------------
+        # 発射台 + ブレイク + 見送り
+        #
+        # 全件
+        # ----------------------------------------------------
+
         "new_high_ranks":
             new_high_candidates,
 
-        # 相場流全件
+
+        # ----------------------------------------------------
+        # 相場流
+        #
+        # 全件
+        # ----------------------------------------------------
+
         "soba_ranks":
             soba_candidates,
 
-        # PF4.11全件
+
+        # ----------------------------------------------------
+        # PF4.11
+        #
+        # 全件
+        # ----------------------------------------------------
+
         "pf411_ranks":
             pf411_candidates,
+
+
+        # ----------------------------------------------------
+        # 新高値説明
+        # ----------------------------------------------------
 
         "new_high_reference": {
 
@@ -1139,17 +1807,19 @@ def analyze_market():
                 ),
 
                 (
-                    "+3.0%超は過熱見送りだが"
-                    "観察用に表示"
+                    "+3.0%超は"
+                    "過熱見送りとして観察表示"
                 ),
 
                 (
+                    "発射台・ブレイク確認には"
                     f"5日平均売買代金 >= "
                     f"{MIN_AVG_TURNOVER:,}円"
-                    if
-                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
-                    else
-                    "売買代金フィルターなし"
+                ),
+
+                (
+                    "見送りには"
+                    "売買代金フィルターを適用しない"
                 ),
             ],
 
@@ -1165,9 +1835,15 @@ def analyze_market():
                     "85=通常条件、"
                     "90=出来高1.2倍超、"
                     "95=+3%超の過熱見送り。"
-                    "95は85/90より良いという意味ではない。"
+                    "95は85/90より良い"
+                    "という意味ではない。"
                 ),
         },
+
+
+        # ----------------------------------------------------
+        # PF4.11説明
+        # ----------------------------------------------------
 
         "pf411_reference": {
 
@@ -1175,7 +1851,8 @@ def analyze_market():
                 (
                     "PF4.11過去バックテストの"
                     "入口条件に対応する候補。"
-                    "PF4.11自体を再計算したものではない。"
+                    "PF4.11自体を"
+                    "再計算したものではない。"
                 ),
 
             "conditions": [
@@ -1203,18 +1880,27 @@ def analyze_market():
 
             "limitations":
                 (
-                    "fund_score・PBR・売買代金条件は"
-                    "PF4.11入口条件へ後付けしない。"
+                    "fund_score・PBR・"
+                    "売買代金条件は"
+                    "PF4.11入口条件へ"
+                    "後付けしない。"
                 ),
         },
+
+
+        # ----------------------------------------------------
+        # スキップログ
+        # ----------------------------------------------------
 
         "skipped":
             skipped,
     }
 
+
     # ========================================================
-    # 保存
+    # JSON保存
     # ========================================================
+
     with open(
         "stocks_data.json",
         "w",
@@ -1228,14 +1914,17 @@ def analyze_market():
             indent=2,
         )
 
+
     # ========================================================
     # ログ
     # ========================================================
+
     print(
         ">>> 完了: stocks_data.json生成 "
         f"| 母集団={len(TICKERS)} "
         f"| 発射台/ブレイク={active_count} "
-        f"| 見送り={watch_count} "
+        f"| 見送り95={watch_count} "
+        f"| 新高値表示合計={len(new_high_candidates)} "
         f"| 相場流={len(soba_candidates)} "
         f"| PF4.11入口={len(pf411_candidates)} "
         f"| fund_score登録={confirmed_fund_count} "
@@ -1247,5 +1936,6 @@ def analyze_market():
 # ============================================================
 # 実行
 # ============================================================
+
 if __name__ == "__main__":
     analyze_market()
