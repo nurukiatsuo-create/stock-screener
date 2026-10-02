@@ -1,9 +1,11 @@
 {
-  "updated_at": "10/02 18:05",
+  "updated_at": "10/02 18:25",
+  "data_date": "2026-10-02",
   "data_policy": {
     "daily_bar": "JST16:00より前は当日足を除外",
     "price_adjustment": "yfinance auto_adjust=True",
-    "high_reference": "最新足を除く直前250営業日のHigh最大値"
+    "high_reference": "最新足を除く直前250営業日のHigh最大値",
+    "volume_reference": "PF4.11互換のため20日平均出来高は最新足を含むrolling(20)"
   },
   "universe": {
     "ticker_count": 80,
@@ -22,6 +24,7 @@
       "vol_ratio": 1.17,
       "status": "★発射台",
       "avg_turnover_5d": 46860860,
+      "sma50": 2393.16,
       "signal_date": "2026-10-02"
     },
     {
@@ -34,6 +37,7 @@
       "vol_ratio": 0.74,
       "status": "★発射台",
       "avg_turnover_5d": 4644384400,
+      "sma50": 9005.8,
       "signal_date": "2026-10-02"
     },
     {
@@ -46,6 +50,7 @@
       "vol_ratio": 1.13,
       "status": "★発射台",
       "avg_turnover_5d": 243344640,
+      "sma50": 1407.62,
       "signal_date": "2026-10-02"
     },
     {
@@ -58,6 +63,7 @@
       "vol_ratio": 1.01,
       "status": "★発射台",
       "avg_turnover_5d": 486361500,
+      "sma50": 3557.43,
       "signal_date": "2026-10-02"
     },
     {
@@ -70,6 +76,7 @@
       "vol_ratio": 0.25,
       "status": "★発射台",
       "avg_turnover_5d": 50626360,
+      "sma50": 1000.54,
       "signal_date": "2026-10-02"
     },
     {
@@ -82,6 +89,7 @@
       "vol_ratio": 0.7,
       "status": "★発射台",
       "avg_turnover_5d": 322950100,
+      "sma50": 3082.23,
       "signal_date": "2026-10-02"
     },
     {
@@ -94,6 +102,7 @@
       "vol_ratio": 0.9,
       "status": "★発射台",
       "avg_turnover_5d": 299033640,
+      "sma50": 2298.68,
       "signal_date": "2026-10-02"
     },
     {
@@ -106,6 +115,7 @@
       "vol_ratio": 1.13,
       "status": "★発射台",
       "avg_turnover_5d": 870718200,
+      "sma50": 3414.4,
       "signal_date": "2026-10-02"
     },
     {
@@ -118,6 +128,7 @@
       "vol_ratio": 0.67,
       "status": "★発射台",
       "avg_turnover_5d": 320070400,
+      "sma50": 4736.4,
       "signal_date": "2026-10-02"
     },
     {
@@ -130,6 +141,7 @@
       "vol_ratio": 0.92,
       "status": "★発射台",
       "avg_turnover_5d": 203571770,
+      "sma50": 607.43,
       "signal_date": "2026-10-02"
     }
   ],
@@ -253,6 +265,234 @@
       "off_high": -25.31,
       "fund_score": null,
       "signal_date": "2026-10-02"
+    },
+    {
+      "code": "1401",
+      "name": "エムビーエス",
+      "price": 1735,
+      "soba_score": 70,
+      "nh_score": 80,
+      "total_score": 74.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -12.24,
+      "fund_score": 85,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "6904",
+      "name": "原田工業",
+      "price": 855,
+      "soba_score": 70,
+      "nh_score": 80,
+      "total_score": 74.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -31.21,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "3968",
+      "name": "セグエ",
+      "price": 692,
+      "soba_score": 70,
+      "nh_score": 80,
+      "total_score": 74.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -12.16,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "5033",
+      "name": "ヌーラボ",
+      "price": 1238,
+      "soba_score": 70,
+      "nh_score": 75,
+      "total_score": 72.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -3.05,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "3040",
+      "name": "ソリトン",
+      "price": 2648,
+      "soba_score": 70,
+      "nh_score": 75,
+      "total_score": 72.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -3.39,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "6998",
+      "name": "日タングステン",
+      "price": 4120,
+      "soba_score": 70,
+      "nh_score": 75,
+      "total_score": 72.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -3.08,
+      "fund_score": 85,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "6364",
+      "name": "北越工業",
+      "price": 2455,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -11.24,
+      "fund_score": 80,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "7172",
+      "name": "JIA",
+      "price": 2108,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -13.28,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "6862",
+      "name": "ミナトHD",
+      "price": 5140,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -12.62,
+      "fund_score": 100,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "6946",
+      "name": "日アビオ",
+      "price": 7310,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -18.65,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "7715",
+      "name": "長野計器",
+      "price": 4400,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -8.52,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "6508",
+      "name": "明電舎",
+      "price": 11760,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -7.17,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "3692",
+      "name": "FFRI",
+      "price": 7600,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -44.77,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "3763",
+      "name": "プロシップ",
+      "price": 2080,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -17.46,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "4440",
+      "name": "ヴィッツ",
+      "price": 2446,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -20.33,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "7609",
+      "name": "ダイトロン",
+      "price": 4350,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -11.41,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "4461",
+      "name": "第一工薬",
+      "price": 14850,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -6.1,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "3498",
+      "name": "霞ヶ関キャピ",
+      "price": 7480,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -29.82,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "5136",
+      "name": "tripla",
+      "price": 2394,
+      "soba_score": 70,
+      "nh_score": 65,
+      "total_score": 68.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -6.48,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
     }
   ],
   "pf411_ranks": [],
@@ -260,6 +500,7 @@
     "label": "通常の新高値発射台/ブレイク確認",
     "conditions": [
       "監視80銘柄すべてを判定",
+      "終値 > SMA50",
       "-6.0% <= off_high <= +3.0%",
       "off_high <= 0% は発射台、0%超はブレイク確認",
       "+3.0%超は見送り",
