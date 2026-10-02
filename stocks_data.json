@@ -1,5 +1,5 @@
 {
-  "updated_at": "10/02 18:25",
+  "updated_at": "10/02 18:42",
   "data_date": "2026-10-02",
   "data_policy": {
     "daily_bar": "JST16:00より前は当日足を除外",
@@ -12,6 +12,12 @@
     "launchpad_screened_count": 80,
     "confirmed_fund_score_count": 12,
     "fund_score_policy": "fund_scoreは参考表示。未登録銘柄も発射台判定対象。"
+  },
+  "counts": {
+    "active_new_high_count": 10,
+    "watch_overheated_count": 0,
+    "soba_count": 29,
+    "pf411_count": 0
   },
   "new_high_ranks": [
     {
@@ -497,16 +503,17 @@
   ],
   "pf411_ranks": [],
   "new_high_reference": {
-    "label": "通常の新高値発射台/ブレイク確認",
+    "label": "新高値発射台/ブレイク確認/過熱見送り",
     "conditions": [
       "監視80銘柄すべてを判定",
       "終値 > SMA50",
-      "-6.0% <= off_high <= +3.0%",
-      "off_high <= 0% は発射台、0%超はブレイク確認",
-      "+3.0%超は見送り",
+      "-6.0% <= off_high <= 0% は発射台",
+      "0% < off_high <= +3.0% はブレイク確認",
+      "+3.0%超は過熱見送りだが観察用に表示",
       "5日平均売買代金 >= 40,000,000円"
     ],
-    "fund_score_note": "fund_scoreは現時点では参考表示のみ。未登録銘柄を除外しない。"
+    "fund_score_note": "fund_scoreは現時点では参考表示のみ。未登録銘柄を除外しない。",
+    "score_note": "85=通常条件、90=出来高1.2倍超、95=+3%超の過熱見送り。95は85/90より良いという意味ではない。"
   },
   "pf411_reference": {
     "label": "PF4.11過去バックテストの入口条件に対応する候補。PF4.11自体を再計算したものではない。",
