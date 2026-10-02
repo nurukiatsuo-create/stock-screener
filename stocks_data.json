@@ -1,179 +1,245 @@
 {
-  "updated_at": "10/02 16:14",
+  "updated_at": "10/02 17:47",
+  "data_policy": {
+    "daily_bar": "JST16:00より前は当日足を除外",
+    "price_adjustment": "yfinance auto_adjust=True",
+    "high_reference": "最新足を除く直前250営業日のHigh最大値"
+  },
+  "universe": {
+    "ticker_count": 80,
+    "confirmed_fund_score_count": 12,
+    "fund_score_85plus_count": 10
+  },
   "new_high_ranks": [
     {
-      "code": "6912",
-      "name": "6912",
-      "price": 2824,
-      "nh_score": 85,
-      "funda_score": 100,
-      "off_high": -0.9
-    },
-    {
       "code": "7826",
-      "name": "7826",
+      "name": "フルヤ金属",
       "price": 11840,
       "nh_score": 85,
-      "funda_score": 100,
-      "off_high": -1.3
+      "fund_score": 100,
+      "off_high": -1.33,
+      "vol_ratio": 0.74,
+      "status": "★発射台",
+      "avg_turnover_5d": 4644384400,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "6345",
-      "name": "6345",
+      "name": "アイチコーポ",
       "price": 1430,
       "nh_score": 85,
-      "funda_score": 65,
-      "off_high": -2.1
+      "fund_score": 85,
+      "off_high": -2.1,
+      "vol_ratio": 1.13,
+      "status": "★発射台",
+      "avg_turnover_5d": 243344640,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "6652",
-      "name": "6652",
+      "name": "IDEC",
       "price": 3820,
       "nh_score": 85,
-      "funda_score": 85,
-      "off_high": -2.2
-    },
-    {
-      "code": "5033",
-      "name": "5033",
-      "price": 1238,
-      "nh_score": 75,
-      "funda_score": 50,
-      "off_high": -3.1
+      "fund_score": 85,
+      "off_high": -2.24,
+      "vol_ratio": 1.01,
+      "status": "★発射台",
+      "avg_turnover_5d": 486361500,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "6998",
-      "name": "6998",
+      "name": "日タングステン",
       "price": 4120,
-      "nh_score": 75,
-      "funda_score": 85,
-      "off_high": -3.1
-    },
-    {
-      "code": "3040",
-      "name": "3040",
-      "price": 2648,
-      "nh_score": 75,
-      "funda_score": 100,
-      "off_high": -3.4
+      "nh_score": 85,
+      "fund_score": 85,
+      "off_high": -3.08,
+      "vol_ratio": 0.7,
+      "status": "★発射台",
+      "avg_turnover_5d": 322950100,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "6258",
-      "name": "6258",
+      "name": "平田機工",
       "price": 3880,
-      "nh_score": 75,
-      "funda_score": 85,
-      "off_high": -3.5
+      "nh_score": 85,
+      "fund_score": 85,
+      "off_high": -3.48,
+      "vol_ratio": 1.13,
+      "status": "★発射台",
+      "avg_turnover_5d": 870718200,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "4258",
-      "name": "4258",
+      "name": "網屋",
       "price": 5640,
-      "nh_score": 75,
-      "funda_score": 100,
-      "off_high": -3.9
+      "nh_score": 85,
+      "fund_score": 100,
+      "off_high": -3.92,
+      "vol_ratio": 0.67,
+      "status": "★発射台",
+      "avg_turnover_5d": 320070400,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "4765",
-      "name": "4765",
+      "name": "SBIGアセット",
       "price": 609,
-      "nh_score": 75,
-      "funda_score": 100,
-      "off_high": -5.3
+      "nh_score": 85,
+      "fund_score": 100,
+      "off_high": -5.31,
+      "vol_ratio": 0.92,
+      "status": "★発射台",
+      "avg_turnover_5d": 203571770,
+      "signal_date": "2026-10-02"
     }
   ],
   "soba_ranks": [
     {
       "code": "6652",
-      "name": "6652",
+      "name": "IDEC",
       "price": 3820,
-      "soba_score": 95,
+      "soba_score": 100,
       "nh_score": 85,
-      "soba_pattern": "★下半身(即買)"
+      "total_score": 94.0,
+      "soba_pattern": "★即買(下半身)",
+      "off_high": -2.24,
+      "fund_score": 85,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "6258",
-      "name": "6258",
+      "name": "平田機工",
       "price": 3880,
-      "soba_score": 95,
+      "soba_score": 100,
       "nh_score": 75,
-      "soba_pattern": "★下半身(即買)"
+      "total_score": 90.0,
+      "soba_pattern": "★即買(下半身)",
+      "off_high": -3.48,
+      "fund_score": 85,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "4258",
-      "name": "4258",
+      "name": "網屋",
       "price": 5640,
-      "soba_score": 95,
+      "soba_score": 100,
       "nh_score": 75,
-      "soba_pattern": "★下半身(即買)"
+      "total_score": 90.0,
+      "soba_pattern": "★即買(下半身)",
+      "off_high": -3.92,
+      "fund_score": 100,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "3696",
-      "name": "3696",
+      "name": "セレス",
       "price": 2284,
-      "soba_score": 95,
+      "soba_score": 90,
       "nh_score": 80,
-      "soba_pattern": "★くちばし(即買)"
+      "total_score": 86.0,
+      "soba_pattern": "くちばし",
+      "off_high": -16.69,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
     },
     {
-      "code": "3040",
-      "name": "3040",
-      "price": 2648,
-      "soba_score": 95,
-      "nh_score": 75,
-      "soba_pattern": "★下半身(即買)"
-    },
-    {
-      "code": "4440",
-      "name": "4440",
-      "price": 2446,
-      "soba_score": 95,
+      "code": "5254",
+      "name": "Arent",
+      "price": 4185,
+      "soba_score": 90,
       "nh_score": 65,
-      "soba_pattern": "★下半身(即買)"
+      "total_score": 80.0,
+      "soba_pattern": "くちばし",
+      "off_high": -16.8,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "4626",
+      "name": "太陽HD",
+      "price": 4800,
+      "soba_score": 90,
+      "nh_score": 65,
+      "total_score": 80.0,
+      "soba_pattern": "くちばし",
+      "off_high": -23.51,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "4046",
-      "name": "4046",
+      "name": "大阪ソーダ",
       "price": 2036,
-      "soba_score": 95,
+      "soba_score": 90,
       "nh_score": 65,
-      "soba_pattern": "★くちばし(即買)"
-    },
-    {
-      "code": "7826",
-      "name": "7826",
-      "price": 11840,
-      "soba_score": 70,
-      "nh_score": 85,
-      "soba_pattern": "PPP"
+      "total_score": 80.0,
+      "soba_pattern": "くちばし",
+      "off_high": -18.33,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
     },
     {
       "code": "6912",
-      "name": "6912",
+      "name": "菊水HD",
       "price": 2824,
       "soba_score": 70,
       "nh_score": 85,
-      "soba_pattern": "PPP"
+      "total_score": 76.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -0.91,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
     },
     {
-      "code": "6727",
-      "name": "6727",
-      "price": 863,
+      "code": "6345",
+      "name": "アイチコーポ",
+      "price": 1430,
       "soba_score": 70,
+      "nh_score": 85,
+      "total_score": 76.0,
+      "soba_pattern": "PPP継続",
+      "off_high": -2.1,
+      "fund_score": 85,
+      "signal_date": "2026-10-02"
+    },
+    {
+      "code": "4975",
+      "name": "JCU",
+      "price": 5950,
+      "soba_score": 80,
       "nh_score": 65,
-      "soba_pattern": "PPP"
+      "total_score": 74.0,
+      "soba_pattern": "線密集/初動",
+      "off_high": -25.31,
+      "fund_score": null,
+      "signal_date": "2026-10-02"
     }
   ],
   "pf411_ranks": [],
+  "new_high_reference": {
+    "label": "通常の新高値発射台/ブレイク確認",
+    "conditions": [
+      "確認済み四季報 fund_score >= 85",
+      "-6.0% <= off_high <= +3.0%",
+      "off_high <= 0% は発射台、0%超はブレイク確認",
+      "+3.0%超は見送り",
+      "5日平均売買代金 >= 40,000,000円（運用流動性フィルター）"
+    ],
+    "fund_score_note": "FUND_SCORESに数値がない銘柄は通常発射台へ入れない。推測値やyfinanceの動的ファンダメンタルズで代替しない。"
+  },
   "pf411_reference": {
-    "label": "探索検証条件に基づく当日候補。PF4.11は過去の別バックテスト値で、将来成績を示しません。",
+    "label": "PF4.11過去バックテストの入口条件に対応する当日候補。PF4.11自体を再計算したものではない。",
     "conditions": [
       "-3.0% <= off_high < 0.0%",
       "終値 > SMA50",
       "当日出来高 >= 20日平均出来高 * 1.2",
       "過去データ260行以上"
     ],
-    "execution_note": "バックテストは翌営業日始値エントリー。ウィジェットは当日終値時点の候補表示。",
-    "limitations": "過去のPF4.11は約2年・旧ユニバースの探索値。手数料/スリッページ未控除、未決済取引処理要確認。"
-  }
+    "execution_note": "過去バックテストの売買再現には、翌営業日始値エントリー、出口、保有期間、同時シグナル時の資金配分等を別途一致させる必要がある。",
+    "limitations": "このリストにはfund_score・PBR・売買代金の足切りを後付けしない。PF4.11は過去の探索値であり将来成績を示さない。"
+  },
+  "skipped": []
 }
