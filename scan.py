@@ -1,1446 +1,1458 @@
-// ============================================================
-// 【新高値 × 相場流 × PF4.11】自動連携ダッシュボード
-//
-// Widget Parameter
-//   空欄    : 新高値 発射台ボード
-//   soba    : 相場流 × 新高値
-//   pf411   : PF4.11入口条件候補
-//
-// 方針
-// ・GitHub側で抽出された候補を全件表示
-// ・件数に応じて文字サイズ・行間を自動調整
-// ・Scriptable側では再スクリーニングしない
-// ・fund_score未登録は「—」表示
-// ・銘柄タップでTradingView日足を開く
-// ============================================================
+import json
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+import pytz
+import yfinance as yf
 
 
-// ============================================================
-// 1. GitHub設定
-// ============================================================
+# ============================================================
+# 監視ユニバース：現行80銘柄
+# ============================================================
 
-const GITHUB_USER = "nurukiatsuo-create";
-const REPO_NAME = "stock-screener";
-const BRANCH = "main";
-
-const RAW_URL =
-  `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH}/stocks_data.json?t=${Date.now()}`;
-
-
-// ============================================================
-// 2. 銘柄コード → 日本語社名
-// ============================================================
-
-const NAMES = {
-
-  "7826": "フルヤ金属",
-  "6912": "菊水HD",
-  "9249": "日本エコ",
-  "7192": "日モーゲージ",
-
-  "6727": "ワコム",
-  "6364": "北越工業",
-  "3560": "ほぼ日",
-  "5957": "日東精工",
-
-  "7172": "JIA",
-  "1401": "エムビーエス",
-  "6652": "IDEC",
-  "6345": "アイチコーポ",
-
-  "6862": "ミナトHD",
-  "6855": "日電子材料",
-  "6407": "CKD",
-  "6134": "FUJI",
-
-  "6629": "テクノホライ",
-  "6226": "守谷輸送機",
-  "6904": "原田工業",
-  "6368": "オルガノ",
-
-  "6941": "山一電機",
-  "6946": "日アビオ",
-  "6866": "日置電機",
-  "7254": "ユニバンス",
-
-  "6258": "平田機工",
-  "6518": "三相電機",
-  "6616": "トレックス",
-  "6677": "SKエレク",
-
-  "6474": "不二越",
-  "6327": "北川精機",
-  "7715": "長野計器",
-  "6508": "明電舎",
-
-  "4776": "サイボウズ",
-  "3923": "ラクス",
-  "6027": "弁護士ドット",
-  "3663": "セルシス",
-
-  "3968": "セグエ",
-  "5033": "ヌーラボ",
-  "4055": "T&S",
-  "5254": "Arent",
-
-  "4828": "Bエンジニア",
-  "4825": "ウェザーニュー",
-  "4258": "網屋",
-  "3692": "FFRI",
-
-  "4012": "アクシス",
-  "3763": "プロシップ",
-  "7094": "NexTone",
-  "3696": "セレス",
-
-  "3040": "ソリトン",
-  "4440": "ヴィッツ",
-  "4371": "C＆C",
-  "4414": "フレクト",
-
-  "4396": "システムサポ",
-  "5591": "AVILEN",
-  "6998": "日タングステン",
-  "6871": "日マイクロ",
-
-  "6787": "メイコー",
-  "4368": "扶桑化学",
-  "4369": "トリケミカル",
-  "4975": "JCU",
-
-  "4626": "太陽HD",
-  "4971": "メック",
-  "4046": "大阪ソーダ",
-  "3441": "サンコーテクノ",
-
-  "3449": "テクノフレ",
-  "4970": "東洋合成",
-  "5805": "SWCC",
-  "7609": "ダイトロン",
-
-  "4461": "第一工薬",
-  "7781": "平山HD",
-  "5018": "MORESCO",
-  "4100": "戸田工業",
-
-  "3482": "ロードスター",
-  "3498": "霞ヶ関キャピ",
-  "7148": "FPG",
-  "2884": "ヨシムラFD",
-
-  "5136": "tripla",
-  "7372": "デコルテHD",
-  "5589": "オートサーバ",
-  "4765": "SBIGアセット"
-};
+TICKERS = [
+    "7826.T", "6912.T", "9249.T", "7192.T", "6727.T", "6364.T", "3560.T", "5957.T",
+    "7172.T", "1401.T", "6652.T", "6345.T", "6862.T", "6855.T", "6407.T", "6134.T",
+    "6629.T", "6226.T", "6904.T", "6368.T", "6941.T", "6946.T", "6866.T", "7254.T",
+    "6258.T", "6518.T", "6616.T", "6677.T", "6474.T", "6327.T", "7715.T", "6508.T",
+    "4776.T", "3923.T", "6027.T", "3663.T", "3968.T", "5033.T", "4055.T", "5254.T",
+    "4828.T", "4825.T", "4258.T", "3692.T", "4012.T", "3763.T", "7094.T", "3696.T",
+    "3040.T", "4440.T", "4371.T", "4414.T", "4396.T", "5591.T", "6998.T", "6871.T",
+    "6787.T", "4368.T", "4369.T", "4975.T", "4626.T", "4971.T", "4046.T", "3441.T",
+    "3449.T", "4970.T", "5805.T", "7609.T", "4461.T", "7781.T", "5018.T", "4100.T",
+    "3482.T", "3498.T", "7148.T", "2884.T", "5136.T", "7372.T", "5589.T", "4765.T",
+]
 
 
-// ============================================================
-// 3. Parameter判定
-// ============================================================
+# ============================================================
+# 銘柄名
+# ============================================================
 
-const param =
-  (args.widgetParameter || "")
-    .trim()
-    .toLowerCase();
+STOCK_NAMES = {
+    "7826.T": "フルヤ金属",
+    "6912.T": "菊水HD",
+    "9249.T": "日本エコ",
+    "7192.T": "日モーゲージ",
+    "6727.T": "ワコム",
+    "6364.T": "北越工業",
+    "3560.T": "ほぼ日",
+    "5957.T": "日東精工",
 
-const isSoba =
-  param === "soba" ||
-  param === "相場";
+    "7172.T": "JIA",
+    "1401.T": "エムビーエス",
+    "6652.T": "IDEC",
+    "6345.T": "アイチコーポ",
+    "6862.T": "ミナトHD",
+    "6855.T": "日電子材料",
+    "6407.T": "CKD",
+    "6134.T": "FUJI",
 
-const isPF411 =
-  param === "pf411" ||
-  param === "pf4.11" ||
-  param === "411";
+    "6629.T": "テクノホライ",
+    "6226.T": "守谷輸送機",
+    "6904.T": "原田工業",
+    "6368.T": "オルガノ",
+    "6941.T": "山一電機",
+    "6946.T": "日アビオ",
+    "6866.T": "日置電機",
+    "7254.T": "ユニバンス",
 
+    "6258.T": "平田機工",
+    "6518.T": "三相電機",
+    "6616.T": "トレックス",
+    "6677.T": "SKエレク",
+    "6474.T": "不二越",
+    "6327.T": "北川精機",
+    "7715.T": "長野計器",
+    "6508.T": "明電舎",
 
-// ============================================================
-// 4. Widget基本設定
-// ============================================================
+    "4776.T": "サイボウズ",
+    "3923.T": "ラクス",
+    "6027.T": "弁護士ドット",
+    "3663.T": "セルシス",
+    "3968.T": "セグエ",
+    "5033.T": "ヌーラボ",
+    "4055.T": "T&S",
+    "5254.T": "Arent",
 
-const widget = new ListWidget();
+    "4828.T": "Bエンジニア",
+    "4825.T": "ウェザーニュー",
+    "4258.T": "網屋",
+    "3692.T": "FFRI",
+    "4012.T": "アクシス",
+    "3763.T": "プロシップ",
+    "7094.T": "NexTone",
+    "3696.T": "セレス",
 
-widget.backgroundColor =
-  new Color("#161d26");
+    "3040.T": "ソリトン",
+    "4440.T": "ヴィッツ",
+    "4371.T": "C＆C",
+    "4414.T": "フレクト",
+    "4396.T": "システムサポ",
+    "5591.T": "AVILEN",
+    "6998.T": "日タングステン",
+    "6871.T": "日マイクロ",
 
-widget.setPadding(
-  10,
-  8,
-  10,
-  8
-);
+    "6787.T": "メイコー",
+    "4368.T": "扶桑化学",
+    "4369.T": "トリケミカル",
+    "4975.T": "JCU",
+    "4626.T": "太陽HD",
+    "4971.T": "メック",
+    "4046.T": "大阪ソーダ",
+    "3441.T": "サンコーテクノ",
 
+    "3449.T": "テクノフレ",
+    "4970.T": "東洋合成",
+    "5805.T": "SWCC",
+    "7609.T": "ダイトロン",
+    "4461.T": "第一工薬",
+    "7781.T": "平山HD",
+    "5018.T": "MORESCO",
+    "4100.T": "戸田工業",
 
-// ============================================================
-// 5. GitHub JSON取得
-// ============================================================
-
-let data = null;
-
-try {
-
-  const req =
-    new Request(RAW_URL);
-
-  req.timeoutInterval = 15;
-
-  data =
-    await req.loadJSON();
-
-} catch (e) {
-
-  console.error(e);
-
+    "3482.T": "ロードスター",
+    "3498.T": "霞ヶ関キャピ",
+    "7148.T": "FPG",
+    "2884.T": "ヨシムラFD",
+    "5136.T": "tripla",
+    "7372.T": "デコルテHD",
+    "5589.T": "オートサーバ",
+    "4765.T": "SBIGアセット",
 }
 
 
-// ============================================================
-// 6. JSON取得失敗
-// ============================================================
+# ============================================================
+# 四季報 fund_score
+#
+# 現時点で数値として確認済みのものだけ登録。
+#
+# 重要：
+# ・未登録銘柄も通常の発射台判定対象にする。
+# ・fund_scoreは現段階では参考表示のみ。
+# ・今後80銘柄分が確定したら、別途バックテストして
+#   fund_score >= 85 をハードフィルターにするか判断する。
+# ============================================================
 
-if (!data) {
+FUND_SCORES = {
+    "7826.T": 100,  # フルヤ金属
+    "6862.T": 100,  # ミナトHD
+    "4765.T": 100,  # SBIGアセット
+    "4258.T": 100,  # 網屋
 
-  const err =
-    widget.addText(
-      "⚠️ データ取得失敗\nGitHubまたは通信環境を確認してください"
-    );
+    "6998.T": 85,   # 日本タングステン
+    "6652.T": 85,   # IDEC
+    "6258.T": 85,   # 平田機工
+    "1401.T": 85,   # エムビーエス
+    "6345.T": 85,   # アイチコーポ
 
-  err.font =
-    Font.boldSystemFont(13);
+    "5957.T": 80,   # 日東精工
+    "6364.T": 80,   # 北越工業
 
-  err.textColor =
-    Color.red();
-
-  Script.setWidget(widget);
-  Script.complete();
-
-} else {
-
-
-// ============================================================
-// 7. 表示データ
-//
-// ★ slice()を使わない
-// ★ 条件合致銘柄を全件表示
-// ============================================================
-
-let items = [];
-
-if (isSoba) {
-
-  items =
-    data.soba_ranks || [];
-
-} else if (isPF411) {
-
-  items =
-    data.pf411_ranks || [];
-
-} else {
-
-  items =
-    data.new_high_ranks || [];
-
-}
-
-const itemCount =
-  items.length;
-
-
-// ============================================================
-// 8. 件数に応じた自動レイアウト
-// ============================================================
-
-let mainFontSize;
-let codeFontSize;
-let signalFontSize;
-let rowSpacing;
-let headerFontSize;
-let columnFontSize;
-let sectionSpacing;
-
-
-// 1～7銘柄
-if (itemCount <= 7) {
-
-  mainFontSize = 13.5;
-  codeFontSize = 9.5;
-  signalFontSize = 11.0;
-  rowSpacing = 6.0;
-  headerFontSize = 14.0;
-  columnFontSize = 10.5;
-  sectionSpacing = 5.0;
-
-}
-
-// 8～10銘柄
-else if (itemCount <= 10) {
-
-  mainFontSize = 12.5;
-  codeFontSize = 9.0;
-  signalFontSize = 10.2;
-  rowSpacing = 4.0;
-  headerFontSize = 14.0;
-  columnFontSize = 10.0;
-  sectionSpacing = 4.0;
-
-}
-
-// 11～13銘柄
-else if (itemCount <= 13) {
-
-  mainFontSize = 11.5;
-  codeFontSize = 8.5;
-  signalFontSize = 9.4;
-  rowSpacing = 2.5;
-  headerFontSize = 13.5;
-  columnFontSize = 9.5;
-  sectionSpacing = 3.5;
-
-}
-
-// 14～16銘柄
-else if (itemCount <= 16) {
-
-  mainFontSize = 10.4;
-  codeFontSize = 8.0;
-  signalFontSize = 8.6;
-  rowSpacing = 1.5;
-  headerFontSize = 13.0;
-  columnFontSize = 9.0;
-  sectionSpacing = 3.0;
-
-}
-
-// 17～20銘柄
-else if (itemCount <= 20) {
-
-  mainFontSize = 9.4;
-  codeFontSize = 7.4;
-  signalFontSize = 7.8;
-  rowSpacing = 0.8;
-  headerFontSize = 12.2;
-  columnFontSize = 8.3;
-  sectionSpacing = 2.0;
-
-}
-
-// 21～24銘柄
-else if (itemCount <= 24) {
-
-  mainFontSize = 8.5;
-  codeFontSize = 6.8;
-  signalFontSize = 7.0;
-  rowSpacing = 0.2;
-  headerFontSize = 11.5;
-  columnFontSize = 7.8;
-  sectionSpacing = 1.5;
-
-}
-
-// 25～30銘柄
-else if (itemCount <= 30) {
-
-  mainFontSize = 7.6;
-  codeFontSize = 6.1;
-  signalFontSize = 6.4;
-  rowSpacing = 0;
-  headerFontSize = 10.5;
-  columnFontSize = 7.0;
-  sectionSpacing = 1.0;
-
-}
-
-// 31銘柄以上
-else {
-
-  mainFontSize = 6.8;
-  codeFontSize = 5.6;
-  signalFontSize = 5.8;
-  rowSpacing = 0;
-  headerFontSize = 9.5;
-  columnFontSize = 6.3;
-  sectionSpacing = 0.5;
-
+    "7192.T": 90,   # 日本モーゲージ
 }
 
 
-// ============================================================
-// 9. タイトル
-// ============================================================
+# ============================================================
+# 設定
+# ============================================================
 
-const header =
-  widget.addStack();
+HISTORY_PERIOD = "2y"
+INTERVAL = "1d"
 
-header.layoutHorizontally();
+# 東証大引け15:30後、データ安定待ちを含めて16:00から当日足を利用
+DAILY_BAR_CONFIRM_HOUR_JST = 16
 
+# 最新足 + 前日まで250営業日
+MIN_HISTORY_ROWS = 251
 
-let titleText = "";
-let titleColor = null;
+# PF4.11探索条件
+PF411_MIN_HISTORY_ROWS = 260
 
+# 通常ボードの流動性フィルター
+MIN_AVG_TURNOVER = 40_000_000
 
-if (isSoba) {
+# 通常発射台
+LAUNCHPAD_MIN_OFF_HIGH = -6.0
+LAUNCHPAD_MAX_OFF_HIGH = 3.0
 
-  titleText =
-    `【相場流×新高値】${itemCount}銘柄`;
+# PF4.11探索
+PF411_MIN_OFF_HIGH = -3.0
+PF411_MAX_OFF_HIGH = 0.0
+PF411_VOLUME_RATIO = 1.2
 
-  titleColor =
-    new Color("#5ac8fa");
-
-}
-
-else if (isPF411) {
-
-  titleText =
-    `【PF4.11条件】${itemCount}銘柄`;
-
-  titleColor =
-    new Color("#ff9f0a");
-
-}
-
-else {
-
-  titleText =
-    `【新高値】発射台 ${itemCount}銘柄`;
-
-  titleColor =
-    new Color("#ffd60a");
-
-}
+# 通常発射台・相場流には流動性フィルターを適用
+# PF4.11入口条件には後付けしない
+APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS = True
 
 
-const title =
-  header.addText(titleText);
+# ============================================================
+# 共通ユーティリティ
+# ============================================================
 
-title.font =
-  Font.boldSystemFont(
-    headerFontSize
-  );
-
-title.textColor =
-  titleColor;
-
-title.lineLimit = 1;
+def clean_code(ticker):
+    return ticker.replace(".T", "")
 
 
-header.addSpacer();
+def get_name(ticker):
+    return STOCK_NAMES.get(ticker, clean_code(ticker))
 
 
-const updated =
-  header.addText(
-    `[${data.updated_at || ""}]`
-  );
+def extract_ticker_frame(downloaded, ticker):
+    """
+    yf.download(group_by="ticker") の結果から
+    1銘柄分のOHLCVを安全に取り出す。
+    """
 
-updated.font =
-  Font.systemFont(
-    Math.max(
-      headerFontSize - 3,
-      6
+    if downloaded is None or downloaded.empty:
+        return pd.DataFrame()
+
+    if isinstance(downloaded.columns, pd.MultiIndex):
+        level0 = downloaded.columns.get_level_values(0)
+
+        if ticker not in level0:
+            return pd.DataFrame()
+
+        df = downloaded[ticker].copy()
+
+    else:
+        # 単一銘柄取得時への保険
+        df = downloaded.copy()
+
+    required = [
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+    ]
+
+    if not all(col in df.columns for col in required):
+        return pd.DataFrame()
+
+    return df[required].copy()
+
+
+def keep_confirmed_daily_bars(df, now_jst):
+    """
+    日足未確定時間帯には当日足を使わない。
+
+    JST 16:00より前:
+        当日足を除外
+
+    JST 16:00以降:
+        当日足を利用可能
+    """
+
+    if df.empty:
+        return df
+
+    df = df.sort_index().copy()
+
+    dates = pd.DatetimeIndex(df.index)
+
+    if dates.tz is not None:
+        compare_dates = dates.tz_convert("Asia/Tokyo")
+    else:
+        compare_dates = dates
+
+    if now_jst.hour < DAILY_BAR_CONFIRM_HOUR_JST:
+        mask = np.array([
+            d.date() < now_jst.date()
+            for d in compare_dates
+        ])
+
+        df = df.loc[mask]
+
+    return df
+
+
+def calculate_prior_250_high(df):
+    """
+    最新足を除外して、
+    直前250営業日のHigh最大値を返す。
+
+    当日のHighは基準高値へ含めない。
+    """
+
+    if len(df) < MIN_HISTORY_ROWS:
+        return None
+
+    prior_highs = df["High"].iloc[-251:-1]
+    values = prior_highs.to_numpy(dtype=float)
+
+    if len(values) != 250:
+        return None
+
+    if not np.isfinite(values).all():
+        return None
+
+    if (values <= 0).any():
+        return None
+
+    return float(np.max(values))
+
+
+def calc_off_high(close, prior_high):
+    """
+    前日までの250営業日高値からの乖離率。
+
+    例:
+      -2% = 高値まであと2%
+      +1% = 高値を1%上抜け
+    """
+
+    if (
+        prior_high is None
+        or prior_high <= 0
+        or not np.isfinite(close)
+    ):
+        return None
+
+    return (
+        (close - prior_high)
+        / prior_high
+        * 100.0
     )
-  );
 
-updated.textColor =
-  new Color("#8e8e93");
 
-updated.lineLimit = 1;
+def calc_vol20(df):
+    """
+    20日平均出来高。
 
+    PF4.11の既存探索条件との整合性を保つため、
+    最新足を含むrolling(20)を使用。
+    """
 
-widget.addSpacer(
-  sectionSpacing
-);
+    if len(df) < 20:
+        return np.nan
 
-
-// ============================================================
-// 10. カラム見出し
-// ============================================================
-
-const cols =
-  widget.addStack();
-
-cols.layoutHorizontally();
-
-
-const firstCol =
-  cols.addText(
-    "銘柄 (日足)"
-  );
-
-firstCol.font =
-  Font.systemFont(
-    columnFontSize
-  );
-
-firstCol.textColor =
-  new Color("#8e8e93");
-
-firstCol.lineLimit = 1;
-
-
-cols.addSpacer();
-
-
-let colDef = [];
-
-
-if (isSoba) {
-
-  colDef = [
-
-    {
-      title: "現在値",
-      width: 54
-    },
-
-    {
-      title: "相場",
-      width: 30
-    },
-
-    {
-      title: "新高",
-      width: 30
-    },
-
-    {
-      title: "技/シグナル",
-      width: 68
-    }
-
-  ];
-
-}
-
-else if (isPF411) {
-
-  colDef = [
-
-    {
-      title: "現在値",
-      width: 56
-    },
-
-    {
-      title: "高値差",
-      width: 46
-    },
-
-    {
-      title: "出来高",
-      width: 48
-    },
-
-    {
-      title: "50MA",
-      width: 52
-    }
-
-  ];
-
-}
-
-else {
-
-  colDef = [
-
-    {
-      title: "現在値",
-      width: 56
-    },
-
-    {
-      title: "テク",
-      width: 34
-    },
-
-    {
-      title: "業績",
-      width: 34
-    },
-
-    {
-      title: "高値差",
-      width: 48
-    }
-
-  ];
-
-}
-
-
-for (
-  let i = 0;
-  i < colDef.length;
-  i++
-) {
-
-  const c =
-    colDef[i];
-
-  const stack =
-    cols.addStack();
-
-  stack.size =
-    new Size(
-      c.width,
-      0
-    );
-
-  stack.addSpacer();
-
-
-  const text =
-    stack.addText(
-      c.title
-    );
-
-  text.font =
-    Font.systemFont(
-      columnFontSize
-    );
-
-  text.textColor =
-    new Color("#8e8e93");
-
-  text.lineLimit = 1;
-
-
-  if (
-    i < colDef.length - 1
-  ) {
-
-    cols.addSpacer(4);
-
-  }
-
-}
-
-
-widget.addSpacer(
-  sectionSpacing
-);
-
-
-// ============================================================
-// 11. 候補なし
-// ============================================================
-
-if (itemCount === 0) {
-
-  widget.addSpacer(12);
-
-
-  let message = "";
-
-  if (isSoba) {
-
-    message =
-      "現在、相場流条件に該当する銘柄はありません";
-
-  }
-
-  else if (isPF411) {
-
-    message =
-      "現在、PF4.11入口条件に該当する銘柄はありません";
-
-  }
-
-  else {
-
-    message =
-      "現在、発射台条件に該当する銘柄はありません";
-
-  }
-
-
-  const empty =
-    widget.addText(message);
-
-  empty.font =
-    Font.boldSystemFont(13);
-
-  empty.textColor =
-    new Color("#8e8e93");
-
-  empty.centerAlignText();
-
-
-} else {
-
-
-// ============================================================
-// 12. 全銘柄描画
-// ============================================================
-
-for (
-  let i = 0;
-  i < items.length;
-  i++
-) {
-
-  const item =
-    items[i];
-
-
-  const row =
-    widget.addStack();
-
-  row.layoutHorizontally();
-
-
-  // ----------------------------------------------------------
-  // コード・社名
-  // ----------------------------------------------------------
-
-  const rawCode =
-    String(
-      item.code || ""
+    return float(
+        df["Volume"]
+        .rolling(20)
+        .mean()
+        .iloc[-1]
     )
-      .replace(
-        ".T",
-        ""
-      );
 
 
-  const codeNum =
-    rawCode ||
-    String(
-      item.name || ""
-    );
+def calc_avg_turnover_5d(df):
+    """
+    直近5営業日の平均売買代金。
+    """
+
+    if len(df) < 5:
+        return np.nan
+
+    return float(
+        (
+            df["Close"].tail(5)
+            * df["Volume"].tail(5)
+        ).mean()
+    )
 
 
-  const companyName =
-    NAMES[codeNum] ||
-    item.name ||
-    codeNum;
+# ============================================================
+# PF4.11探索条件
+# ============================================================
+
+def matches_pf411_prebreakout(
+    off_high,
+    close,
+    sma50,
+    volume,
+    vol20,
+    history_rows,
+):
+    """
+    PF4.11バックテストの入口条件に対応する候補抽出。
+
+    条件:
+      -3.0% <= off_high < 0%
+      Close > SMA50
+      Volume >= VolSMA20 * 1.2
+      履歴260行以上
+
+    注意:
+      これは入口条件の候補抽出。
+      PF4.11そのものを再現するものではない。
+    """
+
+    return (
+        history_rows >= PF411_MIN_HISTORY_ROWS
+
+        and off_high is not None
+        and np.isfinite(off_high)
+
+        and PF411_MIN_OFF_HIGH
+        <= off_high
+        < PF411_MAX_OFF_HIGH
+
+        and np.isfinite(sma50)
+        and close > sma50
+
+        and np.isfinite(vol20)
+        and vol20 > 0
+
+        and volume >= vol20 * PF411_VOLUME_RATIO
+    )
 
 
-  // TradingView日足
-  row.url =
-    `https://jp.tradingview.com/chart/?symbol=TSE%3A${codeNum}&interval=D`;
+# ============================================================
+# 通常の新高値発射台
+# ============================================================
+
+def evaluate_launchpad(
+    close,
+    sma50,
+    off_high,
+    volume,
+    vol20,
+):
+    """
+    通常の新高値発射台。
+
+    判定:
+      Close > SMA50
+      -6% ～ 0%    : 発射台
+       0% ～ +3%  : ブレイク確認
+      +3%超        : 見送り
+      -6%未満      : 助走
+
+    fund_scoreは現段階では足切りに使わない。
+    80銘柄すべてを対象とする。
+    """
+
+    if (
+        off_high is None
+        or not np.isfinite(off_high)
+    ):
+        return 0, "判定不能"
+
+    if (
+        not np.isfinite(sma50)
+        or close <= sma50
+    ):
+        return 0, "50MA下"
+
+    if off_high > LAUNCHPAD_MAX_OFF_HIGH:
+        return 0, "見送り"
+
+    if off_high < LAUNCHPAD_MIN_OFF_HIGH:
+        return 0, "助走"
+
+    if (
+        np.isfinite(vol20)
+        and vol20 > 0
+    ):
+        vol_ratio = volume / vol20
+    else:
+        vol_ratio = 0.0
+
+    # 基本点
+    nh_score = 85
+
+    # 出来高増加
+    if vol_ratio > 1.2:
+        nh_score += 5
+
+    if off_high > 0:
+        status = "★ブレイク確認"
+    else:
+        status = "★発射台"
+
+    return nh_score, status
 
 
-  // ----------------------------------------------------------
-  // 左：順位・コード
-  // ----------------------------------------------------------
+# ============================================================
+# 相場流ランキング用・新高値テクニカル点
+# ============================================================
 
-  const nameStack =
-    row.addStack();
+def evaluate_technical_new_high(
+    close,
+    sma50,
+    off_high,
+    volume,
+    vol20,
+):
+    """
+    相場流×新高値ランキング用。
 
-  nameStack.layoutHorizontally();
+    相場流60% + 新高値テクニカル40%
+    の新高値側スコア。
+    """
 
+    score = 50
 
-  const codeStack =
-    nameStack.addStack();
+    # SMA50上
+    if (
+        np.isfinite(sma50)
+        and close > sma50
+    ):
+        score += 15
 
-  codeStack.size =
-    new Size(
-      itemCount >= 17
-        ? 39
-        : 46,
-      0
-    );
+    # 高値までの距離
+    if (
+        off_high is not None
+        and np.isfinite(off_high)
+    ):
+        if -3.0 <= off_high <= 2.5:
+            score += 20
 
+        elif -6.0 <= off_high < -3.0:
+            score += 10
 
-  const codeText =
-    codeStack.addText(
-      `${i + 1}.${codeNum}`
-    );
+        elif off_high > 3.0:
+            score -= 20
 
-  codeText.font =
-    Font.systemFont(
-      codeFontSize
-    );
+    # 出来高
+    if (
+        np.isfinite(vol20)
+        and vol20 > 0
+        and volume >= vol20 * 1.3
+    ):
+        score += 15
 
-  codeText.textColor =
-    new Color("#8e8e93");
-
-  codeText.lineLimit = 1;
-
-
-  nameStack.addSpacer(2);
-
-
-  // ----------------------------------------------------------
-  // 社名
-  // ----------------------------------------------------------
-
-  const nameText =
-    nameStack.addText(
-      companyName
-    );
-
-  nameText.font =
-    Font.boldSystemFont(
-      mainFontSize
-    );
-
-  nameText.textColor =
-    Color.white();
-
-  nameText.lineLimit = 1;
+    return min(
+        max(score, 0),
+        100,
+    )
 
 
-  row.addSpacer();
+# ============================================================
+# 相場流パターン
+# ============================================================
 
+def evaluate_soba_pattern(df):
+    """
+    移動平均線とローソク足から
+    下半身・くちばし・線密集・PPPを判定。
+    """
 
-  // ----------------------------------------------------------
-  // 現在値
-  // ----------------------------------------------------------
+    if len(df) < 100:
+        return 50, "データ不足"
 
-  const priceStack =
-    row.addStack();
+    closes = df["Close"]
 
-  priceStack.size =
-    new Size(
-      isSoba
-        ? 54
-        : 56,
-      0
-    );
+    sma5 = closes.rolling(5).mean()
+    sma20 = closes.rolling(20).mean()
+    sma60 = closes.rolling(60).mean()
+    sma100 = closes.rolling(100).mean()
 
-  priceStack.addSpacer();
+    latest = df.iloc[-1]
 
+    c_open = float(latest["Open"])
+    c_close = float(latest["Close"])
 
-  const price =
-    Number(
-      item.price
-    );
+    s5 = float(sma5.iloc[-1])
+    s20 = float(sma20.iloc[-1])
+    s60 = float(sma60.iloc[-1])
+    s100 = float(sma100.iloc[-1])
 
+    p5 = float(sma5.iloc[-2])
+    p20 = float(sma20.iloc[-2])
 
-  const priceString =
-    Number.isFinite(price)
-      ? price.toLocaleString()
-      : "-";
+    values = [
+        c_open,
+        c_close,
+        s5,
+        s20,
+        s60,
+        s100,
+        p5,
+        p20,
+    ]
 
+    if not all(np.isfinite(v) for v in values):
+        return 50, "データ不足"
 
-  const priceText =
-    priceStack.addText(
-      priceString
-    );
+    sma5_slope = s5 - p5
+    sma20_slope = s20 - p20
 
-  priceText.font =
-    Font.boldSystemFont(
-      mainFontSize
-    );
+    # --------------------------------------------------------
+    # ① 下半身
+    # --------------------------------------------------------
 
-  priceText.textColor =
-    Color.white();
+    is_lower_half = (
+        c_close > c_open
+        and c_open < s5 < c_close
+        and (c_close - s5) > (s5 - c_open)
+        and sma5_slope >= 0
+    )
 
-  priceText.lineLimit = 1;
+    # --------------------------------------------------------
+    # ② くちばし
+    # --------------------------------------------------------
 
-
-  row.addSpacer(4);
-
-
-// ============================================================
-// 13-A. 相場流モード
-// ============================================================
-
-  if (isSoba) {
-
-    // 相場スコア
-
-    const sobaStack =
-      row.addStack();
-
-    sobaStack.size =
-      new Size(
-        30,
-        0
-      );
-
-    sobaStack.addSpacer();
-
-
-    const sobaScore =
-      Number(
-        item.soba_score
-      );
-
-
-    const sobaText =
-      sobaStack.addText(
-        Number.isFinite(
-          sobaScore
+    is_beak = (
+        (
+            p5 <= p20
+            and s5 > s20
+            and sma5_slope > 0
         )
-          ? String(sobaScore)
-          : "-"
-      );
-
-
-    sobaText.font =
-      Font.boldSystemFont(
-        mainFontSize
-      );
-
-
-    if (
-      sobaScore >= 90
-    ) {
-
-      sobaText.textColor =
-        new Color("#ff453a");
-
-    }
-
-    else if (
-      sobaScore >= 80
-    ) {
-
-      sobaText.textColor =
-        new Color("#ffd60a");
-
-    }
-
-    else {
-
-      sobaText.textColor =
-        Color.white();
-
-    }
-
-
-    sobaText.lineLimit = 1;
-
-
-    row.addSpacer(4);
-
-
-    // 新高値スコア
-
-    const nhStack =
-      row.addStack();
-
-    nhStack.size =
-      new Size(
-        30,
-        0
-      );
-
-    nhStack.addSpacer();
-
-
-    const nhScore =
-      Number(
-        item.nh_score
-      );
-
-
-    const nhText =
-      nhStack.addText(
-        Number.isFinite(
-          nhScore
+        or
+        (
+            s5 > s20
+            and (s5 - s20) > (p5 - p20)
+            and sma20_slope > 0
+            and abs(s5 - s20) / c_close < 0.03
         )
-          ? String(nhScore)
-          : "-"
-      );
+    )
+
+    # --------------------------------------------------------
+    # ③ 線密集
+    # --------------------------------------------------------
+
+    ma_range = (
+        max(s5, s20, s60)
+        -
+        min(s5, s20, s60)
+    )
+
+    is_dense = (
+        ma_range / c_close < 0.035
+        and c_close > s5
+    )
+
+    # --------------------------------------------------------
+    # ④ PPP
+    # --------------------------------------------------------
+
+    is_ppp = (
+        s5
+        >
+        s20
+        >
+        s60
+        >
+        s100
+    )
+
+    # --------------------------------------------------------
+    # スコア
+    # --------------------------------------------------------
+
+    if is_lower_half:
+        return 100, "★即買(下半身)"
+
+    if is_beak:
+        return 90, "くちばし"
+
+    if is_dense:
+        return 80, "線密集/初動"
+
+    if is_ppp:
+        return 70, "PPP継続"
+
+    if c_close > s5:
+        return 60, "5日線上推移"
+
+    return 45, "調整/陰線"
 
 
-    nhText.font =
-      Font.systemFont(
-        mainFontSize
-      );
+# ============================================================
+# メイン
+# ============================================================
 
-    nhText.textColor =
-      new Color("#8e8e93");
+def analyze_market():
 
-    nhText.lineLimit = 1;
+    jst = pytz.timezone("Asia/Tokyo")
+    now_jst = datetime.now(jst)
 
+    updated_str = now_jst.strftime(
+        "%m/%d %H:%M"
+    )
 
-    row.addSpacer(4);
+    print(
+        f">>> スクリーニング開始: {updated_str}"
+    )
 
+    print(
+        f">>> 監視ユニバース: {len(TICKERS)}銘柄"
+    )
 
-    // 技・シグナル
+    # ========================================================
+    # 株価データを一括取得
+    # ========================================================
 
-    const signalStack =
-      row.addStack();
+    downloaded = yf.download(
+        TICKERS,
+        period=HISTORY_PERIOD,
+        interval=INTERVAL,
+        group_by="ticker",
+        auto_adjust=True,
+        actions=False,
+        threads=True,
+        progress=False,
+    )
 
-    signalStack.size =
-      new Size(
-        68,
-        0
-      );
+    new_high_candidates = []
+    soba_candidates = []
+    pf411_candidates = []
+    skipped = []
 
-    signalStack.addSpacer();
+    latest_signal_dates = []
 
+    # ========================================================
+    # 80銘柄すべて処理
+    # ========================================================
 
-    const signal =
-      item.soba_pattern ||
-      "";
+    for ticker in TICKERS:
 
+        try:
 
-    const signalText =
-      signalStack.addText(
-        signal
-      );
+            # ------------------------------------------------
+            # 1. 銘柄データ抽出
+            # ------------------------------------------------
 
-    signalText.font =
-      Font.boldSystemFont(
-        signalFontSize
-      );
+            df = extract_ticker_frame(
+                downloaded,
+                ticker,
+            )
 
+            if df.empty:
+                skipped.append({
+                    "ticker": ticker,
+                    "reason": "データ取得失敗",
+                })
+                continue
 
-    if (
-      signal.includes("★")
-    ) {
+            # ------------------------------------------------
+            # 2. 未確定当日足を除外
+            # ------------------------------------------------
 
-      signalText.textColor =
-        new Color("#ff453a");
+            df = keep_confirmed_daily_bars(
+                df,
+                now_jst,
+            )
 
+            # ------------------------------------------------
+            # 3. 欠損除去
+            # ------------------------------------------------
+
+            df = df.dropna(
+                subset=[
+                    "Open",
+                    "High",
+                    "Low",
+                    "Close",
+                    "Volume",
+                ]
+            ).copy()
+
+            df = df.sort_index()
+
+            if len(df) < 60:
+                skipped.append({
+                    "ticker": ticker,
+                    "reason": f"履歴不足({len(df)}行)",
+                })
+                continue
+
+            # ------------------------------------------------
+            # 4. 最新足
+            # ------------------------------------------------
+
+            latest = df.iloc[-1]
+
+            close = float(latest["Close"])
+            open_p = float(latest["Open"])
+            volume = float(latest["Volume"])
+
+            if not all(
+                np.isfinite(v) and v > 0
+                for v in [close, open_p]
+            ):
+                skipped.append({
+                    "ticker": ticker,
+                    "reason": "価格データ異常",
+                })
+                continue
+
+            if (
+                not np.isfinite(volume)
+                or volume < 0
+            ):
+                skipped.append({
+                    "ticker": ticker,
+                    "reason": "出来高データ異常",
+                })
+                continue
+
+            closes = df["Close"]
+
+            # ------------------------------------------------
+            # 5. SMA50
+            # ------------------------------------------------
+
+            if len(df) >= 50:
+                sma50 = float(
+                    closes
+                    .rolling(50)
+                    .mean()
+                    .iloc[-1]
+                )
+            else:
+                sma50 = np.nan
+
+            # ------------------------------------------------
+            # 6. 20日出来高平均
+            # ------------------------------------------------
+
+            vol20 = calc_vol20(df)
+
+            if (
+                np.isfinite(vol20)
+                and vol20 > 0
+            ):
+                vol_ratio = (
+                    volume / vol20
+                )
+            else:
+                vol_ratio = 0.0
+
+            # ------------------------------------------------
+            # 7. 前日までの250営業日高値
+            # ------------------------------------------------
+
+            prior_high250 = (
+                calculate_prior_250_high(df)
+            )
+
+            # ------------------------------------------------
+            # 8. 高値乖離率
+            # ------------------------------------------------
+
+            off_high = calc_off_high(
+                close,
+                prior_high250,
+            )
+
+            # ------------------------------------------------
+            # 9. 5日平均売買代金
+            # ------------------------------------------------
+
+            avg_turnover_5d = (
+                calc_avg_turnover_5d(df)
+            )
+
+            liquidity_ok = (
+                np.isfinite(avg_turnover_5d)
+                and
+                avg_turnover_5d
+                >=
+                MIN_AVG_TURNOVER
+            )
+
+            # ------------------------------------------------
+            # 10. 基本情報
+            # ------------------------------------------------
+
+            code = clean_code(ticker)
+            name = get_name(ticker)
+
+            # 未登録ならNone
+            fund_score = FUND_SCORES.get(
+                ticker
+            )
+
+            signal_date = (
+                pd.Timestamp(
+                    df.index[-1]
+                )
+                .strftime("%Y-%m-%d")
+            )
+
+            latest_signal_dates.append(
+                signal_date
+            )
+
+            # =================================================
+            # A. PF4.11入口条件
+            #
+            # fund_score・売買代金は後付けしない
+            # =================================================
+
+            if matches_pf411_prebreakout(
+                off_high=off_high,
+                close=close,
+                sma50=sma50,
+                volume=volume,
+                vol20=vol20,
+                history_rows=len(df),
+            ):
+
+                pf411_candidates.append({
+
+                    "code":
+                        code,
+
+                    "name":
+                        name,
+
+                    "price":
+                        int(round(close)),
+
+                    "off_high":
+                        round(
+                            off_high,
+                            2,
+                        ),
+
+                    "vol_ratio":
+                        round(
+                            vol_ratio,
+                            2,
+                        ),
+
+                    "sma50":
+                        round(
+                            sma50,
+                            2,
+                        ),
+
+                    "avg_turnover_5d":
+                        (
+                            int(
+                                round(
+                                    avg_turnover_5d
+                                )
+                            )
+                            if np.isfinite(
+                                avg_turnover_5d
+                            )
+                            else None
+                        ),
+
+                    "fund_score":
+                        fund_score,
+
+                    "signal_date":
+                        signal_date,
+
+                    "signal_conditions":
+                        (
+                            "-3.0%<=off_high<0%, "
+                            "close>SMA50, "
+                            "volume>=VolSMA20*1.2"
+                        ),
+                })
+
+            # =================================================
+            # 250日高値が取れなければ
+            # 新高値系は判定不能
+            # =================================================
+
+            if off_high is None:
+
+                skipped.append({
+                    "ticker":
+                        ticker,
+
+                    "reason":
+                        (
+                            "前日までの250営業日高値"
+                            "を計算不能"
+                        ),
+                })
+
+                continue
+
+            # =================================================
+            # B. 相場流 × 新高値
+            # =================================================
+
+            soba_score, soba_pattern = (
+                evaluate_soba_pattern(df)
+            )
+
+            tech_nh_score = (
+                evaluate_technical_new_high(
+                    close=close,
+                    sma50=sma50,
+                    off_high=off_high,
+                    volume=volume,
+                    vol20=vol20,
+                )
+            )
+
+            # +3%超過熱は除外
+            if (
+                off_high
+                <=
+                LAUNCHPAD_MAX_OFF_HIGH
+            ):
+
+                if (
+                    not
+                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
+                    or liquidity_ok
+                ):
+
+                    if soba_score >= 70:
+
+                        total_score = (
+                            soba_score * 0.6
+                            +
+                            tech_nh_score * 0.4
+                        )
+
+                        soba_candidates.append({
+
+                            "code":
+                                code,
+
+                            "name":
+                                name,
+
+                            "price":
+                                int(round(close)),
+
+                            "soba_score":
+                                soba_score,
+
+                            "nh_score":
+                                tech_nh_score,
+
+                            "total_score":
+                                round(
+                                    total_score,
+                                    1,
+                                ),
+
+                            "soba_pattern":
+                                soba_pattern,
+
+                            "off_high":
+                                round(
+                                    off_high,
+                                    2,
+                                ),
+
+                            "fund_score":
+                                fund_score,
+
+                            "signal_date":
+                                signal_date,
+                        })
+
+            # =================================================
+            # C. 通常の新高値発射台
+            #
+            # ★80銘柄すべてが判定対象
+            # ★fund_score未登録でも除外しない
+            # =================================================
+
+            launch_score, launch_status = (
+                evaluate_launchpad(
+                    close=close,
+                    sma50=sma50,
+                    off_high=off_high,
+                    volume=volume,
+                    vol20=vol20,
+                )
+            )
+
+            if launch_status in (
+                "★発射台",
+                "★ブレイク確認",
+            ):
+
+                if (
+                    not
+                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
+                    or liquidity_ok
+                ):
+
+                    new_high_candidates.append({
+
+                        "code":
+                            code,
+
+                        "name":
+                            name,
+
+                        "price":
+                            int(round(close)),
+
+                        "nh_score":
+                            launch_score,
+
+                        # Noneの場合はJSONでnull
+                        "fund_score":
+                            fund_score,
+
+                        "off_high":
+                            round(
+                                off_high,
+                                2,
+                            ),
+
+                        "vol_ratio":
+                            round(
+                                vol_ratio,
+                                2,
+                            ),
+
+                        "status":
+                            launch_status,
+
+                        "avg_turnover_5d":
+                            (
+                                int(
+                                    round(
+                                        avg_turnover_5d
+                                    )
+                                )
+                                if np.isfinite(
+                                    avg_turnover_5d
+                                )
+                                else None
+                            ),
+
+                        "sma50":
+                            round(
+                                sma50,
+                                2,
+                            ),
+
+                        "signal_date":
+                            signal_date,
+                    })
+
+        except Exception as e:
+
+            skipped.append({
+                "ticker":
+                    ticker,
+
+                "reason":
+                    f"例外: {e}",
+            })
+
+            print(
+                f"エラー発生 "
+                f"({ticker}): {e}"
+            )
+
+    # ========================================================
+    # ランキング
+    # ========================================================
+
+    # --------------------------------------------------------
+    # 1. 通常発射台
+    #
+    # nh_score
+    # ↓
+    # 高値差が0%に近い
+    # ↓
+    # 出来高倍率
+    # --------------------------------------------------------
+
+    new_high_candidates.sort(
+
+        key=lambda x: (
+
+            x["nh_score"],
+
+            -abs(
+                x["off_high"]
+            ),
+
+            x["vol_ratio"],
+
+        ),
+
+        reverse=True,
+    )
+
+    # --------------------------------------------------------
+    # 2. 相場流
+    # --------------------------------------------------------
+
+    soba_candidates.sort(
+
+        key=lambda x: (
+
+            x["total_score"],
+
+            x["soba_score"],
+
+            x["nh_score"],
+
+        ),
+
+        reverse=True,
+    )
+
+    # --------------------------------------------------------
+    # 3. PF4.11
+    #
+    # 高値差0%に近い
+    # ↓
+    # 出来高倍率
+    # --------------------------------------------------------
+
+    pf411_candidates.sort(
+
+        key=lambda x: (
+
+            x["off_high"],
+
+            x["vol_ratio"],
+
+        ),
+
+        reverse=True,
+    )
+
+    # ========================================================
+    # fund_score登録状況
+    # ========================================================
+
+    confirmed_fund_count = sum(
+        1
+        for ticker in TICKERS
+        if FUND_SCORES.get(
+            ticker
+        ) is not None
+    )
+
+    # ========================================================
+    # データ日付
+    # ========================================================
+
+    data_date = (
+        max(latest_signal_dates)
+        if latest_signal_dates
+        else None
+    )
+
+    # ========================================================
+    # JSON
+    #
+    # ★全件保存
+    # ★[:10]や[:8]を使わない
+    # ========================================================
+
+    output_data = {
+
+        "updated_at":
+            updated_str,
+
+        "data_date":
+            data_date,
+
+        # ----------------------------------------------------
+        # データポリシー
+        # ----------------------------------------------------
+
+        "data_policy": {
+
+            "daily_bar":
+                (
+                    "JST16:00より前は"
+                    "当日足を除外"
+                ),
+
+            "price_adjustment":
+                "yfinance auto_adjust=True",
+
+            "high_reference":
+                (
+                    "最新足を除く"
+                    "直前250営業日の"
+                    "High最大値"
+                ),
+
+            "volume_reference":
+                (
+                    "PF4.11互換のため"
+                    "20日平均出来高は"
+                    "最新足を含むrolling(20)"
+                ),
+        },
+
+        # ----------------------------------------------------
+        # ユニバース
+        # ----------------------------------------------------
+
+        "universe": {
+
+            "ticker_count":
+                len(TICKERS),
+
+            "launchpad_screened_count":
+                len(TICKERS),
+
+            "confirmed_fund_score_count":
+                confirmed_fund_count,
+
+            "fund_score_policy":
+                (
+                    "fund_scoreは参考表示。"
+                    "未登録銘柄も発射台判定対象。"
+                ),
+        },
+
+        # ----------------------------------------------------
+        # 通常新高値
+        # 条件合致を全件保存
+        # ----------------------------------------------------
+
+        "new_high_ranks":
+            new_high_candidates,
+
+        # ----------------------------------------------------
+        # 相場流
+        # 条件合致を全件保存
+        # ----------------------------------------------------
+
+        "soba_ranks":
+            soba_candidates,
+
+        # ----------------------------------------------------
+        # PF4.11
+        # 条件合致を全件保存
+        # ----------------------------------------------------
+
+        "pf411_ranks":
+            pf411_candidates,
+
+        # ----------------------------------------------------
+        # 通常新高値説明
+        # ----------------------------------------------------
+
+        "new_high_reference": {
+
+            "label":
+                (
+                    "通常の新高値"
+                    "発射台/ブレイク確認"
+                ),
+
+            "conditions": [
+
+                "監視80銘柄すべてを判定",
+
+                "終値 > SMA50",
+
+                (
+                    "-6.0% <= "
+                    "off_high <= +3.0%"
+                ),
+
+                (
+                    "off_high <= 0% は発射台、"
+                    "0%超はブレイク確認"
+                ),
+
+                "+3.0%超は見送り",
+
+                (
+                    f"5日平均売買代金 >= "
+                    f"{MIN_AVG_TURNOVER:,}円"
+                    if
+                    APPLY_TURNOVER_FILTER_TO_NORMAL_BOARDS
+                    else
+                    "売買代金フィルターなし"
+                ),
+            ],
+
+            "fund_score_note":
+                (
+                    "fund_scoreは現時点では"
+                    "参考表示のみ。"
+                    "未登録銘柄を除外しない。"
+                ),
+        },
+
+        # ----------------------------------------------------
+        # PF4.11説明
+        # ----------------------------------------------------
+
+        "pf411_reference": {
+
+            "label":
+                (
+                    "PF4.11過去バックテストの"
+                    "入口条件に対応する候補。"
+                    "PF4.11自体を再計算したものではない。"
+                ),
+
+            "conditions": [
+
+                "-3.0% <= off_high < 0.0%",
+
+                "終値 > SMA50",
+
+                (
+                    "当日出来高 >= "
+                    "20日平均出来高 * 1.2"
+                ),
+
+                "過去データ260行以上",
+            ],
+
+            "execution_note":
+                (
+                    "過去PF4.11の完全再現には、"
+                    "翌営業日始値エントリー、"
+                    "出口、保有期間、"
+                    "同時シグナル時の優先順位、"
+                    "資金配分などの一致が必要。"
+                ),
+
+            "limitations":
+                (
+                    "fund_score・PBR・売買代金条件は"
+                    "PF4.11入口条件へ後付けしない。"
+                ),
+        },
+
+        # ----------------------------------------------------
+        # スキップログ
+        # ----------------------------------------------------
+
+        "skipped":
+            skipped,
     }
 
-    else if (
-      signal.includes("PPP")
-    ) {
-
-      signalText.textColor =
-        new Color("#30d158");
-
-    }
-
-    else {
-
-      signalText.textColor =
-        new Color("#5ac8fa");
-
-    }
-
-
-    signalText.lineLimit = 1;
-
-  }
-
-
-// ============================================================
-// 13-B. PF4.11モード
-// ============================================================
-
-  else if (isPF411) {
-
-    // 高値差
-
-    const diffStack =
-      row.addStack();
-
-    diffStack.size =
-      new Size(
-        46,
-        0
-      );
-
-    diffStack.addSpacer();
-
-
-    const offHigh =
-      Number(
-        item.off_high
-      );
-
-
-    let diffString =
-      "-";
-
-
-    if (
-      Number.isFinite(
-        offHigh
-      )
-    ) {
-
-      diffString =
-        offHigh >= 0
-          ? `+${offHigh}`
-          : String(offHigh);
-
-    }
-
-
-    const diffText =
-      diffStack.addText(
-        diffString
-      );
-
-    diffText.font =
-      Font.boldSystemFont(
-        mainFontSize
-      );
-
-    diffText.textColor =
-      new Color("#30d158");
-
-    diffText.lineLimit = 1;
-
-
-    row.addSpacer(4);
-
-
-    // 出来高倍率
-
-    const volumeStack =
-      row.addStack();
-
-    volumeStack.size =
-      new Size(
-        48,
-        0
-      );
-
-    volumeStack.addSpacer();
-
-
-    const volumeRatio =
-      Number(
-        item.vol_ratio
-      );
-
-
-    const volumeString =
-      Number.isFinite(
-        volumeRatio
-      )
-        ? `${volumeRatio.toFixed(2)}x`
-        : "-";
-
-
-    const volumeText =
-      volumeStack.addText(
-        volumeString
-      );
-
-    volumeText.font =
-      Font.boldSystemFont(
-        signalFontSize
-      );
-
-
-    if (
-      volumeRatio >= 1.5
-    ) {
-
-      volumeText.textColor =
-        new Color("#ff453a");
-
-    }
-
-    else {
-
-      volumeText.textColor =
-        new Color("#ffd60a");
-
-    }
-
-
-    volumeText.lineLimit = 1;
-
-
-    row.addSpacer(4);
-
-
-    // 50MA
-
-    const maStack =
-      row.addStack();
-
-    maStack.size =
-      new Size(
-        52,
-        0
-      );
-
-    maStack.addSpacer();
-
-
-    const sma50 =
-      Number(
-        item.sma50
-      );
-
-
-    const maString =
-      Number.isFinite(
-        sma50
-      )
-        ? Math.round(
-            sma50
-          ).toLocaleString()
-        : "-";
-
-
-    const maText =
-      maStack.addText(
-        maString
-      );
-
-    maText.font =
-      Font.systemFont(
-        signalFontSize
-      );
-
-    maText.textColor =
-      new Color("#8e8e93");
-
-    maText.lineLimit = 1;
-
-  }
-
-
-// ============================================================
-// 13-C. 新高値発射台モード
-// ============================================================
-
-  else {
-
-    // テクニカル点
-
-    const techStack =
-      row.addStack();
-
-    techStack.size =
-      new Size(
-        34,
-        0
-      );
-
-    techStack.addSpacer();
-
-
-    const nhScore =
-      Number(
-        item.nh_score
-      );
-
-
-    const techText =
-      techStack.addText(
-        Number.isFinite(
-          nhScore
+    # ========================================================
+    # 保存
+    # ========================================================
+
+    with open(
+        "stocks_data.json",
+        "w",
+        encoding="utf-8",
+    ) as f:
+
+        json.dump(
+            output_data,
+            f,
+            ensure_ascii=False,
+            indent=2,
         )
-          ? String(nhScore)
-          : "-"
-      );
 
-
-    techText.font =
-      Font.boldSystemFont(
-        mainFontSize
-      );
-
-    techText.textColor =
-      new Color("#ffd60a");
-
-    techText.lineLimit = 1;
-
-
-    row.addSpacer(4);
-
-
-    // --------------------------------------------------------
-    // fund_score
-    //
-    // 未登録なら —
-    // 未登録でも候補から除外しない
-    // --------------------------------------------------------
-
-    const fundStack =
-      row.addStack();
-
-    fundStack.size =
-      new Size(
-        34,
-        0
-      );
-
-    fundStack.addSpacer();
-
-
-    const rawFund =
-      item.fund_score;
-
-
-    const fundScore =
-      Number(
-        rawFund
-      );
-
-
-    const hasFund =
-      rawFund !== null &&
-      rawFund !== undefined &&
-      rawFund !== "" &&
-      Number.isFinite(
-        fundScore
-      );
-
-
-    const isPerfect =
-      hasFund &&
-      fundScore === 100;
-
-
-    let fundString =
-      "—";
-
-
-    if (hasFund) {
-
-      fundString =
-        isPerfect
-          ? "💯"
-          : String(
-              fundScore
-            );
-
-    }
-
-
-    const fundText =
-      fundStack.addText(
-        fundString
-      );
-
-
-    if (isPerfect) {
-
-      fundText.font =
-        Font.systemFont(
-          Math.max(
-            signalFontSize,
-            7
-          )
-        );
-
-    }
-
-    else {
-
-      fundText.font =
-        Font.boldSystemFont(
-          mainFontSize
-        );
-
-    }
-
-
-    fundText.textColor =
-      hasFund
-        ? Color.white()
-        : new Color("#8e8e93");
-
-
-    fundText.lineLimit = 1;
-
-
-    row.addSpacer(4);
-
-
-    // 高値差
-
-    const diffStack =
-      row.addStack();
-
-    diffStack.size =
-      new Size(
-        48,
-        0
-      );
-
-    diffStack.addSpacer();
-
-
-    const offHigh =
-      Number(
-        item.off_high
-      );
-
-
-    let diffString =
-      "-";
-
-
-    if (
-      Number.isFinite(
-        offHigh
-      )
-    ) {
-
-      diffString =
-        offHigh >= 0
-          ? `+${offHigh}`
-          : String(offHigh);
-
-    }
-
-
-    const diffText =
-      diffStack.addText(
-        diffString
-      );
-
-    diffText.font =
-      Font.boldSystemFont(
-        mainFontSize
-      );
-
-
-    // 0%以上 = ブレイク後 → 黄
-    // 0%未満 = 発射台 → 緑
-
-    if (
-      Number.isFinite(offHigh) &&
-      offHigh > 0
-    ) {
-
-      diffText.textColor =
-        new Color("#ffd60a");
-
-    }
-
-    else {
-
-      diffText.textColor =
-        new Color("#30d158");
-
-    }
-
-
-    diffText.lineLimit = 1;
-
-  }
-
-
-// ============================================================
-// 14. 行間
-// ============================================================
-
-  if (
-    rowSpacing > 0
-  ) {
-
-    widget.addSpacer(
-      rowSpacing
-    );
-
-  }
-
-}
-
-}
-
-
-// ============================================================
-// 15. 下余白
-// ============================================================
-
-widget.addSpacer();
-
-
-// ============================================================
-// 16. Widgetセット
-// ============================================================
-
-Script.setWidget(widget);
-Script.complete();
-
-}
+    # ========================================================
+    # ログ
+    # ========================================================
+
+    print(
+        ">>> 完了: stocks_data.json生成 "
+        f"| 母集団={len(TICKERS)} "
+        f"| 発射台={len(new_high_candidates)} "
+        f"| 相場流={len(soba_candidates)} "
+        f"| PF4.11入口={len(pf411_candidates)} "
+        f"| fund_score登録={confirmed_fund_count} "
+        f"| スキップ={len(skipped)} "
+        f"| データ日={data_date}"
+    )
+
+
+# ============================================================
+# 実行
+# ============================================================
+
+if __name__ == "__main__":
+    analyze_market()
