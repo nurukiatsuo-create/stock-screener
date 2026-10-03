@@ -230,7 +230,8 @@ def main(argv=None):
             except PermissionError:
                 raise
             except Exception as exc:
-                state['errors'].append(f'{day}: {type(exc).__name__}（一覧未確認）')
+                reason = str(exc) if type(exc) is ValueError else type(exc).__name__
+                state['errors'].append(f'{day}: {reason}（一覧未確認）')
                 if time.monotonic() > client.deadline:
                     break
         if unresolved:
