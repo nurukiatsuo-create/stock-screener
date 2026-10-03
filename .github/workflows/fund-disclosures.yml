@@ -1,0 +1,59 @@
+name: Fund disclosure monitor
+
+on:
+  schedule:
+    - cron: '5 22 * * *' # 07:05 JST, daily
+    - cron: '0 0 * * 6' # 09:00 JST, Saturday
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily=3日再確認 / weekly=7日 / baseline=90日'
+        type: choice
+        options: [daily, weekly, baseline]
+        default: daily
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fund-disclosure-monitor
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify matching and failure handling
+        run: python -m unittest discover -s tests -p 'test_fund_disclosures.py' -v
+      - name: Collect EDINET filings with progress logs
+        env:
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+          INPUT_MODE: ${{ inputs.mode }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        shell: bash
+        run: |
+          mode="${INPUT_MODE:-daily}"
+          if [ "$EVENT_SCHEDULE" = '0 0 * * 6' ]; then mode=weekly; fi
+          python -u scripts/monitor_fund_disclosures.py --mode "$mode"
+      - name: Publish readable summary even on failure
+        if: always()
+        shell: bash
+        run: |
+          if [ -f fund-monitor-output/report.md ]; then
+            cat fund-monitor-output/report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '調査未完了。実行ログを確認してください。結果ファイルは生成されていません。' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Save results and partial evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fund-disclosures-${{ github.run_id }}-${{ github.run_attempt }}
+          path: fund-monitor-output/
+          retention-days: 90
+          if-no-files-found: warn
