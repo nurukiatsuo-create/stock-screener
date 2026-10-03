@@ -77,7 +77,7 @@ def code_mapping(blob):
 def validate_list(payload, requested_day):
     meta = payload.get('metadata', {})
     if str(meta.get('status')) != '200':
-        status = str(meta.get('status', payload.get('statusCode', 'unknown')))
+        status = str(meta.get('status', payload.get('StatusCode', 'unknown')))
         safe_status = status if status.isdigit() else 'unknown'
         raise ValueError(f'EDINET response status={safe_status}')
     rows = payload.get('results')
