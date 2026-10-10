@@ -157,7 +157,6 @@ class Client:
                     raise RuntimeError('取得サイズ上限を超過')
                 return data
             except urllib.error.HTTPError as exc:
-                # Never log exception text: it may contain the API key in its URL.
                 if exc.code in (401, 403):
                     raise PermissionError(f'EDINET認証エラー HTTP {exc.code}') from None
                 if attempt == 2:
@@ -249,7 +248,9 @@ def main(argv=None):
             try:
                 pdf = client.get(API + 'documents/' + r['docID'], {'type': 2})
                 if not pdf.startswith(b'%PDF'):
-                    raise ValueError('not PDF')
+                    # 詳細なレスポンス内容（エラーメッセージやHTML等）をログに記録できるようにする
+                    snippet = pdf[:200].decode('utf-8', errors='ignore')
+                    raise ValueError(f'not PDF (Header snippet: {snippet})')
                 target = out / 'documents' / (r['docID'] + '.pdf')
                 target.parent.mkdir(exist_ok=True)
                 target.write_bytes(pdf)
@@ -257,7 +258,9 @@ def main(argv=None):
                 r['sha256'] = hashlib.sha256(pdf).hexdigest()
             except Exception as exc:
                 r['document_status'] = '本文取得失敗'
-                state['errors'].append(f"{r['docID']}: {type(exc).__name__}（本文未確認）")
+                err_msg = f"{r['docID']}: {type(exc).__name__} - {str(exc)}（本文未確認）"
+                print(f"[DEBUG ERROR] {err_msg}", flush=True)
+                state['errors'].append(err_msg)
         state['status'] = 'partial' if state['errors'] else 'collection_complete'
     except PermissionError as exc:
         state['status'] = 'blocked'
@@ -272,4 +275,3 @@ def main(argv=None):
 
 if __name__ == '__main__':
     raise SystemExit(main())
-
