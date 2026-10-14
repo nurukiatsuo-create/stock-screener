@@ -6,6 +6,8 @@ import pandas as pd
 import pytz
 import yfinance as yf
 
+from breakout_evidence import analyze_breakout, build_evidence_board
+
 
 # ============================================================
 # 監視ユニバース：現行80銘柄
@@ -953,6 +955,7 @@ def analyze_market():
     latest_signal_dates = []
 
     box_observations = {}
+    breakout_observations = {}
 
 
     # ========================================================
@@ -994,6 +997,12 @@ def analyze_market():
                 now_jst
             )
 
+            # 新判定も欠損除去前に評価。四季報選定は利用者の担当。
+            breakout_observations[clean_code(ticker)] = {
+                "code": clean_code(ticker), "name": get_name(ticker),
+                "selection_source": "利用者の四季報選定リスト",
+                "evidence": analyze_breakout(df),
+            }
             # 欠損行を落とす前に観察値を計算し、欠損を隠さない。
             box_observations[clean_code(ticker)] = calculate_box_metrics(df)
 
@@ -1749,7 +1758,34 @@ def analyze_market():
         for candidate in candidates:
             candidate["box"] = box_observations.get(candidate["code"])
 
+    if not any(row["evidence"]["data_valid"] for row in breakout_observations.values()):
+        raise RuntimeError("全銘柄の取得・検証に失敗。既存stocks_data.jsonを上書きしません。")
+    # Compare dates across this batch; exchange-calendar freshness is not implied.
+    for row in breakout_observations.values():
+        evidence = row["evidence"]
+        if evidence["data_valid"]:
+            evidence["expected_date"] = data_date
+            evidence["freshness"] = "一致" if evidence["signal_date"] == data_date else "日付不一致"
+            if evidence["freshness"] != "一致":
+                evidence["warnings"].append("取得銘柄間で最新日足の日付が不一致")
+    for ticker in TICKERS:
+        code = clean_code(ticker)
+        if code not in breakout_observations:
+            breakout_observations[code] = {
+                "code": code, "name": get_name(ticker),
+                "evidence": {"data_valid": False, "status": "取得失敗", "warnings": ["日足取得失敗"]},
+            }
     output_data = {
+        "breakout_board": build_evidence_board(breakout_observations),
+        "breakout_reference": {
+            "version": 1,
+            "purpose": "終値突破・日中だけの突破・過去突破後の維持を区別する観測。買い推奨ではない。",
+            "volume_basis": "当日を除く直前20観測日の平均出来高",
+            "event_basis": "各イベント直前250観測日の高値を固定して追跡",
+            "freshness_basis": "取得銘柄間の最大日付との比較のみ。全銘柄同時の更新遅延は検出できない。",
+            "box_policy": "20/40/60本の値幅と縮小率は観察値。原典のボックス認定を代替しない。",
+            "legacy_board": "new_high_ranksは旧方式。業績点も固定参考値。",
+        },
 
         "box_observations": box_observations,
         "box_reference": {
@@ -2057,3 +2093,4 @@ def analyze_market():
 
 if __name__ == "__main__":
     analyze_market()
+
