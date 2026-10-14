@@ -1,0 +1,6 @@
+{
+  "budget_yen": 1000000,
+  "positions": [],
+  "sectors": {},
+  "notes": "実保有・業種は未登録。positions: code, buy_date(YYYY-MM-DD), buy_price, shares, box_lower, box_upper。現在の実保有のみ登録。サンプル銘柄は自動登録しない。"
+}
