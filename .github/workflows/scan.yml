@@ -1,6 +1,15 @@
 name: Stock Screener
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scan.py'
+      - 'box_strategy.py'
+      - 'breakout_evidence.py'
+      - 'trading_config.json'
+      - 'test_*.py'
+      - '.github/workflows/scan.yml'
   schedule:
     # 毎営業日の大引け後（日本時間 16:00 / UTC 07:00）に自動実行
     - cron: '0 7 * * 1-5'
@@ -8,6 +17,10 @@ on:
 
 permissions:
   contents: write
+
+concurrency:
+  group: stock-screener-main
+  cancel-in-progress: false
 
 jobs:
   run-screener:
@@ -27,6 +40,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install yfinance pandas numpy matplotlib
 
+      - name: Test monitoring rules
+        run: python -m unittest discover -p 'test_*.py' -v
+
       - name: Run Screening Script
         run: |
           python scan.py
@@ -35,6 +51,6 @@ jobs:
         run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
-          git add -A
+          git add stocks_data.json
           git commit -m "Update all ranking JSON files and screener data" || exit 0
           git push
