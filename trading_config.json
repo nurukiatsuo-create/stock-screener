@@ -1,6 +1,20 @@
 {
   "budget_yen": 1000000,
-  "positions": [],
+  "positions": [
+    {
+      "code": "7094",
+      "name": "NexTone",
+      "buy_date": "2026-10-15",
+      "buy_price": 1849,
+      "shares": 300,
+      "box_lower": 1764.4229851476239,
+      "box_upper": 1893.6483222040638,
+      "box_reference_date": "2026-10-14",
+      "entry_timing": "大引け",
+      "entry_reason": "突破待ち4銘柄の中で唯一前日比プラス。全体が急落するなかでの相対的な強さを評価して購入（本人申告）。",
+      "entry_type": "突破前の裁量買い"
+    }
+  ],
   "sectors": {},
-  "notes": "実保有・業種は未登録。positions: code, buy_date(YYYY-MM-DD), buy_price, shares, box_lower, box_upper。現在の実保有のみ登録。サンプル銘柄は自動登録しない。"
+  "notes": "現在の実保有のみ登録。NexToneは本人申告により2026-10-15登録。管理箱は購入前に確認できた2026-10-14データの認定値。業種・現物信用区分・実際の逆指値注文は未確認。プログラムの購入価格90%水準は監視用であり注文済みを意味しない。売却確認後に保有から除外する。"
 }
