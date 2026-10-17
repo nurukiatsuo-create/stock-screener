@@ -1,4 +1,4 @@
-// 新高値監視 v4：2列。アプリは全件、ウィジェットは抜粋。
+// 新高値監視 v5：ボックス突破後も新高値まで継続追跡。
 const mode=(args.widgetParameter||'watch').trim();
 const widget=config.runsInWidget;
 const family=config.widgetFamily||'large';
@@ -19,14 +19,16 @@ function rankWaiting(observations, board, dataDate) {
  }
  return observations.flatMap(r=>{
  const b=r.box?.active_box,t=evidence.get(String(r.code)),c=r.close;
- if(pending(r)||r.box?.valid!==true||r.box.date!==dataDate||!b||!b.confirmed_date||b.breakout_date||b.breakdown_date)return [];
- if(![c,b.lower,b.upper,t?.reference_high].every(x=>Number.isFinite(x)&&x>0)||b.lower>=b.upper||c<b.lower||c>b.upper)return [];
- const boxGap=(b.upper/c-1)*100,highGap=Math.max(0,(t.reference_high/c-1)*100);
- return [{...r,boxGap,highGap,remaining:Math.max(boxGap,highGap)}];
+ if(pending(r)||r.box?.valid!==true||r.box.date!==dataDate||!b||!b.confirmed_date||b.breakdown_date)return [];
+ if(![c,b.lower,b.upper,t?.reference_high].every(x=>Number.isFinite(x)&&x>0)||b.lower>=b.upper||c<b.lower)return [];
+ const afterBreak=Boolean(b.breakout_date);
+ if(afterBreak?(b.breakout_date>dataDate||c<=b.upper):c>b.upper)return [];
+ const boxGap=Math.max(0,(b.upper/c-1)*100),highGap=Math.max(0,(t.reference_high/c-1)*100);
+ return [{...r,boxGap,highGap,afterBreak,remaining:Math.max(boxGap,highGap)}];
  }).sort((a,b)=>a.remaining-b.remaining||String(a.code).localeCompare(String(b.code)));
 }
 function gapLabel(x){return x<=0?'到達':x<0.1?'0.1%未満':fmt(x,1)+'%';}
-function watchText(r){return Number.isFinite(r.remaining)?title(r)+'\n突破まで '+gapLabel(r.remaining)+'\n箱 '+gapLabel(r.boxGap)+'／高値 '+gapLabel(r.highGap):title(r)+(pending(r)?'\n判定保留':'');}
+function watchText(r){return Number.isFinite(r.remaining)?title(r)+'\n突破まで '+gapLabel(r.remaining)+'\n'+(r.afterBreak?'箱突破済':'箱 '+gapLabel(r.boxGap))+'／高値 '+gapLabel(r.highGap):title(r)+'\n'+(pending(r)?'判定保留':r.status||'その他監視');}
 function card(r,held=false){
  const lines=[title(r),fmt(r.close)+'円',r.status||'条件該当'];
  if(held){lines.push('損益 '+fmt(r.pnl_yen)+'円','損切 '+fmt(r.stop_price)+'円','管理箱 '+fmt(r.management_lower)+'〜'+fmt(r.management_upper));}
@@ -41,7 +43,7 @@ function card(r,held=false){
 try{
  const req=new Request('https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/stocks_data.json?t='+Date.now());req.timeoutInterval=20;
  const data=await req.loadJSON(),s=data.strategy;
- add('新高値監視・接近順 v4','#ffd60a',17);
+ add('新高値監視・接近順 v5','#ffd60a',17);
  add('日足 '+(data.data_date||'不明')+'／更新 '+(data.updated_at||'不明'),'#a9b4c2',10);
  if(!s||!Array.isArray(s.observations)||!Array.isArray(s.candidates))add('データ未生成・判定保留','#ff9f0a');
  else{
@@ -63,10 +65,17 @@ try{
  const waitingIds=new Set(waiting.map(r=>String(r.code)));
  const others=watch.filter(r=>!waitingIds.has(String(r.code))&&!pending(r));
  const heldBack=watch.filter(pending);
- const limit=widget?(short?0:rows.length?2:8):waiting.length;
- add('突破待ち '+waiting.length+'件・距離順','#a9b4c2',12);
- if(limit)blocks.push({watch:waiting.slice(0,limit)});
- if(!waiting.length)add('未突破の認定ボックスなし','#a9b4c2',11);
+ // Feature today's new box breaks so a successful transition stays visible.
+ // The app retains the full distance ordering; the widget explicitly labels priority.
+ const today=waiting.filter(r=>r.afterBreak&&r.box.active_box.breakout_date===data.data_date);
+ const todayIds=new Set(today.map(r=>String(r.code)));
+ const displayWaiting=widget?[...today,...waiting.filter(r=>!todayIds.has(String(r.code)))]:waiting;
+ const limit=widget?(short?0:rows.length?2:6):waiting.length;
+ const afterCount=waiting.filter(r=>r.afterBreak).length;
+ add('監視 '+waiting.length+'件（箱内 '+(waiting.length-afterCount)+'／突破後 '+afterCount+'）','#a9b4c2',12);
+ if(widget&&today.length)add('本日箱突破を優先・以降距離順','#ffd60a',10);
+ if(limit)blocks.push({watch:displayWaiting.slice(0,limit)});
+ if(!waiting.length)add('追跡条件に該当するボックスなし','#a9b4c2',11);
  if(waiting.length>limit)add('ほか '+(waiting.length-limit)+'件・アプリで全件','#a9b4c2',10);
  add('その他監視 '+others.length+'件／保留 '+heldBack.length+'件','#a9b4c2',10);
  if(!widget){
@@ -99,7 +108,7 @@ if(widget){
  const item=items[i+j];if(!item)continue;
  if(b.cards)item.forEach((s,k)=>put(col,s,k===0?14:11,k===2?'#ffd60a':'#ffffff'));
  else {put(col,title(item),14,pending(item)?'#ff9f0a':'#ffffff');
- if(Number.isFinite(item.remaining)){put(col,'突破まで '+gapLabel(item.remaining),12,'#7dd3fc');put(col,'箱 '+gapLabel(item.boxGap)+'／高値 '+gapLabel(item.highGap),9,'#a9b4c2');}
+ if(Number.isFinite(item.remaining)){put(col,'突破まで '+gapLabel(item.remaining),12,'#7dd3fc');put(col,(item.afterBreak?'箱突破済':'箱 '+gapLabel(item.boxGap))+'／高値 '+gapLabel(item.highGap),9,item.afterBreak?'#ffd60a':'#a9b4c2');}
  else if(pending(item))put(col,'判定保留',10,'#ff9f0a');}
  }
  body.addSpacer(b.cards?6:7);

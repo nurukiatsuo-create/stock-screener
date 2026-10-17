@@ -157,7 +157,8 @@ def build_strategy(observations, config):
     for code, r in observations.items():
         e, b = r['evidence'], r.get('box_strategy', {})
         row = dict(code=code, name=r['name'], box=b, sector=sectors.get(code), candidate=False)
-        if not e.get('data_valid') or e.get('freshness') != '一致' or not b.get('valid'):
+        if (not e.get('data_valid') or e.get('freshness') != '一致' or not b.get('valid')
+                or b.get('date') != e.get('today', {}).get('date')):
             row['status']='データ確認待ち'
         else:
             t, box = e['today'], b.get('active_box')
@@ -165,7 +166,13 @@ def build_strategy(observations, config):
                        volume_ratio=t['volume_ratio_prior20'], upper_wick_fraction=t['upper_wick_fraction'],
                        close_location=t['close_location'], high_to_close_pct=t['high_to_close_pct'])
             new_break = b['status'] in ('終値上抜け','再上抜け')
-            row['candidate'] = bool(new_break and t['close_break'])
+            # A box break and the 250-day high need not occur on the same day.
+            # Retain the fixed box anchor; a return inside is not continuation.
+            above_broken_box = bool(box and box.get('breakout_date')
+                                    and box['breakout_date'] <= t['date']
+                                    and not box.get('breakdown_date')
+                                    and t['close'] > box['upper'])
+            row['candidate'] = bool(above_broken_box and t['close_break'])
             row['status'] = '新高値ブレイク確認' if row['candidate'] else ('ボックス突破・新高値未更新' if new_break else b['status'])
             row['volume_label'] = '平均より増加' if row['volume_ratio'] is not None and row['volume_ratio'] > 1 else '増加の裏付けなし'
             row['close_vs_box_upper_pct'] = (t['close']/box['upper']-1)*100 if box else None
