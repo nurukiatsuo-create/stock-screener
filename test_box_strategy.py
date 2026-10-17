@@ -82,4 +82,24 @@ class BoxTests(unittest.TestCase):
         e['freshness']='日付不一致'
         self.assertEqual(build_strategy(obs,{'positions':[]})['candidates'],[])
 
+    def test_later_high_after_box_break_and_return_inside(self):
+        # Old 250-day high above a newer consolidation: two separate events.
+        old=sample(200,120)
+        recent=sample(80,100)
+        recent.index=pd.bdate_range(old.index[-1]+pd.offsets.BDay(),periods=80)
+        d=append(pd.concat([old,recent]),104,112,103,110)
+        def result(frame):
+            e=analyze_breakout(frame,expected_date=str(frame.index[-1].date()))
+            b=analyze_boxes(frame)
+            return build_strategy({'1234':dict(name='test',evidence=e,box_strategy=b)}, {})
+        first=result(d)
+        self.assertEqual(first['observations'][0]['status'],'ボックス突破・新高値未更新')
+        self.assertEqual(first['candidates'],[])
+        later=append(d,120,130,119,128)
+        self.assertEqual(analyze_boxes(later)['status'],'上抜け後・新ボックス形成中')
+        self.assertEqual(len(result(later)['candidates']),1)
+        self.assertEqual(result(append(later,104,105,100,103))['candidates'],[])
+        self.assertEqual(result(append(later,95,96,90,91))['candidates'],[])
+        self.assertEqual(result(d),first)  # future bars cannot change the earlier decision
+
 if __name__=='__main__': unittest.main()
