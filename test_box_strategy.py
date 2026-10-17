@@ -74,7 +74,7 @@ class BoxTests(unittest.TestCase):
         self.assertEqual(r['observations'][0]['sector_check'],'未確認')
 
     def test_only_box_plus_new_high_is_candidate(self):
-        d=append(sample(280),104,112,103,110)
+        d=append(sample(280),104,107,103,106)
         e=analyze_breakout(d,expected_date=str(d.index[-1].date()))
         obs={'1234':dict(name='test',evidence=e,box_strategy=analyze_boxes(d))}
         r=build_strategy(obs,{'positions':[]})
@@ -87,7 +87,7 @@ class BoxTests(unittest.TestCase):
         old=sample(200,120)
         recent=sample(80,100)
         recent.index=pd.bdate_range(old.index[-1]+pd.offsets.BDay(),periods=80)
-        d=append(pd.concat([old,recent]),104,112,103,110)
+        d=append(pd.concat([old,recent]),104,107,103,106)
         def result(frame):
             e=analyze_breakout(frame,expected_date=str(frame.index[-1].date()))
             b=analyze_boxes(frame)
@@ -97,7 +97,8 @@ class BoxTests(unittest.TestCase):
         self.assertEqual(first['candidates'],[])
         later=append(d,120,130,119,128)
         self.assertEqual(analyze_boxes(later)['status'],'上抜け後・新ボックス形成中')
-        self.assertEqual(len(result(later)['candidates']),1)
+        self.assertEqual(len(result(later)['candidates']),0)
+        self.assertIn('箱上限からの乖離超過', result(later)['observations'][0]['entry_reasons'])
         self.assertEqual(result(append(later,104,105,100,103))['candidates'],[])
         self.assertEqual(result(append(later,95,96,90,91))['candidates'],[])
         self.assertEqual(result(d),first)  # future bars cannot change the earlier decision
