@@ -1789,6 +1789,9 @@ def analyze_market():
         observation = breakout_observations.get(code, {})
         evidence = observation.get("evidence", {})
         status = position_status(position, strategy_frames[code], observation["box_strategy"]) if code in strategy_frames and evidence.get("freshness") == "一致" else {"status": "データ確認待ち"}
+        # A profitable holding is not enough: additions share the initial-entry gates.
+        technical = next((r for r in strategy['observations'] if r['code'] == code), {})
+        status['add_candidate'] = bool(status.get('add_candidate') and technical.get('candidate'))
         strategy["holdings"].append({"code": code, **status})
     output_data = {
         "strategy": strategy,

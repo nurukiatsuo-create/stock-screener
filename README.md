@@ -1,3 +1,5 @@
+> 初動監視の最新仕様は [BOX_STRATEGY.md](BOX_STRATEGY.md)。`stocks_data.json.strategy` v3 と `NewHighMonitor.js` v6 が対象です。下記の `new_high_ranks` 等は旧互換出力で、初動判定には使いません。
+
 # 四季報を起点とする新高値ブレイク・スクリーナー
 
 本体は「四季報でファンダメンタルズを事前選別した監視銘柄 → 日々の株価・出来高で新高値候補を抽出 → Scriptable・判断ノートで確認」という流れです。
