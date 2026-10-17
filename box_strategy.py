@@ -102,6 +102,10 @@ def analyze_boxes(df, cfg=BoxConfig()):
                 state = '日中上抜け・終値未維持'
             else:
                 state = '新ボックス維持' if active['stage'] > 1 else 'ボックス内'
+        if active and active['breakout_date'] and row.Close <= active['upper'] and not active.get('return_date'):
+            active['return_date'] = date
+    if active and breakout_index is not None:
+        active['bars_since_breakout'] = len(df)-1-breakout_index
     out.update(valid=True, status=state, active_box=active, date=str(df.index[-1].date()))
     return out
 
@@ -144,7 +148,78 @@ def position_status(position, df, boxes):
                 note='注文機能なし。日足の到達は実際の約定を示さない。購入日の安値は判定対象外。')
 
 
+ENTRY_DEFAULTS = dict(max_entry_bars=3, max_extension_pct=3.0,
+                      min_volume_ratio=1.5, near_break_pct=5.0)
+
+
+def entry_policy(config):
+    policy = {**ENTRY_DEFAULTS, **config.get('entry_policy', {})}
+    if set(policy) != set(ENTRY_DEFAULTS):
+        raise ValueError('unknown entry_policy key')
+    for key, value in policy.items():
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+            raise ValueError('entry_policy values must be finite and positive')
+    if not isinstance(policy['max_entry_bars'], int):
+        raise ValueError('max_entry_bars must be an integer')
+    return policy
+
+
+def classify_entry(evidence, boxes, policy):
+    """Technical screen only. First event per box; age never resets on new highs."""
+    t, box = evidence['today'], boxes.get('active_box')
+    result = dict(candidate=False, entry_group='other', entry_reasons=[])
+    if not box or box.get('breakdown_date'):
+        return dict(result, status=boxes['status'])
+    close = t['close']
+    upper, lower = box['upper'], box['lower']
+    if not all(isinstance(x, (int, float)) and math.isfinite(x) and x > 0
+               for x in (close, upper, lower, t['reference_high'])) or lower >= upper:
+        return dict(result, status='データ確認待ち')
+    extension = (close/upper-1)*100
+    remaining = max(0, (max(upper, t['reference_high'])/close-1)*100)
+    result.update(close_vs_box_upper_pct=extension, remaining_pct=remaining)
+    if not box.get('breakout_date'):
+        near = lower <= close <= upper and remaining <= policy['near_break_pct']
+        return dict(result, entry_group='pre_break' if near else 'other',
+                    status='突破直前・未突破' if near else boxes['status'])
+    age = box.get('bars_since_breakout')
+    if box['breakout_date'] > t['date'] or type(age) is not int or age < 0:
+        return dict(result, status='データ確認待ち')
+    result['entry_group'] = 'post_break'
+    if box.get('return_date') or close <= upper:
+        return dict(result, status='突破後に箱へ戻る・再形成待ち', entry_reasons=['箱突破の失敗履歴'])
+    # The first closing new-high event after this box break is the fixed anchor.
+    events = sorted((x for x in evidence.get('events', [])
+                     if box['breakout_date'] <= x['date'] <= t['date']), key=lambda x:x['date'])
+    event = events[0] if events else None
+    reasons = []
+    retained = evidence.get('events', [])
+    if (evidence.get('event_count', len(retained)) > len(retained)
+            and retained and box['breakout_date'] < retained[0]['date']):
+        reasons.append('初回新高値の履歴不足')
+    if age >= policy['max_entry_bars']:
+        reasons.append('箱突破からの初動期間を超過')
+    if extension > policy['max_extension_pct'] + 1e-9:
+        reasons.append('箱上限からの乖離超過')
+    if event is None:
+        reasons.append('新高値未更新')
+    else:
+        result['entry_event'] = event
+        if event.get('first_close_below_date') or close <= event['reference_high']:
+            reasons.append('初回新高値の突破水準を維持できず')
+        ratio = event.get('volume_ratio_prior20')
+        if ratio is None or not math.isfinite(ratio) or ratio < policy['min_volume_ratio']:
+            reasons.append('初回新高値突破の出来高不足')
+    result['entry_reasons'] = reasons
+    if not reasons:
+        return dict(result, candidate=True, entry_group='initial_break', status='初動の技術条件該当')
+    if extension > policy['max_extension_pct'] + 1e-9 or age >= policy['max_entry_bars']:
+        return dict(result, status='初動対象外・新ボックス待ち')
+    return dict(result, status='ボックス突破・新高値未更新' if event is None else '初動条件不足・監視継続')
+
+
 def build_strategy(observations, config):
+    policy = entry_policy(config)
     budget = float(config.get('budget_yen', 1000000))
     if not math.isfinite(budget) or budget <= 0:
         raise ValueError('budget_yen must be positive')
@@ -165,15 +240,9 @@ def build_strategy(observations, config):
             row.update(close=t['close'], daily_change_pct=t['daily_change_pct'],
                        volume_ratio=t['volume_ratio_prior20'], upper_wick_fraction=t['upper_wick_fraction'],
                        close_location=t['close_location'], high_to_close_pct=t['high_to_close_pct'])
-            new_break = b['status'] in ('終値上抜け','再上抜け')
-            # A box break and the 250-day high need not occur on the same day.
-            # Retain the fixed box anchor; a return inside is not continuation.
-            above_broken_box = bool(box and box.get('breakout_date')
-                                    and box['breakout_date'] <= t['date']
-                                    and not box.get('breakdown_date')
-                                    and t['close'] > box['upper'])
-            row['candidate'] = bool(above_broken_box and t['close_break'])
-            row['status'] = '新高値ブレイク確認' if row['candidate'] else ('ボックス突破・新高値未更新' if new_break else b['status'])
+            row.update(classify_entry(e, b, policy))
+            row['fundamental_check'] = '四季報選定済み・直近業績とビッグチェンジは要確認'
+            row['buy_signal'] = None
             row['volume_label'] = '平均より増加' if row['volume_ratio'] is not None and row['volume_ratio'] > 1 else '増加の裏付けなし'
             row['close_vs_box_upper_pct'] = (t['close']/box['upper']-1)*100 if box else None
             max_shares = int(available//(t['close']*100))*100
@@ -184,9 +253,9 @@ def build_strategy(observations, config):
         rows.append(row)
         if row['candidate']:
             candidates.append(row)
-    return dict(version=2, candidates=sorted(candidates,key=lambda x:x['code']), observations=sorted(rows,key=lambda x:x['code']),
+    return dict(version=3, entry_policy=policy, candidates=sorted(candidates,key=lambda x:x['code']), observations=sorted(rows,key=lambda x:x['code']),
                 budget_yen=budget, committed_yen=committed, available_yen=available,
                 portfolio_warning='予算超過' if committed > budget else '基本1〜2銘柄。追加は手動確認',
                 position_count=len(positions), auto_orders=False,
-                policy='四季報選定済み。一般的ボックスの暫定数値化。勝率20％や利益を保証しない。0候補を許容。',
+                policy='DUKE公開資料を参考にした技術条件の監視。数値閾値は独自設定。業績・事業変化の確認は別途必要。売買指示ではない。',
                 freshness_note='銘柄間日付比較のみ。データ日を必ず確認。')
