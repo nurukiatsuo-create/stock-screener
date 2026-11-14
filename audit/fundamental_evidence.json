@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "code": "6258",
+      "published_on": "2026-11-13",
+      "checked_on": "2026-11-14",
+      "period_end": "2027-03-31",
+      "prior_period_end": "2026-03-31",
+      "basis": "annual_forecast_vs_prior_actual",
+      "comparable": true,
+      "operating_profit": 10900,
+      "prior_operating_profit": 8315,
+      "eps": 261.2,
+      "prior_eps": 198.54,
+      "source_url": "https://www.hirata.co.jp/files/optionallink/00003030_file.pdf?1794543126=",
+      "source_title": "通期業績予想および配当予想の修正に関するお知らせ",
+      "note": "連結通期予想対前期実績。OP単位百万円、EPS円。"
+    },
+    {
+      "code": "6871",
+      "published_on": "2026-11-12",
+      "checked_on": "2026-11-14",
+      "period_end": "2026-09-30",
+      "prior_period_end": "2025-09-30",
+      "basis": "ytd_actual_vs_prior_ytd",
+      "comparable": true,
+      "operating_profit": 26993,
+      "prior_operating_profit": 11300,
+      "eps": 503.17,
+      "prior_eps": 183.02,
+      "source_url": "https://kabuyoho-sls-disclose.ifis.co.jp/034/140120261112574944.pdf",
+      "source_title": "2026年12月期 第3四半期決算短信",
+      "note": "企業開示のIFIS配信写し。連結9か月累計対前年同期。OP百万円、EPS円。通期予想と混合しない。"
+    }
+  ]
+}
