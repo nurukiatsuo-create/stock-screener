@@ -1,0 +1,1809 @@
+{
+  "as_of": "2026-11-15",
+  "note": "検索結果のURL索引。最新性・本文数値の確認済みを意味しない。",
+  "rows": [
+    {
+      "code": "135A",
+      "name": "VRAIN Solution",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/adf95/225286/tdnet/e1937/787240",
+        "https://s.kabutan.jp/stocks/135A/finance/",
+        "https://monex-open-disclose.ifis.co.jp/367/140120260831528808.pdf",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260831528808/1/general.pdf",
+        "https://finance.yahoo.co.jp/quote/135A.T/disclosure",
+        "https://moneybox.jp/disclosure/article.php?id=1285096",
+        "https://s.kabutan.jp/news/k202610140099/",
+        "https://finance.matsui.co.jp/stock/135A/settlement/index",
+        "https://finance.yahoo.co.jp/quote/135A.T",
+        "https://openfiling.app/companies/135A/earnings-digest"
+      ]
+    },
+    {
+      "code": "1401",
+      "name": "エムビーエス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://tdnet-pdf.kabutan.jp/20261113/140120261113579695.pdf",
+        "https://s.kabutan.jp/news/k202610130053/",
+        "https://s.kabutan.jp/stocks/1401/finance/",
+        "https://monex-open-disclose.ifis.co.jp/367/140120260831528808.pdf",
+        "https://disclosure.catr.jp/companies/4eaf1/42354/tdnet/13d2d/786835",
+        "https://finance.yahoo.co.jp/quote/1401.T/disclosure",
+        "https://finance.matsui.co.jp/stock/1401/settlement/index"
+      ]
+    },
+    {
+      "code": "1438",
+      "name": "岐阜造園",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130820/",
+        "https://tdnet-pdf.kabutan.jp/20261113/140120261113579695.pdf",
+        "https://s.kabutan.jp/stocks/1438/finance/",
+        "https://finance.yahoo.co.jp/quote/1438.T/disclosure",
+        "https://moneybox.jp/disclosure/article.php?id=1296212",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261113/20261113578490.pdf",
+        "https://finance.yahoo.co.jp/quote/1438.N/disclosure",
+        "https://www2.jpx.co.jp/disc/14380/081220260806513556_tse-qcedjpsm-14380-20260807314380-ixbrl.htm",
+        "https://g2s.sakura.ne.jp/?code=1438",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261113579695/",
+        "https://moneybox.jp/disclosure/fiscal.php?t=1438",
+        "https://finance.yahoo.co.jp/quote/1438.N",
+        "https://disclosure.catr.jp/companies/043dc/42422/tdnet/7b5b3/774588"
+      ]
+    },
+    {
+      "code": "155A",
+      "name": "情報戦略テクノロジー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/stocks/155A/finance/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260213/20260212557820.pdf",
+        "https://irweather.jp/disclosures/327c228e-f576-46a2-824b-25c02f35ae5d",
+        "https://finance.yahoo.co.jp/quote/155A.T/performance",
+        "https://finance.matsui.co.jp/stock/155A/settlement/index",
+        "https://finance.yahoo.co.jp/quote/155A.T/disclosure"
+      ]
+    },
+    {
+      "code": "156A",
+      "name": "マテリアルグループ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/4601c/70396/tdnet/c7b39/787007",
+        "https://s.kabutan.jp/news/k202610140079/",
+        "https://moneybox.jp/disclosure/article.php?id=1284870",
+        "https://finance.yahoo.co.jp/quote/156A.T/financials",
+        "https://finance.yahoo.co.jp/quote/156A.T/performance",
+        "https://finance.yahoo.co.jp/quote/156A.T/disclosure",
+        "https://finance.matsui.co.jp/stock/156A/settlement/index",
+        "https://disclosure.catr.jp/companies/4601c/70396/tdnet/69e23/767438"
+      ]
+    },
+    {
+      "code": "2180",
+      "name": "サニーサイドアップグループ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/b3e62/46982/tdnet/b3427/777404",
+        "https://finance.yahoo.co.jp/quote/2180.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/2180.T"
+      ]
+    },
+    {
+      "code": "218A",
+      "name": "Liberaware",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/218A0/081220260914535874_tse-acedjpsm-218A0-202609143218A0-ixbrl.htm",
+        "https://disclosure.catr.jp/companies/0c499/154663/tdnet/d1924/782646",
+        "https://s.kabutan.jp/stocks/218A/finance/",
+        "https://s.kabutan.jp/news/k202609140066/",
+        "https://moneybox.jp/disclosure/article.php?id=1280518",
+        "https://finance.yahoo.co.jp/quote/218A.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/218A.T/financials?styl=summary",
+        "https://financialfilings.com/filings/liberaware/earnings-release/2026/59930382/",
+        "https://www2.jpx.co.jp/disc/218A0/140120260612569727.pdf",
+        "https://finance.yahoo.co.jp/quote/218A.T/performance",
+        "https://finance.matsui.co.jp/stock/218A/settlement/index",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260612/20260612569727.pdf",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260313/20260313581612.pdf"
+      ]
+    },
+    {
+      "code": "2884",
+      "name": "ヨシムラ・フード・ホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/73f16/47257/tdnet/5e09f/787644",
+        "https://finance.yahoo.co.jp/quote/2884.T/disclosure",
+        "https://disclosure.catr.jp/companies/73f16/47257/settlements",
+        "https://s.kabutan.jp/stocks/2884/finance/",
+        "https://komori.app/company/2884/disclosure/20261015550944",
+        "https://s.kabutan.jp/news/k202610150122/"
+      ]
+    },
+    {
+      "code": "2986",
+      "name": "LAホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/a39f3/80751/tdnet/24f38/795411",
+        "https://s.kabutan.jp/news/k202611120288/",
+        "https://finance.yahoo.co.jp/quote/2986.N/financials",
+        "https://s.kabutan.jp/stocks/2986/finance/",
+        "https://finance.yahoo.co.jp/quote/2986.F/disclosure",
+        "https://disclosure.catr.jp/companies/a39f3/80751/tdnet/a7efd/775918"
+      ]
+    },
+    {
+      "code": "3040",
+      "name": "ソリトンシステムズ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://finance.yahoo.co.jp/quote/3040.Q/financials",
+        "https://s.kabutan.jp/news/k202611120007/",
+        "https://s.kabutan.jp/stocks/3040/finance/",
+        "https://finance.yahoo.co.jp/quote/3040.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/3040.Q/disclosure",
+        "https://moneybox.jp/disclosure/article.php?id=1292972&src=tdnet",
+        "https://komori.app/company/3040/disclosure/20261110572261",
+        "https://disclosure.catr.jp/companies/4821b/47305/tdnet/78fdd/776439",
+        "https://g2s.sakura.ne.jp/?code=3040",
+        "https://g2s.skr.jp/3040?date=2026-09-29"
+      ]
+    },
+    {
+      "code": "3359",
+      "name": "cotta",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www.cotta.co.jp/wp/wp-content/uploads/2026/11/20261113kt.pdf",
+        "https://japanir.jp/company/company-3359/ir/3359-20261113-01_wp_financial_summary/",
+        "https://finance.yahoo.co.jp/quote/3359.F/financials",
+        "https://g2s.sakura.ne.jp/?code=3359",
+        "https://s.kabutan.jp/stocks/3359/finance/",
+        "https://g2s.skr.jp/3359?date=2026-11-13",
+        "https://disclosure.catr.jp/companies/a9508/47489/tdnet/7e8e4/776804",
+        "https://g2s.skr.jp/3359?date=2026-08-04",
+        "https://moneybox.jp/investment/summary.php?t=3359",
+        "https://finance.yahoo.co.jp/quote/3359.T"
+      ]
+    },
+    {
+      "code": "3441",
+      "name": "山王",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://market.coconeweb.com/wp-content/uploads/cm-xbrl/3441/XBRLData/Summary/tse-acedjpsm-34410-20260914334410-ixbrl.htm",
+        "https://s.kabutan.jp/news/k202609140078/",
+        "https://s.kabutan.jp/stocks/3441/finance/",
+        "https://kaburadar.jp/stocks/3441.html",
+        "https://scouter.monex.co.jp/news/detail/3441_20260914_act_20260914_160022_1?cnt=-10",
+        "https://finance.yahoo.co.jp/quote/3441.N/disclosure"
+      ]
+    },
+    {
+      "code": "3449",
+      "name": "テクノフレックス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/ecb39/2384/tdnet/7ee4b/795429",
+        "https://s.kabutan.jp/news/k202611120182/",
+        "https://komori.app/company/3449/disclosure/20261111573055",
+        "https://finance.yahoo.co.jp/quote/3449.T/disclosure",
+        "https://komori.app/company/3449/disclosure/20261111573059",
+        "https://s.kabutan.jp/stocks/3449/finance/",
+        "https://g2s.skr.jp/?code=3449",
+        "https://finance.yahoo.co.jp/quote/3449.T/financials",
+        "https://disclosure.catr.jp/companies/ecb39/2384/tdnet/1bbb8/773557",
+        "https://g2s.sakura.ne.jp/?code=3449&page=1"
+      ]
+    },
+    {
+      "code": "3482",
+      "name": "ロードスターキャピタル",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www.loadstarcapital.com/ja/ir/irnews/irnews20260806_2.html",
+        "https://www.loadstarcapital.com/ja/ir/irnews/irnews20261030_1.html",
+        "https://disclosure.catr.jp/companies/374df/47554/tdnet/1e856/790298",
+        "https://finance.yahoo.co.jp/quote/3482.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/3482.T/performance",
+        "https://s.kabutan.jp/stocks/3482/finance/",
+        "https://note.com/loadstarcapital/n/n6da2e25326ea"
+      ]
+    },
+    {
+      "code": "3498",
+      "name": "霞ヶ関キャピタル",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/fc04f/52351/tdnet/19cdd/785673",
+        "https://s.kabutan.jp/news/k202610050013/",
+        "https://g2s.skr.jp/?code=3498",
+        "https://finance.yahoo.co.jp/quote/3498.T/disclosure",
+        "https://s.kabutan.jp/stocks/3498/finance/",
+        "https://g2s.sakura.ne.jp/?code=3498",
+        "https://finance.matsui.co.jp/stock/3498/settlement/index",
+        "https://finance.yahoo.co.jp/quote/3498.T/financials"
+      ]
+    },
+    {
+      "code": "3560",
+      "name": "ほぼ日",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/65a8e/47586/tdnet/23816/787051",
+        "https://s.kabutan.jp/stocks/3560/finance/",
+        "https://s.kabutan.jp/news/k202610140083/",
+        "https://finance.yahoo.co.jp/quote/3560.T/disclosure",
+        "https://www.daiwair.co.jp/td_download.cgi?c=3560&i=3186330"
+      ]
+    },
+    {
+      "code": "3663",
+      "name": "セルシス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/bd486/47641/tdnet/c1ba2/792479",
+        "https://s.kabutan.jp/stocks/3663/finance/",
+        "https://finance.yahoo.co.jp/quote/3663.T/financials",
+        "https://s.kabutan.jp/news/k202611060118/",
+        "https://finance.yahoo.co.jp/quote/3663.T",
+        "https://kabuyoho.jp/report?bcode=3663",
+        "https://finance.matsui.co.jp/stock/3663/settlement/index",
+        "https://g2s.sakura.ne.jp/?code=3663"
+      ]
+    },
+    {
+      "code": "3692",
+      "name": "FFRIセキュリティ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/d07a1/47667/tdnet/5dcda/795459",
+        "https://finance.yahoo.co.jp/quote/3692.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/3692.T/financials",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261112/20261020553679.pdf",
+        "https://disclosure.catr.jp/companies/d07a1/47667/settlements",
+        "https://moneybox.jp/disclosure/article.php?id=1293413&src=tdnet",
+        "https://s.kabutan.jp/news/k202611120129/",
+        "https://www2.jpx.co.jp/disc/36920/140120260422508470.pdf",
+        "https://s.kabutan.jp/stocks/3692/finance/",
+        "https://finance.yahoo.co.jp/quote/3692.T",
+        "https://disclosure.catr.jp/companies/d07a1/47667/tdnet/09c09/777162",
+        "https://disclosure.catr.jp/companies/d07a1/47667/tdnet/e2417/754163"
+      ]
+    },
+    {
+      "code": "3695",
+      "name": "GMOプロダクトパートナーズ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": []
+    },
+    {
+      "code": "3696",
+      "name": "セレス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/7ca3d/47670/tdnet/21dcf/795095",
+        "https://s.kabutan.jp/news/k202611120017/",
+        "https://japanir.jp/wp-content/uploads/2026/11/3696-20261112-01.pdf",
+        "https://s.kabutan.jp/stocks/3696/finance/",
+        "https://disclosure.catr.jp/companies/7ca3d/47670/tdnet/c8d85/776974",
+        "https://g2s.skr.jp/?code=3696",
+        "https://finance.yahoo.co.jp/quote/3696.T/financials?styl=summary",
+        "https://finance.matsui.co.jp/stock/3696/settlement/index",
+        "https://t.co/wM18eEssZt",
+        "https://moneybox.jp/disclosure/article.php?id=1292996&src=tdnet",
+        "https://stock-chan.com/3696/"
+      ]
+    },
+    {
+      "code": "3763",
+      "name": "プロシップ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130318/",
+        "https://finance.yahoo.co.jp/quote/3763.T/financials",
+        "https://g2s.skr.jp/3763",
+        "https://finance.yahoo.co.jp/quote/3763.T",
+        "https://finance.yahoo.co.jp/quote/3763.T/disclosure",
+        "https://g2s.sakura.ne.jp/?code=3763",
+        "https://finance.matsui.co.jp/stock/3763/settlement/index",
+        "https://kabubusho.com/stock/3763",
+        "https://finance.yahoo.co.jp/quote/3763.Q",
+        "https://kabuyoho.jp/report?bcode=3763",
+        "https://g2s.skr.jp/3763?date=2026-11-13",
+        "https://disclosure.catr.jp/companies/2b24d/47698/tdnet/b689e/778368"
+      ]
+    },
+    {
+      "code": "3795",
+      "name": "トヨクモ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": []
+    },
+    {
+      "code": "3923",
+      "name": "ラクス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130528/",
+        "https://finance.yahoo.co.jp/quote/3923.T/disclosure",
+        "https://s.kabutan.jp/stocks/3923/finance/",
+        "https://finance.yahoo.co.jp/quote/3923.T/financials?styl=summary",
+        "https://g2s.skr.jp/?code=3923",
+        "https://finance.matsui.co.jp/stock/3923/settlement/index",
+        "https://g2s.sakura.ne.jp/?code=3923",
+        "https://finance.yahoo.co.jp/quote/3923.T",
+        "https://moneybox.jp/disclosure/?t=3923",
+        "https://disclosure.catr.jp/companies/8a46b/47795/tdnet/94530/777890",
+        "https://disclosure.catr.jp/companies/8a46b/47795/tdnet/b5cab/751921",
+        "https://kabuyoho.jp/report?bcode=3923"
+      ]
+    },
+    {
+      "code": "3968",
+      "name": "セグエグループ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/f463f/47834/tdnet/d3ac1/795070",
+        "https://komori.app/company/3968/disclosure/20261111573174",
+        "https://komori.app/company/3968/disclosure/20261111574494",
+        "https://disclosure.catr.jp/companies/f463f/47834/tdnet/ae9aa/776960",
+        "https://moneybox.jp/disclosure/article.php?id=1292978&src=tdnet",
+        "https://s.kabutan.jp/stocks/3968/finance/",
+        "https://g2s.skr.jp/?code=3968",
+        "https://g2s.sakura.ne.jp/?code=3968",
+        "https://s-pyxis.com/PTS/html_output/3968_2026_12_2Q.html",
+        "https://finance.matsui.co.jp/stock/3968/settlement/index",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261112/20261111573174.pdf",
+        "https://stock-chan.com/3968/",
+        "https://moneybox.jp/investment/summary.php?t=3968"
+      ]
+    },
+    {
+      "code": "4012",
+      "name": "アクシス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/40460/140120260512524512.pdf",
+        "https://tdnet-pdf.kabutan.jp/20261112/140120261111574415.pdf",
+        "https://s.kabutan.jp/stocks/4012/finance/",
+        "https://s.kabutan.jp/news/k202611050012/",
+        "https://tdnet-pdf.kabutan.jp/20261111/140120261110571674.pdf",
+        "https://finance.yahoo.co.jp/quote/4012.T/disclosure",
+        "https://g2s.sakura.ne.jp/?code=4012"
+      ]
+    },
+    {
+      "code": "4046",
+      "name": "大阪ソーダ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/8c678/47873/tdnet/fa3ef/794076",
+        "https://komori.app/company/4046/disclosure/20261110570997",
+        "https://www2.jpx.co.jp/disc/40460/140120260512524512.pdf",
+        "https://s.kabutan.jp/news/k202611100257/",
+        "https://finance.yahoo.co.jp/quote/4046.T/financials",
+        "https://data.swcms.net/file/osaka-soda-corp/ja/release/auto_20261110570997/pdfFile.pdf",
+        "https://s.kabutan.jp/stocks/4046/finance/",
+        "https://market.coconeweb.com/wp-content/uploads/cm-xbrl/4046/XBRLData/Summary/tse-qcedjpsm-40460-20260807340460-ixbrl.htm",
+        "https://kabuyoho.jp/report?bcode=4046",
+        "https://finance.matsui.co.jp/stock/4046/settlement/index"
+      ]
+    },
+    {
+      "code": "4055",
+      "name": "ティアンドエスグループ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/b20f2/5552/tdnet/4b8dd/795493",
+        "https://s.kabutan.jp/news/k202611120225/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261112/20261111574415.pdf",
+        "https://komori.app/company/4055/disclosure/20261111574415",
+        "https://tdnet-pdf.kabutan.jp/20261112/140120261111574415.pdf",
+        "https://komori.app/company/4055/disclosure/20261111574476",
+        "https://s.kabutan.jp/stocks/4055/finance/",
+        "https://finance.yahoo.co.jp/quote/4055.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/4055.T/financials?styl=summary",
+        "https://disclosure.catr.jp/companies/b20f2/5552/tdnet/b08f5/777182",
+        "https://kabutec.jp/company/?code=4055"
+      ]
+    },
+    {
+      "code": "4100",
+      "name": "戸田工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/4596d/47891/tdnet/3e687/794602",
+        "https://komori.app/company/4100/disclosure/20261110571674",
+        "https://finance.yahoo.co.jp/quote/4100.T/disclosure",
+        "https://s.kabutan.jp/news/k202611110153/",
+        "https://s.kabutan.jp/stocks/4100/finance/",
+        "https://tdnet-pdf.kabutan.jp/20261111/140120261110571674.pdf",
+        "https://finance.yahoo.co.jp/quote/4100.T/financials"
+      ]
+    },
+    {
+      "code": "4258",
+      "name": "網屋",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/42580/140120261111573256.pdf",
+        "https://s.kabutan.jp/news/k202611110288/",
+        "https://finance.yahoo.co.jp/quote/4258.T/disclosure",
+        "https://tdnet-pdf.kabutan.jp/20261111/140120261111573256.pdf",
+        "https://g2s.skr.jp/?code=4258",
+        "https://finance.yahoo.co.jp/quote/4258.T/financials",
+        "https://finance.yahoo.co.jp/quote/4258.T",
+        "https://s.kabutan.jp/stocks/4258/finance/",
+        "https://g2s.sakura.ne.jp/?code=4258",
+        "https://japanir.jp/wp-content/uploads/2026/11/4258-20261111-01.pdf",
+        "https://finance.matsui.co.jp/stock/4258/settlement/index",
+        "https://s.kabutan.jp/news/k202608120197/",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260812518249/1/general.pdf",
+        "https://moneybox.jp/disclosure/article.php?id=1292755",
+        "https://www.kabutore.biz/zaimubunseki/zaimu.html?code=4258&kessan=thirdquarter&zaimukeyword=%E5%A3%B2%E4%B8%8A%E7%B7%8F%E5%88%A9%E7%9B%8Aimgno9&zaimusyorui=soneki"
+      ]
+    },
+    {
+      "code": "4261",
+      "name": "アジアクエスト",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130359/",
+        "https://s.kabutan.jp/stocks/4261/finance/",
+        "https://finance.yahoo.co.jp/quote/4261.T",
+        "https://www.daiwair.co.jp/td_download.cgi?c=4261&i=3215586",
+        "https://g2s.skr.jp/?code=4261",
+        "https://g2s.sakura.ne.jp/?code=4261",
+        "https://g2s.skr.jp/?page=21&str=%E4%B8%A1%E6%96%B9",
+        "https://finance.matsui.co.jp/stock/4261/settlement/index",
+        "https://disclosure.catr.jp/companies/5a891/58069/tdnet/5f3d0/777942",
+        "https://kabuyoho.jp/report?bcode=4261",
+        "https://finance.yahoo.co.jp/quote/4261.T/disclosure",
+        "https://s.kabutan.jp/stocks/4261/news/"
+      ]
+    },
+    {
+      "code": "4360",
+      "name": "マナックケミカルパートナーズ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": []
+    },
+    {
+      "code": "4366",
+      "name": "ダイトーケミックス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/ae446/47997/tdnet/64933/789633",
+        "https://s.kabutan.jp/stocks/4366/finance/",
+        "https://s.kabutan.jp/news/k202610290049/",
+        "https://komori.app/company/4366/disclosure/20261015551077",
+        "https://finance.yahoo.co.jp/quote/4366.T/financials",
+        "https://finance.matsui.co.jp/stock/4366/settlement/index",
+        "https://finance.yahoo.co.jp/quote/4366.T/disclosure",
+        "https://g2s.skr.jp/?code=4366",
+        "https://disclosure.catr.jp/companies/ae446/47997/tdnet/e11b2/748095"
+      ]
+    },
+    {
+      "code": "4368",
+      "name": "扶桑化学工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/f47c3/47999/tdnet/df9f0/790620",
+        "https://s.kabutan.jp/stocks/4368/finance/",
+        "https://s.kabutan.jp/news/k202610300277/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260511/20260511522373.pdf",
+        "https://finance.matsui.co.jp/stock/4368/settlement/index",
+        "https://finance.yahoo.co.jp/quote/4368.T/disclosure",
+        "https://komori.app/company/4368/disclosure/20261030561153",
+        "https://disclosure.catr.jp/companies/f47c3/47999/tdnet/e09eb/775337",
+        "https://kabuyoho.jp/report?bcode=4368"
+      ]
+    },
+    {
+      "code": "4369",
+      "name": "トリケミカル研究所",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/574cc/48000/tdnet/672c3/780544",
+        "https://s.kabutan.jp/news/k202608310002/",
+        "https://finance.yahoo.co.jp/quote/4369.T/disclosure",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260827527069/1/general.pdf",
+        "https://s.kabutan.jp/stocks/4369/finance/",
+        "https://finance.matsui.co.jp/stock/4369/settlement/index",
+        "https://disclosure.catr.jp/companies/574cc/48000/tdnet/a42f1/736112",
+        "https://finance.yahoo.co.jp/quote/4369.Q/disclosure"
+      ]
+    },
+    {
+      "code": "4371",
+      "name": "コアコンセプト・テクノロジー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://finance.yahoo.co.jp/quote/4371.T/disclosure",
+        "https://s.kabutan.jp/stocks/4371/finance/",
+        "https://stock-chan.com/4371/",
+        "https://moneybox.jp/disclosure/article.php?id=1295855&src=tdnet",
+        "https://finance.yahoo.co.jp/quote/4371.T/performance",
+        "https://moneybox.jp/disclosure/article.php?id=1295856&src=tdnet",
+        "https://disclosure.catr.jp/companies/4515f/77362/tdnet/bb856/778392",
+        "https://www.kabutec.jp/company/?code=4371",
+        "https://s.kabutan.jp/stocks/4371/news/",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261112577386/"
+      ]
+    },
+    {
+      "code": "4396",
+      "name": "システムサポート",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/1fcd4/54181/tdnet/d446e/776472",
+        "https://finance.yahoo.co.jp/quote/4396.T/disclosure",
+        "https://market.coconeweb.com/wp-content/uploads/cm-xbrl/4396/XBRLData/Summary/tse-acedjpsm-43960-20260812343960-ixbrl.htm",
+        "https://g2s.skr.jp/?code=4396",
+        "https://moneybox.jp/disclosure/article.php?id=1292269&src=tdnet",
+        "https://kabubusho.com/stock/4396",
+        "https://regfis.com/reports/20260925_S100Z429_E34111_null_010_030000_120"
+      ]
+    },
+    {
+      "code": "4414",
+      "name": "フレクト",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/8ec03/25890/tdnet/ba0fa/795987",
+        "https://s.kabutan.jp/news/k202611120395/",
+        "https://tdnet-pdf.kabutan.jp/20261112/140120261111573768.pdf",
+        "https://finance.yahoo.co.jp/quote/4414.T/financials",
+        "https://g2s.skr.jp/?code=4414",
+        "https://finance.yahoo.co.jp/quote/4414.T/disclosure",
+        "https://finance.matsui.co.jp/stock/4414/settlement/index",
+        "https://moneybox.jp/disclosure/fiscal.php?t=4414",
+        "https://disclosure.catr.jp/companies/8ec03/25890/tdnet/9d79a/777448",
+        "https://kabutrack.com/securities/4414/earnings/",
+        "https://finance.yahoo.co.jp/quote/4414.T/performance",
+        "https://stock-chan.com/4414/"
+      ]
+    },
+    {
+      "code": "4440",
+      "name": "ヴィッツ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202610090003/",
+        "https://tdnet-pdf.kabutan.jp/20261009/140120261008547659.pdf",
+        "https://g2s.skr.jp/?code=4440",
+        "https://s.kabutan.jp/stocks/4440/finance/",
+        "https://finance.yahoo.co.jp/quote/4440.T/disclosure",
+        "https://finance.matsui.co.jp/stock/4440/settlement/index",
+        "https://moneybox.jp/disclosure/article.php?id=1284217",
+        "https://kabubusho.com/stock/4440"
+      ]
+    },
+    {
+      "code": "4461",
+      "name": "第一工業製薬",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/400fc/48008/tdnet/0b8a5/789610",
+        "https://s.kabutan.jp/news/k202610290037/",
+        "https://s.kabutan.jp/stocks/4461/finance/",
+        "https://finance.matsui.co.jp/stock/4461/settlement/index",
+        "https://finance.yahoo.co.jp/quote/4461.T/financials",
+        "https://disclosure.catr.jp/companies/400fc/48008/tdnet/28fc8/749677"
+      ]
+    },
+    {
+      "code": "4479",
+      "name": "マクアケ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/5d726/54722/tdnet/a5fbe/789016",
+        "https://komori.app/company/4479/disclosure/20261016552526",
+        "https://finance.yahoo.co.jp/quote/4479.T/financials",
+        "https://s.kabutan.jp/stocks/4479/finance/",
+        "https://s.kabutan.jp/news/k202610270035/",
+        "https://finance.yahoo.co.jp/quote/4479.T/disclosure",
+        "https://g2s.skr.jp/?code=4479",
+        "https://g2s.sakura.ne.jp/?code=4479",
+        "https://finance.yahoo.co.jp/quote/4479.T/performance"
+      ]
+    },
+    {
+      "code": "4626",
+      "name": "太陽ホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/3181f/48092/tdnet/15b05/792229",
+        "https://komori.app/company/4626/disclosure/20261104564748",
+        "https://www.taiyo-hd.co.jp/jp/investor/irnews/news20260430000001/main/0/link/20260430_01.pdf",
+        "https://s.kabutan.jp/news/k202611060015/",
+        "https://www.taiyo-hd.co.jp/jp/investor/irnews/news20261106000001/main/0/link/20261106_01.pdf",
+        "https://s.kabutan.jp/stocks/4626/finance/"
+      ]
+    },
+    {
+      "code": "4743",
+      "name": "アイティフォー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/cb3e6/48160/tdnet/c6e6f/795572",
+        "https://s.kabutan.jp/news/k202611120312/",
+        "https://s.kabutan.jp/stocks/4743/finance/",
+        "https://g2s.skr.jp/?code=4743",
+        "https://finance.yahoo.co.jp/quote/4743.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/4743.T",
+        "https://moneybox.jp/disclosure/article.php?id=1293526&src=tdnet",
+        "https://finance.matsui.co.jp/stock/4743/settlement/index",
+        "https://g2s.sakura.ne.jp/?code=4743"
+      ]
+    },
+    {
+      "code": "4765",
+      "name": "SBIグローバルアセットマネジメント",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/47650/140120261026555884.pdf",
+        "https://disclosure.catr.jp/companies/c7e2d/48174/tdnet/1fe25/789024",
+        "https://s.kabutan.jp/news/k202610270018/",
+        "https://s.kabutan.jp/stocks/4765/finance/",
+        "https://s.kabutan.jp/stocks/4765/finance"
+      ]
+    },
+    {
+      "code": "4776",
+      "name": "サイボウズ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/4704b/48183/tdnet/f3bac/795575",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261112/20261110571690.pdf",
+        "https://finance.yahoo.co.jp/quote/4776.T/disclosure",
+        "https://s.kabutan.jp/news/k202611120166/",
+        "https://s.kabutan.jp/stocks/4776/finance/",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260810516325/1/general.pdf",
+        "https://disclosure.catr.jp/companies/4704b/48183/tdnet/8da0a/777246",
+        "https://finance.yahoo.co.jp/quote/4776.T/financials?styl=summary",
+        "https://finance.matsui.co.jp/stock/4776/settlement/index",
+        "https://www.kabutore.biz/zaimubunseki/zaimu.html?code=4776&kessan=thirdquarter"
+      ]
+    },
+    {
+      "code": "4825",
+      "name": "ウェザーニューズ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/9181b/48201/tdnet/5c138/786241",
+        "https://s.kabutan.jp/stocks/4825/finance/",
+        "https://finance.yahoo.co.jp/quote/4825.T/disclosure",
+        "https://disclosure.catr.jp/companies/82ae5/48204/tdnet/88d7c/748256"
+      ]
+    },
+    {
+      "code": "4828",
+      "name": "ビジネスエンジニアリング",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://finance.yahoo.co.jp/quote/4828.T/disclosure",
+        "https://s.kabutan.jp/stocks/4828/finance/",
+        "https://tdnet-pdf.kabutan.jp/20261111/140120261110572321.pdf",
+        "https://finance.yahoo.co.jp/quote/4828.T",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260512/20260511523898.pdf",
+        "https://finance.matsui.co.jp/stock/4828/settlement/index",
+        "https://disclosure.catr.jp/companies/82ae5/48204/tdnet/88d7c/748256",
+        "https://moneybox.jp/disclosure/fiscal.php?t=4828"
+      ]
+    },
+    {
+      "code": "4970",
+      "name": "東洋合成工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/66e31/48248/tdnet/c0811/792531",
+        "https://www.toyogosei.co.jp/news/20261106_FY2026Q2financial_results.pdf",
+        "https://tdnet-pdf.kabutan.jp/20261106/140120261106567787.pdf",
+        "https://www.daiwair.co.jp/td_download.cgi?c=4970&i=3200562",
+        "https://s.kabutan.jp/stocks/4970/finance/",
+        "https://komori.app/company/4970/disclosure/20261106567787",
+        "https://s.kabutan.jp/news/k202611060202/",
+        "https://finance.matsui.co.jp/stock/4970/settlement/index",
+        "https://moneybox.jp/disclosure/article.php?id=1290471&src=tdnet",
+        "https://finance.yahoo.co.jp/quote/4970.Q/financials",
+        "https://finance.yahoo.co.jp/quote/4970.T"
+      ]
+    },
+    {
+      "code": "4971",
+      "name": "メック",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/4971/disclosure/20261111572473",
+        "https://komori.app/company/4971/disclosure/20261111572507",
+        "https://s.kabutan.jp/news/k202611110175/",
+        "https://finance.matsui.co.jp/stock/4971/settlement/index",
+        "https://g2s.skr.jp/?code=4971",
+        "https://s.kabutan.jp/stocks/4971/finance/",
+        "https://komori.app/company/4971/disclosure/20261111572509",
+        "https://finance.yahoo.co.jp/quote/4971.T/financials?styl=summary",
+        "https://komori.app/company/4971/disclosure/20260810515954",
+        "https://moneybox.jp/disclosure/article.php?id=1292561",
+        "https://g2s.sakura.ne.jp/?code=4971"
+      ]
+    },
+    {
+      "code": "4975",
+      "name": "JCU",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611050120/",
+        "https://finance.matsui.co.jp/stock/4975/settlement/index",
+        "https://g2s.skr.jp/?code=4975",
+        "https://g2s.sakura.ne.jp/?code=4975",
+        "https://finance.yahoo.co.jp/quote/4975.T/disclosure",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260512525249/1/general.pdf"
+      ]
+    },
+    {
+      "code": "5018",
+      "name": "MORESCO",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/a80c8/48276/tdnet/ce504/787678",
+        "https://s.kabutan.jp/stocks/5018/finance/",
+        "https://komori.app/company/5018/disclosure/20261013549333",
+        "https://finance.matsui.co.jp/stock/5018/settlement/index",
+        "https://g2s.skr.jp/?code=5018",
+        "https://s.kabutan.jp/news/k202610150105/"
+      ]
+    },
+    {
+      "code": "5033",
+      "name": "ヌーラボ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130506/",
+        "https://s.kabutan.jp/stocks/5033/finance/",
+        "https://finance.yahoo.co.jp/quote/5033.T",
+        "https://www.g2s.sakura.ne.jp/?code=5033",
+        "https://finance.matsui.co.jp/stock/5033/settlement/index",
+        "https://ko5yqxb8d4.execute-api.ap-northeast-1.amazonaws.com/reportDisclose?bcode=5033&disc_type=14",
+        "https://finance.yahoo.co.jp/quote/5033.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/5033.T/performance"
+      ]
+    },
+    {
+      "code": "5136",
+      "name": "tripla",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/2f3a8/32258/tdnet/6e48c/782738",
+        "https://market.coconeweb.com/wp-content/uploads/cm-xbrl/5136/XBRLData/Summary/tse-qcedjpsm-51360-20260914351360-ixbrl.htm",
+        "https://finance.yahoo.co.jp/quote/5136.T/disclosure",
+        "https://s.kabutan.jp/news/k202609140061/",
+        "https://s.kabutan.jp/stocks/5136/finance/",
+        "https://fs2.magicalir.net/tdnet/2026/5136/20260615570802.pdf",
+        "https://g2s.skr.jp/?code=5136",
+        "https://www2.jpx.co.jp/disc/51360/140120260615571004.pdf",
+        "https://g2s.sakura.ne.jp/?code=5136",
+        "https://scouter.monex.co.jp/news/detail/5136_20260914_act_20260914_153038_1",
+        "https://finance.matsui.co.jp/stock/5136/settlement/index",
+        "https://market.coconeweb.com/stocks/5136/"
+      ]
+    },
+    {
+      "code": "5254",
+      "name": "Arent",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611120418/",
+        "https://komori.app/company/5254/disclosure/20261112575580",
+        "https://disclosure.catr.jp/companies/a99db/39863/tdnet/33b59/773921",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260805510975/1/general.pdf",
+        "https://tdnet-pdf.kabutan.jp/20261112/140120261112575580.pdf",
+        "https://s.kabutan.jp/stocks/5254/finance/",
+        "https://komori.app/company/5254/disclosure/20261112575835",
+        "https://finance.matsui.co.jp/stock/5254/settlement/index",
+        "https://s.kabutan.jp/news/k202608060319/"
+      ]
+    },
+    {
+      "code": "5367",
+      "name": "ニッカトー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/53670/140120260427511957.pdf",
+        "https://komori.app/company/5367/disclosure/20261102562239",
+        "https://www.nikkato.co.jp/wp-content/uploads/2026/11/20261102_earnings_report_01.pdf",
+        "https://disclosure.catr.jp/companies/04e69/48350/tdnet/f73d4/791024",
+        "https://s.kabutan.jp/news/k202611020044/",
+        "https://financialfilings.com/filings/nikkato-corporation/earnings-release/2026/75321729/",
+        "https://s.kabutan.jp/stocks/5367/finance/",
+        "https://komori.app/company/5367/disclosure/20261102562108"
+      ]
+    },
+    {
+      "code": "5589",
+      "name": "オートサーバー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611110035/",
+        "https://komori.app/company/5589/disclosure/20261110571909",
+        "https://komori.app/company/5589/disclosure/20261110572259",
+        "https://finance.yahoo.co.jp/quote/5589.T",
+        "https://finance.yahoo.co.jp/quote/5589.T/disclosure",
+        "https://s.kabutan.jp/stocks/5589/finance/",
+        "https://g2s.skr.jp/?code=5589",
+        "https://finance.yahoo.co.jp/quote/5589.T/financials?styl=summary",
+        "https://g2s.sakura.ne.jp/?code=55890",
+        "https://komori.app/company/5589/disclosure/20261110571906"
+      ]
+    },
+    {
+      "code": "5591",
+      "name": "AVILEN",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130514/",
+        "https://finance.yahoo.co.jp/quote/5591.T/disclosure",
+        "https://tdnet-pdf.kabutan.jp/20261113/140120261113579096.pdf",
+        "https://g2s.skr.jp/?code=5591",
+        "https://s.kabutan.jp/stocks/5591/finance/",
+        "https://financialfilings.com/filings/avilen-inc/earnings-release/2026/55994220/",
+        "https://finance.matsui.co.jp/stock/5591/settlement/index",
+        "https://market.coconeweb.com/stocks/5591/"
+      ]
+    },
+    {
+      "code": "5805",
+      "name": "SWCC",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/stocks/5805/finance/",
+        "https://finance.yahoo.co.jp/quote/5805.T/financials",
+        "https://finance.yahoo.co.jp/quote/5805.T/disclosure",
+        "https://finance.matsui.co.jp/stock/5805/settlement/index",
+        "https://g2s.skr.jp/5805?date=2025-06-26",
+        "https://s.kabutan.jp/news/k202608070150/"
+      ]
+    },
+    {
+      "code": "5957",
+      "name": "日東精工",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/377f7/48476/tdnet/28dae/795632",
+        "https://s.kabutan.jp/news/k202611120307/",
+        "https://s.kabutan.jp/stocks/5957/finance/",
+        "https://finance.yahoo.co.jp/quote/5957.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/5957.O/financials",
+        "https://g2s.skr.jp/?code=5957",
+        "https://finance.matsui.co.jp/stock/5957/settlement/index"
+      ]
+    },
+    {
+      "code": "5983",
+      "name": "イワブチ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611120364/",
+        "https://disclosure.catr.jp/companies/9b306/48494/tdnet/27f3d/795916",
+        "https://komori.app/company/5983/disclosure/20261028558521",
+        "https://finance.yahoo.co.jp/quote/5983.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/5983.T",
+        "https://s.kabutan.jp/stocks/5983/finance/",
+        "https://www.daiwair.co.jp/td_download.cgi?c=5983&i=3217516",
+        "https://kabuyoho.jp/report?bcode=5983",
+        "https://g2s.skr.jp/?code=59830",
+        "https://moneybox.jp/disclosure/article.php?id=1293820&src=tdnet",
+        "https://g2s.skr.jp/?code=5983",
+        "https://finance.yahoo.co.jp/news/detail/8032803bc015f6133e974495db51215935827a65"
+      ]
+    },
+    {
+      "code": "6027",
+      "name": "弁護士ドットコム",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/90ff7/48517/tdnet/20387/794690",
+        "https://s.kabutan.jp/news/k202611110154/",
+        "https://s.kabutan.jp/stocks/6027/finance/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261111/20261110571694.pdf",
+        "https://finance.yahoo.co.jp/quote/6027.T/disclosure",
+        "https://g2s.sakura.ne.jp/?code=6027",
+        "https://www2.jpx.co.jp/disc/60270/140120260512526281.pdf",
+        "https://www.kabutore.biz/zaimubunseki/zaimu.html?code=6027&kessan=secondquarter",
+        "https://disclosure.catr.jp/companies/90ff7/48517/tdnet/b4d3a/750242",
+        "https://kabutrack.com/securities/6027/earnings/",
+        "https://moneybox.jp/disclosure/?t=6027"
+      ]
+    },
+    {
+      "code": "6134",
+      "name": "FUJI",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/7620a/48589/tdnet/eecca/791895",
+        "https://s.kabutan.jp/news/k202611050113/",
+        "https://finance.yahoo.co.jp/quote/6134.N/financials?styl=presentation",
+        "https://finance.yahoo.co.jp/quote/6134.N/financials",
+        "https://www.g2s.sakura.ne.jp/?code=6134",
+        "https://finance.yahoo.co.jp/quote/6134.N",
+        "https://disclosure.catr.jp/companies/7620a/48589/tdnet/45807/752214",
+        "https://s.kabutan.jp/stocks/6134/finance/",
+        "https://s.kabutan.jp/news/k202608030041/",
+        "https://stock-chan.com/6134/"
+      ]
+    },
+    {
+      "code": "6189",
+      "name": "グローバルキッズCOMPANY",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130562/",
+        "https://finance.yahoo.co.jp/quote/6189.T/disclosure",
+        "https://tdnet-pdf.kabutan.jp/20261113/140120261113579237.pdf",
+        "https://s.kabutan.jp/stocks/6189/finance/",
+        "https://moneybox.jp/disclosure/article.php?id=1295237&src=tdnet",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261113579237/",
+        "https://finance.yahoo.co.jp/quote/6189.T",
+        "https://disclosure.catr.jp/companies/3fb15/48632/tdnet/af3f3/776031",
+        "https://pay.kabutec.jp/company/?code=6189",
+        "https://s.kabutan.jp/news/k202608100162/",
+        "https://finance.yahoo.co.jp/quote/6189.T/performance"
+      ]
+    },
+    {
+      "code": "6226",
+      "name": "守谷輸送機工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/6226/disclosure/20261111572701",
+        "https://disclosure.catr.jp/companies/e8095/185972/tdnet/dddc1/794486",
+        "https://s.kabutan.jp/news/k202611110095/",
+        "https://tdnet-pdf.kabutan.jp/20261111/140120261111572701.pdf",
+        "https://www.daiwair.co.jp/td_download.cgi?c=6226&i=3201198",
+        "https://g2s.skr.jp/?code=6226",
+        "https://g2s.sakura.ne.jp/?code=6226",
+        "https://finance.matsui.co.jp/stock/6226/settlement/index",
+        "https://s.kabutan.jp/stocks/6226/finance/",
+        "https://finance.yahoo.co.jp/quote/6226.T/financials?styl=summary"
+      ]
+    },
+    {
+      "code": "6286",
+      "name": "静甲",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611110191/",
+        "https://tdnet-pdf.kabutan.jp/20261111/140120261111572889.pdf"
+      ]
+    },
+    {
+      "code": "6327",
+      "name": "北川精機",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/9c8e4/48715/tdnet/8a7a5/778879",
+        "https://s.kabutan.jp/news/k202608180006/",
+        "https://japanir.jp/wp-content/uploads/2026/11/6327-20261106-01.pdf",
+        "https://s.kabutan.jp/news/k202611060206/",
+        "https://s.kabutan.jp/stocks/6327/finance/",
+        "https://komori.app/company/6327/disclosure/20261104564396",
+        "https://finance.yahoo.co.jp/quote/6327.T/disclosure",
+        "https://g2s.skr.jp/6327?code=63270",
+        "https://finance.matsui.co.jp/stock/6327/settlement/index",
+        "https://g2s.sakura.ne.jp/?code=6327",
+        "https://finance.yahoo.co.jp/quote/6327.T",
+        "https://finance.yahoo.co.jp/quote/6327.Q/financials",
+        "https://www.kabutore.biz/zaimubunseki/zaimu.html?code=6327&kessan=firstquarter"
+      ]
+    },
+    {
+      "code": "6336",
+      "name": "石井表記",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://market.coconeweb.com/wp-content/uploads/cm-xbrl/6336/XBRLData/Summary/tse-scedjpsy-63360-20260911363360-ixbrl.htm",
+        "https://disclosure.catr.jp/companies/a9b51/48722/tdnet/72a8f/782288",
+        "https://s.kabutan.jp/news/k202609110007/",
+        "https://g2s.skr.jp/?code=6336",
+        "https://finance.yahoo.co.jp/quote/6336.T/disclosure",
+        "https://s.kabutan.jp/stocks/6336/finance/",
+        "https://www2.ishiihyoki.co.jp/upload/news/attach/20260312.pdf",
+        "https://g2s.sakura.ne.jp/?code=6336",
+        "https://finance.yahoo.co.jp/quote/6336.T/performance",
+        "https://www2.jpx.co.jp/disc/63360/140120260313581191.pdf",
+        "https://finance.yahoo.co.jp/quote/6336.T",
+        "https://disclosure.catr.jp/companies/a9b51/48722/tdnet/cbc9d/735995",
+        "https://kabuyoho.jp/report?bcode=6336",
+        "https://kabuyoho.jp/sp/consNewsDetail?cat=1&lst=&nid=6336_20260911_act_20260911_140008_1&page=&score=1&wd2="
+      ]
+    },
+    {
+      "code": "6345",
+      "name": "アイチコーポレーション",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/a8ab7/48729/tdnet/d8102/789836",
+        "https://market.coconeweb.com/wp-content/uploads/cm-xbrl/6345/XBRLData/Summary/tse-scedjpsy-63450-20261029363450-ixbrl.htm",
+        "https://s.kabutan.jp/stocks/6345/finance/",
+        "https://finance.yahoo.co.jp/quote/6345.N/financials",
+        "https://japanir.jp/company/company-6345/ir/6345-20261029-01_wp_financial_summary/",
+        "https://finance.matsui.co.jp/stock/6345/settlement/index",
+        "https://s.kabutan.jp/news/k202610290133/",
+        "https://finance.yahoo.co.jp/quote/6345.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/6345.T",
+        "https://finance.yahoo.co.jp/quote/6345.N/performance"
+      ]
+    },
+    {
+      "code": "6364",
+      "name": "AIRMAN（北越工業）",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": []
+    },
+    {
+      "code": "6368",
+      "name": "オルガノ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/63680/140120260512526978.pdf",
+        "https://disclosure.catr.jp/companies/3eac3/48746/tdnet/f794c/791442",
+        "https://japanir.jp/wp-content/uploads/2026/11/6368-20261104-01.pdf",
+        "https://s.kabutan.jp/stocks/6368/finance/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261104/20261104563627.pdf",
+        "https://finance.yahoo.co.jp/quote/6368.T/disclosure",
+        "https://finance.matsui.co.jp/stock/6368/settlement/index",
+        "https://komori.app/company/6368/disclosure/20261106568132",
+        "https://komori.app/company/6368/disclosure/20261104563627",
+        "https://s.kabutan.jp/news/k202611040073/",
+        "https://finance.yahoo.co.jp/quote/6368.T/financials"
+      ]
+    },
+    {
+      "code": "6407",
+      "name": "CKD",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130636/",
+        "https://finance.yahoo.co.jp/quote/6407.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/6407.T/financials",
+        "https://s.kabutan.jp/stocks/6407/finance/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261007/20261006546499.pdf",
+        "https://s.kabutan.jp/news/k202608100092/",
+        "https://disclosure.catr.jp/companies/67109/48772/tdnet/beead/776041",
+        "https://finance.matsui.co.jp/stock/6407/settlement/index"
+      ]
+    },
+    {
+      "code": "6469",
+      "name": "放電精密加工研究所",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/4e1aa/48809/tdnet/263cd/785886",
+        "https://finance.yahoo.co.jp/quote/6469.T/disclosure",
+        "https://s.kabutan.jp/stocks/6469/finance/",
+        "https://s.kabutan.jp/news/k202607070011/",
+        "https://finance.matsui.co.jp/stock/6469/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6469.T/performance"
+      ]
+    },
+    {
+      "code": "6474",
+      "name": "不二越",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/b9451/48814/tdnet/a72e0/785696",
+        "https://www2.jpx.co.jp/disc/64740/081220260713592304_tse-scedjpsy-64740-20260713592304-ixbrl.htm",
+        "https://s.kabutan.jp/stocks/6474/finance/",
+        "https://kabuyoho-sls-disclose.ifis.co.jp/389/140120261002545509.pdf",
+        "https://finance.matsui.co.jp/stock/6474/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6474.T/disclosure",
+        "https://g2s.skr.jp/?code=6474",
+        "https://s.kabutan.jp/news/k202610050011/",
+        "https://finance.yahoo.co.jp/quote/6474.T/financials"
+      ]
+    },
+    {
+      "code": "6508",
+      "name": "明電舎",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202610300190/",
+        "https://finance.matsui.co.jp/stock/6508/settlement/index",
+        "https://s.kabutan.jp/stocks/6508/finance/",
+        "https://g2s.skr.jp/?code=6508",
+        "https://assets.minkabu.jp/news/article_media_content/urn%3Anewsml%3Atdnet.info%3A20260513530176/140120260513530176.pdf",
+        "https://finance.yahoo.co.jp/quote/6508.T/disclosure"
+      ]
+    },
+    {
+      "code": "6518",
+      "name": "三相電機",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/6518/disclosure/20261029558408",
+        "https://s.kabutan.jp/news/k202610300150/",
+        "https://finance.matsui.co.jp/stock/6518/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6518.T/disclosure",
+        "https://s.kabutan.jp/stocks/6518/finance/",
+        "https://finance.yahoo.co.jp/quote/6518.T/financials"
+      ]
+    },
+    {
+      "code": "6616",
+      "name": "トレックス・セミコンダクター",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://finance.yahoo.co.jp/quote/6616.T/financials",
+        "https://www2.jpx.co.jp/disc/66160/140120260514531863.pdf",
+        "https://s.kabutan.jp/stocks/6616/finance/",
+        "https://s.kabutan.jp/news/k202611130744/",
+        "https://finance.matsui.co.jp/stock/6616/settlement/index",
+        "https://market.coconeweb.com/stocks/6616/",
+        "https://shikiho.toyokeizai.net/stocks/6616/",
+        "https://finance.yahoo.co.jp/quote/6616.T/performance",
+        "https://ir.torex.co.jp/ja/library/corprate-report/main/00/teaserItems1/08/linkList/0/link/20250828_1Q_followup_J.pdf",
+        "https://finance.yahoo.co.jp/quote/6616.T/disclosure",
+        "https://disclosure.catr.jp/companies/0fe6d/48877/tdnet/75dd2/776843",
+        "https://pay.kabutec.jp/company/?code=6616"
+      ]
+    },
+    {
+      "code": "6629",
+      "name": "テクノホライゾン",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/ac038/48889/tdnet/497a9/790646",
+        "https://s.kabutan.jp/news/k202610300282/",
+        "https://www2.jpx.co.jp/disc/66290/140120260430514193.pdf",
+        "https://s.kabutan.jp/stocks/6629/finance/",
+        "https://s.kabutan.jp/stocks/6629/finance",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20261020553645/1/general.pdf",
+        "https://finance.matsui.co.jp/stock/6629/settlement/index"
+      ]
+    },
+    {
+      "code": "6652",
+      "name": "IDEC",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www2.jpx.co.jp/disc/66520/140120261105566215.pdf",
+        "https://komori.app/company/6652/disclosure/20261105566215",
+        "https://s.kabutan.jp/stocks/6652/finance/",
+        "https://www.idec.com/api/asset/ja/68gIFiwdl93MuDSBQpoka8/tanshin202603r.pdf",
+        "https://finance.yahoo.co.jp/quote/6652.O/financials",
+        "https://storage.googleapis.com/disclosed-file-bucket-d4575ee/20260514531728/1/general.pdf",
+        "https://g2s.skr.jp/?code=6652",
+        "https://finance.yahoo.co.jp/quote/6652.T",
+        "https://finance.yahoo.co.jp/quote/6652.O"
+      ]
+    },
+    {
+      "code": "6677",
+      "name": "エスケーエレクトロニクス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/4cb2d/48924/tdnet/2880f/793265",
+        "https://s.kabutan.jp/news/k202611090148/",
+        "https://komori.app/company/6677/disclosure/20261105566314",
+        "https://finance.yahoo.co.jp/quote/6677.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/6677.Q/financials",
+        "https://s.kabutan.jp/stocks/6677/finance/",
+        "https://moneybox.jp/disclosure/article.php?id=1291176&src=tdnet",
+        "https://tdnet-pdf.kabutan.jp/20261109/140120261105566314.pdf",
+        "https://disclosure.catr.jp/companies/4cb2d/48924/tdnet/21859/776048",
+        "https://finance.matsui.co.jp/stock/6677/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6677.Q/disclosure",
+        "https://kessan-log.com/stocks/6677"
+      ]
+    },
+    {
+      "code": "6727",
+      "name": "ワコム",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/9a3ab/48943/tdnet/0514b/790423",
+        "https://s.kabutan.jp/news/k202610300148/",
+        "https://s.kabutan.jp/stocks/6727/finance/",
+        "https://finance.matsui.co.jp/stock/6727/settlement/index"
+      ]
+    },
+    {
+      "code": "6787",
+      "name": "メイコー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/bd646/48980/tdnet/7b8d5/792570",
+        "https://komori.app/company/6787/disclosure/20261106566785",
+        "https://s.kabutan.jp/stocks/6787/finance/",
+        "https://s.kabutan.jp/news/k202611060173/",
+        "https://finance.matsui.co.jp/stock/6787/settlement/index",
+        "https://komori.app/company/6787/disclosure/20261111574232",
+        "https://finance.yahoo.co.jp/quote/6787.T/disclosure",
+        "https://komori.app/company/6787/disclosure/20261106566828"
+      ]
+    },
+    {
+      "code": "6855",
+      "name": "日本電子材料",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/1fd16/49021/tdnet/225d1/794107",
+        "https://komori.app/company/6855/disclosure/20261109569869",
+        "https://s.kabutan.jp/news/k202611100248/",
+        "https://jem-net.co.jp/images/top/pdf/2026/261110_262qtanshin.pdf",
+        "https://s.kabutan.jp/stocks/6855/finance/",
+        "https://finance.yahoo.co.jp/quote/6855.T/disclosure",
+        "https://www.daiwair.co.jp/td_download.cgi?c=6855&i=3212879",
+        "https://www.jem-net.co.jp/images/top/pdf/2026/261110_262qtanshin.pdf",
+        "https://finance.matsui.co.jp/stock/6855/settlement/index"
+      ]
+    },
+    {
+      "code": "6862",
+      "name": "ミナトホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/6862/disclosure/20261111572822",
+        "https://disclosure.catr.jp/companies/f3743/49027/tdnet/1678c/795710",
+        "https://www.minato.co.jp/cms/wp-content/uploads/2026/11/20261112_03.pdf",
+        "https://s.kabutan.jp/news/k202611120179/",
+        "https://finance.yahoo.co.jp/quote/6862.T/disclosure",
+        "https://moneybox.jp/disclosure/article.php?id=1293664",
+        "https://s.kabutan.jp/stocks/6862/finance/",
+        "https://komori.app/company/6862/disclosure/20261112576118",
+        "https://finance.matsui.co.jp/stock/6862/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6862.T",
+        "https://moneybox.jp/disclosure/fiscal.php?t=6862"
+      ]
+    },
+    {
+      "code": "6866",
+      "name": "HIOKI",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202610150070/",
+        "https://s.kabutan.jp/stocks/6866/finance/",
+        "https://financialfilings.com/filings/hioki-eecorporation/earnings-release/2026/72560520/",
+        "https://finance.yahoo.co.jp/quote/6866.T"
+      ]
+    },
+    {
+      "code": "6904",
+      "name": "原田工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611120121/",
+        "https://s.kabutan.jp/stocks/6904/finance/",
+        "https://moneybox.jp/disclosure/article.php?id=1293673&src=tdnet",
+        "https://finance.yahoo.co.jp/quote/6904.Q/financials",
+        "https://finance.matsui.co.jp/stock/6904/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6904.T",
+        "https://g2s.skr.jp/6904?date=2025-07-18",
+        "https://g2s.sakura.ne.jp/?code=6904"
+      ]
+    },
+    {
+      "code": "6912",
+      "name": "菊水ホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/ce6b0/49056/tdnet/6a1c2/789925",
+        "https://www.daiwair.co.jp/td_download.cgi?c=6912&i=3218644",
+        "https://komori.app/company/6912/disclosure/20261029558822",
+        "https://s.kabutan.jp/stocks/6912/finance/",
+        "https://s.kabutan.jp/news/k202610290165/",
+        "https://finance.yahoo.co.jp/quote/6912.T/financials",
+        "https://finance.matsui.co.jp/stock/6912/settlement/index",
+        "https://financialfilings.com/filings/kikusui-holdings-corporation/earnings-release/2026/74890070/",
+        "https://s.kabutan.jp/news/k202607300149/"
+      ]
+    },
+    {
+      "code": "6941",
+      "name": "山一電機",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/6941/disclosure/20261105565155",
+        "https://s.kabutan.jp/stocks/6941/finance/",
+        "https://s.kabutan.jp/news/k202611050134/",
+        "https://finance.matsui.co.jp/stock/6941/settlement/index",
+        "https://finance.yahoo.co.jp/quote/6941.T",
+        "https://kabutrack.com/securities/6941/earnings/",
+        "https://moneybox.jp/disclosure/fiscal.php?t=6941"
+      ]
+    },
+    {
+      "code": "6946",
+      "name": "日本アビオニクス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/6946/disclosure/20261029559428",
+        "https://s.kabutan.jp/news/k202610300301/",
+        "https://s.kabutan.jp/stocks/6946/finance/",
+        "https://finance.yahoo.co.jp/quote/6946.T/disclosure",
+        "https://finance.matsui.co.jp/stock/6946/settlement/index",
+        "https://disclosure.catr.jp/companies/52db1/49079/tdnet/31c10/749327"
+      ]
+    },
+    {
+      "code": "6998",
+      "name": "日本タングステン",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www.nittan.co.jp/ir/pdf/20261111.pdf",
+        "https://finance.yahoo.co.jp/quote/6998.T/disclosure",
+        "https://finance.yahoo.co.jp/quote/6998.F/disclosure",
+        "https://s.kabutan.jp/stocks/6998/finance/",
+        "https://finance.yahoo.co.jp/quote/6998.T/financials",
+        "https://finance.matsui.co.jp/stock/6998/settlement/index",
+        "https://kabuyoho.jp/report?bcode=6998",
+        "https://finance.yahoo.co.jp/quote/6998.F",
+        "https://shikiho.toyokeizai.net/stocks/6998/",
+        "https://www.kabutore.biz/zaimubunseki/zaimu.html?code=6998&kessan=secondquarter&zaimukeyword=%E5%A5%91%E7%B4%84%E8%B2%A0%E5%82%B5imgno35&zaimusyorui=taisyaku",
+        "https://g2s.sakura.ne.jp/?code=6998",
+        "https://s.kabutan.jp/news/k202608050164/"
+      ]
+    },
+    {
+      "code": "7030",
+      "name": "スプリックス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://g2s.skr.jp/?code=7030",
+        "https://finance.yahoo.co.jp/quote/7030.T/disclosure",
+        "https://s.kabutan.jp/stocks/7030/finance/",
+        "https://disclosure.catr.jp/companies/775da/58651/tdnet/0913c/775000",
+        "https://g2s.sakura.ne.jp/?page=15&str=%E4%B8%A1%E6%96%B9",
+        "https://g2s.sakura.ne.jp/?code=7030",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261112576968/"
+      ]
+    },
+    {
+      "code": "7059",
+      "name": "コプロ・ホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/7059/disclosure/20261111574198",
+        "https://disclosure.catr.jp/companies/ad75a/24329/tdnet/91925/796117",
+        "https://www2.jpx.co.jp/disc/70590/140120260514535934.pdf",
+        "https://finance.yahoo.co.jp/quote/7059.N/financials",
+        "https://kabuyoho-sls-disclose.ifis.co.jp/d00/140120261111574198.pdf",
+        "https://s.kabutan.jp/news/k202611120448/",
+        "https://finance.yahoo.co.jp/quote/7059.T",
+        "https://s.kabutan.jp/stocks/7059/finance/",
+        "https://s.kabutan.jp/news/k202608120169/"
+      ]
+    },
+    {
+      "code": "7065",
+      "name": "ユーピーアール",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/62137/36063/tdnet/0ed6f/787324",
+        "https://s.kabutan.jp/news/k202610150007/",
+        "https://s.kabutan.jp/stocks/7065/finance/",
+        "https://komori.app/company/7065/disclosure/20261014550253",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260414/20260413502415.pdf",
+        "https://g2s.sakura.ne.jp/?code=7065"
+      ]
+    },
+    {
+      "code": "7094",
+      "name": "NexTone",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/7094/disclosure/20261109569284",
+        "https://disclosure.catr.jp/companies/c138c/62566/tdnet/629e5/793582",
+        "https://s.kabutan.jp/news/k202611100034/",
+        "https://finance.yahoo.co.jp/quote/7094.T/disclosure",
+        "https://komori.app/company/7094/disclosure/20261110570842",
+        "https://finance.yahoo.co.jp/quote/7094.T/financials",
+        "https://s.kabutan.jp/stocks/7094/finance/",
+        "https://moneybox.jp/disclosure/article.php?id=1291486&src=tdnet",
+        "https://g2s.sakura.ne.jp/?code=7094"
+      ]
+    },
+    {
+      "code": "7148",
+      "name": "FPG",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/8e210/49124/tdnet/d0353/789917",
+        "https://s.kabutan.jp/stocks/7148/finance/",
+        "https://finance.matsui.co.jp/stock/7148/settlement/index",
+        "https://komori.app/company/7148/disclosure/20261029559346",
+        "https://finance.yahoo.co.jp/quote/7148.T/financials",
+        "https://komori.app/company/7148/disclosure/20261028558109",
+        "https://g2s.skr.jp/7148?date=2026-10-29"
+      ]
+    },
+    {
+      "code": "7172",
+      "name": "ジャパンインベストメントアドバイザー",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/ae96e/49132/tdnet/b324e/790449",
+        "https://s.kabutan.jp/stocks/7172/finance/",
+        "https://finance.yahoo.co.jp/quote/7172.T",
+        "https://finance.matsui.co.jp/stock/7172/settlement/index",
+        "https://s-pyxis.com/PTS/html_output/7172_2026_12_2Q.html",
+        "https://finance.yahoo.co.jp/quote/7172.T/performance",
+        "https://stock-chan.com/7172/",
+        "https://finance.yahoo.co.jp/quote/7172.T/financials?styl=summary"
+      ]
+    },
+    {
+      "code": "7175",
+      "name": "今村証券",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://www.imamura.co.jp/ir/pdf/20260424tanshin.pdf",
+        "https://s.kabutan.jp/news/k202610270025/",
+        "https://www.imamura.co.jp/ir/pdf/20261027tanshin.pdf",
+        "https://finance.yahoo.co.jp/quote/7175.T/financials",
+        "https://s.kabutan.jp/stocks/7175/finance/",
+        "https://finance.matsui.co.jp/stock/7175/settlement/index",
+        "https://g2s.skr.jp/?code=7175",
+        "https://finance.yahoo.co.jp/quote/7175.T",
+        "https://s.kabutan.jp/news/k202610200004/"
+      ]
+    },
+    {
+      "code": "7192",
+      "name": "日本モーゲージサービス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/3acf2/49146/tdnet/f5ddd/792339",
+        "https://komori.app/company/7192/disclosure/20261105566602",
+        "https://s.kabutan.jp/stocks/7192/finance/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260511/20260508520874.pdf",
+        "https://s.kabutan.jp/news/k202611060059/",
+        "https://finance.yahoo.co.jp/quote/7192.T"
+      ]
+    },
+    {
+      "code": "7218",
+      "name": "田中精密工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/3aef4/49159/tdnet/2ee88/790146",
+        "https://s.kabutan.jp/stocks/7218/finance/",
+        "https://s.kabutan.jp/news/k202610300089/",
+        "https://komori.app/company/7218/disclosure/20261030560870",
+        "https://scouter.monex.co.jp/news/detail/7218_20261030_act_20261030_140016_10",
+        "https://finance.yahoo.co.jp/quote/7218.T"
+      ]
+    },
+    {
+      "code": "7254",
+      "name": "ユニバンス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130235/",
+        "https://finance.yahoo.co.jp/quote/7254.T/disclosure",
+        "https://s.kabutan.jp/stocks/7254/finance/",
+        "https://www2.jpx.co.jp/disc/72540/140120260423509055.pdf",
+        "https://disclosure.catr.jp/companies/1f220/49184/tdnet/d1a19/752372",
+        "https://g2s.sakura.ne.jp/?code=7254",
+        "https://g2s.skr.jp/7254?date=2025-08-19",
+        "https://www2.jpx.co.jp/disc/72540/081220260423509055_tse-acedjpsm-72540-20260423509055-ixbrl.htm",
+        "https://kabuyoho.jp/sp/report?bcode=7254",
+        "https://g2s.skr.jp/7254?str=%E8%87%AA%E5%B7%B1",
+        "https://s.kabutan.jp/stocks/7254/news/"
+      ]
+    },
+    {
+      "code": "7256",
+      "name": "河西工業",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/stocks/7256/finance/",
+        "https://www2.jpx.co.jp/disc/72560/140120260515536721.pdf",
+        "https://finance.yahoo.co.jp/quote/7256.T/disclosure",
+        "https://finance.matsui.co.jp/stock/7256/settlement/index"
+      ]
+    },
+    {
+      "code": "7354",
+      "name": "ダイレクトマーケティングミックス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/3c036/42528/tdnet/397f4/797458",
+        "https://finance.yahoo.co.jp/quote/7354.T/disclosure",
+        "https://s.kabutan.jp/stocks/7354/finance/",
+        "https://moneybox.jp/disclosure/article.php?id=1295406&src=tdnet",
+        "https://disclosure.catr.jp/companies/3c036/42528/tdnet/74c55/778164",
+        "https://kabuyoho-sls-disclose.ifis.co.jp/cb6/140120261113578565.pdf",
+        "https://www.kabutore.biz/zaimubunseki/zaimu.html?code=7354&kessan=secondquarter&zaimukeyword=%E5%A3%B2%E4%B8%8A%E5%8F%8E%E7%9B%8Aimgno5&zaimusyorui=soneki",
+        "https://finance.yahoo.co.jp/quote/7354.T",
+        "https://kabuyoho-sls-disclose.ifis.co.jp/d88/140120260814520682.pdf",
+        "https://screener.kabutec.jp/company/?code=7354",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261113578565/",
+        "https://finance.yahoo.co.jp/quote/7354.T/financials",
+        "https://www.smartstocknotes.jp/2026/10/26/explanatory-material-7354-20260814/",
+        "https://finance.matsui.co.jp/stock/7354/settlement/index"
+      ]
+    },
+    {
+      "code": "7371",
+      "name": "Zenken",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://komori.app/company/7371/disclosure/20261111572842",
+        "https://s.kabutan.jp/news/k202611130010/",
+        "https://s.kabutan.jp/stocks/7371/finance/",
+        "https://disclosure.catr.jp/companies/4face/40215/tdnet/9d258/777604",
+        "https://moneybox.jp/disclosure/?t=7371",
+        "https://komori.app/company/7371/disclosure/20261111572844",
+        "https://s.kabutan.jp/news/k202608140009/",
+        "https://regfis.com/reports/20260928_S100Z3YQ_E24465_null_010_030000_120",
+        "https://finance.yahoo.co.jp/quote/7371.T/performance"
+      ]
+    },
+    {
+      "code": "7372",
+      "name": "デコルテ・ホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/f7e1b/140907/tdnet/eb972/795762",
+        "https://tdnet-pdf.kabutan.jp/20261112/140120261111574180.pdf",
+        "https://finance.yahoo.co.jp/quote/7372.T/disclosure",
+        "https://s.kabutan.jp/news/k202611120216/",
+        "https://s.kabutan.jp/stocks/7372/finance/",
+        "https://disclosure.catr.jp/companies/f7e1b/140907/tdnet/f3a1a/776718",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261111574180/",
+        "https://finance.yahoo.co.jp/quote/7372.T/performance",
+        "https://moneybox.jp/disclosure/article.php?id=1293717&src=tdnet",
+        "https://kabutec.jp/company/?code=7372"
+      ]
+    },
+    {
+      "code": "7609",
+      "name": "ダイトロン",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611040092/",
+        "https://s.kabutan.jp/stocks/7609/finance/",
+        "https://finance.matsui.co.jp/stock/7609/settlement/index"
+      ]
+    },
+    {
+      "code": "7715",
+      "name": "長野計器",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/eadea/49381/tdnet/97e48/795775",
+        "https://s.kabutan.jp/news/k202611120334/",
+        "https://komori.app/company/7715/disclosure/20261111574093",
+        "https://s.kabutan.jp/stocks/7715/finance/",
+        "https://g2s.skr.jp/7715?date=2026-09-30",
+        "https://finance.yahoo.co.jp/quote/7715.T/disclosure",
+        "https://g2s.sakura.ne.jp/?code=7715",
+        "https://finance.yahoo.co.jp/quote/7715.T",
+        "https://finance.matsui.co.jp/stock/7715/settlement/index"
+      ]
+    },
+    {
+      "code": "7781",
+      "name": "平山ホールディングス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/665a3/49423/tdnet/1ac52/778490",
+        "https://s.kabutan.jp/stocks/7781/finance/",
+        "https://s.kabutan.jp/news/k202608140338/"
+      ]
+    },
+    {
+      "code": "7826",
+      "name": "フルヤ金属",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/4e9f2/49441/tdnet/6bd75/773766",
+        "https://s.kabutan.jp/stocks/7826/finance/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261106/20261105565722.pdf",
+        "https://finance.matsui.co.jp/stock/7826/settlement/index",
+        "https://s.kabutan.jp/news/k202611060139/",
+        "https://finance.yahoo.co.jp/quote/7826.T/disclosure"
+      ]
+    },
+    {
+      "code": "9245",
+      "name": "リベロ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/a098d/137353/tdnet/e2f11/796389",
+        "https://s.kabutan.jp/news/k202611130044/",
+        "https://finance.yahoo.co.jp/quote/9245.T/financials",
+        "https://kabuyoho-sls-disclose.ifis.co.jp/56c/140120261113578233.pdf",
+        "https://finance.yahoo.co.jp/quote/9245.T/disclosure",
+        "https://tdnet-pdf.kabutan.jp/20261113/140120261113578249.pdf",
+        "https://g2s.skr.jp/?code=9245",
+        "https://s.kabutan.jp/stocks/9245/finance/",
+        "https://kabuyoho-sls-disclose.ifis.co.jp/3d2/140120261112577219.pdf",
+        "https://moneybox.jp/disclosure/article.php?id=1294290",
+        "https://g2s.skr.jp/?code=9245&page=1",
+        "https://moneybox.jp/disclosure/?t=9245",
+        "https://moneybox.jp/disclosure/article.php?id=1294291",
+        "https://moneybox.jp/disclosure/article.php?id=1294292"
+      ]
+    },
+    {
+      "code": "9249",
+      "name": "日本エコシステム",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://finance.yahoo.co.jp/quote/9249.N/disclosure",
+        "https://s.kabutan.jp/news/k202611130592/",
+        "https://g2s.skr.jp/?code=9249",
+        "https://nikkeiyosoku.com/stock/tanshin/data/332904/",
+        "https://moneybox.jp/disclosure/article.php?id=1295700&src=tdnet",
+        "https://komori.app/company/9249/disclosure/20261112577430",
+        "https://www2.jpx.co.jp/disc/92490/140120260513530259.pdf",
+        "https://komori.app/company/9249/disclosure/20261112577197",
+        "https://moneybox.jp/disclosure/article.php?id=1295700",
+        "https://s.kabutan.jp/stocks/9249/finance/",
+        "https://finance.yahoo.co.jp/quote/9249.S/disclosure",
+        "https://finance.matsui.co.jp/stock/9249/settlement/index",
+        "https://finance.yahoo.co.jp/quote/9249.F",
+        "https://kabutec.jp/company/?code=9249"
+      ]
+    },
+    {
+      "code": "9337",
+      "name": "トリドリ",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://s.kabutan.jp/news/k202611130489/",
+        "https://komori.app/company/9337/disclosure/20261113578734",
+        "https://s.kabutan.jp/stocks/9337/finance/",
+        "https://komori.app/company/9337/disclosure/20261113579045",
+        "https://disclosure.catr.jp/companies/c5618/67963/tdnet/f57bd/776126",
+        "https://komori.app/company/9337/disclosure/20261113579055",
+        "https://g2s.sakura.ne.jp/?code=9337",
+        "https://finance.matsui.co.jp/stock/9337/settlement/index",
+        "https://www2.jpx.co.jp/disc/93370/140120260514532989.pdf",
+        "https://finance.yahoo.co.jp/news/detail/8b505fdabdfe20567b70dc7d7beae3d1d4b73b55",
+        "https://finance.yahoo.co.jp/quote/9337.T/performance",
+        "https://treelazy.com/stock-jp/9337/conference",
+        "https://nikkeiyosoku.com/stock/tanshin/081220261113578734/"
+      ]
+    },
+    {
+      "code": "9343",
+      "name": "アイビス",
+      "searched_on": "2026-11-15",
+      "status": "資料候補取得・本文照合待ち",
+      "source_candidates": [
+        "https://disclosure.catr.jp/companies/f392f/78055/tdnet/b2093/793550",
+        "https://s.kabutan.jp/news/k202611100014/",
+        "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261110/20261109569608.pdf",
+        "https://finance.yahoo.co.jp/quote/9343.T/disclosure",
+        "https://g2s.skr.jp/?code=9343",
+        "https://moneybox.jp/disclosure/article.php?id=1291454",
+        "https://s.kabutan.jp/stocks/9343/finance/",
+        "https://finance.matsui.co.jp/stock/9343/settlement/index",
+        "https://g2s.skr.jp/?code=9343&page=1",
+        "https://s.kabutan.jp/news/k202608100015/",
+        "https://finance.yahoo.co.jp/quote/9343.T/performance",
+        "https://kabubusho.com/stock/9343",
+        "https://www.smartstocknotes.jp/2026/10/28/financial-report-9343-20260810/"
+      ]
+    }
+  ]
+}
