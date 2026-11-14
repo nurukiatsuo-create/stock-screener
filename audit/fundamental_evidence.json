@@ -32,6 +32,22 @@
       "source_url": "https://kabuyoho-sls-disclose.ifis.co.jp/034/140120261112574944.pdf",
       "source_title": "2026年12月期 第3四半期決算短信",
       "note": "企業開示のIFIS配信写し。連結9か月累計対前年同期。OP百万円、EPS円。通期予想と混合しない。"
+    },
+    {
+      "code": "5589",
+      "published_on": "2026-11-11",
+      "checked_on": "2026-11-15",
+      "period_end": "2026-09-30",
+      "prior_period_end": "2025-09-30",
+      "basis": "ytd_actual_vs_prior_ytd",
+      "comparable": true,
+      "operating_profit": 2096965,
+      "prior_operating_profit": 1816789,
+      "eps": 183.55,
+      "prior_eps": 159.67,
+      "source_url": "https://tdnet-pdf.kabutan.jp/20261111/140120261110572259.pdf",
+      "source_title": "2026年12月期第3四半期決算短信",
+      "note": "非連結9か月累計。営業利益は損益計算書の千円値。上方修正例外は別途審査。"
     }
   ]
 }
