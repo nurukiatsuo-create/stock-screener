@@ -231,7 +231,12 @@ def build_strategy(observations, config):
     rows, candidates = [], []
     for code, r in observations.items():
         e, b = r['evidence'], r.get('box_strategy', {})
-        row = dict(code=code, name=r['name'], box=b, sector=sectors.get(code), candidate=False)
+        row = dict(code=code, name=r['name'], box=b, sector=sectors.get(code), candidate=False,
+                   price_source=r.get('price_source', 'download'), price_fetch_status=r.get('price_fetch_status'),
+                   price_cached_updated_at=r.get('price_cached_updated_at'),
+                   avg_turnover_5d_yen=(float(r["avg_turnover_5d_yen"])
+                       if isinstance(r.get("avg_turnover_5d_yen"), (int, float))
+                       and math.isfinite(r["avg_turnover_5d_yen"]) else None))
         if (not e.get('data_valid') or e.get('freshness') != '一致' or not b.get('valid')
                 or b.get('date') != e.get('today', {}).get('date')):
             row['status']='データ確認待ち'
@@ -241,7 +246,7 @@ def build_strategy(observations, config):
                        volume_ratio=t['volume_ratio_prior20'], upper_wick_fraction=t['upper_wick_fraction'],
                        close_location=t['close_location'], high_to_close_pct=t['high_to_close_pct'])
             row.update(classify_entry(e, b, policy))
-            row['fundamental_check'] = '四季報選定済み・直近業績とビッグチェンジは要確認'
+            row['fundamental_check'] = '業績・四季報原本の確認待ち（候補統合前）'
             row['buy_signal'] = None
             row['volume_label'] = '平均より増加' if row['volume_ratio'] is not None and row['volume_ratio'] > 1 else '増加の裏付けなし'
             row['close_vs_box_upper_pct'] = (t['close']/box['upper']-1)*100 if box else None
@@ -259,3 +264,4 @@ def build_strategy(observations, config):
                 position_count=len(positions), auto_orders=False,
                 policy='DUKE公開資料を参考にした技術条件の監視。数値閾値は独自設定。業績・事業変化の確認は別途必要。売買指示ではない。',
                 freshness_note='銘柄間日付比較のみ。データ日を必ず確認。')
+

@@ -4,8 +4,8 @@
   "source": "四季報2026夏ー秋号より選別結果.txt（提供された抽出結果。四季報原本との照合は未実施）",
   "counts": {
     "original": 112,
-    "runtime": 80,
-    "original_not_runtime": 32,
+    "runtime": 112,
+    "original_not_runtime": 0,
     "runtime_not_original": 0,
     "legacy_scores_in_runtime": 12
   },
@@ -13,10 +13,10 @@
     {
       "code": "135A",
       "source_name": "VRAIN Solution",
-      "runtime_name": null,
+      "runtime_name": "VRAIN Solution",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "最高益更新・営業益+27.9%（14.5億円）・製造業向けAI外観検査",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -45,10 +45,10 @@
     {
       "code": "1438",
       "source_name": "岐阜造園",
-      "runtime_name": null,
+      "runtime_name": "岐阜造園",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+46.8%（7.9億円）・造園・緑化事業ニッチ",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -61,10 +61,10 @@
     {
       "code": "155A",
       "source_name": "情報戦略テクノロジー",
-      "runtime_name": null,
+      "runtime_name": "情報戦略テクノロジー",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "営業益+70.0%（9.4億円）・大手企業直請けDX開発",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -77,10 +77,10 @@
     {
       "code": "156A",
       "source_name": "マテリアルグループ",
-      "runtime_name": null,
+      "runtime_name": "マテリアルグループ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+50.2%（12.5億円）・PR・マーケティング支援",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -93,10 +93,10 @@
     {
       "code": "2180",
       "source_name": "サニーサイドアップグループ",
-      "runtime_name": null,
+      "runtime_name": "サニーサイドアップグループ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+62.8%（26億円）・PR・ブランディング",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -109,10 +109,10 @@
     {
       "code": "218A",
       "source_name": "Liberaware",
-      "runtime_name": null,
+      "runtime_name": "Liberaware",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "屋内専用狭小空間点検ドローン・デジタルツイン基盤",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -125,7 +125,7 @@
     {
       "code": "2884",
       "source_name": "ヨシムラ・フード・ホールディングス",
-      "runtime_name": "ヨシムラFD",
+      "runtime_name": "ヨシムラ・フード・ホールディングス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -136,15 +136,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "2986",
       "source_name": "LAホールディングス",
-      "runtime_name": null,
+      "runtime_name": "LAホールディングス",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "最高純益更新率+89.1%・配当利回り7.2%・新築再生不動産",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -157,7 +157,7 @@
     {
       "code": "3040",
       "source_name": "ソリトンシステムズ",
-      "runtime_name": "ソリトン",
+      "runtime_name": "ソリトンシステムズ",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -168,15 +168,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "3359",
       "source_name": "cotta",
-      "runtime_name": null,
+      "runtime_name": "cotta",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+16.6%（9億円）・製菓資材・ECプラットフォーム",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -189,7 +189,7 @@
     {
       "code": "3441",
       "source_name": "山王",
-      "runtime_name": "サンコーテクノ",
+      "runtime_name": "山王",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -200,12 +200,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "3449",
       "source_name": "テクノフレックス",
-      "runtime_name": "テクノフレ",
+      "runtime_name": "テクノフレックス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -216,12 +216,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "3482",
       "source_name": "ロードスターキャピタル",
-      "runtime_name": "ロードスター",
+      "runtime_name": "ロードスターキャピタル",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -232,12 +232,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "3498",
       "source_name": "霞ヶ関キャピタル",
-      "runtime_name": "霞ヶ関キャピ",
+      "runtime_name": "霞ヶ関キャピタル",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -248,7 +248,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "3560",
@@ -285,7 +285,7 @@
     {
       "code": "3692",
       "source_name": "FFRIセキュリティ",
-      "runtime_name": "FFRI",
+      "runtime_name": "FFRIセキュリティ",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -296,15 +296,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "3695",
       "source_name": "GMOプロダクトパートナーズ",
-      "runtime_name": null,
+      "runtime_name": "GMOプロダクトパートナーズ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "営業益+194.1%（10億円）・決済DX・SaaS",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -349,10 +349,10 @@
     {
       "code": "3795",
       "source_name": "トヨクモ",
-      "runtime_name": null,
+      "runtime_name": "トヨクモ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+35.3%（21億円）・安否確認クラウドSaaS",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -381,7 +381,7 @@
     {
       "code": "3968",
       "source_name": "セグエグループ",
-      "runtime_name": "セグエ",
+      "runtime_name": "セグエグループ",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -392,7 +392,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4012",
@@ -429,7 +429,7 @@
     {
       "code": "4055",
       "source_name": "ティアンドエスグループ",
-      "runtime_name": "T&S",
+      "runtime_name": "ティアンドエスグループ",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -440,7 +440,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4100",
@@ -477,10 +477,10 @@
     {
       "code": "4261",
       "source_name": "アジアクエスト",
-      "runtime_name": null,
+      "runtime_name": "アジアクエスト",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "最高益更新・営業益+21.6%（5.4億円）・DX・AIクラウド",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -493,10 +493,10 @@
     {
       "code": "4360",
       "source_name": "マナックケミカルパートナーズ",
-      "runtime_name": null,
+      "runtime_name": "マナックケミカルパートナーズ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "前号比増額率上位・営業益+77.3%・難燃剤・臭素系ニッチ",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -509,10 +509,10 @@
     {
       "code": "4366",
       "source_name": "ダイトーケミックス",
-      "runtime_name": null,
+      "runtime_name": "ダイトーケミックス",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+84.6%（16.1億円）・感光性材料・感熱材料",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -525,7 +525,7 @@
     {
       "code": "4368",
       "source_name": "扶桑化学工業",
-      "runtime_name": "扶桑化学",
+      "runtime_name": "扶桑化学工業",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -536,12 +536,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4369",
       "source_name": "トリケミカル研究所",
-      "runtime_name": "トリケミカル",
+      "runtime_name": "トリケミカル研究所",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -552,12 +552,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4371",
       "source_name": "コアコンセプト・テクノロジー",
-      "runtime_name": "C＆C",
+      "runtime_name": "コアコンセプト・テクノロジー",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -568,12 +568,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4396",
       "source_name": "システムサポート",
-      "runtime_name": "システムサポ",
+      "runtime_name": "システムサポート",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -584,7 +584,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4414",
@@ -621,7 +621,7 @@
     {
       "code": "4461",
       "source_name": "第一工業製薬",
-      "runtime_name": "第一工薬",
+      "runtime_name": "第一工業製薬",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -632,15 +632,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4479",
       "source_name": "マクアケ",
-      "runtime_name": null,
+      "runtime_name": "マクアケ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+79.0%（8億円）・応援購入クラウドファンディング",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -653,7 +653,7 @@
     {
       "code": "4626",
       "source_name": "太陽ホールディングス",
-      "runtime_name": "太陽HD",
+      "runtime_name": "太陽ホールディングス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -664,15 +664,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4743",
       "source_name": "アイティフォー",
-      "runtime_name": null,
+      "runtime_name": "アイティフォー",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "連続最高益・営業益+17.9%・地銀・自治体向けキャッシュレスDX",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -685,7 +685,7 @@
     {
       "code": "4765",
       "source_name": "SBIグローバルアセットマネジメント",
-      "runtime_name": "SBIGアセット",
+      "runtime_name": "SBIグローバルアセットマネジメント",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -696,7 +696,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4776",
@@ -717,7 +717,7 @@
     {
       "code": "4825",
       "source_name": "ウェザーニューズ",
-      "runtime_name": "ウェザーニュー",
+      "runtime_name": "ウェザーニューズ",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -728,12 +728,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4828",
       "source_name": "ビジネスエンジニアリング",
-      "runtime_name": "Bエンジニア",
+      "runtime_name": "ビジネスエンジニアリング",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -744,12 +744,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4970",
       "source_name": "東洋合成工業",
-      "runtime_name": "東洋合成",
+      "runtime_name": "東洋合成工業",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -760,7 +760,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "4971",
@@ -861,10 +861,10 @@
     {
       "code": "5367",
       "source_name": "ニッカトー",
-      "runtime_name": null,
+      "runtime_name": "ニッカトー",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "四半期進捗率高水準・営業益+44.7%・産業用セラミックス",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -877,7 +877,7 @@
     {
       "code": "5589",
       "source_name": "オートサーバー",
-      "runtime_name": "オートサーバ",
+      "runtime_name": "オートサーバー",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -888,7 +888,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "5591",
@@ -941,10 +941,10 @@
     {
       "code": "5983",
       "source_name": "イワブチ",
-      "runtime_name": null,
+      "runtime_name": "イワブチ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益14.8億円・電力・通信架線金具ニッチトップ",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -957,7 +957,7 @@
     {
       "code": "6027",
       "source_name": "弁護士ドットコム",
-      "runtime_name": "弁護士ドット",
+      "runtime_name": "弁護士ドットコム",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -968,7 +968,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6134",
@@ -989,10 +989,10 @@
     {
       "code": "6189",
       "source_name": "グローバルキッズCOMPANY",
-      "runtime_name": null,
+      "runtime_name": "グローバルキッズCOMPANY",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+57.3%（13.5億円）・認可保育園運営",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1005,7 +1005,7 @@
     {
       "code": "6226",
       "source_name": "守谷輸送機工業",
-      "runtime_name": "守谷輸送機",
+      "runtime_name": "守谷輸送機工業",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1016,7 +1016,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6258",
@@ -1037,10 +1037,10 @@
     {
       "code": "6286",
       "source_name": "静甲",
-      "runtime_name": null,
+      "runtime_name": "静甲",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "四半期高進捗・今期営業益+6.4%（19億円）・自動包装機械",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1069,10 +1069,10 @@
     {
       "code": "6336",
       "source_name": "石井表記",
-      "runtime_name": null,
+      "runtime_name": "石井表記",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "前号比増額率上位・営業益+31.6%（15億円）・プリント基板製造装置",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1085,7 +1085,7 @@
     {
       "code": "6345",
       "source_name": "アイチコーポレーション",
-      "runtime_name": "アイチコーポ",
+      "runtime_name": "アイチコーポレーション",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1096,12 +1096,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6364",
       "source_name": "AIRMAN（北越工業）",
-      "runtime_name": "北越工業",
+      "runtime_name": "AIRMAN（北越工業）",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1112,7 +1112,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6368",
@@ -1149,10 +1149,10 @@
     {
       "code": "6469",
       "source_name": "放電精密加工研究所",
-      "runtime_name": null,
+      "runtime_name": "放電精密加工研究所",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+36.4%（15.3億円）・放電加工・金型ニッチ",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1213,7 +1213,7 @@
     {
       "code": "6616",
       "source_name": "トレックス・セミコンダクター",
-      "runtime_name": "トレックス",
+      "runtime_name": "トレックス・セミコンダクター",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1224,12 +1224,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6629",
       "source_name": "テクノホライゾン",
-      "runtime_name": "テクノホライ",
+      "runtime_name": "テクノホライゾン",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1240,7 +1240,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6652",
@@ -1261,7 +1261,7 @@
     {
       "code": "6677",
       "source_name": "エスケーエレクトロニクス",
-      "runtime_name": "SKエレク",
+      "runtime_name": "エスケーエレクトロニクス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1272,7 +1272,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6727",
@@ -1309,7 +1309,7 @@
     {
       "code": "6855",
       "source_name": "日本電子材料",
-      "runtime_name": "日電子材料",
+      "runtime_name": "日本電子材料",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1320,12 +1320,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6862",
       "source_name": "ミナトホールディングス",
-      "runtime_name": "ミナトHD",
+      "runtime_name": "ミナトホールディングス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1336,12 +1336,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6866",
       "source_name": "HIOKI",
-      "runtime_name": "日置電機",
+      "runtime_name": "HIOKI",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1352,12 +1352,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6871",
       "source_name": "日本マイクロニクス",
-      "runtime_name": "日マイクロ",
+      "runtime_name": "日本マイクロニクス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1368,7 +1368,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6904",
@@ -1389,7 +1389,7 @@
     {
       "code": "6912",
       "source_name": "菊水ホールディングス",
-      "runtime_name": "菊水HD",
+      "runtime_name": "菊水ホールディングス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1400,7 +1400,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6941",
@@ -1421,7 +1421,7 @@
     {
       "code": "6946",
       "source_name": "日本アビオニクス",
-      "runtime_name": "日アビオ",
+      "runtime_name": "日本アビオニクス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1432,12 +1432,12 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "6998",
       "source_name": "日本タングステン",
-      "runtime_name": "日タングステン",
+      "runtime_name": "日本タングステン",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1448,15 +1448,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "7030",
       "source_name": "スプリックス",
-      "runtime_name": null,
+      "runtime_name": "スプリックス",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+19.8%（26億円）・個別指導塾「森塾」・教育",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1469,10 +1469,10 @@
     {
       "code": "7059",
       "source_name": "コプロ・ホールディングス",
-      "runtime_name": null,
+      "runtime_name": "コプロ・ホールディングス",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "増額率30.0%・営業益+7.4%（39億円）・建設エンジニア派遣",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1485,10 +1485,10 @@
     {
       "code": "7065",
       "source_name": "ユーピーアール",
-      "runtime_name": null,
+      "runtime_name": "ユーピーアール",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+206.9%（8.5億円）・パレットレンタル・物流DX",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1533,7 +1533,7 @@
     {
       "code": "7172",
       "source_name": "ジャパンインベストメントアドバイザー",
-      "runtime_name": "JIA",
+      "runtime_name": "ジャパンインベストメントアドバイザー",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1544,15 +1544,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "7175",
       "source_name": "今村証券",
-      "runtime_name": null,
+      "runtime_name": "今村証券",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+42.1%（20億円）・北陸地盤・高収益証券",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1565,7 +1565,7 @@
     {
       "code": "7192",
       "source_name": "日本モーゲージサービス",
-      "runtime_name": "日モーゲージ",
+      "runtime_name": "日本モーゲージサービス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1576,15 +1576,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "7218",
       "source_name": "田中精密工業",
-      "runtime_name": null,
+      "runtime_name": "田中精密工業",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "四半期好進捗・営業益+43.5%・自動車用エンジン・駆動部品",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1613,10 +1613,10 @@
     {
       "code": "7256",
       "source_name": "河西工業",
-      "runtime_name": null,
+      "runtime_name": "河西工業",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "独自増額・営業益+90.1%（125億円）・自動車内装部品・V字回復",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1629,10 +1629,10 @@
     {
       "code": "7354",
       "source_name": "ダイレクトマーケティングミックス",
-      "runtime_name": null,
+      "runtime_name": "ダイレクトマーケティングミックス",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "四半期高進捗・営業益+40.7%・営業代行",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1645,10 +1645,10 @@
     {
       "code": "7371",
       "source_name": "Zenken",
-      "runtime_name": null,
+      "runtime_name": "Zenken",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+42.5%（5.5億円）・海外IT人材育成・語学",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1661,7 +1661,7 @@
     {
       "code": "7372",
       "source_name": "デコルテ・ホールディングス",
-      "runtime_name": "デコルテHD",
+      "runtime_name": "デコルテ・ホールディングス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1672,7 +1672,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "7609",
@@ -1709,7 +1709,7 @@
     {
       "code": "7781",
       "source_name": "平山ホールディングス",
-      "runtime_name": "平山HD",
+      "runtime_name": "平山ホールディングス",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1720,7 +1720,7 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "7826",
@@ -1741,10 +1741,10 @@
     {
       "code": "9245",
       "source_name": "リベロ",
-      "runtime_name": null,
+      "runtime_name": "リベロ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+64.5%（12.5億円）・新生活プラットフォーム・引越しDX",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1757,7 +1757,7 @@
     {
       "code": "9249",
       "source_name": "日本エコシステム",
-      "runtime_name": "日本エコ",
+      "runtime_name": "日本エコシステム",
       "in_original_selection": true,
       "in_runtime_universe": true,
       "selection_reason": "既存監視対象",
@@ -1768,15 +1768,15 @@
       "fundamental_as_of": null,
       "topix_status": "未照合",
       "topix_effective_date": null,
-      "name_review_required": true
+      "name_review_required": false
     },
     {
       "code": "9337",
       "source_name": "トリドリ",
-      "runtime_name": null,
+      "runtime_name": "トリドリ",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+55.6%（11億円）・インフルエンサーマーケSaaS",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",
@@ -1789,10 +1789,10 @@
     {
       "code": "9343",
       "source_name": "アイビス",
-      "runtime_name": null,
+      "runtime_name": "アイビス",
       "in_original_selection": true,
-      "in_runtime_universe": false,
-      "selection_reason": "現行対象外・除外理由未記録",
+      "in_runtime_universe": true,
+      "selection_reason": "既存監視対象",
       "source_claim": "今期営業益+24.9%（15億円）・ibisPaintサブスク・高ROE",
       "legacy_fund_score": null,
       "fundamental_status": "未検証",

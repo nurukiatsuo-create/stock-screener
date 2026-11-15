@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "verified": false,
+  "complete": false,
+  "source_url": null,
+  "published_on": null,
+  "checked_on": null,
+  "valid_until": null,
+  "transition_codes": [],
+  "new_inclusions": [],
+  "note": "未照合。空配列は非該当を意味しない。公式完全リストの確認と日付登録まで全銘柄をTOPIX確認待ちとする。"
+}

@@ -22,5 +22,10 @@
     "max_extension_pct": 3.0,
     "min_volume_ratio": 1.5,
     "near_break_pct": 5.0
+  },
+  "selection_policy": {
+    "min_avg_turnover_5d_yen": 40000000,
+    "risk_per_trade_yen": null,
+    "max_order_turnover_fraction": 0.01
   }
 }

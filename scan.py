@@ -9,23 +9,30 @@ import yfinance as yf
 from breakout_evidence import analyze_breakout, build_evidence_board
 from box_strategy import analyze_boxes, build_strategy, position_status
 from pathlib import Path
+from candidate_gates import apply_selection, load_inputs
+from market_calendar import expected_price_date
+from price_cache import restore_confirmed_cache
 
 
 # ============================================================
-# 監視ユニバース：現行80銘柄
+# 監視ユニバース：四季報抽出112銘柄（原本・業績確認状況は別判定）
 # ============================================================
 
 TICKERS = [
-    "7826.T", "6912.T", "9249.T", "7192.T", "6727.T", "6364.T", "3560.T", "5957.T",
-    "7172.T", "1401.T", "6652.T", "6345.T", "6862.T", "6855.T", "6407.T", "6134.T",
-    "6629.T", "6226.T", "6904.T", "6368.T", "6941.T", "6946.T", "6866.T", "7254.T",
-    "6258.T", "6518.T", "6616.T", "6677.T", "6474.T", "6327.T", "7715.T", "6508.T",
-    "4776.T", "3923.T", "6027.T", "3663.T", "3968.T", "5033.T", "4055.T", "5254.T",
-    "4828.T", "4825.T", "4258.T", "3692.T", "4012.T", "3763.T", "7094.T", "3696.T",
-    "3040.T", "4440.T", "4371.T", "4414.T", "4396.T", "5591.T", "6998.T", "6871.T",
-    "6787.T", "4368.T", "4369.T", "4975.T", "4626.T", "4971.T", "4046.T", "3441.T",
-    "3449.T", "4970.T", "5805.T", "7609.T", "4461.T", "7781.T", "5018.T", "4100.T",
-    "3482.T", "3498.T", "7148.T", "2884.T", "5136.T", "7372.T", "5589.T", "4765.T",
+    "135A.T", "1401.T", "1438.T", "155A.T", "156A.T", "2180.T", "218A.T", "2884.T",
+    "2986.T", "3040.T", "3359.T", "3441.T", "3449.T", "3482.T", "3498.T", "3560.T",
+    "3663.T", "3692.T", "3695.T", "3696.T", "3763.T", "3795.T", "3923.T", "3968.T",
+    "4012.T", "4046.T", "4055.T", "4100.T", "4258.T", "4261.T", "4360.T", "4366.T",
+    "4368.T", "4369.T", "4371.T", "4396.T", "4414.T", "4440.T", "4461.T", "4479.T",
+    "4626.T", "4743.T", "4765.T", "4776.T", "4825.T", "4828.T", "4970.T", "4971.T",
+    "4975.T", "5018.T", "5033.T", "5136.T", "5254.T", "5367.T", "5589.T", "5591.T",
+    "5805.T", "5957.T", "5983.T", "6027.T", "6134.T", "6189.T", "6226.T", "6258.T",
+    "6286.T", "6327.T", "6336.T", "6345.T", "6364.T", "6368.T", "6407.T", "6469.T",
+    "6474.T", "6508.T", "6518.T", "6616.T", "6629.T", "6652.T", "6677.T", "6727.T",
+    "6787.T", "6855.T", "6862.T", "6866.T", "6871.T", "6904.T", "6912.T", "6941.T",
+    "6946.T", "6998.T", "7030.T", "7059.T", "7065.T", "7094.T", "7148.T", "7172.T",
+    "7175.T", "7192.T", "7218.T", "7254.T", "7256.T", "7354.T", "7371.T", "7372.T",
+    "7609.T", "7715.T", "7781.T", "7826.T", "9245.T", "9249.T", "9337.T", "9343.T",
 ]
 
 
@@ -34,95 +41,118 @@ TICKERS = [
 # ============================================================
 
 STOCK_NAMES = {
-    "7826.T": "フルヤ金属",
-    "6912.T": "菊水HD",
-    "9249.T": "日本エコ",
-    "7192.T": "日モーゲージ",
-    "6727.T": "ワコム",
-    "6364.T": "北越工業",
-    "3560.T": "ほぼ日",
-    "5957.T": "日東精工",
-
-    "7172.T": "JIA",
-    "1401.T": "エムビーエス",
     "6652.T": "IDEC",
-    "6345.T": "アイチコーポ",
-    "6862.T": "ミナトHD",
-    "6855.T": "日電子材料",
+    "6862.T": "ミナトホールディングス",
+    "6855.T": "日本電子材料",
     "6407.T": "CKD",
     "6134.T": "FUJI",
-
-    "6629.T": "テクノホライ",
-    "6226.T": "守谷輸送機",
+    "6629.T": "テクノホライゾン",
+    "6226.T": "守谷輸送機工業",
     "6904.T": "原田工業",
     "6368.T": "オルガノ",
+    "6727.T": "ワコム",
     "6941.T": "山一電機",
-    "6946.T": "日アビオ",
-    "6866.T": "日置電機",
+    "6946.T": "日本アビオニクス",
+    "6866.T": "HIOKI",
     "7254.T": "ユニバンス",
-
     "6258.T": "平田機工",
     "6518.T": "三相電機",
-    "6616.T": "トレックス",
-    "6677.T": "SKエレク",
+    "6345.T": "アイチコーポレーション",
+    "6616.T": "トレックス・セミコンダクター",
+    "218A.T": "Liberaware",
+    "6677.T": "エスケーエレクトロニクス",
     "6474.T": "不二越",
     "6327.T": "北川精機",
     "7715.T": "長野計器",
     "6508.T": "明電舎",
-
+    "7218.T": "田中精密工業",
+    "6286.T": "静甲",
+    "6364.T": "AIRMAN（北越工業）",
+    "7256.T": "河西工業",
     "4776.T": "サイボウズ",
     "3923.T": "ラクス",
-    "6027.T": "弁護士ドット",
+    "6027.T": "弁護士ドットコム",
     "3663.T": "セルシス",
-    "3968.T": "セグエ",
+    "3968.T": "セグエグループ",
+    "155A.T": "情報戦略テクノロジー",
     "5033.T": "ヌーラボ",
-    "4055.T": "T&S",
+    "4055.T": "ティアンドエスグループ",
     "5254.T": "Arent",
-
-    "4828.T": "Bエンジニア",
-    "4825.T": "ウェザーニュー",
+    "9343.T": "アイビス",
+    "4828.T": "ビジネスエンジニアリング",
+    "4825.T": "ウェザーニューズ",
     "4258.T": "網屋",
-    "3692.T": "FFRI",
+    "3692.T": "FFRIセキュリティ",
+    "3795.T": "トヨクモ",
     "4012.T": "アクシス",
     "3763.T": "プロシップ",
     "7094.T": "NexTone",
     "3696.T": "セレス",
-
-    "3040.T": "ソリトン",
+    "3040.T": "ソリトンシステムズ",
+    "3695.T": "GMOプロダクトパートナーズ",
     "4440.T": "ヴィッツ",
-    "4371.T": "C＆C",
+    "4371.T": "コアコンセプト・テクノロジー",
     "4414.T": "フレクト",
-    "4396.T": "システムサポ",
+    "4396.T": "システムサポート",
+    "4261.T": "アジアクエスト",
     "5591.T": "AVILEN",
-    "6998.T": "日タングステン",
-    "6871.T": "日マイクロ",
-
+    "135A.T": "VRAIN Solution",
+    "6998.T": "日本タングステン",
+    "6871.T": "日本マイクロニクス",
+    "7826.T": "フルヤ金属",
     "6787.T": "メイコー",
-    "4368.T": "扶桑化学",
-    "4369.T": "トリケミカル",
+    "4368.T": "扶桑化学工業",
+    "4369.T": "トリケミカル研究所",
     "4975.T": "JCU",
-    "4626.T": "太陽HD",
+    "4626.T": "太陽ホールディングス",
     "4971.T": "メック",
     "4046.T": "大阪ソーダ",
-    "3441.T": "サンコーテクノ",
-
-    "3449.T": "テクノフレ",
-    "4970.T": "東洋合成",
+    "5367.T": "ニッカトー",
+    "3441.T": "山王",
+    "5957.T": "日東精工",
+    "1401.T": "エムビーエス",
+    "3449.T": "テクノフレックス",
+    "4360.T": "マナックケミカルパートナーズ",
+    "6469.T": "放電精密加工研究所",
+    "4970.T": "東洋合成工業",
+    "6912.T": "菊水ホールディングス",
     "5805.T": "SWCC",
     "7609.T": "ダイトロン",
-    "4461.T": "第一工薬",
-    "7781.T": "平山HD",
+    "4461.T": "第一工業製薬",
+    "7781.T": "平山ホールディングス",
+    "5983.T": "イワブチ",
     "5018.T": "MORESCO",
+    "6336.T": "石井表記",
     "4100.T": "戸田工業",
-
-    "3482.T": "ロードスター",
-    "3498.T": "霞ヶ関キャピ",
+    "4366.T": "ダイトーケミックス",
+    "7172.T": "ジャパンインベストメントアドバイザー",
+    "3482.T": "ロードスターキャピタル",
+    "2986.T": "LAホールディングス",
+    "3498.T": "霞ヶ関キャピタル",
+    "9337.T": "トリドリ",
+    "4743.T": "アイティフォー",
     "7148.T": "FPG",
-    "2884.T": "ヨシムラFD",
+    "2180.T": "サニーサイドアップグループ",
+    "2884.T": "ヨシムラ・フード・ホールディングス",
+    "1438.T": "岐阜造園",
+    "9245.T": "リベロ",
     "5136.T": "tripla",
-    "7372.T": "デコルテHD",
-    "5589.T": "オートサーバ",
-    "4765.T": "SBIGアセット",
+    "6189.T": "グローバルキッズCOMPANY",
+    "7065.T": "ユーピーアール",
+    "3359.T": "cotta",
+    "7372.T": "デコルテ・ホールディングス",
+    "7371.T": "Zenken",
+    "5589.T": "オートサーバー",
+    "4479.T": "マクアケ",
+    "156A.T": "マテリアルグループ",
+    "7030.T": "スプリックス",
+    "3560.T": "ほぼ日",
+    "9249.T": "日本エコシステム",
+    "7354.T": "ダイレクトマーケティングミックス",
+    "7192.T": "日本モーゲージサービス",
+    "7059.T": "コプロ・ホールディングス",
+    "4765.T": "SBIグローバルアセットマネジメント",
+    "7175.T": "今村証券"
 }
 
 
@@ -943,7 +973,7 @@ def analyze_market():
         group_by="ticker",
         auto_adjust=True,
         actions=False,
-        threads=True,
+        threads=4,
         progress=False,
     )
 
@@ -964,7 +994,7 @@ def analyze_market():
 
 
     # ========================================================
-    # 80銘柄すべて処理
+    # 112銘柄すべて処理
     # ========================================================
 
     for ticker in TICKERS:
@@ -1002,11 +1032,13 @@ def analyze_market():
                 now_jst
             )
 
-            # 新判定も欠損除去前に評価。四季報選定は利用者の担当。
+            # 新判定も欠損除去前に評価。欠測はJSONのnullとして保持。
+            turnover = calc_avg_turnover_5d(df)
             breakout_observations[clean_code(ticker)] = {
                 "code": clean_code(ticker), "name": get_name(ticker),
                 "selection_source": "利用者の四季報選定リスト",
                 "evidence": analyze_breakout(df),
+                "avg_turnover_5d_yen": float(turnover) if np.isfinite(turnover) else None,
             }
             strategy_frames[clean_code(ticker)] = df.copy()
             breakout_observations[clean_code(ticker)]["box_strategy"] = analyze_boxes(df)
@@ -1767,7 +1799,22 @@ def analyze_market():
 
     if not any(row["evidence"]["data_valid"] for row in breakout_observations.values()):
         raise RuntimeError("全銘柄の取得・検証に失敗。既存stocks_data.jsonを上書きしません。")
-    # Compare dates across this batch; exchange-calendar freshness is not implied.
+    # A failed fetch must not discard a valid cache for the same completed day.
+    previous_path = Path("stocks_data.json")
+    try:
+        previous = json.loads(previous_path.read_text()) if previous_path.exists() else {}
+    except (OSError, ValueError):
+        previous = {}
+    breakout_observations, cache_codes = restore_confirmed_cache(
+        breakout_observations, previous, expected_price_date(now_jst))
+    # Do not import codes outside the configured universe from an old snapshot.
+    configured_codes = {clean_code(ticker) for ticker in TICKERS}
+    breakout_observations = {c: r for c, r in breakout_observations.items() if c in configured_codes}
+    for code, row in breakout_observations.items():
+        row['name'] = get_name(code+'.T')
+    data_date = max((r['evidence']['signal_date'] for r in breakout_observations.values()
+                     if r['evidence'].get('data_valid')), default=data_date)
+    # Compare dates across this batch. Final eligibility also checks the exchange calendar.
     for row in breakout_observations.values():
         evidence = row["evidence"]
         if evidence["data_valid"]:
@@ -1793,7 +1840,16 @@ def analyze_market():
         technical = next((r for r in strategy['observations'] if r['code'] == code), {})
         status['add_candidate'] = bool(status.get('add_candidate') and technical.get('candidate'))
         strategy["holdings"].append({"code": code, **status})
+    strategy, fundamental_report = apply_selection(
+        strategy, load_inputs(Path(__file__).parent), trading_config,
+        now_jst.date().isoformat(), data_date, expected_price_date(now_jst))
     output_data = {
+        "screening_updated_at": now_jst.isoformat(timespec="seconds"),
+        "price_fetch_summary": {"downloaded_valid": sum(r.get("price_source") == "download" for r in breakout_observations.values()),
+                                "cache_reused": len([c for c in cache_codes if c in configured_codes]),
+                                "cache_codes": [c for c in cache_codes if c in configured_codes],
+                                "note": "キャッシュは期待する最新確定日と同一の日足のみ。再取得失敗はskippedに残す。"},
+        "fundamental_audit_summary": {k: v for k, v in fundamental_report.items() if k != "rows"},
         "strategy": strategy,
         "breakout_board": build_evidence_board(breakout_observations),
         "breakout_reference": {
@@ -1965,7 +2021,7 @@ def analyze_market():
 
             "conditions": [
 
-                "監視80銘柄すべてを判定",
+                "監視112銘柄すべてを判定",
 
                 "終値 > SMA50",
 
@@ -2074,18 +2130,13 @@ def analyze_market():
     # JSON保存
     # ========================================================
 
-    with open(
-        "stocks_data.json",
-        "w",
-        encoding="utf-8",
-    ) as f:
-
-        json.dump(
-            output_data,
-            f,
-            ensure_ascii=False,
-            indent=2,
-        )
+    # Validate before replacing the previous published snapshot.
+    serialized = json.dumps(output_data, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+    Path("stocks_data.json.tmp").write_text(serialized, encoding="utf-8")
+    Path("stocks_data.json.tmp").replace("stocks_data.json")
+    Path("audit").mkdir(exist_ok=True)
+    Path("audit/fundamental_audit.json").write_text(
+        json.dumps(fundamental_report, ensure_ascii=False, indent=2, allow_nan=False)+"\n", encoding="utf-8")
 
 
     # ========================================================
@@ -2112,4 +2163,5 @@ def analyze_market():
 
 if __name__ == "__main__":
     analyze_market()
+
 

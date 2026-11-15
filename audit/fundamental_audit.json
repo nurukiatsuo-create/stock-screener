@@ -1,466 +1,204 @@
 {
-  "version": 1,
-  "as_of": "2026-11-14",
-  "rule": "OP前年比20%以上 AND EPS前年比プラス。実績・予想の基準を各行に明示。",
+  "version": 2,
+  "as_of": "2026-11-15",
+  "rule": "通期会社予想OP前年比20%以上 AND EPS増加、または根拠付き例外承認。四半期実績は別審査。",
   "limitations": [
-    "成長率の一次判定のみ。四季報原本確認・利益の持続性・ROE・TOPIX・価格出来高判定は別工程。",
-    "上方修正・最高益による例外通過は未実装。数値条件不合格は最終除外を意味しない。",
-    "公表時刻未登録のため売買バックテストへの転用不可。checked_onは人による開示確認日。",
-    "現行Scriptable・売買候補には未接続。"
+    "業績評価と追加開示の確認状況は別管理。未確認情報を推測で合格にしない。",
+    "日付単位の終日確認用。公表時刻がないため当日場中バックテストには使用不可。",
+    "TOPIX・四季報原本・価格出来高・流動性は候補統合で別判定。"
   ],
   "counts": {
-    "数値条件合格": 2,
-    "数値条件不合格": 0,
-    "確認待ち": 110
+    "確認待ち": 109,
+    "業績条件合格": 1,
+    "例外審査": 2
   },
+  "freshness_counts": {
+    "unknown": 111,
+    "current": 1
+  },
+  "eligible_count": 0,
   "rows": [
     {
-      "code": "135A",
-      "name": "VRAIN Solution",
-      "in_runtime_universe": false,
+      "code": "6652",
+      "name": "IDEC",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "1401",
-      "name": "エムビーエス",
-      "in_runtime_universe": true,
+      "code": "6862",
+      "name": "ミナトホールディングス",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "1438",
-      "name": "岐阜造園",
-      "in_runtime_universe": false,
+      "code": "6855",
+      "name": "日本電子材料",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "155A",
-      "name": "情報戦略テクノロジー",
-      "in_runtime_universe": false,
+      "code": "6407",
+      "name": "CKD",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "156A",
-      "name": "マテリアルグループ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "2180",
-      "name": "サニーサイドアップグループ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "218A",
-      "name": "Liberaware",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "2884",
-      "name": "ヨシムラ・フード・ホールディングス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "2986",
-      "name": "LAホールディングス",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3040",
-      "name": "ソリトンシステムズ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3359",
-      "name": "cotta",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3441",
-      "name": "山王",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3449",
-      "name": "テクノフレックス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3482",
-      "name": "ロードスターキャピタル",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3498",
-      "name": "霞ヶ関キャピタル",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3560",
-      "name": "ほぼ日",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3663",
-      "name": "セルシス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3692",
-      "name": "FFRIセキュリティ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3695",
-      "name": "GMOプロダクトパートナーズ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3696",
-      "name": "セレス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3763",
-      "name": "プロシップ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3795",
-      "name": "トヨクモ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3923",
-      "name": "ラクス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "3968",
-      "name": "セグエグループ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4012",
-      "name": "アクシス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4046",
-      "name": "大阪ソーダ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4055",
-      "name": "ティアンドエスグループ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4100",
-      "name": "戸田工業",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4258",
-      "name": "網屋",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4261",
-      "name": "アジアクエスト",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4360",
-      "name": "マナックケミカルパートナーズ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4366",
-      "name": "ダイトーケミックス",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4368",
-      "name": "扶桑化学工業",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4369",
-      "name": "トリケミカル研究所",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4371",
-      "name": "コアコンセプト・テクノロジー",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4396",
-      "name": "システムサポート",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4414",
-      "name": "フレクト",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4440",
-      "name": "ヴィッツ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4461",
-      "name": "第一工業製薬",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4479",
-      "name": "マクアケ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4626",
-      "name": "太陽ホールディングス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4743",
-      "name": "アイティフォー",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4765",
-      "name": "SBIグローバルアセットマネジメント",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4776",
-      "name": "サイボウズ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4825",
-      "name": "ウェザーニューズ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4828",
-      "name": "ビジネスエンジニアリング",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4970",
-      "name": "東洋合成工業",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4971",
-      "name": "メック",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "4975",
-      "name": "JCU",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5018",
-      "name": "MORESCO",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5033",
-      "name": "ヌーラボ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5136",
-      "name": "tripla",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5254",
-      "name": "Arent",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5367",
-      "name": "ニッカトー",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5589",
-      "name": "オートサーバー",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5591",
-      "name": "AVILEN",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5805",
-      "name": "SWCC",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5957",
-      "name": "日東精工",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "5983",
-      "name": "イワブチ",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6027",
-      "name": "弁護士ドットコム",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "6134",
       "name": "FUJI",
-      "in_runtime_universe": true,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6189",
-      "name": "グローバルキッズCOMPANY",
-      "in_runtime_universe": false,
+      "code": "6629",
+      "name": "テクノホライゾン",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "6226",
       "name": "守谷輸送機工業",
-      "in_runtime_universe": true,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6904",
+      "name": "原田工業",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6368",
+      "name": "オルガノ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6727",
+      "name": "ワコム",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6941",
+      "name": "山一電機",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6946",
+      "name": "日本アビオニクス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6866",
+      "name": "HIOKI",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7254",
+      "name": "ユニバンス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "6258",
       "name": "平田機工",
-      "in_runtime_universe": true,
-      "status": "数値条件合格",
-      "reason": "営業利益前年比20%以上かつEPS増加",
+      "in_runtime_universe": null,
+      "status": "業績条件合格",
+      "assessment": "pass",
+      "eligible": false,
+      "reason": "通期営業利益前年比20%以上かつEPS増加",
+      "freshness": {
+        "status": "unknown",
+        "checked_on": "2026-11-14",
+        "reason": "追加開示の更新確認待ち"
+      },
       "evidence": {
         "code": "6258",
         "published_on": "2026-11-13",
@@ -477,155 +215,528 @@
         "source_title": "通期業績予想および配当予想の修正に関するお知らせ",
         "note": "連結通期予想対前期実績。OP単位百万円、EPS円。"
       },
+      "evidence_key": "a974907d8e9c10b9e8edfb583697bb69934752697f79d503b7810d49a4c2fe07",
       "operating_profit_growth_pct": 31.0884,
-      "eps_growth_pct": 31.5604
-    },
-    {
-      "code": "6286",
-      "name": "静甲",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6327",
-      "name": "北川精機",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6336",
-      "name": "石井表記",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6345",
-      "name": "アイチコーポレーション",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6364",
-      "name": "AIRMAN（北越工業）",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6368",
-      "name": "オルガノ",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6407",
-      "name": "CKD",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6469",
-      "name": "放電精密加工研究所",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6474",
-      "name": "不二越",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6508",
-      "name": "明電舎",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "eps_growth_pct": 31.5604,
+      "numerical_status": "数値条件合格"
     },
     {
       "code": "6518",
       "name": "三相電機",
-      "in_runtime_universe": true,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6345",
+      "name": "アイチコーポレーション",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "6616",
       "name": "トレックス・セミコンダクター",
-      "in_runtime_universe": true,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6629",
-      "name": "テクノホライゾン",
-      "in_runtime_universe": true,
+      "code": "218A",
+      "name": "Liberaware",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6652",
-      "name": "IDEC",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "6677",
       "name": "エスケーエレクトロニクス",
-      "in_runtime_universe": true,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6727",
-      "name": "ワコム",
-      "in_runtime_universe": true,
+      "code": "6474",
+      "name": "不二越",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6787",
-      "name": "メイコー",
-      "in_runtime_universe": true,
+      "code": "6327",
+      "name": "北川精機",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6855",
-      "name": "日本電子材料",
-      "in_runtime_universe": true,
+      "code": "7715",
+      "name": "長野計器",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6862",
-      "name": "ミナトホールディングス",
-      "in_runtime_universe": true,
+      "code": "6508",
+      "name": "明電舎",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "6866",
-      "name": "HIOKI",
-      "in_runtime_universe": true,
+      "code": "7218",
+      "name": "田中精密工業",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6286",
+      "name": "静甲",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6364",
+      "name": "AIRMAN（北越工業）",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7256",
+      "name": "河西工業",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4776",
+      "name": "サイボウズ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3923",
+      "name": "ラクス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6027",
+      "name": "弁護士ドットコム",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3663",
+      "name": "セルシス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3968",
+      "name": "セグエグループ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "155A",
+      "name": "情報戦略テクノロジー",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5033",
+      "name": "ヌーラボ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4055",
+      "name": "ティアンドエスグループ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5254",
+      "name": "Arent",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "9343",
+      "name": "アイビス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4828",
+      "name": "ビジネスエンジニアリング",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4825",
+      "name": "ウェザーニューズ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4258",
+      "name": "網屋",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3692",
+      "name": "FFRIセキュリティ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3795",
+      "name": "トヨクモ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4012",
+      "name": "アクシス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3763",
+      "name": "プロシップ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7094",
+      "name": "NexTone",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3696",
+      "name": "セレス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3040",
+      "name": "ソリトンシステムズ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3695",
+      "name": "GMOプロダクトパートナーズ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4440",
+      "name": "ヴィッツ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4371",
+      "name": "コアコンセプト・テクノロジー",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4414",
+      "name": "フレクト",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4396",
+      "name": "システムサポート",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4261",
+      "name": "アジアクエスト",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5591",
+      "name": "AVILEN",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "135A",
+      "name": "VRAIN Solution",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6998",
+      "name": "日本タングステン",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "6871",
       "name": "日本マイクロニクス",
-      "in_runtime_universe": true,
-      "status": "数値条件合格",
-      "reason": "営業利益前年比20%以上かつEPS増加",
+      "in_runtime_universe": null,
+      "status": "例外審査",
+      "assessment": "review",
+      "eligible": false,
+      "reason": "四半期累計の数値評価・通期会社予想の確認待ち",
+      "freshness": {
+        "status": "unknown",
+        "checked_on": "2026-11-14",
+        "reason": "追加開示の更新確認待ち"
+      },
       "evidence": {
         "code": "6871",
         "published_on": "2026-11-12",
@@ -642,197 +753,680 @@
         "source_title": "2026年12月期 第3四半期決算短信",
         "note": "企業開示のIFIS配信写し。連結9か月累計対前年同期。OP百万円、EPS円。通期予想と混合しない。"
       },
+      "evidence_key": "f0e283ba6effc76e424defd5775bf364c7d081c368f7209515ae62be501ca5f6",
       "operating_profit_growth_pct": 138.8761,
-      "eps_growth_pct": 174.9262
-    },
-    {
-      "code": "6904",
-      "name": "原田工業",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6912",
-      "name": "菊水ホールディングス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6941",
-      "name": "山一電機",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6946",
-      "name": "日本アビオニクス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "6998",
-      "name": "日本タングステン",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7030",
-      "name": "スプリックス",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7059",
-      "name": "コプロ・ホールディングス",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7065",
-      "name": "ユーピーアール",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7094",
-      "name": "NexTone",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7148",
-      "name": "FPG",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7172",
-      "name": "ジャパンインベストメントアドバイザー",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7175",
-      "name": "今村証券",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7192",
-      "name": "日本モーゲージサービス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7218",
-      "name": "田中精密工業",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7254",
-      "name": "ユニバンス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7256",
-      "name": "河西工業",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7354",
-      "name": "ダイレクトマーケティングミックス",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7371",
-      "name": "Zenken",
-      "in_runtime_universe": false,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7372",
-      "name": "デコルテ・ホールディングス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7609",
-      "name": "ダイトロン",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7715",
-      "name": "長野計器",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
-    },
-    {
-      "code": "7781",
-      "name": "平山ホールディングス",
-      "in_runtime_universe": true,
-      "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "eps_growth_pct": 174.9262,
+      "numerical_status": "数値条件合格"
     },
     {
       "code": "7826",
       "name": "フルヤ金属",
-      "in_runtime_universe": true,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "9245",
-      "name": "リベロ",
-      "in_runtime_universe": false,
+      "code": "6787",
+      "name": "メイコー",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "9249",
-      "name": "日本エコシステム",
-      "in_runtime_universe": true,
+      "code": "4368",
+      "name": "扶桑化学工業",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4369",
+      "name": "トリケミカル研究所",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4975",
+      "name": "JCU",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4626",
+      "name": "太陽ホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4971",
+      "name": "メック",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4046",
+      "name": "大阪ソーダ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5367",
+      "name": "ニッカトー",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3441",
+      "name": "山王",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5957",
+      "name": "日東精工",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "1401",
+      "name": "エムビーエス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3449",
+      "name": "テクノフレックス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4360",
+      "name": "マナックケミカルパートナーズ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6469",
+      "name": "放電精密加工研究所",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4970",
+      "name": "東洋合成工業",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6912",
+      "name": "菊水ホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5805",
+      "name": "SWCC",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7609",
+      "name": "ダイトロン",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4461",
+      "name": "第一工業製薬",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7781",
+      "name": "平山ホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5983",
+      "name": "イワブチ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5018",
+      "name": "MORESCO",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6336",
+      "name": "石井表記",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4100",
+      "name": "戸田工業",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4366",
+      "name": "ダイトーケミックス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7172",
+      "name": "ジャパンインベストメントアドバイザー",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3482",
+      "name": "ロードスターキャピタル",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "2986",
+      "name": "LAホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3498",
+      "name": "霞ヶ関キャピタル",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
       "code": "9337",
       "name": "トリドリ",
-      "in_runtime_universe": false,
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     },
     {
-      "code": "9343",
-      "name": "アイビス",
-      "in_runtime_universe": false,
+      "code": "4743",
+      "name": "アイティフォー",
+      "in_runtime_universe": null,
       "status": "確認待ち",
-      "reason": "根拠資料未登録"
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7148",
+      "name": "FPG",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "2180",
+      "name": "サニーサイドアップグループ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "2884",
+      "name": "ヨシムラ・フード・ホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "1438",
+      "name": "岐阜造園",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "9245",
+      "name": "リベロ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5136",
+      "name": "tripla",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "6189",
+      "name": "グローバルキッズCOMPANY",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7065",
+      "name": "ユーピーアール",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3359",
+      "name": "cotta",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7372",
+      "name": "デコルテ・ホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7371",
+      "name": "Zenken",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "5589",
+      "name": "オートサーバー",
+      "in_runtime_universe": null,
+      "status": "例外審査",
+      "assessment": "review",
+      "eligible": false,
+      "reason": "四半期累計の数値評価・通期会社予想の確認待ち",
+      "freshness": {
+        "status": "current",
+        "checked_on": "2026-11-15",
+        "reason": "判定日までの追加開示確認済み"
+      },
+      "evidence": {
+        "code": "5589",
+        "published_on": "2026-11-11",
+        "checked_on": "2026-11-15",
+        "period_end": "2026-09-30",
+        "prior_period_end": "2025-09-30",
+        "basis": "ytd_actual_vs_prior_ytd",
+        "comparable": true,
+        "operating_profit": 2096965,
+        "prior_operating_profit": 1816789,
+        "eps": 183.55,
+        "prior_eps": 159.67,
+        "source_url": "https://tdnet-pdf.kabutan.jp/20261111/140120261110572259.pdf",
+        "source_title": "2026年12月期第3四半期決算短信",
+        "note": "非連結9か月累計。営業利益は損益計算書の千円値。上方修正例外は別途審査。"
+      },
+      "evidence_key": "2a9fe466e37b0df776e1affb27c806c6f6e23e2c6c1923cb1a80428e9615942c",
+      "operating_profit_growth_pct": 15.4215,
+      "eps_growth_pct": 14.9558,
+      "numerical_status": "数値条件不合格"
+    },
+    {
+      "code": "4479",
+      "name": "マクアケ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "156A",
+      "name": "マテリアルグループ",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7030",
+      "name": "スプリックス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "3560",
+      "name": "ほぼ日",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "9249",
+      "name": "日本エコシステム",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7354",
+      "name": "ダイレクトマーケティングミックス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7192",
+      "name": "日本モーゲージサービス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7059",
+      "name": "コプロ・ホールディングス",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "4765",
+      "name": "SBIグローバルアセットマネジメント",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
+    },
+    {
+      "code": "7175",
+      "name": "今村証券",
+      "in_runtime_universe": null,
+      "status": "確認待ち",
+      "assessment": "unknown",
+      "eligible": false,
+      "reason": "根拠資料未登録",
+      "freshness": {
+        "status": "unknown"
+      }
     }
   ]
 }

@@ -6,6 +6,15 @@ on:
     paths:
       - 'scan.py'
       - 'box_strategy.py'
+      - 'candidate_gates.py'
+      - 'market_calendar.py'
+      - 'price_cache.py'
+      - 'audit_fundamentals.py'
+      - 'refresh_selection.py'
+      - 'audit/fundamental_evidence.json'
+      - 'audit/disclosure_checks.json'
+      - 'audit/shikiho_candidates_2026.json'
+      - 'audit/topix_membership.json'
       - 'breakout_evidence.py'
       - 'trading_config.json'
       - 'test_*.py'
@@ -40,7 +49,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pandas numpy matplotlib
+          pip install yfinance pandas numpy matplotlib exchange_calendars==4.13.3
 
       - name: Test monitoring rules
         run: python -m unittest discover -p 'test_*.py' -v
@@ -56,6 +65,7 @@ jobs:
         run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
-          git add stocks_data.json
+          git add stocks_data.json audit/fundamental_audit.json
           git commit -m "Update all ranking JSON files and screener data" || exit 0
           git push
+
