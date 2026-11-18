@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source_url": "https://www.jpx.co.jp/markets/indices/topix/index.html",
-  "checked_on": "2026-11-15",
+  "checked_on": "2026-11-18",
   "snapshot_key": "0dae923ddf978fb0e3160b69b1196517967fab2cdba4c4178f3e2cebecbbafc2",
   "baseline_key": "aea0da8a353b57688d7f03565f6d407ae474a6d0c5c39d34fe9727a574462aa3",
   "status": "verified",
@@ -15,5 +15,6 @@
   ],
   "scope": "TOPIX公式ページの関連ニュース欄。銘柄の自動採用・期限延長は行わない。",
   "announcements_compared": 2,
-  "page_sha256": "6e0b7b71ac22e7a627362916e572b509142782b66d0c49135316b65654513298"
+  "page_sha256": "6e0b7b71ac22e7a627362916e572b509142782b66d0c49135316b65654513298",
+  "network_attempts": 1
 }

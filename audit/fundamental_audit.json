@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "as_of": "2026-11-15",
+  "as_of": "2026-11-18",
   "rule": "通期会社予想OP前年比20%以上 AND EPS増加、または根拠付き例外承認。四半期実績は別審査。",
   "limitations": [
     "業績評価と追加開示の確認状況は別管理。未確認情報を推測で合格にしない。",
@@ -13,10 +13,11 @@
     "例外審査": 2
   },
   "freshness_counts": {
-    "unknown": 107,
-    "current": 5
+    "unknown": 108,
+    "current": 1,
+    "superseded": 3
   },
-  "eligible_count": 3,
+  "eligible_count": 1,
   "rows": [
     {
       "code": "6652",
@@ -196,7 +197,7 @@
       "reason": "通期営業利益前年比20%以上かつEPS増加",
       "freshness": {
         "status": "current",
-        "checked_on": "2026-11-15",
+        "checked_on": "2026-11-18",
         "evidence_checked_on": "2026-11-15",
         "reason": "判定日までの追加開示確認済み"
       },
@@ -438,13 +439,13 @@
       "in_runtime_universe": null,
       "status": "業績条件合格",
       "assessment": "pass",
-      "eligible": true,
+      "eligible": false,
       "reason": "通期営業利益前年比20%以上かつEPS増加",
       "freshness": {
-        "status": "current",
-        "checked_on": "2026-11-15",
+        "status": "superseded",
+        "checked_on": "2026-11-18",
         "evidence_checked_on": "2026-11-15",
-        "reason": "判定日までの追加開示確認済み"
+        "reason": "新しい開示あり・業績再判定待ち"
       },
       "evidence": {
         "code": "3968",
@@ -768,13 +769,13 @@
       "in_runtime_universe": null,
       "status": "業績条件合格",
       "assessment": "pass",
-      "eligible": true,
+      "eligible": false,
       "reason": "通期営業利益前年比20%以上かつEPS増加",
       "freshness": {
-        "status": "current",
+        "status": "unknown",
         "checked_on": "2026-11-15",
         "evidence_checked_on": "2026-11-15",
-        "reason": "判定日までの追加開示確認済み"
+        "reason": "追加開示の更新確認待ち"
       },
       "evidence": {
         "code": "6871",
@@ -1354,10 +1355,10 @@
       "eligible": false,
       "reason": "通常数値条件未達・上方修正等の例外を要確認",
       "freshness": {
-        "status": "current",
-        "checked_on": "2026-11-15",
+        "status": "superseded",
+        "checked_on": "2026-11-18",
         "evidence_checked_on": "2026-11-15",
-        "reason": "判定日までの追加開示確認済み"
+        "reason": "新しい開示あり・業績再判定待ち"
       },
       "evidence": {
         "code": "5589",
@@ -1524,10 +1525,10 @@
       "eligible": false,
       "reason": "四半期累計の数値評価・通期会社予想の確認待ち",
       "freshness": {
-        "status": "current",
-        "checked_on": "2026-11-15",
+        "status": "superseded",
+        "checked_on": "2026-11-18",
         "evidence_checked_on": "2026-11-15",
-        "reason": "判定日までの追加開示確認済み"
+        "reason": "新しい開示あり・業績再判定待ち"
       },
       "evidence": {
         "code": "4765",
