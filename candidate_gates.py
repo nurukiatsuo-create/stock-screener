@@ -1,5 +1,6 @@
 """Explainable final selection. Unknown evidence never qualifies as a pass."""
 import copy
+import hashlib
 import json
 import math
 import re
@@ -20,7 +21,9 @@ def load_inputs(root):
     return {'shikiho': read('shikiho_candidates_2026.json', {'rows': []}),
             'fundamentals': read('fundamental_evidence.json', {'records': []}),
             'checks': read('disclosure_checks.json', {'records': []}),
-            'topix': read('topix_membership.json', {})}
+            'topix': read('topix_membership.json', {}),
+            'topix_check': read('topix_update_check.json', {}),
+            'identity': read('security_identity.json', {'rows': []})}
 
 
 def gate(status, reason, **details):
@@ -31,9 +34,28 @@ def finite_positive(x):
     return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) and x > 0
 
 
-def shikiho_gate(record, as_of):
+def selection_row_key(record):
+    """Acceptance follows the supplied row, never a different code or claim."""
+    payload = {key: record.get(key) for key in ('code', 'name', 'source_claim')}
+    return hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True,
+                                    allow_nan=False).encode()).hexdigest()
+
+
+def shikiho_gate(record, as_of, acceptance=None):
     if not record:
         return gate('unknown', '四季報選定の根拠未登録')
+    try:
+        accepted = acceptance or {}
+        if (accepted.get('status') == 'accepted'
+                and accepted.get('method') == 'user_provided_notebooklm'
+                and accepted.get('edition_label')
+                and date.fromisoformat(accepted['accepted_on']) <= date.fromisoformat(as_of)
+                and accepted.get('row_fingerprints', {}).get(str(record['code'])) == selection_row_key(record)):
+            return gate('pass', '利用者提供・NotebookLM四季報選別済みとして採用',
+                        basis='user_provided_notebooklm', source_verified=False,
+                        accepted_on=accepted['accepted_on'], edition_label=accepted['edition_label'])
+    except (ValueError, TypeError, KeyError):
+        pass
     try:
         if (record.get('source_verified') is True and record.get('source_edition')
                 and record.get('source_locator') and record.get('source_claim')
@@ -44,7 +66,32 @@ def shikiho_gate(record, as_of):
     return gate('unknown', '四季報抽出リスト登録済み・原本未照合')
 
 
-def topix_gate(code, snapshot, as_of):
+def identity_gate(code, record, as_of, required=False):
+    if not record:
+        return gate('unknown' if required else 'pass',
+                    'コード・社名の照合未登録' if required else 'コード・社名照合の必須化前')
+    try:
+        if (str(record['code']) != code or not https_source(record.get('source_url'))
+                or date.fromisoformat(record['checked_on']) > date.fromisoformat(as_of)):
+            raise ValueError('Invalid identity evidence')
+        status = record['status']
+        if status not in ('pass', 'fail', 'unknown'):
+            raise ValueError('Invalid identity status')
+        if status == 'fail' and date.fromisoformat(record['effective_on']) > date.fromisoformat(as_of):
+            return gate('unknown', '上場状態の適用日を要確認')
+        return gate(status, record['reason'], official_name=record.get('official_name'),
+                    source_url=record['source_url'], checked_on=record['checked_on'],
+                    classification=record.get('identity_status'))
+    except (KeyError, TypeError, ValueError):
+        return gate('unknown', 'コード・社名照合の根拠・日付を要確認')
+
+
+def jpx_source(value):
+    host = urlparse(value).hostname if isinstance(value, str) else None
+    return https_source(value) and bool(host and (host == 'jpx.co.jp' or host.endswith('.jpx.co.jp')))
+
+
+def topix_gate(code, snapshot, as_of, update_check=None):
     """Complete official snapshot; missing lists are not equivalent to empty lists."""
     unknown = gate('unknown', 'TOPIX公式リスト未確認')
     try:
@@ -52,12 +99,21 @@ def topix_gate(code, snapshot, as_of):
         pub = date.fromisoformat(snapshot['published_on'])
         checked = date.fromisoformat(snapshot['checked_on'])
         expiry = date.fromisoformat(snapshot['valid_until'])
-        host = urlparse(snapshot['source_url']).hostname or ''
         if (snapshot.get('verified') is not True or snapshot.get('complete') is not True
-                or not https_source(snapshot['source_url'])
-                or not (host == 'jpx.co.jp' or host.endswith('.jpx.co.jp'))
+                or not jpx_source(snapshot['source_url'])
                 or not pub <= checked <= cutoff <= expiry):
             return unknown
+        if 'effective_on' in snapshot and not pub <= date.fromisoformat(snapshot['effective_on']) <= cutoff:
+            return unknown
+        if snapshot.get('requires_daily_update_check'):
+            from check_topix_updates import snapshot_key
+            check = update_check or {}
+            if not (check.get('status') == 'verified' and check.get('success') is True
+                    and check.get('new_announcement_found') is False
+                    and check.get('checked_on') == as_of
+                    and check.get('snapshot_key') == snapshot_key(snapshot)
+                    and jpx_source(check.get('source_url'))):
+                return gate('unknown', check.get('reason') or 'TOPIX公式の追加公表確認待ち')
         transition = snapshot['transition_codes']
         inclusions = snapshot['new_inclusions']
         if not isinstance(transition, list) or not isinstance(inclusions, list):
@@ -68,7 +124,10 @@ def topix_gate(code, snapshot, as_of):
         inc_codes = [r['code'] for r in inclusions]
         if not all(isinstance(c, str) and re.fullmatch(r'[0-9A-Z]{4}', c) for c in inc_codes):
             return unknown
-        if not all(pub <= date.fromisoformat(r['effective_on']) for r in inclusions):
+        if not all(pub <= date.fromisoformat(r.get('published_on', snapshot['published_on']))
+                   <= checked and date.fromisoformat(r.get('published_on', snapshot['published_on']))
+                   <= date.fromisoformat(r['effective_on'])
+                   and jpx_source(r.get('source_url', snapshot['source_url'])) for r in inclusions):
             return unknown
         if (len(transition) != len(set(transition)) or len(inc_codes) != len(set(inc_codes))
                 or set(transition) & set(inc_codes)):
@@ -83,7 +142,9 @@ def topix_gate(code, snapshot, as_of):
             # perpetual claim of index-fund inflows after implementation.
             label = 'new_inclusion' if cutoff <= effective else 'included'
             return gate('pass', 'TOPIX新規組み入れ' if label == 'new_inclusion' else 'TOPIX組み入れ実施済み',
-                        classification=label, effective_on=effective.isoformat(), source_url=snapshot['source_url'])
+                        classification=label, effective_on=effective.isoformat(),
+                        published_on=inclusion.get('published_on', snapshot['published_on']),
+                        source_url=inclusion.get('source_url', snapshot['source_url']))
         return gate('pass', 'TOPIX移行措置リスト非該当', classification='other', source_url=snapshot['source_url'])
     except (KeyError, TypeError, ValueError):
         return unknown
@@ -133,6 +194,10 @@ def apply_selection(strategy, inputs, config, as_of, price_data_date, expected_d
     if len(source_codes) != len(set(source_codes)):
         raise ValueError('Duplicate Shikiho code')
     source = {str(r['code']): r for r in source_rows}
+    identity_rows = inputs.get('identity', {}).get('rows', [])
+    identities = {str(r['code']): r for r in identity_rows}
+    if len(identities) != len(identity_rows):
+        raise ValueError('Duplicate identity code')
     report = build_report({'rows': source_rows}, inputs['fundamentals'], as_of, inputs['checks'])
     financials = {r['code']: r for r in report['rows']}
     result.update(selection_version=1, selection_as_of=as_of, price_data_date=price_data_date, expected_price_date=expected_date,
@@ -157,8 +222,14 @@ def apply_selection(strategy, inputs, config, as_of, price_data_date, expected_d
                            freshness=f.get('freshness'), source_url=f.get('evidence', {}).get('source_url'))
         b = row.get('box') or {}
         technical_valid = b.get('valid') is True and b.get('date') == price_data_date == expected_date and technical_status != 'データ確認待ち'
-        gates = {'shikiho': shikiho_gate(source.get(code), as_of), 'fundamental': fundamental,
-                 'topix': topix_gate(code, inputs['topix'], as_of), 'liquidity': liquidity_gate(row, config),
+        identity = identities.get(code)
+        if identity and identity.get('status') == 'pass' and identity.get('display_name'):
+            row['name'] = identity['display_name']
+        gates = {'shikiho': shikiho_gate(source.get(code), as_of, inputs['shikiho'].get('selection_acceptance')),
+                 'identity': identity_gate(code, identity, as_of, policy.get('require_identity_check', False)),
+                 'fundamental': fundamental,
+                 'topix': topix_gate(code, inputs['topix'], as_of, inputs.get('topix_check')),
+                 'liquidity': liquidity_gate(row, config),
                  'price_data': gate('pass' if technical_valid else 'unknown',
                                     '確定日足の技術計算済み' if technical_valid else '株価データ確認待ち（期待日 '+expected_date+'）')}
         failures = [v['reason'] for v in gates.values() if v['status'] == 'fail']
@@ -185,7 +256,7 @@ def apply_selection(strategy, inputs, config, as_of, price_data_date, expected_d
     result['technical_candidates'] = [r for r in rows if r['technical_candidate']]
     result['pending'] = [r for r in rows if r['selection_status'] == 'pending']
     result['excluded'] = [r for r in rows if r['selection_status'] == 'excluded']
-    gates = ('shikiho', 'fundamental', 'topix', 'liquidity', 'price_data')
+    gates = ('shikiho', 'identity', 'fundamental', 'topix', 'liquidity', 'price_data')
     result['selection_counts'] = {'observations': len(rows), 'source_universe': len(source),
         'not_calculated_codes': sorted(set(source)-{r['code'] for r in rows}),
         'technical_candidates': len(result['technical_candidates']),
@@ -194,11 +265,12 @@ def apply_selection(strategy, inputs, config, as_of, price_data_date, expected_d
         'technical_reasons': dict(Counter(reason for r in rows for reason in r.get('entry_reasons', []))),
         'technical_states': dict(Counter(r['technical_status'] for r in rows))}
     result['selection_policy'] = {'rule_version': 1, 'financial_basis': 'annual_forecast_vs_prior_actual',
+        'shikiho_basis': '利用者がNotebookLMで選別したリストを採用。原本照合済みとは記録しない。',
         'counts_note': '各条件の件数は重複あり。finalは排他的。',
         'rank_note': 'SはTOPIX組み入れ実施日までの属性区分。期待収益・勝率の順位ではない。',
         'limitations': ['収益性のバックテスト未実施', '技術条件の数値閾値は独自の暫定値',
                        '追加開示チェックは根拠付き記録が必要。プログラム実行だけでは確認済みにしない。']}
-    result['policy'] = '業績・四季報原本・TOPIX・流動性を確認後、初動の技術条件を満たすもののみ候補。注文は行わない。'
+    result['policy'] = 'NotebookLM選別済みリストを受け入れ、コード社名・最新業績・TOPIX・流動性を確認後、初動の技術条件を満たすもののみ候補。注文は行わない。'
     eligible = {r['code'] for r in result['candidates']}
     for holding in result.get('holdings', []):
         holding['add_candidate'] = bool(holding.get('add_candidate') and str(holding['code']) in eligible)

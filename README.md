@@ -1,43 +1,39 @@
-> 2026-11-15更新：最終候補に業績・四季報原本・TOPIX・流動性の確認を接続しました。監視対象は抽出リスト112銘柄。未確認は合格扱いにしません。[現行仕様と未完了項目](docs/selection-gates.md)を参照してください。以下の旧説明より現行仕様を優先します。
+# 日本株・新高値監視
 
-> 初動監視の最新仕様は [BOX_STRATEGY.md](BOX_STRATEGY.md)。`stocks_data.json.strategy` v3 と `NewHighMonitor.js` v6 が対象です。下記の `new_high_ranks` 等は旧互換出力で、初動判定には使いません。
+四季報の一次選別をGemini NotebookLMで行い、選別後の業績更新、TOPIX、流動性、日足・ボックスをこのリポジトリで確認します。2026-11-15時点の監視母集団は112銘柄です。
 
-# 四季報を起点とする新高値ブレイク・スクリーナー
+## 主なファイル
 
-本体は「四季報でファンダメンタルズを事前選別した監視銘柄 → 日々の株価・出来高で新高値候補を抽出 → Scriptable・判断ノートで確認」という流れです。
+| ファイル | 役割 |
+|---|---|
+| scan.py | 確定日足と既存技術条件の計算、最終ゲートの適用 |
+| candidate_gates.py | 四季報受入れ・銘柄同一性・業績・TOPIX・流動性・価格の統合 |
+| audit/shikiho_candidates_2026.json | 利用者提供のNotebookLM選別112行と受入日・行ごとの証跡 |
+| audit/security_identity.json | 公式コード・社名照合、上場廃止・不一致の個別処理 |
+| audit/fundamental_evidence.json | 確認済みの業績資料・数値・対象期 |
+| audit/disclosure_monitors.json | 実取得できたIR一覧の監視基準と対象外の明示 |
+| check_disclosure_updates.py | 追加開示の検知。新資料を自動採用しない |
+| audit/topix_membership.json | 公式移行措置リストと新規組入れイベント |
+| check_topix_updates.py | TOPIX公式ニュースの新規・訂正検知 |
+| stocks_data.json | Scriptable用データ。株価日と再評価日を別表示 |
+| NewHighMonitor.js | Scriptable v8。候補・監視・保留・除外と理由の表示 |
 
-## 本体と補助機能
-| 区分 | ファイル・機能 | 役割 |
-| --- | --- | --- |
-| 本体 | scan.py の TICKERS | 現行80銘柄の監視対象 |
-| 本体 | scan.py の新高値判定 | 発射台・ブレイク確認などを判定 |
-| 本体の出力 | stocks_data.json / new_high_ranks | 新高値候補の正規の参照先 |
-| 補助 | stocks_data.json / soba_ranks | 相場流の別条件による判定 |
-| 検証 | stocks_data.json / pf411_ranks | 別条件の入口抽出。名称は将来PFを保証しない |
-| 補助 | scripts/monitor_fund_disclosures.py | EDINET大量保有情報収集 |
-| 表示 | Scriptable | 正規JSONの候補表示 |
-| 表示 | 判断ノート | 候補・チャート・業績補足。公開更新は別作業 |
+## 運用
 
-株価更新は .github/workflows/scan.yml が平日16:00 JSTに起動する設定です。GitHubの起動遅延があるため、updated_atだけでなくdata_dateを確認します。
-Fund disclosure monitorの設定は本体から独立しており、取得結果はActions Artifactsに保存されます。
-breakout_top20.json、soba_top20.jsonは旧出力です。現行scan.pyと提出済みScriptableは参照していません。新規参照は禁止し、既存外部参照を確認するまで削除は保留します。
-別リポジトリ stock-checker は旧固定8銘柄用で、本体の依存先ではありません。
+GitHub Actionsは毎営業日16:00 JSTに起動し、追加開示・TOPIXニュースを確認してから株価を計算します。起動遅延があり得るため、実行時刻だけでなく`data_date`と各確認日を確認してください。
 
-## 2026-10-14の照合結果
-- 提供された四季報選別の二次資料は本文112件・配列112コード。現行TICKERSは80コード。コード上の差分は32件。
-- 各資料行とコードは掲載順で対応させています。正式名称や四季報原典を照合した結果ではありません。
-- 3441は二次資料本文では「山王」、現行コードでは「サンコーテクノ」。業績根拠を転用せず、銘柄同一性を要確認とします。監視対象の自動修正はしていません。
-- 「111から80、31件除外」という背景説明は、現在確認できる資料の件数と一致しません。除外理由は未記録であり推測で補完しません。
-- FUND_SCORESは12銘柄の固定参考値です。現在の新高値判定には採否条件として使われていません。「コードに登録済み」は「原典確認済み」を意味しません。
-- 四季報原典の号・頁・対象期・数値・確認日を記録してから継続／除外を判断します。台帳だけを更新しても本番のTICKERSは変わりません。
-- 自動処理は四季報の業績条件を毎日再審査していません。次回決算・四季報更新時には母集団の再確認が必要です。
+```bash
+python -m unittest discover -p 'test_*.py' -v
+node test_monitor.js
+python check_disclosure_updates.py
+python check_topix_updates.py
+python scan.py
+```
 
-## 運用の順序
-1. 四季報と決算原本で監視台帳の根拠を確認する。
-2. 継続・追加・除外の理由と確認日を記録する。
-3. 承認された対象変更をTICKERSへ反映する。
-4. 日々の新高値候補を確認する。相場流・PF4.11・大量保有情報は別枠で参照する。
-5. 最新足の日付と取得スキップを確認し、必要に応じて手動更新する。
+NotebookLM選別の受入れは、こちらで原本確認済みという意味ではありません。元のコード・社名・選定理由と受入履歴を保存し、個別の不一致・上場廃止・業績条件未確認は別判定にします。
 
-この整理では売買判定ロジック、80銘柄、スケジュール、表示画面は変更していません。
+詳細は[運用仕様](docs/selection-gates.md)を参照してください。旧相場流・PF4.11の表示は互換出力であり、現在の最終候補`strategy.candidates`と区別します。PF4.11という過去の数字を今回の運用の実証結果とは扱いません。
 
+## 変更と検証
+
+今回の112銘柄受入れ・TOPIX公式登録・優先7社の業績確認は[2026-11-15実施記録](docs/operation-update-20261115.md)に記録します。数値閾値・損切り・予算は変更していません。テスト合格は収益性を保証しません。

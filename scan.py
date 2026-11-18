@@ -89,7 +89,7 @@ STOCK_NAMES = {
     "7094.T": "NexTone",
     "3696.T": "セレス",
     "3040.T": "ソリトンシステムズ",
-    "3695.T": "GMOプロダクトパートナーズ",
+    "3695.T": "GMOプロダクトプラットフォーム",
     "4440.T": "ヴィッツ",
     "4371.T": "コアコンセプト・テクノロジー",
     "4414.T": "フレクト",
@@ -945,6 +945,7 @@ def analyze_market():
     now_jst = datetime.now(
         jst
     )
+    expected_session = expected_price_date(now_jst)
 
     updated_str = (
         now_jst
@@ -1040,8 +1041,16 @@ def analyze_market():
                 "evidence": analyze_breakout(df),
                 "avg_turnover_5d_yen": float(turnover) if np.isfinite(turnover) else None,
             }
-            strategy_frames[clean_code(ticker)] = df.copy()
             breakout_observations[clean_code(ticker)]["box_strategy"] = analyze_boxes(df)
+            observation = breakout_observations[clean_code(ticker)]
+            # A restored observation does not repair the downloaded OHLCV frame.
+            # Preserve only independently validated, current raw histories for
+            # holding valuation; NaN/stale frames must never borrow cache flags.
+            if (observation["evidence"].get("data_valid") is True
+                    and observation["evidence"].get("signal_date") == expected_session
+                    and observation["box_strategy"].get("valid") is True
+                    and observation["box_strategy"].get("date") == expected_session):
+                strategy_frames[clean_code(ticker)] = df.copy()
             # 欠損行を落とす前に観察値を計算し、欠損を隠さない。
             box_observations[clean_code(ticker)] = calculate_box_metrics(df)
 
@@ -1806,7 +1815,7 @@ def analyze_market():
     except (OSError, ValueError):
         previous = {}
     breakout_observations, cache_codes = restore_confirmed_cache(
-        breakout_observations, previous, expected_price_date(now_jst))
+        breakout_observations, previous, expected_session)
     # Do not import codes outside the configured universe from an old snapshot.
     configured_codes = {clean_code(ticker) for ticker in TICKERS}
     breakout_observations = {c: r for c, r in breakout_observations.items() if c in configured_codes}
@@ -1835,14 +1844,21 @@ def analyze_market():
         code = str(position["code"])
         observation = breakout_observations.get(code, {})
         evidence = observation.get("evidence", {})
-        status = position_status(position, strategy_frames[code], observation["box_strategy"]) if code in strategy_frames and evidence.get("freshness") == "一致" else {"status": "データ確認待ち"}
+        boxes = observation.get("box_strategy", {})
+        current_download = (code in strategy_frames and observation.get("price_source") == "download"
+                            and evidence.get("data_valid") is True and evidence.get("freshness") == "一致"
+                            and evidence.get("signal_date") == expected_session
+                            and boxes.get("valid") is True and boxes.get("date") == expected_session)
+        status = (position_status(position, strategy_frames[code], boxes) if current_download else
+                  {"status": "データ確認待ち",
+                   "reason": "保有判定用の最新・有効な取得日足が未確認。保存済み観測値から保有評価を補完しない。"})
         # A profitable holding is not enough: additions share the initial-entry gates.
         technical = next((r for r in strategy['observations'] if r['code'] == code), {})
         status['add_candidate'] = bool(status.get('add_candidate') and technical.get('candidate'))
         strategy["holdings"].append({"code": code, **status})
     strategy, fundamental_report = apply_selection(
         strategy, load_inputs(Path(__file__).parent), trading_config,
-        now_jst.date().isoformat(), data_date, expected_price_date(now_jst))
+        now_jst.date().isoformat(), data_date, expected_session)
     output_data = {
         "screening_updated_at": now_jst.isoformat(timespec="seconds"),
         "price_fetch_summary": {"downloaded_valid": sum(r.get("price_source") == "download" for r in breakout_observations.values()),

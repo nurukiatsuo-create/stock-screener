@@ -1,0 +1,802 @@
+{
+  "source": "四季報2026夏ー秋号より選別結果.txt（提供された抽出結果。四季報原本との照合は未実施）",
+  "rows": [
+    {
+      "code": "6652",
+      "name": "IDEC",
+      "source_claim": "大幅増額・今期営業益+63.5%（100億円）・制御機器・FA高シェア",
+      "source_verified": false
+    },
+    {
+      "code": "6862",
+      "name": "ミナトホールディングス",
+      "source_claim": "増額率1位・今期営業益+207.2%（130億円）・AIメモリー",
+      "source_verified": false
+    },
+    {
+      "code": "6855",
+      "name": "日本電子材料",
+      "source_claim": "今期営業益+51.7%（110億円）・プローブカード需要急増",
+      "source_verified": false
+    },
+    {
+      "code": "6407",
+      "name": "CKD",
+      "source_claim": "今期営業益+52.7%（300億円）・流体制御・工場自動化機器",
+      "source_verified": false
+    },
+    {
+      "code": "6134",
+      "name": "FUJI",
+      "source_claim": "最高益更新率向上・営業益+109.8%（330億円）・電子部品実装機",
+      "source_verified": false
+    },
+    {
+      "code": "6629",
+      "name": "テクノホライゾン",
+      "source_claim": "大幅増額・営業益急拡大・ロボティクス＆光学映像機器",
+      "source_verified": false
+    },
+    {
+      "code": "6226",
+      "name": "守谷輸送機工業",
+      "source_claim": "利益率改善度上位・営業益率25.7%・エレベーター自動化",
+      "source_verified": false
+    },
+    {
+      "code": "6904",
+      "name": "原田工業",
+      "source_claim": "増額率上位・営業益+58.5%（38億円）・車載通信アンテナ",
+      "source_verified": false
+    },
+    {
+      "code": "6368",
+      "name": "オルガノ",
+      "source_claim": "利益率大幅改善・営業益高水準・超純水製造プラント",
+      "source_verified": false
+    },
+    {
+      "code": "6727",
+      "name": "ワコム",
+      "source_claim": "利益率改善度上位・今期営業益率12.2%・液晶ペンタブレット",
+      "source_verified": false
+    },
+    {
+      "code": "6941",
+      "name": "山一電機",
+      "source_claim": "利益率改善度上位・営業益率21.9%・AIサーバー向けソケット",
+      "source_verified": false
+    },
+    {
+      "code": "6946",
+      "name": "日本アビオニクス",
+      "source_claim": "利益率改善・営業益率18.9%・精密溶接・接合機器",
+      "source_verified": false
+    },
+    {
+      "code": "6866",
+      "name": "HIOKI",
+      "source_claim": "今期営業益+54.6%（105億円）・電気計測器・電池検査",
+      "source_verified": false
+    },
+    {
+      "code": "7254",
+      "name": "ユニバンス",
+      "source_claim": "四半期進捗率高水準・営業益+37.0%（30億円）・EV用駆動装置",
+      "source_verified": false
+    },
+    {
+      "code": "6258",
+      "name": "平田機工",
+      "source_claim": "第1四半期高進捗・営業益+43.0%（90億円）・生産設備自動化",
+      "source_verified": false
+    },
+    {
+      "code": "6518",
+      "name": "三相電機",
+      "source_claim": "今期営業益+95.2%（15.5億円）・自動化用精密産業ポンプ",
+      "source_verified": false
+    },
+    {
+      "code": "6345",
+      "name": "アイチコーポレーション",
+      "source_claim": "営業益堅調・高所作業車シェアナンバーワン・作業自動化",
+      "source_verified": false
+    },
+    {
+      "code": "6616",
+      "name": "トレックス・セミコンダクター",
+      "source_claim": "増額率上位・営業益+65.9%（18億円）・電源IC",
+      "source_verified": false
+    },
+    {
+      "code": "218A",
+      "name": "Liberaware",
+      "source_claim": "屋内専用狭小空間点検ドローン・デジタルツイン基盤",
+      "source_verified": false
+    },
+    {
+      "code": "6677",
+      "name": "エスケーエレクトロニクス",
+      "source_claim": "四季報強気・営業益+29.7%（50億円）・フォトマスク",
+      "source_verified": false
+    },
+    {
+      "code": "6474",
+      "name": "不二越",
+      "source_claim": "今期営業益+43.3%（140億円）・産業用ロボット・ベアリング",
+      "source_verified": false
+    },
+    {
+      "code": "6327",
+      "name": "北川精機",
+      "source_claim": "今期営業益+47.7%（9.2億円）・基板成形プレス・自動化装置",
+      "source_verified": false
+    },
+    {
+      "code": "7715",
+      "name": "長野計器",
+      "source_claim": "四半期好進捗・営業益+18.9%（83億円）・圧力計ニッチトップ",
+      "source_verified": false
+    },
+    {
+      "code": "6508",
+      "name": "明電舎",
+      "source_claim": "大幅増額・今期営業益+29.0%（350億円）・重電・自動化制御",
+      "source_verified": false
+    },
+    {
+      "code": "7218",
+      "name": "田中精密工業",
+      "source_claim": "四半期好進捗・営業益+43.5%・自動車用エンジン・駆動部品",
+      "source_verified": false
+    },
+    {
+      "code": "6286",
+      "name": "静甲",
+      "source_claim": "四半期高進捗・今期営業益+6.4%（19億円）・自動包装機械",
+      "source_verified": false
+    },
+    {
+      "code": "6364",
+      "name": "AIRMAN（北越工業）",
+      "source_claim": "増額率上位・営業益+25.3%（90億円）・小型コンプレッサー",
+      "source_verified": false
+    },
+    {
+      "code": "7256",
+      "name": "河西工業",
+      "source_claim": "独自増額・営業益+90.1%（125億円）・自動車内装部品・V字回復",
+      "source_verified": false
+    },
+    {
+      "code": "4776",
+      "name": "サイボウズ",
+      "source_claim": "利益率改善度上位・今期営業益+27.0%・kintoneクラウド拡大",
+      "source_verified": false
+    },
+    {
+      "code": "3923",
+      "name": "ラクス",
+      "source_claim": "利益率改善度上位・営業益率28.8%・楽楽精算クラウドSaaS",
+      "source_verified": false
+    },
+    {
+      "code": "6027",
+      "name": "弁護士ドットコム",
+      "source_claim": "独自増額・営業益+86.0%（41億円）・クラウドサイン・AI法務",
+      "source_verified": false
+    },
+    {
+      "code": "3663",
+      "name": "セルシス",
+      "source_claim": "連続最高益・営業益+31.4%（39億円）・CLIP STUDIOサブスク",
+      "source_verified": false
+    },
+    {
+      "code": "3968",
+      "name": "セグエグループ",
+      "source_claim": "今期営業益+51.0%（28億円）・セキュリティ・クラウドDX",
+      "source_verified": false
+    },
+    {
+      "code": "155A",
+      "name": "情報戦略テクノロジー",
+      "source_claim": "営業益+70.0%（9.4億円）・大手企業直請けDX開発",
+      "source_verified": false
+    },
+    {
+      "code": "5033",
+      "name": "ヌーラボ",
+      "source_claim": "今期営業益+111.9%（7.5億円）・Backlog等プロジェクトSaaS",
+      "source_verified": false
+    },
+    {
+      "code": "4055",
+      "name": "ティアンドエスグループ",
+      "source_claim": "最高益更新・営業益+54.0%・先端半導体工場DX・AI",
+      "source_verified": false
+    },
+    {
+      "code": "5254",
+      "name": "Arent",
+      "source_claim": "最高益更新・営業益+42.2%（14.5億円）・建設BIM自動化SaaS",
+      "source_verified": false
+    },
+    {
+      "code": "9343",
+      "name": "アイビス",
+      "source_claim": "今期営業益+24.9%（15億円）・ibisPaintサブスク・高ROE",
+      "source_verified": false
+    },
+    {
+      "code": "4828",
+      "name": "ビジネスエンジニアリング",
+      "source_claim": "利益率改善・営業益率26.2%・製造業ERP基盤",
+      "source_verified": false
+    },
+    {
+      "code": "4825",
+      "name": "ウェザーニューズ",
+      "source_claim": "利益率改善・営業益率21.4%・気象SaaS・防災データ",
+      "source_verified": false
+    },
+    {
+      "code": "4258",
+      "name": "網屋",
+      "source_claim": "今期営業益+38.0%（14.5億円）・サイバーセキュリティ・クラウド",
+      "source_verified": false
+    },
+    {
+      "code": "3692",
+      "name": "FFRIセキュリティ",
+      "source_claim": "今期営業益+17.3%（16億円）・国産セキュリティソフト",
+      "source_verified": false
+    },
+    {
+      "code": "3795",
+      "name": "トヨクモ",
+      "source_claim": "今期営業益+35.3%（21億円）・安否確認クラウドSaaS",
+      "source_verified": false
+    },
+    {
+      "code": "4012",
+      "name": "アクシス",
+      "source_claim": "四半期高進捗・営業益+29.5%（11.5億円）・金融・クラウドSI",
+      "source_verified": false
+    },
+    {
+      "code": "3763",
+      "name": "プロシップ",
+      "source_claim": "今期営業益+40.2%（41億円）・固定資産会計パッケージ",
+      "source_verified": false
+    },
+    {
+      "code": "7094",
+      "name": "NexTone",
+      "source_claim": "今期営業益+42.2%（18.5億円）・音楽著作権管理DX",
+      "source_verified": false
+    },
+    {
+      "code": "3696",
+      "name": "セレス",
+      "source_claim": "今期営業益+62.2%（37億円）・ポイ活・暗号資産・DX",
+      "source_verified": false
+    },
+    {
+      "code": "3040",
+      "name": "ソリトンシステムズ",
+      "source_claim": "今期営業益+45.6%（39億円）・ITセキュリティ・リモートアクセス",
+      "source_verified": false
+    },
+    {
+      "code": "3695",
+      "name": "GMOプロダクトパートナーズ",
+      "source_claim": "営業益+194.1%（10億円）・決済DX・SaaS",
+      "source_verified": false
+    },
+    {
+      "code": "4440",
+      "name": "ヴィッツ",
+      "source_claim": "今期営業益+14.8%（6.5億円）・自動運転・組込みSaaS",
+      "source_verified": false
+    },
+    {
+      "code": "4371",
+      "name": "コアコンセプト・テクノロジー",
+      "source_claim": "今期営業益+18%（24.3億円）・製造・建設DX支援",
+      "source_verified": false
+    },
+    {
+      "code": "4414",
+      "name": "フレクト",
+      "source_claim": "今期営業益+33.6%（12.5億円）・Salesforce統合クラウドSI",
+      "source_verified": false
+    },
+    {
+      "code": "4396",
+      "name": "システムサポート",
+      "source_claim": "最高益更新・営業益+66.5%（34.1億円）・クラウド基盤",
+      "source_verified": false
+    },
+    {
+      "code": "4261",
+      "name": "アジアクエスト",
+      "source_claim": "最高益更新・営業益+21.6%（5.4億円）・DX・AIクラウド",
+      "source_verified": false
+    },
+    {
+      "code": "5591",
+      "name": "AVILEN",
+      "source_claim": "最高益更新・営業益+74.9%・AIアルゴリズム・ビルドアップ",
+      "source_verified": false
+    },
+    {
+      "code": "135A",
+      "name": "VRAIN Solution",
+      "source_claim": "最高益更新・営業益+27.9%（14.5億円）・製造業向けAI外観検査",
+      "source_verified": false
+    },
+    {
+      "code": "6998",
+      "name": "日本タングステン",
+      "source_claim": "乖離率1位・営業益+194.5%（21億円）・タングステン特殊加工",
+      "source_verified": false
+    },
+    {
+      "code": "6871",
+      "name": "日本マイクロニクス",
+      "source_claim": "最高益更新率+60.8%・営業益率改善・プローブカード首位",
+      "source_verified": false
+    },
+    {
+      "code": "7826",
+      "name": "フルヤ金属",
+      "source_claim": "今期純利益+131.9%（150億円）・貴金属高純度加工ニッチ",
+      "source_verified": false
+    },
+    {
+      "code": "6787",
+      "name": "メイコー",
+      "source_claim": "最高益更新率強気・営業益+36.5%（270億円）・プリント配線板",
+      "source_verified": false
+    },
+    {
+      "code": "4368",
+      "name": "扶桑化学工業",
+      "source_claim": "最高益更新・純利益+16.0%・超高純度シリカ・半導体研磨材",
+      "source_verified": false
+    },
+    {
+      "code": "4369",
+      "name": "トリケミカル研究所",
+      "source_claim": "今期営業益+10.1%（65億円）・半導体用先端化学材料",
+      "source_verified": false
+    },
+    {
+      "code": "4975",
+      "name": "JCU",
+      "source_claim": "営業利益率41.0%・プリント基板・半導体メッキ用化学品",
+      "source_verified": false
+    },
+    {
+      "code": "4626",
+      "name": "太陽ホールディングス",
+      "source_claim": "営業利益率23.6%・ソルダーレジスト世界シェア首位",
+      "source_verified": false
+    },
+    {
+      "code": "4971",
+      "name": "メック",
+      "source_claim": "利益率改善・営業利益率27.4%・超微細配線密着剤",
+      "source_verified": false
+    },
+    {
+      "code": "4046",
+      "name": "大阪ソーダ",
+      "source_claim": "今期営業益+17.6%・医薬品精製用シリカゲル・機能材料",
+      "source_verified": false
+    },
+    {
+      "code": "5367",
+      "name": "ニッカトー",
+      "source_claim": "四半期進捗率高水準・営業益+44.7%・産業用セラミックス",
+      "source_verified": false
+    },
+    {
+      "code": "3441",
+      "name": "山王",
+      "source_claim": "今期営業益+101.0%（16億円）・貴金属プレーティング加工",
+      "source_verified": false
+    },
+    {
+      "code": "5957",
+      "name": "日東精工",
+      "source_claim": "今期営業益+24.2%（42.6億円）・工業用ファスナー・自動組立",
+      "source_verified": false
+    },
+    {
+      "code": "1401",
+      "name": "エムビーエス",
+      "source_claim": "独自増額・営業益+39.3%・特殊外壁研磨・インフラ補修",
+      "source_verified": false
+    },
+    {
+      "code": "3449",
+      "name": "テクノフレックス",
+      "source_claim": "今期営業益+73.5%（68億円）・フレキシブルホース・継手",
+      "source_verified": false
+    },
+    {
+      "code": "4360",
+      "name": "マナックケミカルパートナーズ",
+      "source_claim": "前号比増額率上位・営業益+77.3%・難燃剤・臭素系ニッチ",
+      "source_verified": false
+    },
+    {
+      "code": "6469",
+      "name": "放電精密加工研究所",
+      "source_claim": "今期営業益+36.4%（15.3億円）・放電加工・金型ニッチ",
+      "source_verified": false
+    },
+    {
+      "code": "4970",
+      "name": "東洋合成工業",
+      "source_claim": "今期営業益+63.6%（60億円）・感光性材料・半導体レジスト",
+      "source_verified": false
+    },
+    {
+      "code": "6912",
+      "name": "菊水ホールディングス",
+      "source_claim": "今期営業益+31.1%（28億円）・耐電圧試験器・電源装置",
+      "source_verified": false
+    },
+    {
+      "code": "5805",
+      "name": "SWCC",
+      "source_claim": "今期営業益+24.5%（340億円）・電線・電力インフラ・超電導",
+      "source_verified": false
+    },
+    {
+      "code": "7609",
+      "name": "ダイトロン",
+      "source_claim": "今期営業益+31.2%（92億円）・半導体・電子部品商社",
+      "source_verified": false
+    },
+    {
+      "code": "4461",
+      "name": "第一工業製薬",
+      "source_claim": "今期営業益+25.7%（127億円）・界面活性剤・電池材料",
+      "source_verified": false
+    },
+    {
+      "code": "7781",
+      "name": "平山ホールディングス",
+      "source_claim": "乖離率高水準・営業益+49.6%（19億円）・現場コンサル",
+      "source_verified": false
+    },
+    {
+      "code": "5983",
+      "name": "イワブチ",
+      "source_claim": "今期営業益14.8億円・電力・通信架線金具ニッチトップ",
+      "source_verified": false
+    },
+    {
+      "code": "5018",
+      "name": "MORESCO",
+      "source_claim": "四半期高進捗・営業益+44.6%・特殊潤滑油・HDD耐熱油",
+      "source_verified": false
+    },
+    {
+      "code": "6336",
+      "name": "石井表記",
+      "source_claim": "前号比増額率上位・営業益+31.6%（15億円）・プリント基板製造装置",
+      "source_verified": false
+    },
+    {
+      "code": "4100",
+      "name": "戸田工業",
+      "source_claim": "前号比増額率上位・営業益+50.8%（13億円）・電子素材・磁性材料",
+      "source_verified": false
+    },
+    {
+      "code": "4366",
+      "name": "ダイトーケミックス",
+      "source_claim": "今期営業益+84.6%（16.1億円）・感光性材料・感熱材料",
+      "source_verified": false
+    },
+    {
+      "code": "7172",
+      "name": "ジャパンインベストメントアドバイザー",
+      "source_claim": "営業益率48.7%・営業益+23.3%・航空機オペリー",
+      "source_verified": false
+    },
+    {
+      "code": "3482",
+      "name": "ロードスターキャピタル",
+      "source_claim": "最高益更新・営業益+19.3%（160億円）・不動産Tech",
+      "source_verified": false
+    },
+    {
+      "code": "2986",
+      "name": "LAホールディングス",
+      "source_claim": "最高純益更新率+89.1%・配当利回り7.2%・新築再生不動産",
+      "source_verified": false
+    },
+    {
+      "code": "3498",
+      "name": "霞ヶ関キャピタル",
+      "source_claim": "今期純利益+61.0%（165億円）・物流・ホテル開発",
+      "source_verified": false
+    },
+    {
+      "code": "9337",
+      "name": "トリドリ",
+      "source_claim": "今期営業益+55.6%（11億円）・インフルエンサーマーケSaaS",
+      "source_verified": false
+    },
+    {
+      "code": "4743",
+      "name": "アイティフォー",
+      "source_claim": "連続最高益・営業益+17.9%・地銀・自治体向けキャッシュレスDX",
+      "source_verified": false
+    },
+    {
+      "code": "7148",
+      "name": "FPG",
+      "source_claim": "四半期好進捗・営業益+7.4%（273億円）・金融商品・船舶リース",
+      "source_verified": false
+    },
+    {
+      "code": "2180",
+      "name": "サニーサイドアップグループ",
+      "source_claim": "今期営業益+62.8%（26億円）・PR・ブランディング",
+      "source_verified": false
+    },
+    {
+      "code": "2884",
+      "name": "ヨシムラ・フード・ホールディングス",
+      "source_claim": "今期営業益+46.7%（23億円）・食品M&Aプラットフォーム",
+      "source_verified": false
+    },
+    {
+      "code": "1438",
+      "name": "岐阜造園",
+      "source_claim": "今期営業益+46.8%（7.9億円）・造園・緑化事業ニッチ",
+      "source_verified": false
+    },
+    {
+      "code": "9245",
+      "name": "リベロ",
+      "source_claim": "今期営業益+64.5%（12.5億円）・新生活プラットフォーム・引越しDX",
+      "source_verified": false
+    },
+    {
+      "code": "5136",
+      "name": "tripla",
+      "source_claim": "今期営業益+65.7%（8.6億円）・宿泊予約エンジン・AISaaS",
+      "source_verified": false
+    },
+    {
+      "code": "6189",
+      "name": "グローバルキッズCOMPANY",
+      "source_claim": "今期営業益+57.3%（13.5億円）・認可保育園運営",
+      "source_verified": false
+    },
+    {
+      "code": "7065",
+      "name": "ユーピーアール",
+      "source_claim": "今期営業益+206.9%（8.5億円）・パレットレンタル・物流DX",
+      "source_verified": false
+    },
+    {
+      "code": "3359",
+      "name": "cotta",
+      "source_claim": "今期営業益+16.6%（9億円）・製菓資材・ECプラットフォーム",
+      "source_verified": false
+    },
+    {
+      "code": "7372",
+      "name": "デコルテ・ホールディングス",
+      "source_claim": "今期営業益+70.1%（5億円）・フォトウェディング事業",
+      "source_verified": false
+    },
+    {
+      "code": "7371",
+      "name": "Zenken",
+      "source_claim": "今期営業益+42.5%（5.5億円）・海外IT人材育成・語学",
+      "source_verified": false
+    },
+    {
+      "code": "5589",
+      "name": "オートサーバー",
+      "source_claim": "今期営業益+9.1%（26億円）・中古車流通プラットフォーム",
+      "source_verified": false
+    },
+    {
+      "code": "4479",
+      "name": "マクアケ",
+      "source_claim": "今期営業益+79.0%（8億円）・応援購入クラウドファンディング",
+      "source_verified": false
+    },
+    {
+      "code": "156A",
+      "name": "マテリアルグループ",
+      "source_claim": "今期営業益+50.2%（12.5億円）・PR・マーケティング支援",
+      "source_verified": false
+    },
+    {
+      "code": "7030",
+      "name": "スプリックス",
+      "source_claim": "今期営業益+19.8%（26億円）・個別指導塾「森塾」・教育",
+      "source_verified": false
+    },
+    {
+      "code": "3560",
+      "name": "ほぼ日",
+      "source_claim": "四季報乖離率69.1%・営業益+86.7%（11.5億円）・手帳コンテンツ",
+      "source_verified": false
+    },
+    {
+      "code": "9249",
+      "name": "日本エコシステム",
+      "source_claim": "営業益+197.5%（13億円）・公営競技運営受託・インフラ",
+      "source_verified": false
+    },
+    {
+      "code": "7354",
+      "name": "ダイレクトマーケティングミックス",
+      "source_claim": "四半期高進捗・営業益+40.7%・営業代行",
+      "source_verified": false
+    },
+    {
+      "code": "7192",
+      "name": "日本モーゲージサービス",
+      "source_claim": "今期営業益+18.1%（18.7億円）・住宅ローン・フラット35",
+      "source_verified": false
+    },
+    {
+      "code": "7059",
+      "name": "コプロ・ホールディングス",
+      "source_claim": "増額率30.0%・営業益+7.4%（39億円）・建設エンジニア派遣",
+      "source_verified": false
+    },
+    {
+      "code": "4765",
+      "name": "SBIグローバルアセットマネジメント",
+      "source_claim": "今期営業益+64.9%（85億円）・資産運用",
+      "source_verified": false
+    },
+    {
+      "code": "7175",
+      "name": "今村証券",
+      "source_claim": "今期営業益+42.1%（20億円）・北陸地盤・高収益証券",
+      "source_verified": false
+    }
+  ],
+  "version": 2,
+  "selection_acceptance": {
+    "status": "accepted",
+    "method": "user_provided_notebooklm",
+    "accepted_on": "2026-11-15",
+    "edition_label": "会社四季報2026年夏号・秋号（利用者提供の抽出結果）",
+    "original_selection_date": null,
+    "authorization": "利用者の指示により現在の112銘柄をNotebookLM選別済みリストとして採用。",
+    "source_verified": false,
+    "scope": "一次選別結果の受入れ。コード社名、最新業績、TOPIX、流動性、価格条件は独立判定。",
+    "row_fingerprints": {
+      "6652": "5a15a5cd1b9d4cc10bdeb789825b4a31da6fc92b556e88f811193db285b92dde",
+      "6862": "f73725c92f985748d0ee8b2008277c7c1b65fe9383e0b5d8e973332609704138",
+      "6855": "ebcd141aa79ea1d4f3ab552f5fef9cf5af3d95e8e76070de26854236a97b72bd",
+      "6407": "c1dbca7a16fd12242eb9242606a661b3261a004f55c7adf465ce38bde458543a",
+      "6134": "0a96335f20e18ee95dac28429abdfc326870d87162f3db1f91be2bfb41966027",
+      "6629": "eb6ae9df6765b27a01613c157f1b485237003d5e34944be619f2686f01fbe6ea",
+      "6226": "700b5d28d6151a380a32e658a7468e348da2ee098c299ec2d7b1f62dbc2ca217",
+      "6904": "2a4325b0590967ee67027dcc34ded691c950bef9bd4b59f659157549f91000de",
+      "6368": "ac0c0ca1f8476a4719d82377c3009faebd110d829a53bf486e1ec7dbdb31ac99",
+      "6727": "f3a0fa3b76972a9109514287ca1c3f2e3fccc50194c64220e8460070600562c3",
+      "6941": "b99dc74e10b6295e2c7b20d55a0e81e4a56944f7d6c7c03c0640d6b970f4978b",
+      "6946": "9b1eecbb806aebb948c724ea2bf0b0906119d68220ac78d9e3efded61dad4000",
+      "6866": "08105b9692b80887dc79ecabdc0f9c16eac6e2d8d4b6904680c56019ee9a3bd7",
+      "7254": "7dcf201dfc092b44611a2097659a10ce69db7bfbabd5d9fd782f2f8ba57a23d6",
+      "6258": "5c2a3a09108a62389336ee8033b03d9c9a98aefa8e0d312a0da2fdc836effd77",
+      "6518": "0e167116b5734e3fbfbf8e08b8c587961368dd1a06a5583aa03d5251410d8468",
+      "6345": "2bf8df27d0aae6b2e98f46c049fe11116f137558f32fe6e2da51c5dcab3b526a",
+      "6616": "fd7d3e1005ac6a53bfbc714dbbd97c7021cf9566942c0bc4a4f19a8f274613ca",
+      "218A": "f77b8749c4147ad57f9913f99cd76b89fa48671e050d9f435fd3f9184dcfb806",
+      "6677": "c478563e2771858840cd3fc3dc2013837e388f74150ffe302630fc320018c6b6",
+      "6474": "a0711b4567d4c5ce538f04f1b54eecd397fef4abc4e44e5274657ed4d6611cf6",
+      "6327": "4d15908d470c0a6533578c3b6e4b1efb6da706b0a23570519329d7a61d119926",
+      "7715": "91c8b8dd400eb631cd87a4a273e5536142c439edd1e6b281933e159d04bb2dd9",
+      "6508": "443f3d216fc8f3adaff83e56e95d2ef6b8878b5eb09e534e575577e1fe369e6b",
+      "7218": "0be7eeab1d84b046589eceaac1cb1f8ee0cd43e32c27ebe9d1dc3515402ef975",
+      "6286": "9d185e60145f92be7b78806e1994fa2c5b4df1f0f554b55c224877751413d7d1",
+      "6364": "dd4e7ff2df5e121887627f8c4cb30e1fdcef487ecb496b3770c278c6342adab7",
+      "7256": "255c9042d2556bf81023d7d5c0112f9308029f0a65dfc0ed7617cf0902a68c72",
+      "4776": "badb32d50d7f79e43551db7ed0d7be0cbe1884aa0a612fbea5b0c46da9524eb0",
+      "3923": "e4d08168edd440b50cc256a809d7e8190bf0fe443b6a251f8cc504b3486c4813",
+      "6027": "018a12abcaa9341edc3d467a67e748cd75b97f5f84fccd8b09be0037a47bd86c",
+      "3663": "eaf5c870d0201af8fde8c4266faae702f62ae6b2dcc66610e414b4b2bbb5830c",
+      "3968": "df729d6564a66aea7090cab838ef6e4734ce02883e8eab9f218a094e1683ebdd",
+      "155A": "360be7e75804d6723526606f877fca6bda5c80e2bffcda32707f1b7c2f2b16db",
+      "5033": "46224f59d8edd4caf7ec815555e826b2bfd1ee63533b819fc48b0a41da849687",
+      "4055": "21ccbd95dad46fc48ad6a18d32e866af7b737aa4c030ec2f12f8f0d635f8bd1f",
+      "5254": "b30c780e90ed824e9269902013d6941e9ede66aaed3e6d39a9d42e8d87073ac5",
+      "9343": "443cfd37b7f97beef0beb070d4dd0a7049eef3c5cd2bb88347c06a73f72e4200",
+      "4828": "4bfacd53485c6ce62b17027c85f93b5759a56bd8dae90c4b213d3a225554b6cf",
+      "4825": "ccc608ddc71b6e64ce911ee756356c71c6a7cf52eb669053583395a30e8e98b8",
+      "4258": "bc963f1f32686fffd82d4aa55a1aecae82f401daf6e395bfad37547326d42564",
+      "3692": "82616c3194598c5447fe8c725a48abbce1fc0341e83b8af0908eda14b621c772",
+      "3795": "993f2e3581df1cfc91600f037a467485c86b63fc626ee642d8956d2f973ab9c4",
+      "4012": "6ca73db38445d457476c8ba895e1dcbca7960dd2cf218525c484cba6a1de703e",
+      "3763": "3d7e91a28cf4955bdaeea7f36233da66919e84a1c3063e020b8c564eadf3629e",
+      "7094": "598c8702369a46f7b83fcf2daeed1d038c54a772293080f1a565cc667f94672a",
+      "3696": "70099ef62f0a6a1181ff572af7637c178296e6b765c606329303b09fb53ddf58",
+      "3040": "75a097c5243ae670c4aa514b065afff33cd51f08e12329fcbf555a280693c886",
+      "3695": "7d1cc93a210d0e8e7c023f8c18ef0eb10ee8b36e32edd9204ff75b96cbf6b95b",
+      "4440": "acf78077c2124f22fe78db807badee9173d83d03fa6d77f6a1ed88562008723f",
+      "4371": "2ed57ddf6ad75be1326ee1283e1bf63383f70e5d4ed117353d2b3dad18e992b3",
+      "4414": "6c63bc643732b160e13efbca2d41e4ebfce077cde113d07f979de7b7b17ce7f1",
+      "4396": "8ece195478ba2048ac5a9dd3ae39637c7c01527d6d3aad9a54b4118b0fad5267",
+      "4261": "4e03f834506bbaa97731ea0134ef1331198b46ea339fc154b62963287175f132",
+      "5591": "75c0b3bac3c6637c52da2a7de07473daf234708848c4abd84a2280f0ad223e12",
+      "135A": "88bf307bb51324512c85ea304f7ceef51602ed3d37e25987efec53168a6880e3",
+      "6998": "89da25775bbe937a42b237c8c34584a2058909538057fecfda0de5ca8915bde9",
+      "6871": "7fe123bd447863639f528dce3a61e820e876714498ba0f1c65d105e77c9bd758",
+      "7826": "005a6f7c70a5f1124e94e6d1773aea3006d34e490236d51ee3d93ff6676b6c42",
+      "6787": "1ea0887a0d0397f67863c33601322c763320f3f69fe257895e549001ff2bd522",
+      "4368": "1aa97226aa2282ab62044216c6871aafefdb3656c073e20cbba07161e725996b",
+      "4369": "17f764fc7a61d3ae5cbe79ff2854d037b34de70b80ef8881f0b4c63642408639",
+      "4975": "72ff60fa0794e115ce2f6f88d93a217d44a083537c7bb8ed6115f59f62153fad",
+      "4626": "59463f447dd57152b7168b2af24f12fd34eeb1b5c8a38c34dad991c516457946",
+      "4971": "6e265d977285294b6cf405ccfadb73ebb5ce5c2fc7d4c288ee3ac5557639000b",
+      "4046": "d682e346e7f648773f4100ffa671b71971e65603e2dd8cdb2b166d4129c110f8",
+      "5367": "363b1b27ca8c724298eaefbbfc83cfb2b80af3131e6238d63b0b0020c5d4ab02",
+      "3441": "2af11c66fd18b5e18d0e83610e0b8869b94b968767e942d129f38aab75735e45",
+      "5957": "c783676e06cafce41d235e1851412927b13214532e1d6b6fc8eb86c0c661748b",
+      "1401": "07b78c2c371e1a836f6cd747de697cb8f26d77f958f1d037f5e3461fd631b9b0",
+      "3449": "fe4d601e8d92a192c6a18def10222631637e2194b71560dc6b3291fdaff2905f",
+      "4360": "55da29e81a46291ba3ada10331bd12240fd6b54065894e56d25228d6cca0c031",
+      "6469": "10fc5965b63f96c75471476c2f664872ddb05c39de6601cb291fba41bc1b3199",
+      "4970": "9c41a21281fe9f64ce1a7f723e4f79f9461d5cf812350c69b533389890eac753",
+      "6912": "feddcfdee3a0a8d1336f6a03c28bef3f17ddd001eac215c79dabd6860c46cc41",
+      "5805": "51e1a8c355c3c1f4afcb56ddfa12ac5ff6ea7f5c86be470880f1ece34854d6aa",
+      "7609": "b6bd8bc0addf9d11812334246783bec589a91e59ce746c6285e7834628b5e1ab",
+      "4461": "c13f7c3bfcbff29a1a62aeaf50e663bb9d22216400669bb99a13d049bfe8faa4",
+      "7781": "d4f2136ac3d2e8e2c9d0ef3a4ba2a60217c106a3f8c52063ba689ca07d219e70",
+      "5983": "1ed353cb465cdec4d5f45272eca2c55f5c7ba4db41c8a25f90d6d52b920266a9",
+      "5018": "bda3feadc601358a6326492f251298f3ff6b53e9b872078322376c8f3858d868",
+      "6336": "5665898918f7e1d92db622afea41a9bb978407d578932035ccc401697a9a7ce1",
+      "4100": "ba86ff396bd6d9aa47b4059044de445a15282014c4b51d54a1b1e36bbf0bf4f3",
+      "4366": "71c9022aadf7862ebac60b637a3793ec4fe425b162c59fdf62166d4f378c82a1",
+      "7172": "97aafad5e39df0b9ef9954c77b4695b2e20beb29cd0e633ac7bdb8e775656faa",
+      "3482": "2c02d16249c767448a07342675788a6b2d343916254c82d503fea69443ddaec8",
+      "2986": "0eb29bcf1ccb566a97b2529e5a6ec771cc9b47885f6bcd8ea9d3bfb3517676a1",
+      "3498": "30c0f13f34ec5df946e5290dc7b7abac5f4d9b70d6072493943d2e5ba20f2d18",
+      "9337": "f5b8f8680357e0455bf73b3d7c5a61eee0ecedc88e305ffabce66f7f75a4e027",
+      "4743": "674cdaf7128edd0c27bb6493a6a37cee7023f51b79c7fa8e652c9bade3abb2ba",
+      "7148": "97e40146f2bd52b6e63e7027ffab9c7329c0ac0f3cae13e2898105fa525f8050",
+      "2180": "1c253b68518002fb52767dd83d7b29568662663b14d68531c7a549658e5b2260",
+      "2884": "fde6e72cbed8b13cd35a74104d929e11e9493587690573a07d71c757e58289b5",
+      "1438": "39858f18b557e8bae4fefc74055e07f670155d16ea5bf84f34e985cf4f6ae6dc",
+      "9245": "e49a034eeb2ea7226e723102543064c608e38c4ba43fe8fbb54bf6403c9014d4",
+      "5136": "12b4107bb1e9b655b1d15ddc14d3c53b95aec7bfc8dc84e338da97e7caa6b5c6",
+      "6189": "6c1039e614d27db01b34963efbe455114e246fd2897ed86980e3e6785644011d",
+      "7065": "cb128dc3085affb308cb58fc43c0fa3552e264a85601712b4344d5144831164c",
+      "3359": "294e11562079e44d8a99d9a7c788e4b50b78e4b3c8cf70adc4afdccf47389683",
+      "7372": "7149c43c751ce74faf11a126ff5463e8418d8e7058d8b3e462e1b025b462c6d1",
+      "7371": "f6a84cae5700f45c14842d6efe8b6145bc16ea11754a350cf4ab26f1a6b37a5d",
+      "5589": "31e7f4283e03a4e7b85467fec94e2f6b9d4b941893fbc339a59fe2d88935fd39",
+      "4479": "aad49cee35a83a79a5c818e368998fba00b21c0fe9433709c6769ca5b86d891c",
+      "156A": "deb19d4112e51eb01692ea2f24535f5fb5cb50178a5812aef8ec298653706e57",
+      "7030": "274bf096ed6f21b8af5d2818c6a7b77a35beb6cc8d82ead1ec956758c802e3c2",
+      "3560": "b4ab96269ed7dfa1101b060ddd3cb6f4fd28ff2a408eda972c98481f5a5d15f1",
+      "9249": "a4cd91cb30c261fa84065c3b3d4fda6747490864fc15a1128a6c62e7f77d8ba7",
+      "7354": "29002cd441b8513fa12febc2f0174123784d45e0e302ede4f41cba7c61c5065b",
+      "7192": "8f1912652064ac1de6a476aa75d7b14468f1b31d36cee114b3617cf4aab6dc77",
+      "7059": "42b2d31b17b874eaf0955393e83ec27345f9d555a166aa8ceaf40a7d4263c8a0",
+      "4765": "88daafb0b1968a2f07fc0b46726c50c92bdb6fc9605ba3c8bc2eaeef73da230a",
+      "7175": "d5c91fccdc736b5cbf7b49429d1c7f6b796cba43ac286623a6b620e8e6ae1b5e"
+    }
+  }
+}

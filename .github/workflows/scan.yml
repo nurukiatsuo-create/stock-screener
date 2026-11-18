@@ -15,6 +15,11 @@ on:
       - 'audit/disclosure_checks.json'
       - 'audit/shikiho_candidates_2026.json'
       - 'audit/topix_membership.json'
+      - 'audit/security_identity.json'
+      - 'audit/disclosure_monitors.json'
+      - 'audit/topix_news_baseline.json'
+      - 'check_disclosure_updates.py'
+      - 'check_topix_updates.py'
       - 'breakout_evidence.py'
       - 'trading_config.json'
       - 'test_*.py'
@@ -49,13 +54,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pandas numpy matplotlib exchange_calendars==4.13.3
+          pip install yfinance pandas numpy matplotlib requests exchange_calendars==4.13.3
 
       - name: Test monitoring rules
         run: python -m unittest discover -p 'test_*.py' -v
 
       - name: Test monitor grouping
         run: node test_monitor.js
+
+      - name: Check reviewed disclosure and TOPIX sources
+        run: |
+          python check_disclosure_updates.py
+          python check_topix_updates.py
 
       - name: Run Screening Script
         run: |
@@ -65,7 +75,7 @@ jobs:
         run: |
           git config --global user.name "actions-user"
           git config --global user.email "actions@github.com"
-          git add stocks_data.json audit/fundamental_audit.json
+          git add stocks_data.json audit/fundamental_audit.json audit/disclosure_checks.json audit/topix_update_check.json
           git commit -m "Update all ranking JSON files and screener data" || exit 0
           git push
 

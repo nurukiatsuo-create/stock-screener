@@ -2,7 +2,7 @@
 import copy
 import unittest
 from datetime import datetime
-from candidate_gates import apply_selection, position_size, topix_gate
+from candidate_gates import apply_selection, position_size, topix_gate, shikiho_gate, selection_row_key
 from audit_fundamentals import evidence_key
 from market_calendar import expected_price_date
 
@@ -14,7 +14,10 @@ def fixture():
         prior_operating_profit=100, eps=120, prior_eps=100, source_url='https://example.com/ir.pdf')
     inputs = {'shikiho': {'rows': [dict(code='1234', name='テスト', source_verified=True,
                     source_edition='2026秋', source_locator='原本p123', source_claim='増益', verified_on='2026-11-13')]},
-              'fundamentals': {'records': [record]}, 'checks': {'records': []},
+              'fundamentals': {'records': [record]},
+              'checks': {'records': [dict(code='1234', checked_on='2026-11-13', success=True,
+                        evidence_key=evidence_key(record), new_disclosure_found=False,
+                        source_url='https://example.com/ir/')]},
               'topix': dict(verified=True, complete=True, source_url='https://www.jpx.co.jp/test-list.pdf',
                     published_on='2026-11-01', checked_on='2026-11-13', valid_until='2026-11-30',
                     transition_codes=[], new_inclusions=[])}
@@ -51,6 +54,59 @@ class SelectionTests(unittest.TestCase):
         for snapshot in ({}, {'verified': False, 'transition_codes': []}):
             self.i['topix'] = snapshot
             self.assertEqual(run(self.s, self.i, self.c)['candidates'], [])
+
+    def accept_notebooklm(self):
+        row = self.i['shikiho']['rows'][0]
+        row['source_verified'] = False
+        accepted = dict(status='accepted', method='user_provided_notebooklm',
+                        edition_label='2026秋号', accepted_on='2026-11-13',
+                        row_fingerprints={'1234': selection_row_key(row)})
+        self.i['shikiho']['selection_acceptance'] = accepted
+        return row, accepted
+
+    def test_notebooklm_acceptance_is_separate_from_original_verification(self):
+        row, accepted = self.accept_notebooklm()
+        r = run(self.s, self.i, self.c)
+        self.assertEqual(len(r['candidates']), 1)
+        self.assertFalse(r['candidates'][0]['gates']['shikiho']['source_verified'])
+        self.assertFalse(row['source_verified'])
+        self.i['topix'] = {}
+        self.assertEqual(run(self.s, self.i, self.c)['candidates'], [])
+        self.i['checks']['records'] = []
+        self.assertEqual(run(self.s, self.i, self.c)['observations'][0]['gates']['fundamental']['status'], 'unknown')
+
+    def test_acceptance_is_never_backdated_or_transferred_to_changed_claim(self):
+        row, accepted = self.accept_notebooklm()
+        self.assertEqual(shikiho_gate(row, '2026-11-12', accepted)['status'], 'unknown')
+        for key in ('code', 'name', 'source_claim'):
+            changed = {**row, key: '変更'}
+            self.assertEqual(shikiho_gate(changed, '2026-11-13', accepted)['status'], 'unknown')
+
+    def test_identity_hold_is_local_and_delisted_stock_is_excluded(self):
+        self.accept_notebooklm()
+        self.c['selection_policy']['require_identity_check'] = True
+        identity = dict(code='1234', status='unknown', reason='コード社名不一致',
+                        checked_on='2026-11-13', source_url='https://www.jpx.co.jp/identity',
+                        identity_status='code_name_mismatch')
+        self.i['identity'] = {'rows': [identity]}
+        r = run(self.s, self.i, self.c)['observations'][0]
+        self.assertEqual(r['gates']['shikiho']['status'], 'pass')
+        self.assertEqual(r['selection_status'], 'pending')
+        identity.update(status='fail', reason='上場廃止', effective_on='2026-11-01')
+        self.assertEqual(run(self.s, self.i, self.c)['observations'][0]['selection_status'], 'excluded')
+
+    def test_topix_event_uses_its_own_source_and_publication_date(self):
+        event = dict(code='1234', effective_on='2026-11-30', published_on='2026-11-09',
+                     source_url='https://www.jpx.co.jp/event.pdf')
+        self.i['topix']['new_inclusions'] = [event]
+        r = topix_gate('1234', self.i['topix'], '2026-11-13')
+        self.assertEqual(r['classification'], 'new_inclusion')
+        self.assertEqual(r['source_url'], event['source_url'])
+        event['published_on'] = '2026-11-14'
+        self.assertEqual(topix_gate('1234', self.i['topix'], '2026-11-13')['status'], 'unknown')
+        event['published_on'] = '2026-11-09'
+        event['source_url'] = 'https://jpx.co.jp.example.com/event.pdf'
+        self.assertEqual(topix_gate('1234', self.i['topix'], '2026-11-13')['status'], 'unknown')
 
     def test_transition_exclusion_wins_over_missing_fundamentals(self):
         self.i['topix']['transition_codes'] = ['1234']

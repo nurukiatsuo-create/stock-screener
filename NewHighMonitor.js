@@ -1,4 +1,4 @@
-// 新高値監視 v7：業績・TOPIX・技術条件の確認状況を分離。
+// 新高値監視 v8：NotebookLM選別受入れと最新業績・TOPIXを独立表示。
 const mode=(args.widgetParameter||'watch').trim();
 const widget=config.runsInWidget;
 const family=config.widgetFamily||'large';
@@ -52,7 +52,7 @@ function card(r,held=false){
 try{
  const req=new Request('https://raw.githubusercontent.com/nurukiatsuo-create/stock-screener/main/stocks_data.json?t='+Date.now());req.timeoutInterval=20;
  const data=await req.loadJSON(),s=data.strategy;
- add('新高値監視 v7','#ffd60a',17);
+ add('新高値監視 v8','#ffd60a',17);
  add('日足 '+(data.data_date||'不明')+'／株価更新 '+(data.updated_at||'不明'),'#a9b4c2',10);
  if(s?.selection_as_of)add('業績等の判定日 '+s.selection_as_of,'#a9b4c2',10);
  if(data.price_fetch_summary?.cache_reused)add('再取得失敗・同日データ利用 '+data.price_fetch_summary.cache_reused+'件','#ff9f0a',10);
@@ -89,6 +89,7 @@ try{
  add('その他 '+others.length+'／確認待ち '+heldBack.length+'／除外 '+excludedRows.length,'#a9b4c2',10);
  if(s.selection_counts){
  const g=s.selection_counts.by_gate;
+ if(!short)add('四季報選別受入れ '+(g.shikiho?.pass||0)+'／銘柄照合待ち '+(g.identity?.unknown||0),'#a9b4c2',10);
  add('未確認：業績 '+(g.fundamental.unknown||0)+'／TOPIX '+(g.topix.unknown||0)+'／株価 '+(g.price_data?.unknown||0),'#ff9f0a',10);
  if(s.selection_counts.not_calculated_codes.length)add('株価未計算 '+s.selection_counts.not_calculated_codes.length+'銘柄','#ff9f0a',10);
  }

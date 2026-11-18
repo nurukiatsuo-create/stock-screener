@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source_url": "https://www.jpx.co.jp/markets/indices/topix/index.html",
+  "checked_on": "2026-11-15",
+  "announcement_floor": "2026-10-07",
+  "known_announcements": [
+    {
+      "published_on": "2026-11-09",
+      "url": "https://www.jpx.co.jp/news/6030/20261109-01.html",
+      "title": "TOPIXの構成銘柄への追加について"
+    },
+    {
+      "published_on": "2026-10-07",
+      "url": "https://www.jpx.co.jp/news/6030/20261007-01.html",
+      "title": "TOPIX等の株価指数における構成銘柄の定期入替等について"
+    }
+  ],
+  "scope": "TOPIX公式ページの関連ニュース欄に掲載された新公表の検知。構成銘柄や登録済みJSONを自動採用・変更するものではない。",
+  "limitations": [
+    "同一URLのPDF内容差し替えはニュース比較だけでは検知しない",
+    "関連ニュース欄に掲載されない情報は網羅しない",
+    "checked_onとvalid_untilを自動延長しない"
+  ],
+  "snapshot_key": "0dae923ddf978fb0e3160b69b1196517967fab2cdba4c4178f3e2cebecbbafc2"
+}

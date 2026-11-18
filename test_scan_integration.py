@@ -1,16 +1,87 @@
 """Offline integration: all configured tickers, valid JSON and unavailable reporting."""
 import contextlib
+import datetime
 import io
 import json
 import os
 import tempfile
 import unittest
 from unittest.mock import patch
+from pathlib import Path
+from zoneinfo import ZoneInfo
 import pandas as pd
 import scan
 
 
 class ScanIntegrationTests(unittest.TestCase):
+    def holding_scenario(self, downloaded_holding):
+        dates = pd.bdate_range(end='2026-11-13', periods=300)
+        valid = pd.DataFrame({'Open': [100.]*300, 'High': [101.]*300,
+                              'Low': [99.]*300, 'Close': [100.]*300,
+                              'Volume': [100000.]*300}, index=dates)
+        cached = {'code': '7094', 'name': 'NexTone',
+                  'evidence': scan.analyze_breakout(valid, expected_date='2026-11-13'),
+                  'box_strategy': scan.analyze_boxes(valid), 'avg_turnover_5d_yen': 10000000.}
+        position = {'code': '7094', 'buy_date': '2026-11-02', 'buy_price': 100.,
+                    'shares': 100, 'box_lower': 90., 'box_upper': 110.}
+        config = {'budget_yen': 1000000, 'positions': [position]}
+        prior = {'data_date': '2026-11-13', 'updated_at': '11/13 16:10',
+                 'breakout_board': {'watching': [cached]}}
+        def extract(_, ticker):
+            return downloaded_holding.copy() if ticker == '7094.T' else valid.copy()
+        old_cwd = os.getcwd()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'trading_config.json').write_text(json.dumps(config))
+            (root / 'stocks_data.json').write_text(json.dumps(prior, allow_nan=False))
+            try:
+                os.chdir(root)
+                with (patch.object(scan, '__file__', str(root / 'scan.py')),
+                      patch.object(scan, 'TICKERS', ['6652.T', '7094.T']),
+                      patch.object(scan.yf, 'download', return_value=pd.DataFrame()),
+                      patch.object(scan, 'extract_ticker_frame', side_effect=extract),
+                      patch.object(scan, 'datetime') as clock,
+                      contextlib.redirect_stdout(io.StringIO())):
+                    clock.now.return_value = datetime.datetime(2026, 11, 15, 17,
+                                                                tzinfo=ZoneInfo('Asia/Tokyo'))
+                    scan.analyze_market()
+                result = json.loads((root / 'stocks_data.json').read_text())
+            finally:
+                os.chdir(old_cwd)
+        json.dumps(result, allow_nan=False)
+        return result
+
+    def test_same_day_cache_cannot_validate_nan_or_stale_holding_history(self):
+        dates = pd.bdate_range(end='2026-11-13', periods=300)
+        valid = pd.DataFrame({'Open': [100.]*300, 'High': [101.]*300,
+                              'Low': [99.]*300, 'Close': [100.]*300,
+                              'Volume': [100000.]*300}, index=dates)
+        for label, raw in [('NaN download', valid * float('nan')),
+                           ('stale download', valid.iloc[:-1])]:
+            with self.subTest(label=label):
+                result = self.holding_scenario(raw)
+                holding = result['strategy']['holdings'][0]
+                self.assertEqual(holding['status'], 'データ確認待ち')
+                self.assertFalse(holding['add_candidate'])
+                self.assertNotIn('close', holding)
+                self.assertNotIn('pnl_yen', holding)
+                self.assertEqual(result['price_fetch_summary']['cache_codes'], ['7094'])
+                observation = next(row for row in result['strategy']['observations'] if row['code'] == '7094')
+                self.assertEqual(observation['price_source'], 'cached_confirmed')
+                self.assertTrue(observation['box']['valid'])
+
+    def test_valid_current_download_keeps_holding_valuation(self):
+        dates = pd.bdate_range(end='2026-11-13', periods=300)
+        valid = pd.DataFrame({'Open': [100.]*300, 'High': [101.]*300,
+                              'Low': [99.]*300, 'Close': [100.]*300,
+                              'Volume': [100000.]*300}, index=dates)
+        result = self.holding_scenario(valid)
+        holding = result['strategy']['holdings'][0]
+        self.assertEqual(holding['status'], '保有継続')
+        self.assertEqual(holding['close'], 100.)
+        self.assertEqual(holding['pnl_yen'], 0.)
+        self.assertEqual(result['price_fetch_summary']['cache_codes'], [])
+
     def test_total_download_failure_preserves_previous_output(self):
         old_cwd = os.getcwd()
         with tempfile.TemporaryDirectory() as tmp:

@@ -27,7 +27,8 @@ def evidence_key(record):
 
 def disclosure_freshness(record, as_of, check=None):
     """No successful poll is inferred from running this program."""
-    out = {'status': 'unknown', 'checked_on': record.get('checked_on'),
+    out = {'status': 'unknown', 'checked_on': None,
+           'evidence_checked_on': record.get('checked_on'),
            'reason': '追加開示の更新確認待ち'}
     try:
         cutoff = date.fromisoformat(as_of)
@@ -40,7 +41,9 @@ def disclosure_freshness(record, as_of, check=None):
             if (check.get('success') is True and str(check.get('code')) == str(record['code'])
                     and check.get('evidence_key') == evidence_key(record)
                     and https_source(check.get('source_url')) and published <= through <= cutoff):
-                checked = max(checked, through)
+                # Re-reading an old PDF today does not refresh yesterday's
+                # separate check for newer disclosures.
+                checked = through
                 out['checked_on'] = checked.isoformat()
                 if check.get('new_disclosure_found') is True:
                     return {**out, 'status': 'superseded', 'reason': '新しい開示あり・業績再判定待ち'}
@@ -48,6 +51,8 @@ def disclosure_freshness(record, as_of, check=None):
                     return out
             else:
                 return {**out, 'reason': '開示確認失敗・根拠との対応不一致'}
+        else:
+            return {**out, 'reason': '追加開示の確認記録未登録（資料の確認日だけでは代用しない）'}
         if checked == cutoff:
             return {**out, 'status': 'current', 'reason': '判定日までの追加開示確認済み'}
     except (KeyError, TypeError, ValueError):
@@ -144,7 +149,7 @@ def build_report(universe, evidence, as_of, checks=None):
             'rule': '通期会社予想OP前年比20%以上 AND EPS増加、または根拠付き例外承認。四半期実績は別審査。',
             'limitations': ['業績評価と追加開示の確認状況は別管理。未確認情報を推測で合格にしない。',
                            '日付単位の終日確認用。公表時刻がないため当日場中バックテストには使用不可。',
-                           'TOPIX・四季報原本・価格出来高・流動性は候補統合で別判定。'],
+                           'TOPIX・NotebookLM選別受入れ・コード社名・価格出来高・流動性は候補統合で別判定。'],
             'counts': dict(Counter(r['status'] for r in rows)),
             'freshness_counts': dict(Counter(r['freshness']['status'] for r in rows)),
             'eligible_count': sum(r['eligible'] for r in rows), 'rows': rows}
